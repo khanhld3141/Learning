@@ -9,7 +9,7 @@ public class DBContext {
 
     public DBContext() {
         try {
-            String url = "jdbc:sqlserver://localhost:1433;databaseName=JSPLEARN;encrypt=false";
+            String url = "jdbc:sqlserver://localhost:1433;databaseName=ELEARNING;encrypt=false";
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             String username = "sa";
             String password = "3141";

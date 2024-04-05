@@ -1,22 +1,22 @@
 package controller.UserController;
 
-import dal.UsersDAO;
+import dal.UserDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import model.Users;
+import model.User;
 
 import java.io.IOException;
 
 @WebServlet(name = "CreateUserServlet", value = "/create-user")
 public class CreateUser extends HttpServlet {
     private String message;
-    private UsersDAO usersDao;
+    private UserDAO userDao;
 
     public void init() {
-        usersDao = new UsersDAO();
+        userDao = new UserDAO();
         message = "Hello World!";
     }
 
@@ -25,15 +25,16 @@ public class CreateUser extends HttpServlet {
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String name = request.getParameter("name");
-        String uni = request.getParameter("university");
-        String clas = request.getParameter("class");
-        String gradeStr = request.getParameter("grade");
-
+        String name = request.getParameter("Name");
+        String username = request.getParameter("Username");
+        String phone = request.getParameter("Phone");
+        String role = request.getParameter("Role");
+        String email = request.getParameter("Email");
+        String password = request.getParameter("Password");
+        String balanceStr = request.getParameter("Balance");
         try {
-            double grade = Double.parseDouble(gradeStr);
-            Users user = new Users(name, uni, clas, grade);
-            usersDao.create(user);
+            User user = new User(Integer.parseInt(balanceStr), name, username, phone, role, email, password);
+            userDao.create(user);
             response.sendRedirect("/users");
         } catch (Exception e) {
             e.printStackTrace();

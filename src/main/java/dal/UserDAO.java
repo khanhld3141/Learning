@@ -1,6 +1,6 @@
 package dal;
 
-import model.Users;
+import model.User;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,30 +8,34 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UsersDAO extends DBContext {
+public class UserDAO extends DBContext {
 
     //doc tat ca ban ghi tu table KhachHang
-    public UsersDAO() {
+    public UserDAO() {
         super();
     }
 
-    public List<Users> getAll() {
-        List<Users> list = new ArrayList<>();
+    public List<User> getAll() {
+        List<User> list = new ArrayList<>();
         String sql = "select * from Users";
 
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                Users kh = new Users(
+                User user = new User(
                         rs.getInt("Id"),
-                        rs.getString("NameUser"),
-                        rs.getString("University"),
-                        rs.getString("Class"),
-                        rs.getDouble("Grade")
+                        rs.getInt("Balance"),
+                        rs.getString("Name"),
+                        rs.getString("Username"),
+                        rs.getString("Phone"),
+                        rs.getString("Role"),
+                        rs.getString("Email"),
+                        rs.getString("Password")
                 );
-                list.add(kh);
+                list.add(user);
             }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -39,7 +43,7 @@ public class UsersDAO extends DBContext {
         return list;
     }
 
-    public Users get(int id) {
+    public User get(int id) {
         String sql = "select * from users where id = ?";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
@@ -47,14 +51,17 @@ public class UsersDAO extends DBContext {
             ResultSet rs = st.executeQuery();
 
             while (rs.next()) {
-                Users users = new Users(
+                User user = new User(
                         rs.getInt("Id"),
-                        rs.getString("NameUser"),
-                        rs.getString("University"),
-                        rs.getString("Class"),
-                        rs.getDouble("Grade")
+                        rs.getInt("Balance"),
+                        rs.getString("Name"),
+                        rs.getString("Username"),
+                        rs.getString("Phone"),
+                        rs.getString("Role"),
+                        rs.getString("Email"),
+                        rs.getString("Password")
                 );
-                return users;
+                return user;
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -62,15 +69,17 @@ public class UsersDAO extends DBContext {
         return null;
     }
 
-    public void create(Users user) {
-        String sql = "insert into users (NameUser,University,Class,Grade) values(?,?,?,?)";
+    public void create(User user) {
+        String sql = "insert into Users (Name,Username,Email,Password,Phone,Role,Balance) values(?,?,?,?,?,?,?)";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setString(1, user.getName());
-            st.setString(2, user.getUni());
-            st.setString(3, user.getClas());
-            st.setDouble(4, user.getGrade());
-
+            st.setString(2, user.getUsername());
+            st.setString(3, user.getEmail());
+            st.setString(4, user.getPassword());
+            st.setString(5, user.getPhone());
+            st.setString(6, user.getRole());
+            st.setInt(7, user.getBanlance());
             // Execute the update
             st.executeUpdate();
         } catch (SQLException e) {
@@ -78,15 +87,18 @@ public class UsersDAO extends DBContext {
         }
     }
 
-    public void update(Users user) {
-        String sql = "update users set NameUser=?,University=?,Class=?,Grade=? where id=? ";
+    public void update(User user) {
+        String sql = "update users set Name=?,UserName=?,Email=?,Password=?,Phone=?,Role=?,Balance=? where Id=? ";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setString(1, user.getName());
-            st.setString(2, user.getUni());
-            st.setString(3, user.getClas());
-            st.setDouble(4, user.getGrade());
-            st.setInt(5, user.getId());
+            st.setString(2, user.getUsername());
+            st.setString(3, user.getEmail());
+            st.setString(4, user.getPassword());
+            st.setString(5, user.getPhone());
+            st.setString(6, user.getRole());
+            st.setInt(7, user.getBanlance());
+            st.setInt(8, user.getId());
             // Execute the update
             st.executeUpdate();
         } catch (SQLException e) {

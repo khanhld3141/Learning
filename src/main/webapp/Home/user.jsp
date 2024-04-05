@@ -1,5 +1,6 @@
-<%@ page import="model.Users" %>
-<%@ page import="java.util.List" %><%--
+<%@ page import="model.User" %>
+<%@ page import="java.util.List" %>
+<%@ page import="model.User" %><%--
   Created by IntelliJ IDEA.
   User: MY DREAMS
   Date: 01/03/2024
@@ -60,7 +61,7 @@
     </script>
 </head>
 <body>
-<h1>Danh sách users</h1>
+<h1>Danh sách user</h1>
 <a href="/create-user">Add new user</a>
 <table>
     <thead>
@@ -90,34 +91,45 @@
     </thead>
     <tbody>
     <%
+        if(request.getAttribute("users")==null) {
+
+
+    %>
+        <h3>Empty</h3>
+    <%
+        }
+    %>
+
+
+    <%
         if (request.getAttribute("users") != null) {
-            List<Users> users = (List<Users>) request.getAttribute("users");
-            for (int i = 0; i < users.size(); i++) {
+            List<User> user = (List<User>) request.getAttribute("users");
+            for (int i = 0; i < user.size(); i++) {
 
 
     %>
     <tr>
         <td>
-            <%=(i+1)%>
+            <%= user.get(i).getId()%>
         </td>
         <td>
-            <%= users.get(i).getId()%>
+            <%= user.get(i).getName()%>
         </td>
         <td>
-            <%= users.get(i).getName()%>
+            <%= user.get(i).getUsername()%>
         </td>
         <td>
-            <%= users.get(i).getUni()%>
+            <%= user.get(i).getEmail()%>
         </td>
         <td>
-            <%= users.get(i).getClas()%>
+            <%= user.get(i).getPassword()%>
         </td>
         <td>
-            <%= users.get(i).getGrade()%>
+            <%= user.get(i).getRole()%>
         </td>
         <td>
-            <button onclick="handleUpdate(<%= users.get(i).getId()%>)" class="btn view">View</button>
-            <button onclick="handleDelete(<%= users.get(i).getId()%>)" class="btn del">Delete</button>
+            <button onclick="handleUpdate(<%= user.get(i).getId()%>)" class="btn view">View</button>
+            <button onclick="handleDelete(<%= user.get(i).getId()%>)" class="btn del">Delete</button>
         </td>
     </tr>
     <%

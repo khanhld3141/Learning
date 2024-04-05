@@ -1,4 +1,4 @@
-<%@ page import="model.Users" %><%--
+<%@ page import="model.User" %><%--
   Created by IntelliJ IDEA.
   User: MY DREAMS
   Date: 01/03/2024
@@ -10,29 +10,31 @@
 <head>
     <title>Title</title>
     <style>
-        form{
+        form {
             width: 70%;
-            margin:auto;
+            margin: auto;
             padding: 2rem;
             border: 1px solid #ececec;
 
             display: grid;
-            grid-template-columns: repeat(1,1fr);
+            grid-template-columns: repeat(1, 1fr);
             gap: 0.5rem;
 
-            label{
-                font-size:1.5rem;
+            label {
+                font-size: 1.5rem;
                 color: #2f3542;
                 font-weight: 700;
 
             }
-            input{
+
+            input {
                 padding: 1rem;
-                font-size:1.1rem;
+                font-size: 1.1rem;
                 border: 0.1rem solid #ececec;
-                border-radius:0.5rem;
+                border-radius: 0.5rem;
             }
-            button{
+
+            button {
                 padding: 1rem 3rem;
                 border: 0.1rem solid #ececec;
                 border-radius: 0.5rem;
@@ -49,30 +51,46 @@
 <h1>
     Update user
 </h1>
-    <form action="/update-user" method="post">
-        <%
-            if(request.getAttribute("user") != null){
-                Users user=(Users) request.getAttribute("user");
-        %>
-        <input type="text" name="id" value="<%= user.getId()%>" hidden/>
-        <label for="name">Name</label>
-        <input type="text" id="name" name="name" value="<%= user.getName()%>" placeholder="<%= user.getName()%>"/>
-        <label for="uni">University</label>
-        <input type="text" id="uni" name="university" value="<%= user.getUni()%>" placeholder="<%= user.getUni()%>"/>
-        <label for="class">Class</label>
-        <input type="text" id="class" name="class" value="<%= user.getClas()%>" placeholder="<%= user.getClas()%>"/>
-        <label for="grade">Grade</label>
-        <input type="text" id="grade" name="grade" value="<%= user.getGrade()%>" placeholder="<%= user.getGrade()%>"/>
-        <button type="submit">Update</button>
+<form action="/update-user" method="post">
+    <%
+        if (request.getAttribute("user") != null) {
+            User user = (User) request.getAttribute("user");
+    %>
+    <input type="text" name="Id" value="<%= user.getId()%>" hidden/>
 
-        <%
-            } else if (request.getAttribute("user")!= null) {
+    <label for="name">Name</label>
+    <input value="<%= user.getName()%>" type="text" id="name" name="Name" placeholder="Enter your name"/>
 
-        %>
-        <p>User not found</p>
-        <%
-            }
-        %>
-    </form>
+    <label for="username">Username</label>
+    <input value="<%= user.getUsername()%>" type="text" id="username" name="Username"
+           placeholder="Enter your username"/>
+
+    <label for="email">Email</label>
+    <input value="<%= user.getEmail()%>" type="email" id="email" name="Email" placeholder="Enter your email"/>
+
+    <label for="password">Password</label>
+    <input value="<%= user.getPassword()%>" type="password" id="password" name="Password"
+           placeholder="Enter your password"/>
+
+    <label for="phone">Phone</label>
+    <input value="<%= user.getPhone()%>" type="text" id="phone" name="Phone" placeholder="Enter your phone"/>
+
+    <label for="balance">Balance</label>
+    <input value="<%= user.getBanlance()%>" type="number" id="balance" min="0" name="Balance"
+           placeholder="Enter your balance"/>
+
+    <label for="password">Role</label>
+    <input value="<%= user.getRole()%>" type="text" id="role" name="Role" placeholder="Enter your role"/>
+    <button type="submit">Update</button>
+
+    <%
+    } else if (request.getAttribute("user") != null) {
+
+    %>
+    <p>User not found</p>
+    <%
+        }
+    %>
+</form>
 </body>
 </html>

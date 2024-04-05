@@ -4,7 +4,7 @@ import dal.LoginDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
-import model.Login;
+import model.User;
 
 import java.io.IOException;
 
@@ -27,7 +27,7 @@ public class LoginServlet extends HttpServlet {
 
         HttpSession session = request.getSession();
         LoginDAO loginDAO = new LoginDAO();
-        Login user = loginDAO.check(username, password);
+        User user = loginDAO.check(username, password);
         if (user == null) {
             request.setAttribute("error", "username or password invalid");
             request.getRequestDispatcher("Login/index.jsp").forward(request, response);
@@ -46,9 +46,8 @@ public class LoginServlet extends HttpServlet {
             response.addCookie(cookie);*/
 
             // Lưu trữ thông tin người dùng vào HttpSession
-           /* HttpSession session = request.getSession();
-            session.setAttribute("username", username);
-            session.setAttribute("role", "user");*/
+//            HttpSession session = request.getSession();
+            session.setAttribute("user", user);
             Cookie cookieU = new Cookie("username", username);
             Cookie cookieP = new Cookie("password", password);
             Cookie cookieR = new Cookie("remember", remember);
@@ -64,7 +63,7 @@ public class LoginServlet extends HttpServlet {
             response.addCookie(cookieU);
             response.addCookie(cookieP);
             response.addCookie(cookieR);
-            if (user.getRole().equals("R1")) {
+            if (user.getRole().equals("Administrator")) {
                 request.getRequestDispatcher("Login/admin.jsp").forward(request, response);
             } else {
 

@@ -1,6 +1,6 @@
 package controller.UserController;
 
-import dal.UsersDAO;
+import dal.UserDAO;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -11,10 +11,10 @@ import java.io.IOException;
 @WebServlet(name = "DeleteUserServlet", value = "/delete-user")
 public class DeleteUser extends HttpServlet {
     private String message;
-    private UsersDAO usersDAO;
+    private UserDAO userDAO;
     public void init() {
         message = "Hello World!";
-        usersDAO = new UsersDAO();
+        userDAO = new UserDAO();
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -23,7 +23,7 @@ public class DeleteUser extends HttpServlet {
 
             try{
                 int id = Integer.parseInt(idStr);
-                usersDAO.delete(id);
+                userDAO.delete(id);
                 response.sendRedirect("/users");
             }catch (Exception e){
                 e.printStackTrace();

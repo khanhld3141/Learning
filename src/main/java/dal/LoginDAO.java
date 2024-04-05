@@ -1,6 +1,6 @@
 package dal;
 
-import model.Login;
+import model.User;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,8 +13,8 @@ public class LoginDAO extends DBContext {
         super();
     }
 
-    public Login check(String username, String password) {
-        String sql = "select * from user2 where username=? and password=?";
+    public User check(String username, String password) {
+        String sql = "select * from Users where Username=? and Password=?";
 
         try {
             PreparedStatement st = connection.prepareStatement(sql);
@@ -22,11 +22,15 @@ public class LoginDAO extends DBContext {
             st.setString(2, password);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                Login user = new Login(
+                User user = new User(
                         rs.getInt("Id"),
-                        rs.getString("username"),
-                        rs.getString("password"),
-                        rs.getString("role")
+                        rs.getInt("Balance"),
+                        rs.getString("Name"),
+                        rs.getString("Username"),
+                        rs.getString("Phone"),
+                        rs.getString("Role"),
+                        rs.getString("Email"),
+                        rs.getString("Password")
                 );
                 return user;
             }

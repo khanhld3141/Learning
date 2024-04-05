@@ -1,21 +1,21 @@
 package controller.UserController;
 
-import dal.UsersDAO;
+import dal.UserDAO;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import model.Users;
+import model.User;
 
 import java.io.IOException;
 
 @WebServlet(name = "UpdateUserServlet", value = "/update-user")
 public class UpdateUser extends HttpServlet {
     private String message;
-    private UsersDAO usersDAO;
+    private UserDAO userDAO;
     public void init() {
         message = "Hello World!";
-        usersDAO=new UsersDAO();
+        userDAO =new UserDAO();
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -23,7 +23,7 @@ public class UpdateUser extends HttpServlet {
             String idStr=request.getParameter("id");
             try{
                 int id=Integer.parseInt(idStr);
-                Users user=usersDAO.get(id);
+                User user= userDAO.get(id);
 
                 request.setAttribute("user", user);
                 request.getRequestDispatcher("Home/update-user.jsp").forward(request,response);
@@ -35,21 +35,24 @@ public class UpdateUser extends HttpServlet {
         }
     }
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String idStr=request.getParameter("id");
-        String name = request.getParameter("name");
-        String uni = request.getParameter("university");
-        String clas = request.getParameter("class");
-        String gradeStr = request.getParameter("grade");
-
+        String id = request.getParameter("Id");
+        String name = request.getParameter("Name");
+        String username = request.getParameter("Username");
+        String phone = request.getParameter("Phone");
+        String role = request.getParameter("Role");
+        String email = request.getParameter("Email");
+        String password = request.getParameter("Password");
+        String balance = request.getParameter("Balance");
+        System.out.println(id + name + username + phone + role + email + password + balance);
         try {
-            int id=Integer.parseInt(idStr);
-            double grade = Double.parseDouble(gradeStr);
-            Users user = new Users(id,name, uni, clas, grade);
-            usersDAO.update(user);
+            User user = new User(Integer.parseInt(id),Integer.parseInt(balance), name, username, phone, role, email,
+                    password);
+            userDAO.update(user);
             response.sendRedirect("/users");
         } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
 
     public void destroy() {
