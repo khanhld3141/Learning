@@ -1,0 +1,293 @@
+.carousel-item{
+    height: 677px;
+    width: 100%;
+    object-fit: cover;
+    position: relative;
+}
+.carousel-item .item__pic{
+    width: 100%;
+    height: 100%;
+    transition: all 0s ease 0s;
+}
+.carousel__layout{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: -webkit-gradient(linear, left top, right bottom, from(rgba(12, 46, 96, 0.8)), to(rgba(239, 71, 13, 0.5)));
+    background: linear-gradient(to right bottom, rgba(12, 46, 96, 0.8), rgba(239, 71, 13, 0.5));
+    z-index: 0;
+}
+.carousel-caption{
+    text-align: center !important;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 75%;
+    bottom: auto;
+}
+.carousel-caption .carousel-heading{
+    color: #ffb800;
+    font-size: 55px;
+    line-height: 65px;
+    font-weight: 700;
+    font-family: 'Poppins', sans-serif;
+    z-index: 10;
+}
+.carousel-heading p:last-of-type{
+    color: #FFF;
+}
+
+.carousel__search-form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 60px;
+}
+.carousel__search-form .categories{
+    border: 0;
+    border-radius: 0;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+    color: #000;
+    -ms-flex-preferred-size: 180px;
+    flex-basis: 180px;
+    line-height: 55px;
+    padding-left: 35px;
+    cursor: pointer;
+    width: 180px;
+    height: 57px;
+    outline: none;
+}
+
+.categories{
+    font-size: 1.5rem;
+}
+.carousel__search-form .enter-subject{
+    padding: 15px 20px;
+    width: 50%;
+    height: 57px;
+    margin-left: -4px;
+    border: none;
+    display: inline-block;
+    outline: none;
+    font-size: 1.5rem;
+}
+.carousel__search-form .button-search{
+    width: 100px;
+    height: 57px;
+    background: -webkit-gradient(linear, left top, right top, from(#ef3e0f), to(#ffb800));
+    background: var(--color-2);
+    border: 0;
+    border-radius: 0 50px 50px 0;
+    color: #fff;
+    font-size: 20px;
+    padding: 15px 20px;
+    text-align: center;
+    -webkit-transition: all 300ms ease-in-out;
+    transition: all 300ms ease-in-out;
+}
+/* .button-search .fa-magnifying-glass{
+    color: white;
+} */
+/* feature-box */
+.feature-box{
+    height: 160px;
+    background-color: var(--color-1);
+    display: flex;
+    align-items: center;
+}
+.feature-box__content{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: space-between;
+    column-gap: 50px;
+}
+.item__icon--logo{
+    height: 52px;
+    color: white;
+}
+.item__infor strong{
+    font-size: 22px;
+    color: #FFF;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+}
+.item__infor p:last-of-type{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 27px;
+    color: #FFF;
+    margin-top: 6px;
+}
+.feature-box__item{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.item__icon{
+    margin-right: 15px;
+}
+
+/* CATEGORY */
+.category{
+    padding: 90px 0px;
+    background-color: #f8f9fa;
+}
+.category__header{
+    text-align: center;
+    width: 50%;
+    margin: 0 auto;
+    margin-bottom: 60px;
+}
+.category__header .heading{
+    color: #ef470d;
+    display: block;
+    font-size: 1.4rem;
+    font-weight: 500;
+    letter-spacing: 2.8px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    position: relative;
+}
+.category__header .desc{
+    color: #0c2e60;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 3.8rem;
+}
+.category__list{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 30px;
+    row-gap: 30px;
+}
+.category__card:hover{
+    transform: translateY(-9px);
+}
+.category__card{
+    background-color: #fff;
+    -webkit-box-shadow: 0px 5px 30px 0px rgba(0, 0, 0, 0.05);
+    box-shadow: 0px 5px 30px 0px rgba(0, 0, 0, 0.05);
+    border: 1px solid #efefef;
+    border-radius: 5px;
+    display: flex;
+    padding: 20px 25px;
+    transition: all 300ms ease-in-out;
+    align-items: center;
+}
+.card__logo{
+    margin-right: 15px;
+}
+.card__name{
+    line-height: 0.8;
+    color: #2f2f35;
+    display: inline-block;
+    font-size: 1.5rem;
+    font-weight: 500;
+    text-transform: capitalize;
+    margin-bottom: 0;
+}
+
+/* discount coupon */
+.discount-trial{
+    padding: 90px 0px;
+}
+.discount-trial__content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.discount__infor{
+    width: 40%;
+    padding-left: 10%;
+}
+.form__free-trial{
+    display: block;
+    width: 60%;
+}
+.discount__title, .discount__desc, .discount__coupon strong{
+    color: #0c2e60;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 4.2rem;
+    text-transform: uppercase;
+}
+.discount__desc, .discount__coupon strong{
+    margin-top: 24px;
+    font-size: 1.6rem;
+}
+.discount__coupon{
+    margin-top: 24px;
+}
+.form__free-trial{
+    border-radius: 3px;
+    max-width: 400px;
+    overflow: hidden;
+    position: relative;
+    padding: 40px 25px;
+    width: 100%;
+    z-index: 1;
+}
+.form__free-trial{
+    background-color: #f8f9fa;
+    border-radius: 3px;
+    max-width: 400px;
+    height: 465px;
+    padding: 40px 25px;
+    width: 100%;
+    position: relative;
+}
+.layout__free-trial{
+    position: absolute;
+    background-color: #ffb800;
+    -webkit-clip-path: circle(100% at 50% -170px);
+    clip-path: circle(100% at 50% -170px);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 130px;
+    width: 100%;
+    z-index: 0;
+}
+.form-free-trial__content{
+    position: relative;
+    z-index: 1;
+}
+.form-title{
+    text-align: center;
+    text-transform: capitalize;
+    margin-bottom: 32px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 2.8rem;
+    color: #fff;
+}
+.form-free-trial__content input{
+    border: 1px solid #e0e4e6;
+    padding: 18px 15px;
+    margin-bottom: 30px;
+    width: 100%;
+    outline: none;
+}
+.form-free-trial__content input:first-of-type{
+    margin-top: 34px;
+}
+.btn{
+    outline: none;
+    border: 1px solid #e0e4e6;
+    padding: 18px 15px;
+    margin-bottom: 30px;
+    width: 100%;
+    text-transform: uppercase;
+    background: var(--color-2);
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 0.8;
+    color: #FFF;
+}
