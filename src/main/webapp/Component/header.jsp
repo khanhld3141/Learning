@@ -23,6 +23,7 @@
     <!-- component CSS -->
     <link rel="stylesheet" href="../Component/component.css">
     <link rel="stylesheet" href="../assets/css/home_layout.css">
+    <link rel="stylesheet" href="../assets/css/event_layout.css">
 
 </head>
 
