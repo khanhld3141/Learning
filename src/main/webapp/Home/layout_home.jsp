@@ -20,6 +20,7 @@
                             <option value="value01">IT & Software</option>
                             <option value="value03">Machine Learning</option>
                             <option value="value04">Deep Learning</option>
+                            <option value="value05">Data Science</option>
                         </select>
                         <input type="text" placeholder="Enter a Subject" class="enter-subject">
                         <button type="submit" class="button-search"><i
@@ -206,6 +207,40 @@
                         <button type="submit" class="btn btn--submit__trial">Get your free trial</button>
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- slide courses -->
+
+    <script>
+        $(document).ready(function () {
+            $('.owl-carousel').owlCarousel({
+                loop: true,
+                nav: true,
+                margin: 30,
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    768: {
+                        items: 2
+                    },
+                    992: {
+                        items: 3
+                    }
+                }
+            })
+        });
+    </script>
+
+    <div class="slide-courses">
+        <div class="main-content">
+            <div class="owl-carousel owl-theme">
+                <!-- item 1 -->
+                <% for(int i = 0; i < 6; i++){ %>
+                <%@ include file="../Component/card-courses.jsp" %>
+                <% } %>
             </div>
         </div>
     </div>
