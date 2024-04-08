@@ -2,7 +2,7 @@
     <figure class="card-courses" id="card-courses">
         <div class="card-courses__thumb">
             <img src="../img/slide-courses/slide1.jpg" alt="" class="card-courses__img">
-            <p class="price__courses"></p>
+            <p class="price__courses">50$</p>
         </div>
 
         <div class="card-courses__content">
