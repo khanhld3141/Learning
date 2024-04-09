@@ -27,7 +27,7 @@
         <%--head của trang events--%>
         <div class="events-head">
             <div class="main-content">
-                <h1 class="first-head">LATEST EVENTS</h1>
+                <h1 class="first-head">LATEST EVENTSádasda</h1>
                 <h1 class="second-head">Community affairs and integrated events</h1>
             </div>
         </div>
