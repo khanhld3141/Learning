@@ -123,8 +123,8 @@
     <div class="category">
         <div class="main-content">
             <div class="category__header">
-                <h3 class="heading">TOP CATEGORIES</h3>
-                <h2 class="desc">Pick the right category Build your career</h2>
+                <p class="tagline blog__tag-line">CATEGORIES</p>
+                <h1 class="title blog__title">Every Single Update From Our Blog Page</h1>
             </div>
             <div class="category__list">
                 <!-- item1 -->
@@ -243,6 +243,131 @@
                 <% for(int i = 0; i < 6; i++){ %>
                 <%@ include file="../Component/card-courses.jsp" %>
                 <% } %>
+            </div>
+        </div>
+    </div>
+
+    <!-- high-light-web -->
+    <div class="high-light">
+        <div class="main-content">
+            <div class="list-high-light">
+                <div class="high-light__item">
+                    <span>291</span>
+                    <p>Amazing Courses</p>
+                </div>
+                <div class="high-light__item">
+                    <span>38</span>
+                    <p>talented instructors</p>
+                </div>
+                <div class="high-light__item">
+                    <span>3940</span>
+                    <p>Skilled Students</p>
+                </div>
+                <div class="high-light__item">
+                    <span>14</span>
+                    <p>categories</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-----Slide Blog---->
+    <div class="blog">
+        <div class="main-content">
+            <p class="tagline blog__tag-line">WHAT'S NEW</p>
+            <h1 class="title blog__title">Every Single Update From Our Blog Page</h1>
+            <div class="owl-carousel owl-theme">
+                <!-- items -->
+                <%
+                    for (int i = 1; i <= 6; i++) { %>
+                    <%@ include file="../Component/card-blog.jsp" %>
+                <% }%>
+            </div>
+        </div>
+    </div>
+
+    <!-- Testimonial-->
+    <div class="testimonial">
+        <div class="main-content">
+            <div class="testimonial-top">
+                <p class="tagline testimonial__tag-line">TESTIMONIAL</p>
+                <h2 class="title testimonial__title">What Our Users Say About Us</h2>
+            </div>
+            <div class="testimonial__box">
+                <div id="testimonial-carousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <!-- item 1 -->
+                            <div class="testimonial__item">
+                                <p class="testimonial__word">Lorem ipsum dolor sit amet, consectetur adipiscing
+                                    elit, sed do eiusmod tempor incididunt
+                                    ut labore eco dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.
+                                    Risus
+                                    commodo viverra maecenas accumsan lacus vel facilisis.</p>
+                                <div class="testimonial__user">
+                                    <img src="../img/Testimonial/avatar3.jpeg" class="avatar-small circle" alt="">
+                                    <strong>Khanh Dang</strong>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <!-- item 1 -->
+                            <div class="testimonial__item">
+                                <p class="testimonial__word">Lorem ipsum dolor sit amet, consectetur adipiscing
+                                    elit, sed do eiusmod tempor incididunt
+                                    ut labore eco dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.
+                                    Risus
+                                    commodo viverra maecenas accumsan lacus vel facilisis.</p>
+                                <div class="testimonial__user">
+                                    <img src="../img/Testimonial/avatar3.jpeg" class="avatar-small circle" alt="">
+                                    <strong>Khanh Dang</strong>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <!-- item 1 -->
+                            <div class="testimonial__item">
+                                <p class="testimonial__word">Lorem ipsum dolor sit amet, consectetur adipiscing
+                                    elit, sed do eiusmod tempor incididunt
+                                    ut labore eco dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.
+                                    Risus
+                                    commodo viverra maecenas accumsan lacus vel facilisis.</p>
+                                <div class="testimonial__user">
+                                    <img src="../img/Testimonial/avatar3.jpeg" class="avatar-small circle" alt="">
+                                    <strong>Khanh Dang</strong>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- thêm điều hướng và 2 nút điều hướng -->
+                        <button class="carousel-control-prev" type="button" data-bs-target="#testimonial-carousel"
+                                data-bs-slide="prev" style=" background-color: #FFD43B; width: 40px; height: 40px;
+                        opacity: 1; display: block; top: 60%">
+                        <span class=" carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#testimonial-carousel"
+                                data-bs-slide="next" style=" background-color: #FFD43B; width: 40px; height: 40px;
+                                opacity: 1; display: block; top: 60%">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Newsletter-->
+    <div class="newsletter">
+        <div class="main-content">
+            <div class="newsletter__content">
+                <h3>Newsletter Subscription</h3>
+                <p>Get updated with latest news</p>
+                <form class="newsletter__form" action="#">
+                    <input type="text" placeholder="Enter your Email">
+                    <button type="submit"><i class="fa-regular fa-paper-plane"></i>Subscribe</button>
+                </form>
             </div>
         </div>
     </div>

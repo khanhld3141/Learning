@@ -88,10 +88,8 @@
     -webkit-transition: all 300ms ease-in-out;
     transition: all 300ms ease-in-out;
 }
-/* .button-search .fa-magnifying-glass{
-    color: white;
-} */
-/* feature-box */
+
+/* -------------feature-box --------------------*/
 .feature-box{
     height: 160px;
     background-color: var(--color-1);
@@ -130,10 +128,11 @@
 .item__icon{
     margin-right: 15px;
 }
+/*--------------------------------------*/
 
-/* CATEGORY */
+/* -----------------CATEGORY ----------------------*/
 .category{
-    padding: 90px 0px;
+    padding: 90px 0;
     background-color: #f8f9fa;
 }
 .category__header{
@@ -142,7 +141,13 @@
     margin: 0 auto;
     margin-bottom: 60px;
 }
-.category__header .heading{
+.category__header{
+    text-align: center;
+    width: 50%;
+    margin: 0 auto;
+    margin-bottom: 60px;
+}
+.tagline{
     color: #ef470d;
     display: block;
     font-size: 1.4rem;
@@ -151,12 +156,7 @@
     text-transform: uppercase;
     margin-bottom: 10px;
     position: relative;
-}
-.category__header .desc{
-    color: #0c2e60;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 600;
-    font-size: 3.8rem;
+    text-align: center;
 }
 .category__list{
     display: grid;
@@ -169,8 +169,8 @@
 }
 .category__card{
     background-color: #fff;
-    -webkit-box-shadow: 0px 5px 30px 0px rgba(0, 0, 0, 0.05);
-    box-shadow: 0px 5px 30px 0px rgba(0, 0, 0, 0.05);
+    -webkit-box-shadow: 0 5px 30px 0 rgba(0, 0, 0, 0.05);
+    box-shadow: 0 5px 30px 0 rgba(0, 0, 0, 0.05);
     border: 1px solid #efefef;
     border-radius: 5px;
     display: flex;
@@ -190,10 +190,12 @@
     text-transform: capitalize;
     margin-bottom: 0;
 }
+/*--------------------------------------*/
 
-/* discount coupon */
+
+/* ------------------discount coupon------------------ */
 .discount-trial{
-    padding: 90px 0px;
+    padding: 90px 0;
 }
 .discount-trial__content{
     display: flex;
@@ -289,8 +291,10 @@
     line-height: 0.8;
     color: #FFF;
 }
+/*-------------------------------------------------*/
 
-/* POPULAR COURSES CSS*/
+
+/* -----------POPULAR COURSES CSS--------------------*/
 .title{
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
@@ -302,3 +306,181 @@
     color: #0c2e60;
     margin: 60px 0 80px;
 }
+/*------------------------------------------------*/
+
+
+/*------------------HIGH LIGHT--------------------*/
+
+.high-light{
+    border-bottom: 0;
+    padding: 70px 0;
+    background-color: #f8f9fa !important;
+    margin-top: 80px;
+}
+.list-high-light{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: center;
+}
+.high-light__item{
+    text-align: center;
+    padding: 10px 10px;
+}
+.high-light__item ~ .high-light__item{
+    border-left: 1px solid #babdc2;  ;
+}
+.high-light__item span{
+    font-size: 4.8rem;
+    font-weight: 500;
+    line-height: 46px;
+    color: #0c2e60;
+}
+.high-light__item p{
+    color: #000;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    letter-spacing: 1.8px;
+    margin-top: 12px;
+}
+/*--------------------------------------------*/
+
+
+/* -----------------BLOG------------------ */
+.blog__title{
+    color: #0c2e60;
+    margin: 20px auto 80px;
+}
+.blog__tag-line{
+    margin-top: 80px;
+}
+/*------------------------------------------------*/
+
+
+/*---------------------TESTIMONIAL CSS--------------------*/
+.testimonial{
+    background: url('/img/hero-img/slide3.jpg') top / cover;
+    padding: 70px 0;
+    position: relative;
+    margin-top: 65px;
+}
+.testimonial::after{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to right bottom, rgba(12, 46, 96, 0.8), rgba(239, 71, 13, 0.5));
+    height: 100%;
+    width: 100%;
+    z-index: 0;
+}
+.testimonial .main-content{
+    position: relative;
+    z-index: 1;
+}
+.testimonial__title, .testimonial__tag-line{
+    color: #FFF;
+}
+.testimonial-top{
+    width: 78%;
+    margin: 0 auto 90px;
+}
+.testimonial__box{
+    background-color: #fff;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 5px 30px 0 rgba(0, 0, 0, 0.05);
+    box-shadow: 0 5px 30px 0 rgba(0, 0, 0, 0.05);
+    padding: 30px;
+    text-align: center;
+    width: 80%;
+    margin: 0 auto;
+}
+.testimonial__word{
+    font-style: italic;
+    color: #83868c;
+    background-color: #fff;
+    font-weight: 400;
+    font-size: 1.5rem;
+    line-height: 27px;
+    margin: 40px 25px 0;
+}
+.testimonial__user{
+    width: 100%;
+    text-align: center;
+    margin-top: 28px;;
+}
+.testimonial__user img{
+    width: 60px !important;
+    height: 60px !important;
+    object-fit: cover;
+    border-radius: 50%;
+}
+.testimonial__user strong{
+    display: block;
+    color: var(--color-1);
+    font-weight: bolder;
+    font-size: 1.5rem;
+    line-height: 27px;
+    margin-top: 12px;
+}
+.testimonial__box .carousel-item{
+    height: auto;
+}
+/*--------------------------------------------------------*/
+
+/* -----------------NEWSLETTER CSS ----------------*/
+.newsletter{
+    background-color: var(--color-1);
+    padding: 70px 0;
+    text-align: center;
+}
+.newsletter__content h3{
+    color: #fff;
+    font-size: 42px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    text-transform: capitalize;
+    font-family: 'Poppins', sans-serif;
+}
+.newsletter__content p{
+    color: #fff;
+    font-size: 24px;
+    text-transform: capitalize;
+    font-weight: 400;
+    line-height: 27px;
+    margin: 20px 0;
+}
+.newsletter__form{
+    margin-top: 30px;
+}
+.newsletter__form input{
+    background-color: #fff;
+    border: none;
+    border-radius: 50px 0 0 50px;
+    box-shadow: none;
+    padding: 15px 25px;
+    width: 40%;
+    outline: none;
+    font-size: 14px;
+    height: 57px;
+}
+.newsletter__form button{
+    background: var(--color-2);
+    border: none;
+    border-radius: 0 50px 50px 0;
+    color: #fff;
+    text-transform: uppercase;
+    padding: 20px 25px;
+    outline: none;
+    height: 57px;
+    margin-left: -4px;
+    font-size: 14px;
+}
+.fa-paper-plane{
+    margin-right: 10px;
+}
+
+/*--------------------------------------------------------*/
+
+
