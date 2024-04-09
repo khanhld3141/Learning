@@ -235,7 +235,9 @@
     </script>
 
     <div class="slide-courses">
+
         <div class="main-content">
+            <h1 class="title title__popular-courses">Popular Courses</h1>
             <div class="owl-carousel owl-theme">
                 <!-- item 1 -->
                 <% for(int i = 0; i < 6; i++){ %>
