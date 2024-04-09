@@ -21,16 +21,16 @@
     <!-- font-awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <!-- owl carousel lib -->
-    <link rel="stylesheet" href="../owlcarousel/assets/owl.carousel.min.scss">
-    <link rel="stylesheet" href="../owlcarousel/assets/owl.theme.default.min.scss">
+    <link rel="stylesheet" href="../owlcarousel/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="../owlcarousel/assets/owl.theme.default.min.css">
     <!-- jquery lib -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="../owlcarousel/owl.carousel.min.js"></script>
     <!-- component CSS -->
-    <link rel="stylesheet" href="../assets/css/home_layout.scss">
+    <link rel="stylesheet" href="../assets/css/home_layout.css">
     <link rel="stylesheet" href="../assets/css/event_layout.css">
     <link rel="stylesheet" href="../assets/css/Pages-Sign-Up.css">
-    <link rel="stylesheet" href="../Component/component.scss">
+    <link rel="stylesheet" href="../Component/component.css">
 
 
 </head>
