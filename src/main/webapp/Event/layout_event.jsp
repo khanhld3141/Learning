@@ -11,15 +11,7 @@
 
 <main>
     <%--ảnh đầu trang--%>
-    <div class="page-feature">
-        <div class="container-text">
-            <h2>Events</h2>
-            <div class="bread-crum">
-                <a href="#!" class="back">Home</a>
-                <span>/Events</span>
-            </div>
-        </div>
-    </div>
+    <%@include file="../Component/page-feature.jsp"%>
 
 
     <div class="events">
