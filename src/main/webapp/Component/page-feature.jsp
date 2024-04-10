@@ -8,10 +8,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div class="page-feature">
     <div class="container-text">
-        <h2>Events</h2>
+        <h2>${param.head}</h2>
         <div class="bread-crum">
             <a href="#!" class="back">Home</a>
-            <span>/Events</span>
+            <span>/${param.span}</span>
         </div>
     </div>
 </div>

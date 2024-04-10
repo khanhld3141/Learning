@@ -31,7 +31,7 @@
     <link rel="stylesheet" href="../assets/css/event_layout.css">
     <link rel="stylesheet" href="../assets/css/Pages-Sign-Up.css">
     <link rel="stylesheet" href="../Component/component.css">
-
+    <link rel="stylesheet" href="../assets/css/terms-conditions.css">
 
 </head>
 
