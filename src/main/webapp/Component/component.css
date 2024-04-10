@@ -275,3 +275,16 @@ footer{
     border-radius: 10px;
     padding: 30px;
 }
+
+/* --------------PAGINATION CSS-------------*/
+.pagination .page-link{
+    font-size: 18px;
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+.pagination .page-item ~ .page-item{
+    margin-left: 10px;
+}
+.pagination{
+    margin: 50px 0 60px;
+}

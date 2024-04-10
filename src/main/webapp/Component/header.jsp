@@ -30,6 +30,7 @@
     <link rel="stylesheet" href="../assets/css/home_layout.css">
     <link rel="stylesheet" href="../assets/css/event_layout.css">
     <link rel="stylesheet" href="../assets/css/Pages-Sign-Up.css">
+    <link rel="stylesheet" href="../assets/css/courses/courses.css">
     <link rel="stylesheet" href="../Component/component.css">
 
 
@@ -48,7 +49,7 @@
             <div class="navbar">
                 <ul class="navbar__list">
                     <li class="navbar__item">
-                        <a href="#!">HOME</a>
+                        <a href="../Home/layout_home.jsp">HOME</a>
                     </li>
                     <li class="navbar__item">
                         <a href="#!">ABOUT</a>
@@ -58,7 +59,7 @@
                         <i class="fa-solid fa-sort-down"></i>
                         <ul class="sub-menu">
                             <li>
-                                <a href="#!">COURSES</a>
+                                <a href="../Courses/courses.jsp">COURSES</a>
                             </li>
                             <li>
                                 <a href="#!">COURSES DETAILS</a>
