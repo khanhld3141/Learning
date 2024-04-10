@@ -1,0 +1,103 @@
+/* ----------COURSES DETAILS CSS------------- */
+
+/* ----------COURSES DETAILS LEFT------------ */
+.courses-details{
+    padding: 70px 0;
+}
+.courses-details__content{
+    display: flex;
+    justify-content: space-between;
+}
+.courses-details__left{
+    width: 66%;
+    margin-left: 2%;
+}
+.courses-details__right{
+    width: 32%;
+}
+.courses-details__demo-video{
+    width: 100%;
+    height: 435px;
+}
+.courses-details__infor{
+    border: 1px solid #e0e4e6;
+    border-radius: 3px;
+    padding: 25px;
+    position: relative;
+    margin: 20px 0;
+}
+.courses-details__infor .title{
+    text-align: start;
+    color: #0c2e60;
+    font-size: 36px;
+    line-height: 30px;
+    margin-bottom: 8px;
+    display: inline-block;
+    margin-right: 10px;
+}
+.courses-details__infor .hot{
+    background-color: #ffc107;
+    color: #000;
+    font-size: 12px;
+    font-weight: 500;
+    vertical-align: middle;
+    display: inline-block;
+    padding: 5px;
+    position: relative;
+    bottom: 5px;
+}
+.courses-details__infor .desc{
+    color: #0c2e60;
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 26px;
+    margin-bottom: 20px;
+}
+.courses-details__infor .details{
+    color: #83868c;
+    background-color: #fff;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 27px;
+}
+.courses-details__infor .details span + span{
+    border-left: 1px solid #83868c;
+    padding-left: 8px;
+}
+.courses-overview__infor{
+    padding: 30px 20px;
+    border: 1px solid #e0e4e6;
+    padding: 25px;
+}
+.courses-overview__btn{
+    margin-bottom: 0px;
+}
+.courses-overview__infor .heading{
+    color: #0c2e60;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    margin-bottom: 10px;
+    font-size: 2.4rem;
+}
+.courses-overview__infor *:not(.heading){
+    color: #83868c;
+    background-color: #fff;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 27px;
+}
+.courses-overview__infor .include, .courses-overview__infor .description, .courses-overview__infor .requirement{
+    margin-bottom: 20px;
+}
+.fa-play, .fa-bookmark, .fa-file{
+    margin-right: 10px;
+}
+
+/* ----------------------curriculum--------------------------- */
+.curriculum__content{
+    padding: 30px 20px;
+    border: 1px solid #e0e4e6;
+}
+

@@ -9,5 +9,7 @@
 <br/>
 <a href="./Pages/Sign-Up.jsp">Hello Servlet</a>
 <a href="./Pages/Terms-Conditions.jsp">Terms-Conditions</a>
+<br>
+<a href="./Home/layout_home.jsp">HOME</a>
 </body>
 </html>
