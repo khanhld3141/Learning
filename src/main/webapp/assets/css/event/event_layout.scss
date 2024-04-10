@@ -4,12 +4,28 @@
     width: 100%;
     height: 297px;
     background-image: url('https://demo.themeies.com/elearning/images/page-feat.jpg');
+    background-size: cover;
     background-position: top center;
     background-repeat: no-repeat;
-    background-clip: content-box;
-    background-origin: content-box;
+}
 
-    background-color: rgba(0, 0, 0, 0.5);
+.ti-timer{
+    line-height: 1;
+    color: #83868c;
+    font-size: 14px;
+    margin-right: 10px;
+}
+
+.page-feature::after{
+    content:  ' ';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.75);
+    height: 100%;
+    width: 100%;
 }
 
 .events-head{
@@ -17,20 +33,22 @@
 }
 
 .page-feature .container-text h2{
-    color:white;
+    color: #fff;
     font-size: 32px;
     font-weight: 600;
     font-family: Poppins, sans-serif;
     text-align: center;
     position: absolute;
-    top: 30%;
+    top: 40%;
     left: 0;
     right: 0;
+    z-index: 1;
 }
 
 .page-feature .bread-crum{
+    color: #fff;
     position: absolute;
-    top: 50%;
+    top: 60%;
     left: 0;
     right: 0;
     font-size: 15px;
@@ -38,6 +56,7 @@
     font-family: Roboto, sans-serif;
     line-height: 27px;
     text-align: center;
+    z-index: 1;
 }
 
 .page-feature .bread-crum .back{
@@ -131,8 +150,6 @@
     line-height: 27px;
     text-align: center;
 }
-
-
 
 .events-group .events-group__item .content{
     padding-left: 20px;
