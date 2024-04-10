@@ -288,3 +288,70 @@ footer{
 .pagination{
     margin: 50px 0 60px;
 }
+/*-------------------------------------------*/
+
+
+/* ------------------FEATURE HEADER CSS ---------------*/
+.feature-header{
+    background: url(/img/hero-img/slide3.jpg) top / cover;
+    padding: 100px 0;
+    position: relative;
+    text-align: center;
+}
+.feature-header::after{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.45);
+    height: 100%;
+    width: 100%;
+    z-index: 0;
+}
+.feature-header .main-content{
+    position: relative;
+    z-index: 1;
+}
+.feature-header__title{
+    color: #FFF;
+    font-size: 3.2rem;
+}
+.feature-header__link *{
+    color: #ccc;
+}
+.feature-header__link *:not(.home)
+{
+    color: #FFF;
+}
+.feature-header__link{
+    padding: 22px 0;
+}
+
+/* ---------------------------------------------------*/
+/* --------------------chapter item ------------------------ */
+.accordion-button{
+    font-size: 16px;
+    font-weight: 500;
+    padding: 15px;
+    border: 1px solid #e0e4e6;
+    background-color: #f7f8fa ;
+}
+.accordion-button::after{
+    margin-left: 10px;
+
+}
+.curriculum__total-lecture{
+    font-size: 14px;
+    text-transform: capitalize;
+    display: inline-block;
+    margin-left: auto;
+}
+.accordion-body li a{
+    color: #444;
+    border-bottom: 1px solid #eeeeee;
+    display: block;
+    padding: 12px 20px;
+}
+/*------------------------------------------*/

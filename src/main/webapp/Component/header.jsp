@@ -31,6 +31,7 @@
     <link rel="stylesheet" href="../assets/css/event/event_layout.scss">
     <link rel="stylesheet" href="../assets/css/pages/Pages-Sign-Up.css">
     <link rel="stylesheet" href="../assets/css/courses/courses.css">
+    <link rel="stylesheet" href="../assets/css/courses/courses_detail.css">
     <link rel="stylesheet" href="../Component/component.css">
     <link rel="stylesheet" href="../assets/css/terms-conditions.css">
     <link rel="stylesheet" href="../assets/themify-icons/themify-icons.css">
@@ -63,7 +64,7 @@
                                 <a href="../Courses/courses.jsp">COURSES</a>
                             </li>
                             <li>
-                                <a href="#!">COURSES DETAILS</a>
+                                <a href="../Courses/courses_details.jsp">COURSES DETAILS</a>
                             </li>
                         </ul>
                     </li>
