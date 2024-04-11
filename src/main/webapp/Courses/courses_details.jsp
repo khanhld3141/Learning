@@ -120,12 +120,92 @@
                             </div>
                         </div>
                     </div>
+                    <!--  comment-->
+                    <div class="comment">
+                        <h3 class="title">Comments</h3>
+                        <% for(int i = 0; i < 3; i++) { %>
+                        <%@include file="../Component/comment_item.jsp"%>
+                        <% } %>
+                    </div>
+                    <!-- form comment -->
+                    <%@include file="../Component/comment_form.jsp"%>
                 </div>
                 <!-- courses-details-right -->
                 <div class="courses-details__right">
+                    <!-- buy courses -->
+                    <div class="widget buy-courses">
+                        <p class="price"><strong>$11.39</strong><span>$111.00</span></p>
+                        <span class="discount-price"><i class="fa-regular fa-clock"></i>90% off for 23 hours</span>
+                        <a href="#" class="btn add-to-card__btn">Add to cart</a>
+                        <a href="#" class="btn buy-now__btn">Buy now</a>
+                    </div>
+                    <!-- instractors -->
+                    <div class="widget instractors">
+                        <figure>
+                            <img src="../img/Testimonial/avatar3.jpeg" alt="avatar" class="instractors__avatar">
+                        </figure>
+                        <h4>Lisa Sordan</h4>
+                        <span>Web designer</span>
+                        <div class="socials">
+                            <a href="#" class="facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                            <a href="#" class="twitter"><i class="fa-brands fa-twitter"
+                                                           style="color: #74C0FC;"></i></a>
+                            <a href="#" class="linkedin"><i class="fa-brands fa-linkedin-in"></i></a>
+                            <a href="#" class="youtube"><i class="fa-brands fa-youtube"
+                                                           style="color: #e32416;"></i></a>
+                        </div>
+                    </div>
+                    <!-- list categories -->
+                    <div class="widget list-categories">
+                        <h3 class="widget__title list-categories__title">Categories</h3>
+                        <ul>
+                            <li><a href="#">App Design <span>(5)</span></a></li>
+                            <li><a href="#">Web Design <span>(9)</span></a></li>
+                            <li><a href="#">UI-UX Design <span>(23)</span></a></li>
+                            <li><a href="#">Print Design <span>(7)</span></a></li>
+                            <li><a href="#">Game Design <span>(3)</span></a></li>
+                            <li><a href="#">Graphic Design <span>(2)</span></a></li>
+                            <li><a href="#">Logo Design <span>(5)</span></a></li>
+                        </ul>
+                    </div>
+                    <!-- recent-courses -->
+                    <div class="widget recent-courses">
+                        <h3 class="widget__title recent-courses__title">Recent Courses</h3>
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    <img src="../img/slide-courses/slide3.jpg" alt="">
+                                    <div>
+                                        <h5>David Kymen</h5>
+                                        <span class="skills">English, Communication, Social</span>
+                                        <span class="lectures">5 lectures</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="../img/slide-courses/slide3.jpg" alt="">
+                                    <div>
+                                        <h5>David Kymen</h5>
+                                        <span class="skills">English, Communication, Social</span>
+                                        <span class="lectures">5 lectures</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="../img/slide-courses/slide3.jpg" alt="">
+                                    <div>
+                                        <h5>David Kymen</h5>
+                                        <span class="skills">English, Communication, Social</span>
+                                        <span class="lectures">5 lectures</span>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-
     </section>
 </main>
 <%@include file="../Component/footer.jsp"%>
