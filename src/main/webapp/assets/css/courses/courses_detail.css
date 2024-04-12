@@ -101,7 +101,7 @@
 
 /*---------------- .courses-details__right -------------------*/
 
-.courses-details__right .widget{
+.widget{
     border: 1px solid #e0e4e6;
     border-radius: 5px;
     padding: 25px;
@@ -175,53 +175,4 @@
 }
 .instractors .socials a + a{
     margin-left: 8px;
-}
-
-/* -------------list - categories-----------------*/
-.widget__title{
-    text-transform: capitalize;
-    margin-bottom: 20px;
-    font-size: 2.2rem;
-    font-weight: 600;
-    color: #0c2e60;
-    font-family: 'Poppins', sans-serif;
-}
-.list-categories li a {
-    color: #83868c;
-    display: flex;
-    border-bottom: 1px solid #e0e4e6;
-    padding: 12px 0;
-    justify-content: space-between;
-}
-/* ------------------recent-courses----------------- */
-.recent-courses li a{
-    display: flex;
-}
-.recent-courses li{
-    border-bottom: 1px solid #eee;
-    min-height: 70px;
-    margin-bottom: 20px;
-    padding-bottom: 15px;
-}
-.recent-courses li a img{
-    max-width: 80px;
-    object-fit: cover;
-    border-radius: 10px;
-}
-.recent-courses li a h5 {
-    font-size: 1.8rem;
-    color: #000;
-    margin-bottom: 10px;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 600;
-}
-.recent-courses li a span {
-    color: #83868c;
-    display: block;
-    font-size: 1.3rem;
-    font-weight: 300;
-    line-height: 22px;
-}
-.recent-courses li a div{
-    margin-left: 20px;
 }

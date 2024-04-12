@@ -266,6 +266,7 @@ footer{
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
     transition: all 300ms ease-in-out;
+    cursor: pointer;
 }
 .title-blog:hover, .blog-meta-tags *:hover{
     color:#dc3545;
@@ -431,4 +432,85 @@ footer{
 }
 .comment-form form{
     text-align: center;
+}
+/* -------------list - categories-----------------*/
+.widget__title{
+    text-transform: capitalize;
+    margin-bottom: 20px;
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: #0c2e60;
+    font-family: 'Poppins', sans-serif;
+}
+.list-categories li a {
+    color: #83868c;
+    display: flex;
+    border-bottom: 1px solid #e0e4e6;
+    padding: 8px 0;
+    justify-content: space-between;
+}
+/* ------------------recent-courses----------------- */
+.recent-courses li a{
+    display: flex;
+}
+.recent-courses li{
+    border-bottom: 1px solid #eee;
+    min-height: 70px;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+}
+.recent-courses li a img{
+    max-width: 80px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+.recent-courses li a h5 {
+    font-size: 1.8rem;
+    color: #000;
+    margin-bottom: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+}
+.recent-courses li a span {
+    color: #83868c;
+    display: block;
+    font-size: 1.3rem;
+    font-weight: 300;
+    line-height: 22px;
+}
+.recent-courses li a div{
+    margin-left: 20px;
+}
+/*--- recent-posts----*/
+.recent-posts img{
+    max-width: 80px;
+    border-radius: 5px;
+    object-fit: cover;
+    margin-right: 7%;
+}
+.recent-posts ul li a{
+    display: flex;
+}
+.recent-posts ul li{
+    border-bottom: 1px solid #eee;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+}
+.recent-posts .posts__infor h5{
+    font-size: 1.8rem;
+    color: #000;
+    margin-bottom: 12px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    line-height: 1;
+}
+.recent-posts .posts__infor span{
+    font-size: 1.1rem;
+    color: #83868c;
+    font-weight: 300;
+    line-height: 22px;
+    text-transform: uppercase;
+}
+.recent-posts .posts__infor .posts__cate:hover,  .recent-posts .posts__infor .posts__date:hover{
+    color: red;
 }

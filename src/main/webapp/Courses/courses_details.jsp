@@ -159,49 +159,18 @@
                     <div class="widget list-categories">
                         <h3 class="widget__title list-categories__title">Categories</h3>
                         <ul>
-                            <li><a href="#">App Design <span>(5)</span></a></li>
-                            <li><a href="#">Web Design <span>(9)</span></a></li>
-                            <li><a href="#">UI-UX Design <span>(23)</span></a></li>
-                            <li><a href="#">Print Design <span>(7)</span></a></li>
-                            <li><a href="#">Game Design <span>(3)</span></a></li>
-                            <li><a href="#">Graphic Design <span>(2)</span></a></li>
-                            <li><a href="#">Logo Design <span>(5)</span></a></li>
+                            <% for (int i = 1; i <= 8; i++) {%>
+                                <li><a href="#">App Design <span>(5)</span></a></li>
+                            <% } %>
                         </ul>
                     </div>
                     <!-- recent-courses -->
                     <div class="widget recent-courses">
                         <h3 class="widget__title recent-courses__title">Recent Courses</h3>
                         <ul>
-                            <li>
-                                <a href="#">
-                                    <img src="../img/slide-courses/slide3.jpg" alt="">
-                                    <div>
-                                        <h5>David Kymen</h5>
-                                        <span class="skills">English, Communication, Social</span>
-                                        <span class="lectures">5 lectures</span>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <img src="../img/slide-courses/slide3.jpg" alt="">
-                                    <div>
-                                        <h5>David Kymen</h5>
-                                        <span class="skills">English, Communication, Social</span>
-                                        <span class="lectures">5 lectures</span>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <img src="../img/slide-courses/slide3.jpg" alt="">
-                                    <div>
-                                        <h5>David Kymen</h5>
-                                        <span class="skills">English, Communication, Social</span>
-                                        <span class="lectures">5 lectures</span>
-                                    </div>
-                                </a>
-                            </li>
+                            <% for (int i = 1; i <= 3; i++) {%>
+                            <%@include file="../Component/recent-courses__item.jsp"%>
+                            <% } %>
                         </ul>
                     </div>
                 </div>
