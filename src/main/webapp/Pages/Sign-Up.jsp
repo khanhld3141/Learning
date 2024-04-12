@@ -9,6 +9,7 @@
 <%@include file="../Component/header.jsp"%>
 
 
+<div class="sign-up">
 <section class="banner login-registration">
 
 
@@ -54,7 +55,7 @@
     </div>
 </section>
 
-
+</div>
 
 
 <%@include file="../Component/footer.jsp"%>

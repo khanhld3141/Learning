@@ -13,7 +13,7 @@
 
     <div class="content">
         <h1 class="content__time">
-            <i class="ti-timer"></i>
+            <i class="fa-regular fa-clock"></i>
             ${param.time}</h1>
         <a href="#!" class="content__name">${param.head}</a>
         <p class="content__text">${param.content}</p>

@@ -202,17 +202,17 @@
 /*}*/
 
 
-.banner{
+.sign-up .banner{
     font-family: Roboto, sans-serif;
     color : rgb(131, 134, 140);
 }
 
-.vector-img{
+.sign-up .vector-img{
     position: absolute;
     left: 130%;
 }
 
-.row{
+.sign-up .row{
     box-sizing: border-box;
     display: flex;
     flex-wrap: wrap;
@@ -224,7 +224,7 @@
     width :960px;
 }
 
-.col-md-6{
+.sign-up .col-md-6{
     box-sizing : border-box;
     display: block;
     flex-basis: 50%;
@@ -241,7 +241,7 @@
 
 }
 
-.col-md-6 .content-box{
+.sign-up .col-md-6 .content-box{
     box-sizing: border-box;
     display: block;
     height: 117px;
@@ -249,7 +249,7 @@
     text-align: left;
 }
 
-.col-md-6 .sl-form{
+.sign-up .col-md-6 .sl-form{
     box-sizing :border-box;
     display: block;
     text-align: left;
@@ -257,7 +257,7 @@
     width: 450px;
 }
 
-.col-md-6 .content-box h2{
+.sign-up .col-md-6 .content-box h2{
     color: black;
     display: block;
     font-size :30px;
@@ -268,7 +268,7 @@
     text-align: left;;
 }
 
-.col-md-6 .content-box p{
+.sign-up .col-md-6 .content-box p{
     box-sizing: border-box;
     color: rgb(131, 134, 140);
     display: block;
@@ -281,7 +281,7 @@
     width: 450px;
 }
 
-.col-md-6 .sl-form label{
+.sign-up .col-md-6 .sl-form label{
     box-sizing :border-box;
     color :rgb(12, 46, 96);
     cursor :default;
@@ -293,7 +293,7 @@
     width: 450px;
 }
 
-.col-md-6 .sl-form input{
+.sign-up .col-md-6 .sl-form input{
     background-color: rgb(255, 255, 255);
     border-color: rgb(224 228 230);
     margin-bottom: 10px;
@@ -330,7 +330,7 @@
     width :450px;
 }
 
-.col-md-6 .sl-form .form-check-label{
+.sign-up .col-md-6 .sl-form .form-check-label{
     box-sizing: border-box;
     color :rgb(0, 0, 0);
     cursor: default;
@@ -342,12 +342,12 @@
     width :220.5px;;
 }
 
-.form-check-label a{
+.sign-up .form-check-label a{
     font-style: normal;
     color: black;
 }
 
-.sl-form .form-check{
+.sign-up .sl-form .form-check{
 
     box-sizing: border-box;
     color: rgb(131, 134, 140);
@@ -364,7 +364,7 @@
     width: 450px;
 }
 
-.sl-form .form-check .form-check-input{
+.sign-up .sl-form .form-check .form-check-input{
 
     background-color: rgba(0, 0, 0, 0);
     border-color: #ccc;
@@ -377,7 +377,7 @@
 
 }
 
-.sl-form button{
+.sign-up .sl-form button{
     display: inline;
     border-radius: 50px;
     color: #fff;
@@ -391,40 +391,40 @@
     width: 120px;
 }
 
-.terms-and-condition{
+.sign-up .terms-and-condition{
     color: #000;
     text-decoration: none;
 }
 
-.login-account{
+.sign-up .login-account{
     text-decoration: none;
     color: orange;
 }
 
-.login-account:hover{
+.sign-up .login-account:hover{
     text-decoration: underline;
 }
 
-.terms-and-condition:hover{
+.sign-up .terms-and-condition:hover{
     text-decoration: underline;
 }
 
-.sl-form button:hover{
+.sign-up .sl-form button:hover{
     color: #000;
 }
 
-.sl-form .form-group{
+.sign-up .sl-form .form-group{
     margin-bottom: 20px;
 }
 
-.notice a{
+.sign-up .notice a{
     color: #ef470d;
 }
 
-.notice a:hover{
+.sign-up .notice a:hover{
     text-decoration: underline;
 }
 
-.form-check a:hover{
+.sign-up .form-check a:hover{
     text-decoration: underline;
 }

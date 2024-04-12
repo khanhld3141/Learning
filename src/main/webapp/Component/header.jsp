@@ -27,11 +27,10 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="../owlcarousel/owl.carousel.min.js"></script>
     <!-- component CSS -->
-    <link rel="stylesheet" href="../assets/css/event/event_layout.scss">
+    <link rel="stylesheet" href="../assets/css/event/event_layout.css">
     <link rel="stylesheet" href="../assets/css/pages/Pages-Sign-Up.css">
     <link rel="stylesheet" href="../assets/css/terms-conditions.css">
-    <link rel="stylesheet" href="../assets/themify-icons/themify-icons.css">
-    <link rel="stylesheet" href="../assets/css/event/event-details.css">
+    <link rel="stylesheet" href="../assets/css/event/event-details.scss">
     <link rel="stylesheet" href="../assets/css/courses/courses.css">
     <link rel="stylesheet" href="../assets/css/home_layout.css">
     <link rel="stylesheet" href="../assets/css/courses/courses_detail.css">
@@ -89,7 +88,7 @@
                                 <a href="../Event/layout_event.jsp">EVENT</a>
                             </li>
                             <li>
-                                <a href="../Event/layout_eventdetails.jsp">EVENT DETAILS</a>
+                                <a href="../Event/event-detail.jsp">EVENT DETAILS</a>
                             </li>
                         </ul>
                     </li>
