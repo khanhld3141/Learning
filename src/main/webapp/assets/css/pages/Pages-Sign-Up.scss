@@ -294,7 +294,7 @@
 }
 
 .sign-up .col-md-6 .sl-form input{
-    background-color: rgb(255, 255, 255);
+
     border-color: rgb(224 228 230);
     margin-bottom: 10px;
     border-style: solid;
@@ -333,7 +333,6 @@
 .sign-up .col-md-6 .sl-form .form-check-label{
     box-sizing: border-box;
     color :rgb(0, 0, 0);
-    cursor: default;
     display: inline-block;
     font-size: 15px;
     font-weight: 400;
@@ -365,8 +364,6 @@
 }
 
 .sign-up .sl-form .form-check .form-check-input{
-
-    background-color: rgba(0, 0, 0, 0);
     border-color: #ccc;
     padding: 5px;
     font-size: 15px;
@@ -428,3 +425,5 @@
 .sign-up .form-check a:hover{
     text-decoration: underline;
 }
+
+

@@ -13,7 +13,7 @@
 <section class="banner login-registration">
 
 
-    <div class="container">
+    <div class="main-content">
 
         <div class="row">
 
@@ -44,7 +44,7 @@
                         <input type="password" placeholder="Password" required>
                     </div>
                     <div class="form-check">
-                        <input type="checkbox" class="form-check-input">
+                        <input type="checkbox" class="form-check-input" name="" value="">
                         <label class="form-check-label">Agree with <a href="#">Terms and Conditions</a></label>
                     </div>
                     <button class="btn btn-filled btn-round">Signup</button>

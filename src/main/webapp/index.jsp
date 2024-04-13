@@ -11,6 +11,7 @@
 <a href="./Pages/Terms-Conditions.jsp">Terms-Conditions</a>
 <a href="./Event/layout_event.jsp" >layoutevent</a>
 <a href="Event/event-detail.jsp" >layouteventdetail</a>
+<a href="Pages/pricing.jsp">pricing</a>
 
 <br>
 <a href="./Home/layout_home.jsp">HOME</a>
