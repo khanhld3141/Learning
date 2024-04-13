@@ -8,14 +8,14 @@ public class PostComment {
     public PostComment() {
     }
 
-    public PostComment(String content, int id, int authorId, int postId) {
+    public PostComment( int id, int authorId, int postId,String content) {
         Content = content;
         Id = id;
         AuthorId = authorId;
         PostId = postId;
     }
 
-    public PostComment(String content, int authorId, int postId) {
+    public PostComment(int authorId, int postId,String content) {
         Content = content;
         AuthorId = authorId;
         PostId = postId;

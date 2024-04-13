@@ -35,6 +35,7 @@
     <link rel="stylesheet" href="../assets/css/home_layout.css">
     <link rel="stylesheet" href="../assets/css/courses/courses_detail.css">
     <link rel="stylesheet" href="../assets/css/blog/blog.css">
+    <link rel="stylesheet" href="../assets/css/blog/blog_details.css">
     <link rel="stylesheet" href="../Component/component.css">
     <link rel="stylesheet" href="../assets/css/pages/pricing.css">
 </head>
@@ -46,7 +47,7 @@
         <div class="header-content">
             <!-- logo -->
             <figure class="header__logo">
-                <img src="../img/e-learning-logo.svg" alt="Header__logo" class="logo__img">
+                <a href="../Home/layout_home.jsp"><img src="../img/e-learning-logo.svg" alt="Header__logo" class="logo__img"></a>
             </figure>
             <!-- navbar -->
             <div class="navbar">
@@ -101,13 +102,13 @@
                                 <a href="#!">PRICING</a>
                             </li>
                             <li>
-                                <a href="#!">TERMS AND CONDITIONS</a>
+                                <a href="../Pages/Terms-Conditions.jsp">TERMS AND CONDITIONS</a>
                             </li>
                             <li>
                                 <a href="#!">LOGIN</a>
                             </li>
                             <li>
-                                <a href="">SIGN UP</a>
+                                <a href="../Pages/Sign-Up.jsp">SIGN UP</a>
                             </li>
                         </ul>
                     </li>

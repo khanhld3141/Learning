@@ -12,7 +12,7 @@ public class Status {
         Name = name;
     }
 
-    public Status(String name, int id) {
+    public Status(int id,String name) {
         Name = name;
         Id = id;
     }

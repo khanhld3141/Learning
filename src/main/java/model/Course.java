@@ -1,9 +1,11 @@
 package model;
 
+import java.util.Set;
+
 public class Course {
     private int Id,TeacherId,Price,CateId;
     private String Name,Introduce,Image,Overview,Result;
-
+    private Set<User> users;
 
     public Course() {
     }
