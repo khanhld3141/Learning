@@ -27,13 +27,16 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="../owlcarousel/owl.carousel.min.js"></script>
     <!-- component CSS -->
-    <link rel="stylesheet" href="../assets/css/home_layout.css">
-    <link rel="stylesheet" href="../assets/css/event_layout.css">
-    <link rel="stylesheet" href="../assets/css/Pages-Sign-Up.css">
-    <link rel="stylesheet" href="../assets/css/courses/courses.css">
-    <link rel="stylesheet" href="../Component/component.css">
+    <link rel="stylesheet" href="../assets/css/event/event_layout.css">
+    <link rel="stylesheet" href="../assets/css/pages/Pages-Sign-Up.css">
     <link rel="stylesheet" href="../assets/css/terms-conditions.css">
-
+    <link rel="stylesheet" href="../assets/css/event/event-details.scss">
+    <link rel="stylesheet" href="../assets/css/courses/courses.css">
+    <link rel="stylesheet" href="../assets/css/home_layout.css">
+    <link rel="stylesheet" href="../assets/css/courses/courses_detail.css">
+    <link rel="stylesheet" href="../assets/css/blog/blog.css">
+    <link rel="stylesheet" href="../assets/css/blog/blog_details.css">
+    <link rel="stylesheet" href="../Component/component.css">
 </head>
 
 <body>
@@ -43,7 +46,7 @@
         <div class="header-content">
             <!-- logo -->
             <figure class="header__logo">
-                <img src="../img/e-learning-logo.svg" alt="Header__logo" class="logo__img">
+                <a href="../Home/layout_home.jsp"><img src="../img/e-learning-logo.svg" alt="Header__logo" class="logo__img"></a>
             </figure>
             <!-- navbar -->
             <div class="navbar">
@@ -62,7 +65,7 @@
                                 <a href="../Courses/courses.jsp">COURSES</a>
                             </li>
                             <li>
-                                <a href="#!">COURSES DETAILS</a>
+                                <a href="../Courses/courses_details.jsp">COURSES DETAILS</a>
                             </li>
                         </ul>
                     </li>
@@ -71,10 +74,10 @@
                         <i class="fa-solid fa-sort-down"></i>
                         <ul class="sub-menu">
                             <li>
-                                <a href="#!">BLOG</a>
+                                <a href="../blog/blog.jsp">BLOG</a>
                             </li>
                             <li>
-                                <a href="#!">BLOG DETAILS</a>
+                                <a href="../blog/blog-details.jsp">BLOG DETAILS</a>
                             </li>
                         </ul>
                     </li>
@@ -83,10 +86,10 @@
                         <i class="fa-solid fa-sort-down"></i>
                         <ul class="sub-menu">
                             <li>
-                                <a href="#!">EVENT</a>
+                                <a href="../Event/layout_event.jsp">EVENT</a>
                             </li>
                             <li>
-                                <a href="#!">EVENT DETAILS</a>
+                                <a href="../Event/event-detail.jsp">EVENT DETAILS</a>
                             </li>
                         </ul>
                     </li>
@@ -98,13 +101,13 @@
                                 <a href="#!">PRICING</a>
                             </li>
                             <li>
-                                <a href="#!">TERMS AND CONDITIONS</a>
+                                <a href="../Pages/Terms-Conditions.jsp">TERMS AND CONDITIONS</a>
                             </li>
                             <li>
                                 <a href="#!">LOGIN</a>
                             </li>
                             <li>
-                                <a href="">SIGN UP</a>
+                                <a href="../Pages/Sign-Up.jsp">SIGN UP</a>
                             </li>
                         </ul>
                     </li>

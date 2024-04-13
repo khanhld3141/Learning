@@ -11,8 +11,10 @@
 
 <main>
     <%--ảnh đầu trang--%>
-    <%@include file="../Component/page-feature.jsp"%>
-
+    <jsp:include page="../Component/page-feature.jsp">
+        <jsp:param name="head" value="Events"/>
+        <jsp:param name="span" value="Events"/>
+    </jsp:include>
 
     <div class="events">
 
@@ -30,43 +32,42 @@
                 <div class="events-group__title">ONGOING</div>
 
                 <%--            item 1--%>
-                <div class="events-group__item">
-                    <div class="date--round">
-                        <h1 class="date--rount__time">20 SEP</h1>
-                    </div>
+<%--                <div class="events-group__item">--%>
+<%--                    <div class="date--round">--%>
+<%--                        <h1 class="date--rount__time">20 SEP</h1>--%>
+<%--                    </div>--%>
 
-                    <div class="content">
-                        <h1 class="content__time">2PM to 5PM</h1>
-                        <a href="#!" class="content__name">Consectetur adipisicing elit.</a>
-                        <p class="content__text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae sunt pariatur ut est natus magni.</p>
-                    </div>
-                </div>
+<%--                    <div class="content">--%>
+<%--                        <h1 class="content__time">2PM to 5PM</h1>--%>
+<%--                        <a href="#!" class="content__name">Consectetur adipisicing elit.</a>--%>
+<%--                        <p class="content__text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae sunt pariatur ut est natus magni.</p>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+
+<%--                item 1--%>
+                <jsp:include page="../Component/card-event.jsp">
+                    <jsp:param name="date" value="20 SEP"/>
+                    <jsp:param name="time" value="2PM TO 5PM"/>
+                    <jsp:param name="head" value="Consectetur adipisicing elit."/>
+                    <jsp:param name="content" value="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae sunt pariatur ut est natus magni."/>
+                </jsp:include>
+
 
                 <%--            item 2--%>
-                <div class="events-group__item">
-                    <div class="date--round">
-                        <h1 class="date--rount__time">20 SEP</h1>
-                    </div>
-
-                    <div class="content">
-                        <h1 class="content__time">2PM to 5PM</h1>
-                        <a href = "#!" class="content__name">Consectetur adipisicing elit.</a>
-                        <p class="content__text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae sunt pariatur ut est natus magni.</p>
-                    </div>
-                </div>
+                <jsp:include page="../Component/card-event.jsp">
+                    <jsp:param name="date" value="20 SEP"/>
+                    <jsp:param name="time" value="2PM TO 5PM"/>
+                    <jsp:param name="head" value="Consectetur adipisicing elit."/>
+                    <jsp:param name="content" value="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae sunt pariatur ut est natus magni."/>
+                </jsp:include>
 
                 <%--            item 3--%>
-                <div class="events-group__item">
-                    <div class="date--round">
-                        <h1 class="date--rount__time">20 SEP</h1>
-                    </div>
-
-                    <div class="content">
-                        <h1 class="content__time">2PM to 5PM</h1>
-                        <a href ="#!" class="content__name">Consectetur adipisicing elit.</a>
-                        <p class="content__text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae sunt pariatur ut est natus magni.</p>
-                    </div>
-                </div>
+                <jsp:include page="../Component/card-event.jsp">
+                    <jsp:param name="date" value="20 SEP"/>
+                    <jsp:param name="time" value="2PM TO 5PM"/>
+                    <jsp:param name="head" value="Consectetur adipisicing elit."/>
+                    <jsp:param name="content" value="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae sunt pariatur ut est natus magni."/>
+                </jsp:include>
             </div>
 
         </div>
@@ -79,43 +80,28 @@
                 <div class="events-group__title">UPCOMING</div>
 
                 <%--            item 1--%>
-                <div class="events-group__item">
-                    <div class="date--round">
-                        <h1 class="date--rount__time">20 SEP</h1>
-                    </div>
-
-                    <div class="content">
-                        <h1 class="content__time">2PM to 5PM</h1>
-                        <a href="#!" class="content__name">Consectetur adipisicing elit.</a>
-                        <p class="content__text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae sunt pariatur ut est natus magni.</p>
-                    </div>
-                </div>
+                <jsp:include page="../Component/card-event.jsp">
+                    <jsp:param name="date" value="20 SEP"/>
+                    <jsp:param name="time" value="2PM TO 5PM"/>
+                    <jsp:param name="head" value="Consectetur adipisicing elit."/>
+                    <jsp:param name="content" value="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae sunt pariatur ut est natus magni."/>
+                </jsp:include>
 
                 <%--            item 2--%>
-                <div class="events-group__item">
-                    <div class="date--round">
-                        <h1 class="date--rount__time">20 SEP</h1>
-                    </div>
-
-                    <div class="content">
-                        <h1 class="content__time">2PM to 5PM</h1>
-                        <a href = "#!" class="content__name">Consectetur adipisicing elit.</a>
-                        <p class="content__text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae sunt pariatur ut est natus magni.</p>
-                    </div>
-                </div>
+                <jsp:include page="../Component/card-event.jsp">
+                    <jsp:param name="date" value="20 SEP"/>
+                    <jsp:param name="time" value="2PM TO 5PM"/>
+                    <jsp:param name="head" value="Consectetur adipisicing elit."/>
+                    <jsp:param name="content" value="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae sunt pariatur ut est natus magni."/>
+                </jsp:include>
 
                 <%--            item 3--%>
-                <div class="events-group__item">
-                    <div class="date--round">
-                        <h1 class="date--rount__time">20 SEP</h1>
-                    </div>
-
-                    <div class="content">
-                        <h1 class="content__time">2PM to 5PM</h1>
-                        <a href ="#!" class="content__name">Consectetur adipisicing elit.</a>
-                        <p class="content__text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae sunt pariatur ut est natus magni.</p>
-                    </div>
-                </div>
+                <jsp:include page="../Component/card-event.jsp">
+                    <jsp:param name="date" value="20 SEP"/>
+                    <jsp:param name="time" value="2PM TO 5PM"/>
+                    <jsp:param name="head" value="Consectetur adipisicing elit."/>
+                    <jsp:param name="content" value="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae sunt pariatur ut est natus magni."/>
+                </jsp:include>
             </div>
 
         </div>
@@ -128,43 +114,28 @@
                 <div class="events-group__title">EXPIRED</div>
 
                 <%--            item 1--%>
-                <div class="events-group__item">
-                    <div class="date--round">
-                        <h1 class="date--rount__time">20 SEP</h1>
-                    </div>
-
-                    <div class="content">
-                        <h1 class="content__time">2PM to 5PM</h1>
-                        <a href="#!" class="content__name">Consectetur adipisicing elit.</a>
-                        <p class="content__text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae sunt pariatur ut est natus magni.</p>
-                    </div>
-                </div>
+                <jsp:include page="../Component/card-event.jsp">
+                    <jsp:param name="date" value="20 SEP"/>
+                    <jsp:param name="time" value="2PM TO 5PM"/>
+                    <jsp:param name="head" value="Consectetur adipisicing elit."/>
+                    <jsp:param name="content" value="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae sunt pariatur ut est natus magni."/>
+                </jsp:include>
 
                 <%--            item 2--%>
-                <div class="events-group__item">
-                    <div class="date--round">
-                        <h1 class="date--rount__time">20 SEP</h1>
-                    </div>
-
-                    <div class="content">
-                        <h1 class="content__time">2PM to 5PM</h1>
-                        <a href = "#!" class="content__name">Consectetur adipisicing elit.</a>
-                        <p class="content__text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae sunt pariatur ut est natus magni.</p>
-                    </div>
-                </div>
+                <jsp:include page="../Component/card-event.jsp">
+                    <jsp:param name="date" value="20 SEP"/>
+                    <jsp:param name="time" value="2PM TO 5PM"/>
+                    <jsp:param name="head" value="Consectetur adipisicing elit."/>
+                    <jsp:param name="content" value="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae sunt pariatur ut est natus magni."/>
+                </jsp:include>
 
                 <%--            item 3--%>
-                <div class="events-group__item">
-                    <div class="date--round">
-                        <h1 class="date--rount__time">20 SEP</h1>
-                    </div>
-
-                    <div class="content">
-                        <h1 class="content__time">2PM to 5PM</h1>
-                        <a href ="#!" class="content__name">Consectetur adipisicing elit.</a>
-                        <p class="content__text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae sunt pariatur ut est natus magni.</p>
-                    </div>
-                </div>
+                <jsp:include page="../Component/card-event.jsp">
+                    <jsp:param name="date" value="20 SEP"/>
+                    <jsp:param name="time" value="2PM TO 5PM"/>
+                    <jsp:param name="head" value="Consectetur adipisicing elit."/>
+                    <jsp:param name="content" value="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae sunt pariatur ut est natus magni."/>
+                </jsp:include>
             </div>
 
         </div>

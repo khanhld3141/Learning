@@ -266,6 +266,7 @@ footer{
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
     transition: all 300ms ease-in-out;
+    cursor: pointer;
 }
 .title-blog:hover, .blog-meta-tags *:hover{
     color:#dc3545;
@@ -287,4 +288,229 @@ footer{
 }
 .pagination{
     margin: 50px 0 60px;
+}
+/*-------------------------------------------*/
+
+
+/* ------------------FEATURE HEADER CSS ---------------*/
+.feature-header{
+    background: url(/img/hero-img/slide3.jpg) top / cover;
+    padding: 100px 0;
+    position: relative;
+    text-align: center;
+}
+.feature-header::after{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.45);
+    height: 100%;
+    width: 100%;
+    z-index: 0;
+}
+.feature-header .main-content{
+    position: relative;
+    z-index: 1;
+}
+.feature-header__title{
+    color: #FFF;
+    font-size: 3.2rem;
+}
+.feature-header__link *{
+    color: #ccc;
+}
+.feature-header__link *:not(.home)
+{
+    color: #FFF;
+}
+.feature-header__link{
+    padding: 22px 0;
+}
+
+/* ---------------------------------------------------*/
+/* --------------------chapter item ------------------------ */
+.accordion-button{
+    font-size: 16px;
+    font-weight: 500;
+    padding: 15px;
+    border: 1px solid #e0e4e6;
+    background-color: #f7f8fa ;
+}
+.accordion-button::after{
+    margin-left: 10px;
+
+}
+.curriculum__total-lecture{
+    font-size: 14px;
+    text-transform: capitalize;
+    display: inline-block;
+    margin-left: auto;
+}
+.accordion-body li a{
+    color: #444;
+    border-bottom: 1px solid #eeeeee;
+    display: block;
+    padding: 12px 20px;
+}
+/*------------------------------------------*/
+
+/*----------------------- comment------------------------------- */
+.comment{
+    padding: 50px 0;
+}
+.comment .title{
+    text-align: start;
+    text-transform: capitalize;
+    margin-bottom: 30px;
+    font-size: 2.4rem;
+}
+.comment__item .comment__avt{
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.comment__item{
+    display: flex;
+    margin-bottom: 30px;
+    justify-content: space-between;
+}
+.comment__user{
+    border-bottom: 1px solid #e0e4e6;
+    flex-basis: calc(100% - 80px);
+    padding-bottom: 25px;
+}
+.comment__user .comment__user-name{
+    color: #2f2f35;
+    font-size: 18px;
+    margin-bottom: 4px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    line-height: 1.2;
+}
+.comment__user .comment__user-text{
+    color: #2f2f35;
+    margin-bottom: 10px;
+    font-weight: 400;
+    font-size: 1.5rem;
+    line-height: 27px;
+}
+.comment__user .comment__reply{
+    color: #ef470d;
+    display: inline-block;
+    font-size: 14px;
+}
+.comment__user .comment__reply:hover{
+    color: #3650e7;
+}
+.fa-reply{
+    margin-right: 4px;
+}
+/* --------------COMMENT FORM--------------- */
+.comment-form .comment-title{
+    color: #0c2e60;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    margin-bottom: 30px;
+    font-size: 2.4rem;
+}
+.comment-form form textarea {
+    background-color: #f6f6f6;
+    border: 1px solid #dadada;
+    border-radius: 5px;
+    margin-bottom: 25px;
+    padding: 20px;
+    width: 100%;
+    min-height: 130px;
+}
+.comment-form form .btn{
+    width: 140px;
+    border-radius: 50px;
+}
+.comment-form form{
+    text-align: center;
+}
+/* -------------list - categories-----------------*/
+.widget__title{
+    text-transform: capitalize;
+    margin-bottom: 20px;
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: #0c2e60;
+    font-family: 'Poppins', sans-serif;
+}
+.list-categories li a {
+    color: #83868c;
+    display: flex;
+    border-bottom: 1px solid #e0e4e6;
+    padding: 8px 0;
+    justify-content: space-between;
+}
+/* ------------------recent-courses----------------- */
+.recent-courses li a{
+    display: flex;
+}
+.recent-courses li{
+    border-bottom: 1px solid #eee;
+    min-height: 70px;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+}
+.recent-courses li a img{
+    max-width: 80px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+.recent-courses li a h5 {
+    font-size: 1.8rem;
+    color: #000;
+    margin-bottom: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+}
+.recent-courses li a span {
+    color: #83868c;
+    display: block;
+    font-size: 1.3rem;
+    font-weight: 300;
+    line-height: 22px;
+}
+.recent-courses li a div{
+    margin-left: 20px;
+}
+/*--- recent-posts----*/
+.recent-posts img{
+    max-width: 80px;
+    border-radius: 5px;
+    object-fit: cover;
+    margin-right: 7%;
+}
+.recent-posts ul li a{
+    display: flex;
+}
+.recent-posts ul li{
+    border-bottom: 1px solid #eee;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+}
+.recent-posts .posts__infor h5{
+    font-size: 1.8rem;
+    color: #000;
+    margin-bottom: 12px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    line-height: 1;
+}
+.recent-posts .posts__infor span{
+    font-size: 1.1rem;
+    color: #83868c;
+    font-weight: 300;
+    line-height: 22px;
+    text-transform: uppercase;
+}
+.recent-posts .posts__infor .posts__cate:hover,  .recent-posts .posts__infor .posts__date:hover{
+    color: red;
 }

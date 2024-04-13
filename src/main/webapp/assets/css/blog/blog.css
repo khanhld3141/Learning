@@ -1,0 +1,35 @@
+.blog-posts{
+    padding: 70px 0;
+    width: 100%;
+}
+.blog-posts__content{
+    display: flex;
+    justify-content: space-between;
+}
+.blog-posts__left{
+    width: 65%;
+    margin-right: 2%;
+}
+.blog-posts__right{
+    width: 32%;
+}
+.blog-posts__left .list-item-courses{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    padding-bottom: 70px;
+    border-bottom: 1px solid #e1e5e7;
+}
+.widget-search input {
+    border: none;
+    width: 100%;
+    outline: none;
+}
+.blog-posts__right .widget-search form{
+    display: flex;
+    justify-content: space-between;
+}
+.fa-magnifying-glass{
+    color: #83868c;
+}

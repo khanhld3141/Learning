@@ -3,11 +3,11 @@
 
 <main>
     <!-- courses feature -->
-    <div class="courses-feature">
+    <div class="feature-header">
         <div class="main-content">
-            <div class="courses-feature__text-center">
-                <h1 class="title courses-feature__title">Courses</h1>
-                <div class="courses-feature__link">
+            <div class="feature-header__text-center">
+                <h1 class="title feature-header__title">Courses</h1>
+                <div class="feature-header__link">
                     <a href="../Home/layout_home.jsp" class="home">Home</a>
                     <span>/</span>
                     <a href="../Courses/courses.jsp" class="courses">Courses</a>
