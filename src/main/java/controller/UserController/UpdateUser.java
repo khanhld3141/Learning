@@ -43,7 +43,7 @@ public class UpdateUser extends HttpServlet {
         String email = request.getParameter("Email");
         String password = request.getParameter("Password");
         String balance = request.getParameter("Balance");
-        System.out.println(id + name + username + phone + role + email + password + balance);
+
         try {
             User user = new User(Integer.parseInt(id),Integer.parseInt(balance), name, username, phone, role, email,
                     password);

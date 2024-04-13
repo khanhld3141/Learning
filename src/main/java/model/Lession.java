@@ -2,20 +2,20 @@ package model;
 
 public class Lession {
 
-    private String Id,ChapterId;
+    private int Id,ChapterId;
     private String Name,Description,Link;
 
     public Lession() {
     }
 
-    public Lession(String chapterId, String name, String description, String link) {
+    public Lession(int chapterId, String name, String description, String link) {
         ChapterId = chapterId;
         Name = name;
         Description = description;
         Link = link;
     }
 
-    public Lession(String id, String chapterId, String name, String description, String link) {
+    public Lession(int id, int chapterId, String name, String description, String link) {
         Id = id;
         ChapterId = chapterId;
         Name = name;
@@ -23,19 +23,19 @@ public class Lession {
         Link = link;
     }
 
-    public String getId() {
+    public int getId() {
         return Id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         Id = id;
     }
 
-    public String getChapterId() {
+    public int getChapterId() {
         return ChapterId;
     }
 
-    public void setChapterId(String chapterId) {
+    public void setChapterId(int chapterId) {
         ChapterId = chapterId;
     }
 
