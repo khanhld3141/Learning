@@ -28,7 +28,7 @@
     <script src="../owlcarousel/owl.carousel.min.js"></script>
     <!-- component CSS -->
     <link rel="stylesheet" href="../assets/css/event/event_layout.css">
-    <link rel="stylesheet" href="../assets/css/pages/Pages-Sign-Up.scss">
+    <link rel="stylesheet" href="../assets/css/pages/Pages-Sign-Up.css">
     <link rel="stylesheet" href="../assets/css/terms-conditions.css">
     <link rel="stylesheet" href="../assets/css/event/event-details.css">
     <link rel="stylesheet" href="../assets/css/courses/courses.css">
