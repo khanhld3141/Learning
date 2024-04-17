@@ -1,11 +1,13 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 public class Course {
     private int Id,TeacherId,Price,CateId;
     private String Name,Introduce,Image,Overview,Result;
-    private Set<User> users;
+    private List<Chapter> chapters;
 
     public Course() {
     }
@@ -20,6 +22,7 @@ public class Course {
         Image = image;
         Overview = overview;
         Result = result;
+        chapters=new ArrayList<>();
     }
 
     public Course(int teacherId, int price, int cateId, String name, String introduce, String image, String overview, String result) {
@@ -31,6 +34,7 @@ public class Course {
         Image = image;
         Overview = overview;
         Result = result;
+        chapters=new ArrayList<>();
     }
 
     public int getId() {
@@ -103,5 +107,13 @@ public class Course {
 
     public void setResult(String result) {
         Result = result;
+    }
+
+    public List<Chapter> getChapters() {
+        return chapters;
+    }
+
+    public void setChapters(List<Chapter> chapters) {
+        this.chapters = chapters;
     }
 }

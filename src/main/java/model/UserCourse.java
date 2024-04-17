@@ -1,20 +1,22 @@
 package model;
 
 public class UserCourse {
-    private int Id,UserId,CourseId;
+    private int Id;
+    private User user;
+    private  Course course;
 
     public UserCourse() {
     }
 
-    public UserCourse(int id, int userId, int courseId) {
+    public UserCourse(int id, User user, Course course) {
         Id = id;
-        UserId = userId;
-        CourseId = courseId;
+       this.user = user;
+       this.course = course;
     }
 
-    public UserCourse(int userId, int courseId) {
-        UserId = userId;
-        CourseId = courseId;
+    public UserCourse( User user, Course course) {
+        this.user = user;
+        this.course = course;
     }
 
     public int getId() {
@@ -25,19 +27,19 @@ public class UserCourse {
         Id = id;
     }
 
-    public int getUserId() {
-        return UserId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(int userId) {
-        UserId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public int getCourseId() {
-        return CourseId;
+    public Course getCourse() {
+        return course;
     }
 
-    public void setCourseId(int courseId) {
-        CourseId = courseId;
+    public void setCourse(Course course) {
+        this.course = course;
     }
 }

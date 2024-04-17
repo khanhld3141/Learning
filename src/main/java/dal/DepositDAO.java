@@ -21,10 +21,10 @@ public class DepositDAO extends DBContext{
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 Deposit Deposit = new Deposit(
-                        rs.getInt("Id"),
-                        rs.getInt("UserId"),
-                        rs.getInt("AmountOfMoney"),
-                        rs.getInt("StatusId")
+//                        rs.getInt("Id"),
+//                        rs.getInt("UserId"),
+//                        rs.getInt("AmountOfMoney"),
+//                        rs.getInt("StatusId")
                 );
                 list.add(Deposit);
             }
@@ -43,10 +43,10 @@ public class DepositDAO extends DBContext{
 
             while (rs.next()) {
                 Deposit Deposit = new Deposit(
-                        rs.getInt("Id"),
-                        rs.getInt("UserId"),
-                        rs.getInt("AmountOfMoney"),
-                        rs.getInt("StatusId")
+//                        rs.getInt("Id"),
+//                        rs.getInt("UserId"),
+//                        rs.getInt("AmountOfMoney"),
+//                        rs.getInt("StatusId")
                 );
                 return Deposit;
             }
@@ -59,9 +59,9 @@ public class DepositDAO extends DBContext{
         String sql = "insert into Deposits (UserId,AmountOfMoney,StatusId) values(?,?,?)";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
-            st.setInt(1, Deposit.getUserId());
-            st.setInt(2, Deposit.getAmountOfMoney());
-            st.setInt(3, Deposit.getStatusId());
+//            st.setInt(1, Deposit.getUserId());
+//            st.setInt(2, Deposit.getAmountOfMoney());
+//            st.setInt(3, Deposit.getStatusId());
             // Execute the update
             st.executeUpdate();
         } catch (SQLException e) {
@@ -73,10 +73,10 @@ public class DepositDAO extends DBContext{
         String sql = "update Deposits UserId=?,AmountOfMoney =?,StatusId=?  where Id=? ";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
-            st.setInt(1, Deposit.getUserId());
-            st.setInt(2, Deposit.getAmountOfMoney());
-            st.setInt(3, Deposit.getStatusId());
-            st.setInt(4, Deposit.getId());
+//            st.setInt(1, Deposit.getUserId());
+//            st.setInt(2, Deposit.getAmountOfMoney());
+//            st.setInt(3, Deposit.getStatusId());
+//            st.setInt(4, Deposit.getId());
             // Execute the update
             st.executeUpdate();
         } catch (SQLException e) {
