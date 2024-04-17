@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div class="page-feature">
     <div class="container-text">
+        <img src="../img/event-img/eventimg.jpg" alt="">
         <h2>${param.head}</h2>
         <div class="bread-crum">
             <a href="#!" class="back">Home</a>

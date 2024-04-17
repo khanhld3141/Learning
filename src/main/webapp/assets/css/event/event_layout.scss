@@ -2,12 +2,21 @@
     display: block;
     position: relative;
     width: 100%;
-    height: 297px;
-    background-image: url('https://demo.themeies.com/elearning/images/page-feat.jpg');
     background-size: cover;
     background-position: top center;
     background-repeat: no-repeat;
+    height: 100%;
 }
+
+.page-feature img{
+    height: 100%;
+    width: 100%;
+}
+
+.page-feature .container-text{
+    height: 100%;
+}
+
 
 .events-group__item .content__time i{
     font-size: 14px;
