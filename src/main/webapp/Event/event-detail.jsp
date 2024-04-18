@@ -81,8 +81,4 @@
         </section>
     </div>
 </main>
-
-
-
-
 <%@include file="../Component/footer.jsp"%>
