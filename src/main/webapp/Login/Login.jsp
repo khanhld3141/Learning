@@ -1,16 +1,8 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include  file="./Component/header.jsp"%>
+<%@include  file="../Component/header.jsp"%>
 <main>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/css/Login.css">
-     <link rel="stylesheet" href="./assets/fonts/fontawesome-free-6.5.2-web/all.min.css">
 
-</head>
 <body>
   <section class="banner-login">
 
@@ -51,7 +43,7 @@
             </form>    
           </div>
           <div class="vector-img-login">
-            <img src="assets/img/vector.png" alt>
+            <img src="../img/login-img/vector.png" alt>
          </div>
         </div>
         <!-- <div class="vector-img">
@@ -62,4 +54,4 @@
 </body>
 </html>
 </main>
-<%@include  file="./Component/footer.jsp"%>
+<%@include  file="../Component/footer.jsp"%>
