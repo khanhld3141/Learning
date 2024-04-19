@@ -1,10 +1,14 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Chapter {
 
     private int Id,CourseId;
     private String Name,Ordinal;
 
+    private  List<Lession> lessions;
     public Chapter() {
     }
 
@@ -12,6 +16,7 @@ public class Chapter {
         CourseId = courseId;
         Name = name;
         Ordinal = ordinal;
+        lessions=new ArrayList<>();
     }
 
     public Chapter(int id, int courseId, String name, String ordinal) {
@@ -19,6 +24,7 @@ public class Chapter {
         CourseId = courseId;
         Name = name;
         Ordinal = ordinal;
+        lessions=new ArrayList<>();
     }
 
     public int getId() {
@@ -51,5 +57,13 @@ public class Chapter {
 
     public void setOrdinal(String ordinal) {
         Ordinal = ordinal;
+    }
+
+    public List<Lession> getLessions() {
+        return lessions;
+    }
+
+    public void setLessions(List<Lession> lessions) {
+        this.lessions = lessions;
     }
 }

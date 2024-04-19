@@ -7,17 +7,17 @@ public class Deposit {
     public Deposit() {
     }
 
-    public Deposit(int userId, int amountOfMoney, int statusId) {
+    public Deposit(int userId, int amountOfMoney, int status) {
         UserId = userId;
         AmountOfMoney = amountOfMoney;
-        StatusId = statusId;
+        this.StatusId = status;
     }
 
-    public Deposit(int id, int userId, int amountOfMoney, int statusId) {
+    public Deposit(int id, int userId, int amountOfMoney, int status) {
         Id = id;
         UserId = userId;
         AmountOfMoney = amountOfMoney;
-        StatusId = statusId;
+        this.StatusId = status;
     }
 
     public int getId() {

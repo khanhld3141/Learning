@@ -21,9 +21,9 @@ public class UserCourseDAO extends DBContext{
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 UserCourse UserCourse = new UserCourse(
-                        rs.getInt("Id"),
-                        rs.getInt("UserId"),
-                        rs.getInt("CourseId")
+//                        rs.getInt("Id"),
+//                        rs.getInt("UserId"),
+//                        rs.getInt("CourseId")
                 );
                 list.add(UserCourse);
             }
@@ -42,9 +42,9 @@ public class UserCourseDAO extends DBContext{
 
             while (rs.next()) {
                 UserCourse UserCourse = new UserCourse(
-                        rs.getInt("Id"),
-                        rs.getInt("UserId"),
-                        rs.getInt("CourseId")
+//                        rs.getInt("Id"),
+//                        rs.getInt("UserId"),
+//                        rs.getInt("CourseId")
                 );
                 return UserCourse;
             }
@@ -57,8 +57,8 @@ public class UserCourseDAO extends DBContext{
         String sql = "insert into UserCourses (UserId,CourseId) values(?,?)";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
-            st.setInt(1, UserCourse.getUserId());
-            st.setInt(2, UserCourse.getCourseId());
+//            st.setInt(1, UserCourse.getUserId());
+//            st.setInt(2, UserCourse.getCourseId());
             // Execute the update
             st.executeUpdate();
         } catch (SQLException e) {
@@ -70,8 +70,8 @@ public class UserCourseDAO extends DBContext{
         String sql = "update UserCourses UserId=?,CourseId=? where Id=? ";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
-            st.setInt(1, UserCourse.getUserId());
-            st.setInt(2, UserCourse.getCourseId());
+//            st.setInt(1, UserCourse.getUserId());
+//            st.setInt(2, UserCourse.getCourseId());
             st.setInt(2, UserCourse.getId());
             // Execute the update
             st.executeUpdate();
