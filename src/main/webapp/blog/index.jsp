@@ -7,9 +7,9 @@
                 <div class="feature-header__text-center">
                     <h1 class="title feature-header__title">Blog</h1>
                     <div class="feature-header__link">
-                        <a href="../Home/layout_home.jsp" class="home">Home</a>
+                        <a href="../Home/index.jsp" class="home">Home</a>
                         <span>/</span>
-                        <a href="../blog/blog.jsp" class="blog">Blog</a>
+                        <a href="index.jsp" class="blog">Blog</a>
                     </div>
                 </div>
             </div>

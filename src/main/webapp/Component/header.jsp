@@ -50,26 +50,26 @@
         <div class="header-content">
             <!-- logo -->
             <figure class="header__logo">
-                <a href="../Home/layout_home.jsp"><img src="../img/e-learning-logo.svg" alt="Header__logo" class="logo__img"></a>
+                <a href="../Home"><img src="../img/e-learning-logo.svg" alt="Header__logo" class="logo__img"></a>
             </figure>
             <!-- navbar -->
             <div class="navbar">
                 <ul class="navbar__list">
                     <li class="navbar__item">
-                        <a href="../Home/layout_home.jsp">HOME</a>
+                        <a href="../Home">HOME</a>
                     </li>
                     <li class="navbar__item">
-                        <a href="#!">ABOUT</a>
+                        <a href="../About">ABOUT</a>
                     </li>
                     <li class="navbar__item has-child">
                         <a href="#!">COURSES</a>
                         <i class="fa-solid fa-sort-down"></i>
                         <ul class="sub-menu">
                             <li>
-                                <a href="../Courses/courses.jsp">COURSES</a>
+                                <a href="../Courses">COURSES</a>
                             </li>
                             <li>
-                                <a href="../Courses/courses_details.jsp">COURSES DETAILS</a>
+                                <a href="../Courses_details">COURSES DETAILS</a>
                             </li>
                         </ul>
                     </li>
@@ -78,10 +78,10 @@
                         <i class="fa-solid fa-sort-down"></i>
                         <ul class="sub-menu">
                             <li>
-                                <a href="../blog/blog.jsp">BLOG</a>
+                                <a href="../blog">BLOG</a>
                             </li>
                             <li>
-                                <a href="../blog/blog-details.jsp">BLOG DETAILS</a>
+                                <a href="../blog-details">BLOG DETAILS</a>
                             </li>
                         </ul>
                     </li>
@@ -90,10 +90,10 @@
                         <i class="fa-solid fa-sort-down"></i>
                         <ul class="sub-menu">
                             <li>
-                                <a href="../Event/layout_event.jsp">EVENT</a>
+                                <a href="../Event">EVENT</a>
                             </li>
                             <li>
-                                <a href="../Event/event-detail.jsp">EVENT DETAILS</a>
+                                <a href="../Event_details">EVENT DETAILS</a>
                             </li>
                         </ul>
                     </li>
@@ -102,24 +102,24 @@
                         <i class="fa-solid fa-sort-down"></i>
                         <ul class="sub-menu">
                             <li>
-                                <a href="#!">PRICING</a>
+                                <a href="../Pricing">PRICING</a>
                             </li>
                             <li>
-                                <a href="../Pages/Terms-Conditions.jsp">TERMS AND CONDITIONS</a>
+                                <a href="../Terms_Conditions">TERMS AND CONDITIONS</a>
                             </li>
                             <li>
-                                <a href="#!">LOGIN</a>
+                                <a href="../Login/Login.jsp">LOGIN</a>
                             </li>
                             <li>
-                                <a href="../Pages/Sign-Up.jsp">SIGN UP</a>
+                                <a href="../Sing_up">SIGN UP</a>
                             </li>
                         </ul>
                     </li>
                     <li class="navbar__item">
-                        <a href="#!">CONTACT</a>
+                        <a href="../Contact">CONTACT</a>
                     </li>
                     <li class="navbar__item">
-                        <a href="#!">LOGIN</a>
+                        <a href="../Login/Login.jsp">LOGIN</a>
                     </li>
                 </ul>
             </div>
