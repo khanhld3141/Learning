@@ -13,7 +13,6 @@
 </head>
 <body>
   <section class="banner-login">
-
     <div class="container-login">
         <div class="row-login">
           <div class="col-md-6-login">
