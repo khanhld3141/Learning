@@ -44,7 +44,7 @@
                         </div>
                         <div class="row-contact__message">
                             <span class="row-contact__label">YOUR MESSAGE</span>
-                            <input type="textarea" placeholder="YOUR MESSAGE">
+                            <textarea name="row-contact__message--message" placeholder="YOUR MESSAGE" required style=" padding: 18px; box-sizing: border-box; outline: none; opacity: 0.8; border: 1px solid #e0e4e6; font-family: 'Poppins',sans-serif; font-weight: 450; font-size: 11px; line-height: 1;  min-height: 300px; width:100%;" ></textarea>
                         </div>
                         <div class="row-contact--button">
                             <button class="row-contact__button">
@@ -57,7 +57,7 @@
                 <div class="row-contact__infobox">
                     <div class="infobox--contact" >
                         <h3 class="infobox--contact__title">Contact Info</h3>
-                        <p class="infobox--contact__des">What we want is to bring the greatest experience to customers!. Remember to contact us to receive the fastest support.</p>
+                        <p class="infobox--contact__des" style=" box-sizing: border-box;font-family: 'Poppins',sans-serif;font-weight: 450;color: #999999; line-height: 1.5; padding-bottom: 10px;font-size: 15px;">What we want is to bring the greatest experience to customers!. Remember to contact us to receive the fastest support.</p>
                         <div class="infobox--contact__loc">
                             <h4 class="infobox--contact--title">Location Info</h4>
                             <span class="infobox--contact--text">54 Nguyễn Lương Bằng, Liên Chiểu - Việt Nam</span>

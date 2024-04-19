@@ -40,6 +40,7 @@
     <link rel="stylesheet" href="../assets/css/pages/pricing.css">
     <link rel="stylesheet" href="../assets/css/Contact/Contact.css">
     <link rel="stylesheet" href="../assets/css/Login/Login.css">
+    <link rel="stylesheet" href="../assets/css/About/About.css">
 </head>
 
 <body>
