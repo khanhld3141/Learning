@@ -27,7 +27,7 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="../owlcarousel/owl.carousel.min.js"></script>
     <!-- component CSS -->
-    <link rel="stylesheet" href="../assets/css/event/event_layout.scss">
+    <link rel="stylesheet" href="../assets/css/event/event_layout.css">
     <link rel="stylesheet" href="../assets/css/pages/Pages-Sign-Up.css">
     <link rel="stylesheet" href="../assets/css/terms-conditions.css">
     <link rel="stylesheet" href="../assets/css/event/event-details.css">
