@@ -133,6 +133,12 @@
     padding-block: 20px ;
     padding-inline: 15px;
 }
+.form-login .form-check{
+    display:block;
+    min-height: 1.5rem;
+    padding-left: 0px;
+    margin-bottom: .125rem;
+}
 .form-login .form-check__label{
 
     font-size:16.5px;
