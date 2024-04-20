@@ -70,10 +70,10 @@
 }
 .entry-content p{
     box-sizing: border-box;
-    font-family: 'Poppins',sans-serif;
-    font-weight: 500;
-    line-height: 1.6;
-    color: #999999;
+    font-family: 'Roboto',sans-serif;
+    font-weight: 400;
+    line-height: 27px;
+    color: #83868c;
     padding-bottom: 5px;
     margin-bottom: 1rem;
     display: block;
