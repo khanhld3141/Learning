@@ -1,0 +1,193 @@
+/*begin common*/
+*{
+    box-sizing: border-box;
+}
+
+:root{
+}
+
+html{
+    font-size: 62.5%;
+}
+
+body{
+    font-size: 1.6rem;
+    font-family: "Roboto", sans-serif;
+}
+/*end common*/
+
+/*begin head*/
+.study .head{
+    display: flex;
+    height: 50px;
+    position: relative;
+    z-index: 1;
+    justify-content: left;
+    background-color: #29303b;
+    text-align: center;
+}
+
+.study .head .head-back{
+    display: inline-block;
+    font-size: 1.6rem;
+    cursor: pointer;
+    width: 60px;
+}
+
+.study .head .head-back .fa-arrow-left{
+    font-size: 1.6rem;
+    color: #fff;
+    margin: auto;
+    line-height: 1;
+    padding: 18px;
+}
+
+.study .head .head-logo img{
+    width: 5.2rem;
+    padding: 11px;
+
+}
+
+.study .head .head-title{
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #fff;
+    padding: 18px;
+}
+
+.study .progress-bar{
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin-right: 16px;
+    text-align: center;
+}
+
+.study .progress-bar .percent{
+    display: inline-block;
+    font-size: 1.6rem;
+    line-height: 1;
+    color: #fff;
+}
+
+.study .progress-bar .completed{
+    font-size: 1.3rem;
+    margin-left: 6px;
+    color: #fff;
+    padding: 18px;
+    display: inline-block;
+}
+
+/*end head*/
+
+/*begin playlist*/
+.study .playlist{
+    position: fixed;
+    top: 0;
+    right: 0;
+    border-left: 1px solid #e7e7e7;
+    z-index: 2;
+    margin: 50px 0;
+    width: 23%;
+}
+
+.study .playlist .head{
+    background-color: #fff;
+    padding: 12px 16px;
+
+}
+
+.study .playlist .head h{
+    font-size: 1.6rem;
+    line-height: 1.4rem;
+    font-weight: 600;
+}
+
+/*end playlist*/
+
+/*begin video-content*/
+.study .video-content{
+    margin: 50px 0;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 77%;
+    height:100%;
+    overflow-y:auto;
+}
+
+.study .main-video{
+    width: 100%;
+}
+
+.study .main-video iframe{
+    width: 100%;
+    min-height: 500px;
+}
+
+.study .main-video-description{
+    min-height: 400px;
+    padding: 0 8.5%;
+    text-align: left;
+}
+
+.study .main-video-description .title{
+    font-size: 2.8rem;
+    margin-top: 48px;
+    font-weight: 600;
+    color: black;
+    display: block;
+}
+
+.study .main-video-description .content{
+    font-size: 1.6rem;
+    line-height: 32px;
+    display: block;
+    margin: 6px 0;
+    color: black;
+}
+
+/*end video-content*/
+
+/*begin footer*/
+.study .footer{
+    height: 50px;
+    background-color: #f0f0f0;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    z-index: 2;
+    width: 100%;
+}
+
+.study .footer p{
+    font-size: 1.4rem;
+    color: #666;
+    padding: 12px 0;
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.study .footer .btn-comment{
+    position: absolute;
+    display: inline-block;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #fff;
+    font-size: 1.6rem;
+    padding: 8px 12px;
+    color: #f05123;
+    cursor: pointer;
+    border-radius: 999px;
+    border-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    border-style: none;
+    line-height: 18.4px;
+    height: 36px;
+    margin-right: 32px;
+    margin-top: 8px;
+}
+
+/*end footer*/
