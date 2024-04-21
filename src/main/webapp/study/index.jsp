@@ -1,4 +1,4 @@
-<%--
+<%@ page import="javax.swing.*" %><%--
   Created by IntelliJ IDEA.
   User: ADMIN
   Date: 4/20/2024
@@ -39,14 +39,15 @@
         </div>
     <%--    end head--%>
 
+
     <%--  begin video content--%>
         <div class="video-content">
           <div class="main-video">
-            <iframe src="https://www.youtube.com/embed/R6plN3FvzFY" frameborder="0" allowfullscreen></iframe>
+            <iframe src="" frameborder="0" allowfullscreen></iframe>
           </div>
           <div class="main-video-description">
             <div class="title">
-                <h>First Video</h>
+                <h>First video</h>
             </div>
             <p class="content">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electroni</p>
           </div>
@@ -59,88 +60,13 @@
             <div class="head"><h>Course content</h></div>
             <div class="body">
     <%--        begin  playlist video--%>
-              <div class="accordion" id="accordionExample">
-                <div class="accordion-item">
-                  <h2 class="accordion-header" id="headingOne">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                      Chapter 1
-                        <img src="../img/study/reshot-icon-down-arrow-triangle-8EV2HR4UBG-faa80.svg" alt="">
-                    </button>
-                  </h2>
-                  <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                        <li class="video">
-                            <h class="title">Lession 1</h>
-                            <img src="../img/study/pause.svg" alt="">
-                            <p class="time">1:00</p>
-                        </li>
-                        <li class="video">
-                            <h class="title">Lession 2</h>
-                            <img src="../img/study/pause.svg" alt="">
-                            <p class="time">1:00</p>
-                        </li>
-                        <li class="video">
-                            <h class="title">Lession 3</h>
-                            <img src="../img/study/pause.svg" alt="">
-                            <p class="time">1:00</p>
-                        </li>
-                    </div>
-                  </div>
-                </div>
-                <div class="accordion-item">
-                  <h2 class="accordion-header" id="headingTwo">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                      Chapter 2
-                        <img src="../img/study/reshot-icon-down-arrow-triangle-8EV2HR4UBG-faa80.svg" alt="">
-                    </button>
-                  </h2>
-                  <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                        <li class="video">
-                            <h class="title">Lession 3</h>
-                            <img src="../img/study/pause.svg" alt="">
-                            <p class="time">1:00</p>
-                        </li>
-                        <li class="video">
-                            <h class="title">Lession 4</h>
-                            <img src="../img/study/pause.svg" alt="">
-                            <p class="time">1:00</p>
-                        </li>
-                        <li class="video">
-                            <h class="title">Lession 5</h>
-                            <img src="../img/study/pause.svg" alt="">
-                            <p class="time">1:00</p>
-                        </li>
-                    </div>
-                  </div>
-                </div>
-                <div class="accordion-item">
-                  <h2 class="accordion-header" id="headingThree">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                      Chapter 3
-                        <img src="../img/study/reshot-icon-down-arrow-triangle-8EV2HR4UBG-faa80.svg" alt="">
-                    </button>
-                  </h2>
-                  <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                        <li class="video">
-                            <h class="title">Lession 6</h>
-                            <img src="../img/study/pause.svg" alt="">
-                            <p class="time">1:00</p>
-                        </li>
-                        <li class="video">
-                            <h class="title">Lession 7</h>
-                            <img src="../img/study/pause.svg" alt="">
-                            <p class="time">1:00</p>
-                        </li>
-                        <li class="video">
-                            <h class="title">Lession 8</h>
-                            <img src="../img/study/pause.svg" alt="">
-                            <p class="time">1:00</p>
-                        </li>
-                    </div>
-                  </div>
-                </div>
+              <div class="accordion" id="accordionPlaylist-Videos">
+                  <%for(int i = 1; i <= 5; i++){%>
+                  <jsp:include page="../Component/chapter.jsp">
+                      <jsp:param name="number_chapter" value="<%=i%>" />
+                      <jsp:param name="title_chapter" value="Chapter" />
+                  </jsp:include>
+                  <%}%>
               </div>
 
     <%--          end of playlist videos--%>
@@ -161,6 +87,50 @@
     <%--    end footer--%>
 
       </main>
+    </div>
+
+    <script src="../assets/js/study/study.js"></script>
+
+    <div class="modal-comment">
+        <div class="modal-container">
+            <div class="modal-close">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+            <div class="body">
+                <div class="row">
+                    <div class="comment-head">
+                        <h4>142 comments</h4>
+                        <p>(Don't hesitate to report if you see spam comments)</p>
+                    </div>
+                    <div class="comment-box">
+                        <div class="avatar">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                        <div class="comment-box_detail">
+                            <span>What is your question?</span>
+                        </div>
+                    </div>
+                    <div class="comment-detail">
+                        <div class="avatar"></div>
+                        <div class="comment-wrap">
+                            <div class="comment-content">
+                                <div class="comment-content__head"></div>
+                                <div class="comment-content__text"></div>
+                            </div>
+                            <div class="comment-time">
+                                <div class="comment-createdAtLeft">
+                                    <button class="like"></button>
+                                    <span class="reply"></span>
+                                </div>
+                                <div class="comment-createdAtRight">
+                                    <span class="time"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
 </body>
