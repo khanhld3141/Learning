@@ -1,0 +1,15 @@
+textarea{
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 12px 20px;
+    font-size: 14px;
+    font-family: "Inter", sans-serif;
+}
+.image-price-courses, .teacher-cate-courses{
+    display: flex;
+    justify-content: space-between;
+}
+.image-courses, .price-courses, .teacher-courses, .cate-courses{
+    width: 49%;
+}

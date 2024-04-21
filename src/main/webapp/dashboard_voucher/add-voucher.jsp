@@ -10,26 +10,26 @@
                 <div class="add-form__content">
                     <div class="code">
                         <label for="Code">Code</label>
-                        <input type="text" name="Code" id="Code" placeholder="Enter code">
+                        <input type="text" name="Code" id="Code" placeholder="Enter code" required>
                     </div>
                     <div class="start-end-day">
                         <div class="start-day">
                             <label for="Start-day">Start day</label>
-                            <input type="date" name="Start-day" id="Start-day" placeholder="Enter start day">
+                            <input type="date" name="Start-day" id="Start-day" placeholder="Enter start day" required>
                         </div>
                         <div class="end-day">
                             <label for="End-day">End day</label>
-                            <input type="date" name="End-day" id="End-day" placeholder="Enter end day">
+                            <input type="date" name="End-day" id="End-day" placeholder="Enter end day" required>
                         </div>
                     </div>
                     <div class="quantity-used-discount">
                         <div class="quantity">
                             <label for="Quantity">Quantity</label>
-                            <input type="number" name="Quantity" id="Quantity" placeholder="Enter quantity voucher">
+                            <input type="number" name="Quantity" id="Quantity" placeholder="Enter quantity voucher" required>
                         </div>
                         <div class="used">
                             <label for="Used">Used</label>
-                            <input type="number" name="Used" id="Used" placeholder="Enter used voucher">
+                            <input type="number" name="Used" id="Used" placeholder="Enter quantity used voucher" required>
                         </div>
                     </div>
                     <div class="submit">

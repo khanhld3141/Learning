@@ -6,7 +6,8 @@
                 data-bs-target="#collapse<%=i%>" aria-expanded="true"
                 aria-controls="collapse<%=i%>">
             <span class="curriculum__title">Introduction to basic HTML</span>
-            <span class="curriculum__total-lecture">8 Lectures</span>
+            <span class="curriculum__total-lecture">8 Lectures <a href="../dashboard_lesson/manage-lesson.jsp"><i
+                    class="fa-solid fa-square-pen"></i></a></span>
         </button>
     </h2>
     <%-- neu muon tu dong mo dropdown thi them show vao line 12--%>

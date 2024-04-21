@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include file="../Component/header.jsp"%>
+<%@include file="../Component/header.jsp" %>
 
 <main>
     <!-- courses feature -->
@@ -76,17 +76,23 @@
                                 <h3 class="heading">Requirements for this course</h3>
                                 <ul type="none">
                                     <li><i class="fa-solid fa-hand-point-right"></i> Lorem, ipsum dolor sit amet
-                                        consectetur adipisicing elit.</li>
+                                        consectetur adipisicing elit.
+                                    </li>
                                     <li><i class="fa-solid fa-hand-point-right"></i> Lorem, ipsum dolor sit amet
-                                        consectetur adipisicing elit.</li>
+                                        consectetur adipisicing elit.
+                                    </li>
                                     <li><i class="fa-solid fa-hand-point-right"></i> Lorem, ipsum dolor sit amet
-                                        consectetur adipisicing elit.</li>
+                                        consectetur adipisicing elit.
+                                    </li>
                                     <li><i class="fa-solid fa-hand-point-right"></i> Lorem, ipsum dolor sit amet
-                                        consectetur adipisicing elit.</li>
+                                        consectetur adipisicing elit.
+                                    </li>
                                     <li><i class="fa-solid fa-hand-point-right"></i> Lorem, ipsum dolor sit amet
-                                        consectetur adipisicing elit.</li>
+                                        consectetur adipisicing elit.
+                                    </li>
                                     <li><i class="fa-solid fa-hand-point-right"></i> Lorem, ipsum dolor sit amet
-                                        consectetur adipisicing elit.</li>
+                                        consectetur adipisicing elit.
+                                    </li>
                                 </ul>
                             </div>
                             <!-- courses-objective -->
@@ -94,28 +100,36 @@
                                 <h3 class="heading">You will learn form this course</h3>
                                 <ul type="none">
                                     <li><i class="fa-solid fa-hand-point-right"></i> HTML is the standard markup
-                                        language for creating Web pages.</li>
+                                        language for creating Web pages.
+                                    </li>
                                     <li><i class="fa-solid fa-hand-point-right"></i> HTML stands for Hyper Text
-                                        Markup Language</li>
+                                        Markup Language
+                                    </li>
                                     <li><i class="fa-solid fa-hand-point-right"></i> HTML describes the structure of
-                                        a Web page</li>
+                                        a Web page
+                                    </li>
                                     <li><i class="fa-solid fa-hand-point-right"></i> HTML consists of a series of
-                                        elements</li>
+                                        elements
+                                    </li>
                                     <li><i class="fa-solid fa-hand-point-right"></i> HTML elements tell the browser
-                                        how to display the content</li>
+                                        how to display the content
+                                    </li>
                                     <li><i class="fa-solid fa-hand-point-right"></i> HTML elements are represented
-                                        by tags</li>
+                                        by tags
+                                    </li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                     <!-- Curriculum -->
                     <div class="curriculum" style="margin-top: 20px">
-                        <h1 class="btn curriculum__btn" style="margin-bottom: 0;">Curriculum</h1>
+                        <h1 class="btn curriculum__btn" style="margin-bottom: 0;">Curriculum <a
+                                href="../dashboard_chapter/manage-chapter.jsp"><i class="fa-solid fa-pen-to-square"></i></a>
+                        </h1>
                         <div class="curriculum__content">
                             <div class="accordion" id="accordionCurriculum">
                                 <% for (int i = 1; i < 10; i++) {%>
-                                <%@include file="../Component/curriculum-chapter-item.jsp"%>
+                                <%@include file="../Component/curriculum-chapter-item-admin.jsp" %>
                                 <% } %>
                             </div>
                         </div>
@@ -123,12 +137,12 @@
                     <!--  comment-->
                     <div class="comment">
                         <h3 class="title">Comments</h3>
-                        <% for(int i = 0; i < 3; i++) { %>
-                        <%@include file="../Component/comment_item.jsp"%>
+                        <% for (int i = 0; i < 3; i++) { %>
+                        <%@include file="../Component/comment_item.jsp" %>
                         <% } %>
                     </div>
                     <!-- form comment -->
-                    <%@include file="../Component/comment_form.jsp"%>
+                    <%@include file="../Component/comment_form.jsp" %>
                 </div>
                 <!-- courses-details-right -->
                 <div class="courses-details__right">
@@ -160,7 +174,7 @@
                         <h3 class="widget__title list-categories__title">Categories</h3>
                         <ul>
                             <% for (int i = 1; i <= 8; i++) {%>
-                                <li><a href="#">App Design <span>(5)</span></a></li>
+                            <li><a href="#">App Design <span>(5)</span></a></li>
                             <% } %>
                         </ul>
                     </div>
@@ -169,7 +183,7 @@
                         <h3 class="widget__title recent-courses__title">Recent Courses</h3>
                         <ul>
                             <% for (int i = 1; i <= 3; i++) {%>
-                            <%@include file="../Component/recent-courses__item.jsp"%>
+                            <%@include file="../Component/recent-courses__item.jsp" %>
                             <% } %>
                         </ul>
                     </div>
@@ -178,4 +192,4 @@
         </div>
     </section>
 </main>
-<%@include file="../Component/footer.jsp"%>
+<%@include file="../Component/footer.jsp" %>
