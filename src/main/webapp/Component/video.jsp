@@ -2,7 +2,7 @@
     <div class="col1">
         <h class="title"><p class="id">${param.number_video}.</p>${param.title_video}</h>
         <div class="timeplay">
-            <img src="../img/study/pause.svg" alt="">
+            <img src="../img/study/play.svg" alt="">
             <p class="time">${param.time_video}</p>
         </div>
     </div>

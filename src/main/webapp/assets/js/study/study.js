@@ -2,7 +2,8 @@ let videos = document.querySelectorAll('.video');
 let main_video = document.querySelector('.main-video iframe')
 let main_video_description_title = document.querySelector('.main-video-description .title h')
 let main_video_description_text = document.querySelector('.main-video-description .content')
-main_video.src = "https://www.youtube.com/embed/R6plN3FvzFY"
+main_video.src = "https://www.youtube.com/embed/R6plN3FvzFY";
+
 
 videos.forEach(selected_video => {
     selected_video.onclick = () => {
