@@ -33,6 +33,23 @@
                         </div>
                     </div>
                 </div>
+                <div class="comment-box comment-box-reply" style="display: none">
+                    <div class="avatar">
+                        <img src="../img/study/User-Profile-PNG.png" alt="">
+                    </div>
+                    <div class="comment-box_detail">
+                        <%--                            show second box->display: flex --%>
+                        <div class="second-box">
+                            <div class="row1">
+                                <textarea name="" id="ReplyTextArea" cols="30" rows="10" placeholder="Reply"></textarea>
+                            </div>
+                            <div class="row2">
+                                <button class="btn-cancel-comment">Cancel</button>
+                                <button class="btn-post-comment">Reply</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

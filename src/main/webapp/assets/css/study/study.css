@@ -471,7 +471,7 @@ body{
 }
 
 .modal-comment .comment-wrapper{
-    width: 80%;
+    width: 90%;
 }
 
 
@@ -562,6 +562,16 @@ body{
 .modal-comment .btn-more li:hover{
     background-color: #f0f0f0;
 }
+
+.modal-comment .comment-createdat{
+    position:relative;
+}
+
+.modal-comment .comment-box-reply{
+    margin-top: 2rem;
+    width:90%;
+}
+
 
 /*end modal comment*/
 

@@ -20,7 +20,7 @@
 
 <%--  css--%>
   <link rel="stylesheet" href="../assets/css/reset.css">
-  <link rel="stylesheet" href="../assets/css/study/study.scss">
+  <link rel="stylesheet" href="../assets/css/study/study.css">
 
 </head>
 <body>
@@ -93,8 +93,7 @@
       </main>
     </div>
 
-<%--    file js ko save duoc :) nen viet truc tiep vao trong file jsp luon--%>
-    <script src="../assets/js/study/study.js"></script>
+
 
     <div class="modal-comment">
         <div class="modal-container">
@@ -148,104 +147,7 @@
         </div>
     </div>
 
-    <script>
-        main_video_description_text.innerHTML = videos[0].querySelector('.text').innerHTML;
-        main_video_description_title.innerHTML = videos[0].querySelector('.col1 .title').innerHTML;
-
-        // xu li su kien dong/mo modal
-        let btnComment = document.querySelector('.btn-comment');
-        let modalComment = document.querySelector('.modal-comment');
-        let btnClose = document.querySelector('.btn-commentClose');
-        let modalCommentContainer = document.querySelector('.modal-container')
-
-        function showComment()
-        {
-            modalComment.classList.add('open')
-        }
-
-        function closeComment()
-        {
-            modalComment.classList.remove('open')
-        }
-
-        btnComment.addEventListener('click', showComment);
-        btnClose.addEventListener('click', closeComment);
-
-        modalComment.addEventListener('click', closeComment)
-
-        modalCommentContainer.addEventListener('click', function(event)
-        {
-            event.stopPropagation();
-        })
-
-
-        // xu li su kien dong mo text area comment
-        let firstBoxComment = document.querySelector('.first-box');
-        let secondBoxComment = document.querySelector('.second-box');
-        let btnCancelComment = document.querySelector('.btn-cancel-comment');
-        let btnPostComment = document.querySelector('.btn-post-comment');
-
-
-
-        function showSecondBoxComment()
-        {
-            firstBoxComment.style.display = 'none';
-            secondBoxComment.style.display = 'flex';
-        }
-
-        function closeSecondBoxComment()
-        {
-            document.getElementById('CommentTextArea').value='';
-            firstBoxComment.style.display = 'flex';
-            secondBoxComment.style.display = 'none';
-        }
-
-        firstBoxComment.addEventListener('click', showSecondBoxComment);
-        btnCancelComment.addEventListener('click', closeSecondBoxComment);
-        btnPostComment.addEventListener('click', closeSecondBoxComment);
-
-
-        // Xu li su ki dong/mo edit/delete comment tai dau 3 cham
-        let btnMores = document.querySelectorAll('.btn-more');
-        let moreVisible = false;
-
-        btnMores.forEach(selected_btn => {
-            selected_btn.onclick = () => {
-
-                for (btnMore of btnMores) {
-                    btnMore.querySelector('.more').style.display = 'none';
-                }
-                if(!moreVisible)
-                {
-                    selected_btn.querySelector('.more').style.display = 'block';
-                    moreVisible = true;
-                }
-                else{
-                    selected_btn.querySelector('.more').style.display = 'none';
-                    moreVisible = false;
-                }
-            }
-        });
-
-        modalCommentContainer.addEventListener('click', function ()
-        {
-            for(btnMore of btnMores)
-            {
-                btnMore.querySelector('.more').style.display = 'none';
-
-            }
-        })
-
-        for(btnMore of btnMores)
-        {
-            btnMore.addEventListener('click', function (event)
-            {
-                event.stopPropagation();
-            })
-        }
-
-
-    </script>
+    <script src="../assets/js/study/study.js"></script>
 
 </body>
 </html>
