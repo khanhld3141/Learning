@@ -33,8 +33,12 @@
           <a href="" class="head-logo"><img src="../img/study/6783729.png" alt=""></a>
           <div class="head-title">HTML CSS for beginners</div>
           <div class="progress-bar">
-            <div class="percent">10%</div>
-            <p class="completed">10/100 lessions</p>
+<%--            <div class="percent">10%</div>--%>
+              <%
+                int numberOfChapters = 7;
+              %>
+
+<%--            <p class="completed">100 lessions</p>--%>
           </div>
         </div>
     <%--    end head--%>
@@ -47,7 +51,7 @@
           </div>
           <div class="main-video-description">
             <div class="title">
-                <h>First video</h>
+                <h>First Video</h>
             </div>
             <p class="content">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electroni</p>
           </div>
@@ -61,10 +65,10 @@
             <div class="body">
     <%--        begin  playlist video--%>
               <div class="accordion" id="accordionPlaylist-Videos">
-                  <%for(int i = 1; i <= 5; i++){%>
+                  <%for(int i = 1; i <= numberOfChapters; i++){%>
                   <jsp:include page="../Component/chapter.jsp">
                       <jsp:param name="number_chapter" value="<%=i%>" />
-                      <jsp:param name="title_chapter" value="Chapter" />
+                      <jsp:param name="title_chapter" value="Chapter's Name" />
                   </jsp:include>
                   <%}%>
               </div>
@@ -89,49 +93,118 @@
       </main>
     </div>
 
+<%--    file js ko save duoc :) nen viet truc tiep vao trong file jsp luon--%>
     <script src="../assets/js/study/study.js"></script>
 
     <div class="modal-comment">
         <div class="modal-container">
-            <div class="modal-close">
+            <div class="modal-close btn-commentClose">
                 <i class="fa-solid fa-xmark"></i>
             </div>
             <div class="body">
                 <div class="row">
+
+                    <%
+                        int numberOfComments = 8;
+                    %>
+
                     <div class="comment-head">
-                        <h4>142 comments</h4>
+                        <h4><%=numberOfComments%> comments</h4>
                         <p>(Don't hesitate to report if you see spam comments)</p>
                     </div>
                     <div class="comment-box">
                         <div class="avatar">
-                            <i class="fa-solid fa-user"></i>
+                            <img src="../img/study/User-Profile-PNG.png" alt="">
                         </div>
                         <div class="comment-box_detail">
-                            <span>What is your question?</span>
+<%--                            show first-box->display:flex --%>
+                            <div class="first-box" style="display: flex">
+                                <span>What is your question?</span>
+                            </div>
+<%--                            show second box->display: flex --%>
+                            <div class="second-box" style="display: none">
+                                <div class="row1">
+                                    <textarea name="" id="CommentTextArea" cols="30" rows="10" placeholder="What is your question?"></textarea>
+                                </div>
+                                <div class="row2">
+                                    <button class="btn-cancel-comment">Cancel</button>
+                                    <button class="btn-post-comment">Comment</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="comment-detail">
-                        <div class="avatar"></div>
-                        <div class="comment-wrap">
-                            <div class="comment-content">
-                                <div class="comment-content__head"></div>
-                                <div class="comment-content__text"></div>
-                            </div>
-                            <div class="comment-time">
-                                <div class="comment-createdAtLeft">
-                                    <button class="like"></button>
-                                    <span class="reply"></span>
-                                </div>
-                                <div class="comment-createdAtRight">
-                                    <span class="time"></span>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="comments">
+                        <%for(int i = 1; i < numberOfComments; i++){%>
+                        <jsp:include page="../Component/comment.jsp">
+                            <jsp:param name="avatar" value="../img/study/User-Profile-PNG.png"/>
+                            <jsp:param name="user_name" value="User's name" />
+                            <jsp:param name="comment_text" value="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled" />
+                            <jsp:param name="comment_time" value="1 month ago"/>
+                        </jsp:include>
+                        <%}%>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        main_video_description_text.innerHTML = videos[0].querySelector('.text').innerHTML;
+        main_video_description_title.innerHTML = videos[0].querySelector('.col1 .title').innerHTML;
+
+        // xu li su kien dong/mo modal
+        let btnComment = document.querySelector('.btn-comment');
+        let modalComment = document.querySelector('.modal-comment');
+        let btnClose = document.querySelector('.btn-commentClose');
+        let modalCommentContainer = document.querySelector('.modal-container')
+
+        function showComment()
+        {
+            modalComment.classList.add('open')
+        }
+
+        function closeComment()
+        {
+            modalComment.classList.remove('open')
+        }
+
+        btnComment.addEventListener('click', showComment);
+        btnClose.addEventListener('click', closeComment);
+
+        modalComment.addEventListener('click', closeComment)
+
+        modalCommentContainer.addEventListener('click', function(event)
+        {
+            event.stopPropagation();
+        })
+
+
+        // xu li su kien dong mo text area comment
+        let firstBoxComment = document.querySelector('.first-box');
+        let secondBoxComment = document.querySelector('.second-box');
+        let btnCancelComment = document.querySelector('.btn-cancel-comment');
+        let btnPostComment = document.querySelector('.btn-post-comment');
+
+
+
+        function showSecondBoxComment()
+        {
+            firstBoxComment.style.display = 'none';
+            secondBoxComment.style.display = 'flex';
+        }
+
+        function closeSecondBoxComment()
+        {
+            document.getElementById('CommentTextArea').value='';
+            firstBoxComment.style.display = 'flex';
+            secondBoxComment.style.display = 'none';
+        }
+
+        firstBoxComment.addEventListener('click', showSecondBoxComment);
+        btnCancelComment.addEventListener('click', closeSecondBoxComment);
+        btnPostComment.addEventListener('click', closeSecondBoxComment);
+
+    </script>
 
 </body>
 </html>
