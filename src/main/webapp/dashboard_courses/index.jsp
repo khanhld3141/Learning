@@ -1,10 +1,12 @@
+<%@ page import="java.util.List" %>
+<%@ page import="model.Course" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include file="../Component/sidebar__dashboard.jsp"%>
+<%@include file="../Component/sidebar__dashboard.jsp" %>
 <div class="content-admin">
     <div class="manage-courses">
         <div class="manage-courses__block-title manage-block">
             <h1 class="manage-courses__title title">Manage courses</h1>
-            <a href="../dashboard_courses/add-courses.jsp" class="btn-dashboard btn__add-courses"><i
+            <a href="/dashboard/create-course" class="btn-dashboard btn__add-courses"><i
                     class="fa-solid fa-plus"></i>Add new courses</a>
         </div>
         <div class="table">
@@ -21,23 +23,28 @@
                 </tr>
                 </thead>
                 <tbody>
+                <%
+                    if (request.getAttribute("courses") != null) {
+                        List<Course> courses = (List<Course>) request.getAttribute("courses");
+                        for (Course c : courses) {
+                %>
                 <tr>
-                    <td>C123</td>
-                    <td>Machine Learning</td>
-                    <td>Data Science</td>
-                    <td>200$</td>
-                    <td>Dang Khanh</td>
+                    <td><%=c.getId()%></td>
+                    <td><%=c.getName()%></td>
+                    <td><%=c.getCategory().getName()%></td>
+                    <td><%=c.getPrice()%>$</td>
+                    <td><%=c.getTeacher().getName()%></td>
                     <td>10</td>
                     <td><a href="../Courses_details_admin"><i class="fa-solid fa-eye"></i></a>
-                        <a href="../dashboard_courses/update-courses.jsp"><i class="fa-solid fa-pen"></i></a>
+                        <a href="/dashboard/update-course?id=<%=c.getId()%>"><i class="fa-solid fa-pen"></i></a>
                         <!-- Button trigger modal -->
                         <button type="button" class="btn__modal" data-bs-toggle="modal"
-                                data-bs-target="#modal__delete">
+                                data-bs-target="#modal__delete_<%=c.getId()%>">
                             <i class="fa-solid fa-trash"></i>
                         </button>
                     </td>
                     <!--------------- MODAL DELETE-------------- -->
-                    <div class="modal fade" id="modal__delete">
+                    <div class="modal fade" id="modal__delete_<%=c.getId()%>">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -51,9 +58,11 @@
                                     <p>Deleted data cannot be recovered.</p>
                                 </div>
                                 <div class="modal-footer">
-                                    <a href="../dashboard_courses" class="btn btn-primary">Yes</a>
+                                    <a href="/dashboard/delete-course?id=<%=c.getId()%>" class="btn btn-primary">Yes
+                                    </a>
                                     <button type="button" class="btn btn-danger"
-                                            data-bs-dismiss="modal">No</button>
+                                            data-bs-dismiss="modal">No
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -61,7 +70,10 @@
 
                     <!-- ------------------------------------->
                 </tr>
-
+                <%
+                        }
+                    }
+                %>
                 </tbody>
             </table>
             <div class="clearfix">

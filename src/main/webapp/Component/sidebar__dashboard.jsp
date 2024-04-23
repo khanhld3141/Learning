@@ -55,10 +55,10 @@
                 <a href="../dashboard" class="active__side-bar nav__link"><i class="fa-solid fa-table-cells"></i>Dashboard</a>
             </li>
             <li>
-                <a href="../dashboard_user" class="nav__link"><i class="fa-solid fa-user"></i>Users</a>
+                <a href="/dashboard/users" class="nav__link"><i class="fa-solid fa-user"></i>Users</a>
             </li>
             <li>
-                <a href="../dashboard_courses" class="nav__link"><i class="fa-solid fa-file"></i>Courses</a>
+                <a href="/dashboard/courses" class="nav__link"><i class="fa-solid fa-file"></i>Courses</a>
             </li>
             <li>
                 <a href="../dashboard_lesson" class="nav__link"><i class="fa-solid fa-book"></i>Lesson</a>
