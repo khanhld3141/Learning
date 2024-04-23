@@ -8,8 +8,11 @@ public class Course {
     private int Id,TeacherId,Price,CateId;
     private String Name,Introduce,Image,Overview,Result;
     private List<Chapter> chapters;
-
+    private Category Category;
+    private User Teacher;
     public Course() {
+        Category=new Category();
+        Teacher = new User();
     }
 
     public Course(int id, int teacherId, int price, int cateId, String name, String introduce, String image, String overview, String result) {
@@ -23,6 +26,8 @@ public class Course {
         Overview = overview;
         Result = result;
         chapters=new ArrayList<>();
+        Category=new Category();
+        Teacher = new User();
     }
 
     public Course(int teacherId, int price, int cateId, String name, String introduce, String image, String overview, String result) {
@@ -35,6 +40,8 @@ public class Course {
         Overview = overview;
         Result = result;
         chapters=new ArrayList<>();
+        Category=new Category();
+        Teacher = new User();
     }
 
     public int getId() {
@@ -115,5 +122,21 @@ public class Course {
 
     public void setChapters(List<Chapter> chapters) {
         this.chapters = chapters;
+    }
+
+    public model.Category getCategory() {
+        return Category;
+    }
+
+    public void setCategory(model.Category category) {
+        Category = category;
+    }
+
+    public User getTeacher() {
+        return Teacher;
+    }
+
+    public void setTeacher(User teacher) {
+        Teacher = teacher;
     }
 }

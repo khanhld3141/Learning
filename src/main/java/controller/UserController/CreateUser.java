@@ -10,7 +10,7 @@ import model.User;
 
 import java.io.IOException;
 
-@WebServlet(name = "CreateUserServlet", value = "/create-user")
+@WebServlet(name = "CreateUserServlet", value = "/dashboard/create-user")
 public class CreateUser extends HttpServlet {
     private String message;
     private UserDAO userDao;
@@ -21,10 +21,10 @@ public class CreateUser extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        request.getRequestDispatcher("Home/add-user.jsp").forward(request, response);
+        request.getRequestDispatcher("/dashboard_user/add-user.jsp").forward(request, response);
     }
 
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String name = request.getParameter("Name");
         String username = request.getParameter("Username");
         String phone = request.getParameter("Phone");
@@ -32,12 +32,18 @@ public class CreateUser extends HttpServlet {
         String email = request.getParameter("Email");
         String password = request.getParameter("Password");
         String balanceStr = request.getParameter("Balance");
-        try {
-            User user = new User(Integer.parseInt(balanceStr), name, username, phone, role, email, password);
-            userDao.create(user);
-            response.sendRedirect("/users");
-        } catch (Exception e) {
-            e.printStackTrace();
+        User userExisted = userDao.getByUserName(username);
+        if (userExisted != null) {
+            response.sendRedirect("/dashboard/users?error=Username&already&exist");
+        } else {
+
+            try {
+                User user = new User(Integer.parseInt(balanceStr), name, username, phone, role, email, password);
+                userDao.create(user);
+                response.sendRedirect("/dashboard/users");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
 

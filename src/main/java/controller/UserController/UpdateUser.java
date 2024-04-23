@@ -9,7 +9,7 @@ import model.User;
 
 import java.io.IOException;
 
-@WebServlet(name = "UpdateUserServlet", value = "/update-user")
+@WebServlet(name = "UpdateUserServlet", value = "/dashboard/update-user")
 public class UpdateUser extends HttpServlet {
     private String message;
     private UserDAO userDAO;
@@ -19,14 +19,13 @@ public class UpdateUser extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        if(request.getParameter("id")!=null){
+        if(request.getParameter("id")!=""){
             String idStr=request.getParameter("id");
             try{
                 int id=Integer.parseInt(idStr);
                 User user= userDAO.get(id);
-
                 request.setAttribute("user", user);
-                request.getRequestDispatcher("Home/update-user.jsp").forward(request,response);
+                request.getRequestDispatcher("/dashboard_user/update-user.jsp").forward(request,response);
             }catch (Exception e){
                 e.printStackTrace();
             }
@@ -48,7 +47,7 @@ public class UpdateUser extends HttpServlet {
             User user = new User(Integer.parseInt(id),Integer.parseInt(balance), name, username, phone, role, email,
                     password);
             userDAO.update(user);
-            response.sendRedirect("/users");
+            response.sendRedirect("/dashboard/users");
         } catch (Exception e) {
             e.printStackTrace();
         }

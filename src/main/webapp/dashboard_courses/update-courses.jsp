@@ -1,60 +1,106 @@
+<%@ page import="model.Course" %>
+<%@ page import="model.User" %>
+<%@ page import="java.util.List" %>
+<%@ page import="model.Category" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include file="../Component/sidebar__dashboard.jsp"%>
+<%@include file="../Component/sidebar__dashboard.jsp" %>
 <div class="content-admin">
     <div class="manage-courses">
         <div class="manage-courses__block-title manage-block">
             <h1 class="manage-courses__title title">Update Courses</h1>
         </div>
         <div class="update-courses update-block">
-            <form class="update-courses__form update-form">
+            <form class="update-courses__form update-form" enctype="multipart/form-data" method="post"
+                  action="/dashboard/update-course">
                 <div class="update-form__content">
+                    <%
+                        if (request.getAttribute("course") != null) {
+
+                            Course course = (Course) request.getAttribute("course");
+                            String tech="";
+                            List<User> teachers = (List<User>) request.getAttribute("teachers");
+                            for (User user : teachers) {
+                                if (user.getId() == course.getTeacherId()) {
+                                    tech = user.getId() + "-" + user.getName();
+                                    break;
+                                }
+                            }
+                            List<Category> categories = (List<Category>) request.getAttribute("categories");
+                            String cate="";
+                            for(Category category : categories) {
+                                if (category.getId() == course.getCateId()) {
+                                    cate = category.getId() + "-" + category.getName();
+                                    break;
+                                }
+                            }
+                    %>
+
+                    <input name="Id" hidden="hidden" value="<%=course.getId()%>"/>
                     <div class="name-courses">
                         <label for="Name">Name</label>
-                        <input type="text" name="Name" id="Name" placeholder="Enter name courses" required>
+                        <input value="<%=course.getName()%>" type="text" name="Name" id="Name" placeholder="Enter name courses"
+                               required>
                     </div>
                     <div class="teacher-cate-courses">
-                        <div class="teacher-courses">
-                            <label for="TeacherId">Teacher</label>
-                            <input list="_TeacherId" name="TeacherId" id="TeacherId" required>
-                            <datalist id="_TeacherId">
-                                <option value="Dang Khanh">
-                                <option value="Khanh Dang">
-                                <option value="Dang Xuan Khanh">
-                                <option value="Khanh Xuan Dang">
-                            </datalist>
-                        </div>
+                            <div class="teacher-courses">
+                                <label for="TeacherId">Teacher</label>
+                                <input list="_TeacherId" name="TeacherId" id="TeacherId" required value="<%=tech%>">
+                                <datalist id="_TeacherId">
+                                    <%
+                                        if (request.getAttribute("teachers") != null) {
+                                            for (User user : teachers) {
+                                    %>
+                                    <option value=<%=user.getId() + "-" +user.getName()%>>
+                                            <%
+                                        }
+                                    }
+                                %>
+                                </datalist>
+                            </div>
                         <div class="cate-courses">
                             <label for="CateId">Teacher</label>
-                            <input list="_CateId" name="CateId" id="CateId" required>
+                            <input list="_CateId" name="CateId" id="CateId" required value="<%=cate%>">
                             <datalist id="_CateId">
-                                <option value="Data Science">
-                                <option value="Software Engineering">
-                                <option value="AI">
+                                <%
+                                    if (request.getAttribute("categories") != null) {
+
+                                        for (Category category : categories) {
+
+
+                                %>
+                                <option value=<%=category.getId() + "-" +category.getName()%>>
+                                        <%
+                                        }
+                                    }
+                                %>
                             </datalist>
                         </div>
                     </div>
                     <div class="introduce-courses">
                         <label for="Introduce">Introduce</label>
                         <textarea name="Introduce" id="Introduce" rows="12" placeholder="Enter introduce"
-                                  required></textarea>
+                                  required><%=course.getIntroduce()%></textarea>
                     </div>
                     <div class="overview-courses">
                         <label for="Overview">Overview</label>
                         <textarea name="Overview" id="Overview" rows="12" placeholder="Enter overview"
-                                  required></textarea>
+                                  required><%=course.getOverview()%></textarea>
                     </div>
                     <div class="result-courses">
                         <label for="Result">Result</label>
                         <textarea name="Result" id="Result" rows="12" placeholder="Enter result"
-                                  required></textarea>
+                                  required><%=course.getResult()%></textarea>
                     </div>
                     <div class="image-price-courses">
                         <div class="price-courses">
                             <label for="Price">Price</label>
-                            <input type="number" name="Price" id="Price" placeholder="Enter price courses" required>
+                            <input value="<%=course.getPrice()%>" type="number" name="Price" id="Price"
+                                   placeholder="Enter price courses"
+                                   required>
                         </div>
                         <div class="image-courses">
                             <label for="Image">Image</label>
+                            <img src="/images/<%=course.getImage()%>"/>
                             <input type="file" name="Image" id="Image" placeholder="Choose image" required>
                         </div>
                     </div>
@@ -63,8 +109,11 @@
                     </div> -->
                     <div class="submit">
                         <input type="submit" value="Confirm">
-                        <a href="../dashboard_courses" class="btn__back">Back</a>
+                        <a href="/dashboard/courses" class="btn__back">Back</a>
                     </div>
+                    <%
+                        }
+                    %>
                 </div>
             </form>
         </div>

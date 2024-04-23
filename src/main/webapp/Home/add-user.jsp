@@ -9,72 +9,20 @@
 <html>
 <head>
     <title>Title</title>
-    <style>
-        form {
-            width: 70%;
-            margin: auto;
-            padding: 2rem;
-            border: 1px solid #ececec;
-
-            display: grid;
-            grid-template-columns: repeat(1, 1fr);
-            gap: 0.5rem;
-
-            label {
-                font-size: 1.5rem;
-                color: #2f3542;
-                font-weight: 700;
-
-            }
-
-            input {
-                padding: 1rem;
-                font-size: 1.1rem;
-                border: 0.1rem solid #ececec;
-                border-radius: 0.5rem;
-            }
-
-            button {
-                padding: 1rem 3rem;
-                border: 0.1rem solid #ececec;
-                border-radius: 0.5rem;
-                width: fit-content;
-                background: #2ecc71;
-                font-size: 1.3rem;
-                font-weight: 700;
-                color: #fff;
-            }
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="Home/add.scss"/>
 </head>
 <body>
 <h1>
     Add new user
 </h1>
 
-<form action="/create-user" method="post">
-    <label for="name">Name</label>
-    <input type="text" id="name" name="Name" placeholder="Enter your name"/>
-
-    <label for="username">Username</label>
-    <input type="text" id="username" name="Username" placeholder="Enter your username"/>
-
-    <label for="email">Email</label>
-    <input type="email" id="email" name="Email" placeholder="Enter your email"/>
-
-    <label for="password">Password</label>
-    <input type="password" id="password" name="Password" placeholder="Enter your password"/>
-
-    <label for="phone">Phone</label>
-    <input type="text" id="phone" name="Phone" placeholder="Enter your phone"/>
-
-    <label for="balance">Balance</label>
-    <input type="number" id="balance" min="0" name="Balance" placeholder="Enter your balance"/>
-
-    <label for="password">Role</label>
-    <input type="text" id="role" name="Role" placeholder="Enter your role"/>
-
-
+<form action="/upload" method="post" enctype="multipart/form-data">
+   <input type="file" name="image"/>
+    <img src="/images/60936a5d-4a92-4c68-9680-7f3122e93ec1_banner-11.png"%>
+    <video width="500" height="300" controls>
+        <source src="/images/video11.mp4" type="video/mp4">
+        Trinh duyet cua ban khong ho tro the video.
+    </video>
     <button type="submit">Add</button>
 </form>
 </body>

@@ -30,18 +30,23 @@
                     <h2>Create Account</h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit sedo<br> eiusmod tempor incididunt dolore.</p>
                 </div>
-                <form action="#" class="sl-form">
+                <form action="/register" method="post" class="sl-form">
                     <div class="form-group">
                         <label>Full Name</label>
-                        <input type="text" placeholder="Jhone Doe" required>
+                        <input name="Name" type="text" placeholder="Jhone Doe" required>
                     </div>
                     <div class="form-group">
-                        <label>Email or Username</label>
-                        <input type="email" placeholder="example@gmail.com" required>
+                        <label>Username</label>
+                        <input name="Username" type="text" placeholder="example@gmail.com" required>
                     </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input name="Email" type="email" placeholder="example@gmail.com" required>
+                    </div>
+
                     <div class="form-group">
                         <label>Password</label>
-                        <input type="password" placeholder="Password" required>
+                        <input name="Password" type="password" placeholder="Password" required>
                     </div>
                     <div class="form-check">
                         <input type="checkbox" class="form-check-input" name="" value="">
