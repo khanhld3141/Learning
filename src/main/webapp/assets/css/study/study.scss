@@ -314,6 +314,10 @@ body{
     display: flex;
 }
 
+.modal-comment .btn-reply:hover{
+    text-decoration: underline;
+}
+
 .modal-container{
     box-shadow: 0 4px 12px rgba(0, 0, 0, .15);
     background-color: #fff;
@@ -502,13 +506,13 @@ body{
     margin: 0 .4rem 0;
 }
 
-.modal-comment .time .btn-report,
+.modal-comment .time .btn-more,
 .modal-comment .time{
     font-size: 1.3rem;
     color: #999;
 }
 
-.modal-comment .btn-report{
+.modal-comment .btn-more{
     cursor: pointer;
 }
 
@@ -526,6 +530,39 @@ body{
     line-height: 2;
 }
 
+.modal-comment .btn-more{
+    position: relative;
+    display:inline;
+}
+
+.modal-comment .btn-more .list-option-more{
+    display: block;
+    background-color: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .15);
+    position: absolute;
+    top: 100%;
+}
+
+.modal-comment .btn-more .list-option-more{
+    display: block;
+    background-color: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .15);
+    position: absolute;
+    top: 100%;
+}
+
+.modal-comment .btn-more li{
+    font-size: 1.3rem;
+    font-family: "Roboto", sans-serif;
+    font-weight: normal;
+    padding: .8rem;
+    cursor: pointer;
+}
+
+.modal-comment .btn-more li:hover{
+    background-color: #f0f0f0;
+}
+
 /*end modal comment*/
 
 
@@ -538,6 +575,17 @@ body{
     to {
         transform: translateX(0);
         opacity: 1;
+    }
+}
+
+@keyframes HorizontalModalSlideIn {
+    from{
+        opacity: 0;
+        transform: translateY(-15rem);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0);
     }
 }
     

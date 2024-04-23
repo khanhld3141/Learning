@@ -20,7 +20,7 @@
 
 <%--  css--%>
   <link rel="stylesheet" href="../assets/css/reset.css">
-  <link rel="stylesheet" href="../assets/css/study/study.css">
+  <link rel="stylesheet" href="../assets/css/study/study.scss">
 
 </head>
 <body>
@@ -203,6 +203,47 @@
         firstBoxComment.addEventListener('click', showSecondBoxComment);
         btnCancelComment.addEventListener('click', closeSecondBoxComment);
         btnPostComment.addEventListener('click', closeSecondBoxComment);
+
+
+        // Xu li su ki dong/mo edit/delete comment tai dau 3 cham
+        let btnMores = document.querySelectorAll('.btn-more');
+        let moreVisible = false;
+
+        btnMores.forEach(selected_btn => {
+            selected_btn.onclick = () => {
+
+                for (btnMore of btnMores) {
+                    btnMore.querySelector('.more').style.display = 'none';
+                }
+                if(!moreVisible)
+                {
+                    selected_btn.querySelector('.more').style.display = 'block';
+                    moreVisible = true;
+                }
+                else{
+                    selected_btn.querySelector('.more').style.display = 'none';
+                    moreVisible = false;
+                }
+            }
+        });
+
+        modalCommentContainer.addEventListener('click', function ()
+        {
+            for(btnMore of btnMores)
+            {
+                btnMore.querySelector('.more').style.display = 'none';
+
+            }
+        })
+
+        for(btnMore of btnMores)
+        {
+            btnMore.addEventListener('click', function (event)
+            {
+                event.stopPropagation();
+            })
+        }
+
 
     </script>
 
