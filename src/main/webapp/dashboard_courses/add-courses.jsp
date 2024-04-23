@@ -1,13 +1,17 @@
+<%@ page import="java.util.List" %>
+<%@ page import="model.User" %>
+<%@ page import="model.Category" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include file="../Component/sidebar__dashboard.jsp"%>
+<%@include file="../Component/sidebar__dashboard.jsp" %>
 <div class="content-admin">
     <div class="manage-courses">
         <div class="manage-courses__block-title manage-block">
             <h1 class="manage-courses__title title">Add New Courses</h1>
         </div>
         <div class="add-courses add-block">
-            <form class="add-courses__form add-form">
-                <div class="add-form__content">
+            <form class="add-courses__form add-form" enctype="multipart/form-data" method="post"
+                  action="/dashboard/create-course">
+               <div class="add-form__content">
                     <div class="name-courses">
                         <label for="Name">Name</label>
                         <input type="text" name="Name" id="Name" placeholder="Enter name courses" required>
@@ -17,19 +21,36 @@
                             <label for="TeacherId">Teacher</label>
                             <input list="_TeacherId" name="TeacherId" id="TeacherId" required>
                             <datalist id="_TeacherId">
-                                <option value="Dang Khanh">
-                                <option value="Khanh Dang">
-                                <option value="Dang Xuan Khanh">
-                                <option value="Khanh Xuan Dang">
+                                <%
+                                    if (request.getAttribute("teachers") != null) {
+                                        List<User> teachers = (List<User>) request.getAttribute("teachers");
+                                        for (User user : teachers) {
+
+
+                                %>
+                                <option value=<%=user.getId() + "-" +user.getName()%>>
+                                        <%
+                                        }
+                                    }
+                                %>
                             </datalist>
                         </div>
                         <div class="cate-courses">
-                            <label for="CateId">Teacher</label>
+                            <label for="CateId">Category</label>
                             <input list="_CateId" name="CateId" id="CateId" required>
                             <datalist id="_CateId">
-                                <option value="Data Science">
-                                <option value="Software Engineering">
-                                <option value="AI">
+                                <%
+                                    if (request.getAttribute("categories") != null) {
+                                        List<Category> categories = (List<Category>) request.getAttribute("categories");
+                                        for (Category category : categories) {
+
+
+                                %>
+                                <option value=<%=category.getId() + "-" +category.getName()%>>
+                                        <%
+                                        }
+                                    }
+                                %>
                             </datalist>
                         </div>
                     </div>
@@ -60,7 +81,7 @@
                     </div>
                     <div class="submit">
                         <input type="submit" value="Confirm">
-                        <a href="../dashboard_courses" class="btn__back">Back</a>
+                        <a href="/dashboard/courses" class="btn__back">Back</a>
                     </div>
                 </div>
             </form>

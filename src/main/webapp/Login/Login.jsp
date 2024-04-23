@@ -15,19 +15,20 @@
                 eiusmod tempor incididunt dolore.
                 </p>
             </div>
-            <form action="#" class="form-login">
+            <form action="/login" method="post" class="form-login">
                 <div class="form-group">
                     <label>Email or Username</label>
-                    <input type="email" class="form-group__input" placeholder="example@gmail.com" required>
+                    <input name="Username" type="text" class="form-group__input" placeholder="example@gmail.com"
+                           required>
 
                 </div>
                <div class="form-group">
                     <label>Password</label>
-                    <input type="password" class="form-group__input" placeholder="Password" required>
+                    <input name="Password" type="password" class="form-group__input" placeholder="Password" required>
 
                </div>
                 <div class="form-check">
-                    <input type="checkbox" class="form-check__input">
+                    <input name="Remember" type="checkbox" class="form-check__input">
                     <label class="form-check__label">Remember Password</label>
                   
                 </div>

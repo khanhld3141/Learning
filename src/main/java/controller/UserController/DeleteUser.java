@@ -8,7 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet(name = "DeleteUserServlet", value = "/delete-user")
+@WebServlet(name = "DeleteUserServlet", value = "/dashboard/delete-user")
 public class DeleteUser extends HttpServlet {
     private String message;
     private UserDAO userDAO;
@@ -20,16 +20,13 @@ public class DeleteUser extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         if(request.getParameter(("id"))!=null){
             String idStr=request.getParameter(("id"));
-
             try{
                 int id = Integer.parseInt(idStr);
                 userDAO.delete(id);
-                response.sendRedirect("/users");
+                response.sendRedirect("/dashboard/users");
             }catch (Exception e){
                 e.printStackTrace();
             }
-        }else{
-
         }
     }
 
