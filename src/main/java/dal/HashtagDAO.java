@@ -1,6 +1,7 @@
 package dal;
 
 import model.Hashtag;
+import model.Post;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,17 +15,25 @@ public class HashtagDAO extends DBContext{
     }
     public List<Hashtag> getAllHashtags(){
         List <Hashtag> list = new ArrayList<>();
-        String sql = "select * from Hashtags";
+        String sql = "select Posts.*,Tag,Hashtags.Id as TagId from Hashtags\n" +
+                "left join Posts on Hashtags.PostId=Posts.Id";
 
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 Hashtag Hashtag = new Hashtag(
+                        rs.getInt("TagId"),
                         rs.getInt("Id"),
-                        rs.getInt("PostId"),
                         rs.getString("Tag")
                 );
+                Hashtag.setPost(new Post(
+                        rs.getString("Title"),
+                        rs.getString("Content"),
+                        rs.getString("Comment"),
+                        rs.getInt("Id"),
+                        rs.getInt("AuthorId")
+                ));
                 list.add(Hashtag);
             }
 
@@ -34,20 +43,29 @@ public class HashtagDAO extends DBContext{
         return list;
     }
     public Hashtag get(int id) {
-        String sql = "select * from Hashtags where id = ?";
+        String sql = "select Posts.*,Tag,Hashtags.Id as TagId from Hashtags\n" +
+                "left join Posts on Hashtags.PostId=Posts.Id Where Hashtags.Id=?";
+
         try {
             PreparedStatement st = connection.prepareStatement(sql);
-            st.setInt(1, id);
+            st.setInt(1,id);
             ResultSet rs = st.executeQuery();
-
             while (rs.next()) {
                 Hashtag Hashtag = new Hashtag(
+                        rs.getInt("TagId"),
                         rs.getInt("Id"),
-                        rs.getInt("PostId"),
                         rs.getString("Tag")
                 );
+                Hashtag.setPost(new Post(
+                        rs.getString("Title"),
+                        rs.getString("Content"),
+                        rs.getString("Comment"),
+                        rs.getInt("Id"),
+                        rs.getInt("AuthorId")
+                ));
                 return Hashtag;
             }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -67,7 +85,7 @@ public class HashtagDAO extends DBContext{
     }
 
     public void update(Hashtag Hashtag) {
-        String sql = "update Hashtags PostId=?,Tag =? where Id=? ";
+        String sql = "update Hashtags set PostId=?,Tag =? where Id=? ";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setInt(1, Hashtag.getPostId());

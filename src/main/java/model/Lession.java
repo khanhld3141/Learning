@@ -1,10 +1,12 @@
 package model;
 
+import java.util.List;
+
 public class Lession {
 
     private int Id,ChapterId;
     private String Name,Description,Link;
-
+    private List<LessionComment> comments;
     public Lession() {
     }
 
@@ -61,5 +63,13 @@ public class Lession {
 
     public void setLink(String link) {
         Link = link;
+    }
+
+    public List<LessionComment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<LessionComment> comments) {
+        this.comments = comments;
     }
 }

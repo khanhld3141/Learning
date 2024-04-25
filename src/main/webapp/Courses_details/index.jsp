@@ -175,6 +175,7 @@
                     </div>
                 </div>
             </div>
+        </div>
     </section>
 </main>
 <%@include file="../Component/footer.jsp"%>

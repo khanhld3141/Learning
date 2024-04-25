@@ -1,5 +1,7 @@
+<%@ page import="java.util.List" %>
+<%@ page import="model.Category" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include file="../Component/header.jsp"%>
+<%@include file="../Component/header.jsp" %>
 <main>
     <!-- slide + input-->
     <div id="hero-carousel" class="carousel slide" data-bs-ride="carousel">
@@ -17,12 +19,19 @@
                     <div class="carousel__search-form">
                         <select name="categories" id="categories1" class="categories">
                             <option value="value02" selected>All Categories</option>
-                            <option value="value01">IT & Software</option>
-                            <option value="value03">Machine Learning</option>
-                            <option value="value04">Deep Learning</option>
-                            <option value="value05">Data Science</option>
+                            <%
+                                if (request.getAttribute(("categories")) != null) {
+                                    List<Category> categories = (List<Category>) request.getAttribute(("categories"));
+                                    for (Category c : categories) {
+                            %>
+                            <option value="<%=c.getId()%>"><%=c.getName()%>
+                            </option>
+                            <%
+                                    }
+                                }
+                            %>
                         </select>
-                        <input type="text" placeholder="Enter a Subject" class="enter-subject">
+                        <input name="search" type="text" placeholder="Enter a Subject" class="enter-subject">
                         <button type="submit" class="button-search"><i
                                 class="fa-solid fa-magnifying-glass"></i></button>
                     </div>
@@ -39,9 +48,17 @@
                     <div class="carousel__search-form">
                         <select name="categories" id="categories2" class="categories">
                             <option value="value02" selected>All Categories</option>
-                            <option value="value01">IT & Software</option>
-                            <option value="value03">Machine Learning</option>
-                            <option value="value04">Deep Learning</option>
+                            <%
+                                if (request.getAttribute(("categories")) != null) {
+                                    List<Category> categories = (List<Category>) request.getAttribute(("categories"));
+                                    for (Category c : categories) {
+                            %>
+                            <option value="<%=c.getId()%>"><%=c.getName()%>
+                            </option>
+                            <%
+                                    }
+                                }
+                            %>
                         </select>
                         <input type="text" placeholder="Enter a Subject" class="enter-subject">
                         <button type="submit" class="button-search"></button>
@@ -59,9 +76,17 @@
                     <div class="carousel__search-form">
                         <select name="categories" id="categories3" class="categories">
                             <option value="value02" selected>All Categories</option>
-                            <option value="value01">IT & Software</option>
-                            <option value="value03">Machine Learning</option>
-                            <option value="value04">Deep Learning</option>
+                            <%
+                                if (request.getAttribute(("categories")) != null) {
+                                    List<Category> categories = (List<Category>) request.getAttribute(("categories"));
+                                    for (Category c : categories) {
+                            %>
+                            <option value="<%=c.getId()%>"><%=c.getName()%>
+                            </option>
+                            <%
+                                    }
+                                }
+                            %>
                         </select>
                         <input type="text" placeholder="Enter a Subject" class="enter-subject">
                         <button type="submit" class="button-search"></button>
@@ -80,7 +105,7 @@
                     <div class="item__icon">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" class="item__icon--logo">
                             <path fill="currentColor"
-                                  d="M0 336c0 79.5 64.5 144 144 144H512c70.7 0 128-57.3 128-128c0-61.9-44-113.6-102.4-125.4c4.1-10.7 6.4-22.4 6.4-34.6c0-53-43-96-96-96c-19.7 0-38.1 6-53.3 16.2C367 64.2 315.3 32 256 32C167.6 32 96 103.6 96 192c0 2.7 .1 5.4 .2 8.1C40.2 219.8 0 273.2 0 336z" />
+                                  d="M0 336c0 79.5 64.5 144 144 144H512c70.7 0 128-57.3 128-128c0-61.9-44-113.6-102.4-125.4c4.1-10.7 6.4-22.4 6.4-34.6c0-53-43-96-96-96c-19.7 0-38.1 6-53.3 16.2C367 64.2 315.3 32 256 32C167.6 32 96 103.6 96 192c0 2.7 .1 5.4 .2 8.1C40.2 219.8 0 273.2 0 336z"/>
                         </svg>
                     </div>
                     <div class="item__infor">
@@ -94,7 +119,7 @@
                     <div class="item__icon">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="item__icon--logo">
                             <path fill="currentColor"
-                                  d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z" />
+                                  d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/>
                         </svg>
                     </div>
                     <div class="item__infor">
@@ -107,7 +132,7 @@
                     <div class="item__icon">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="item__icon--logo">
                             <path fill="currentColor"
-                                  d="M256 0a256 256 0 1 1 0 512A256 256 0 1 1 256 0zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z" />
+                                  d="M256 0a256 256 0 1 1 0 512A256 256 0 1 1 256 0zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z"/>
                         </svg>
                     </div>
                     <div class="item__infor">
@@ -127,62 +152,22 @@
                 <h1 class="title blog__title">Every Single Update From Our Blog Page</h1>
             </div>
             <div class="category__list">
-                <!-- item1 -->
+                <%
+                    if (request.getAttribute(("categories")) != null) {
+                        List<Category> categories = (List<Category>) request.getAttribute(("categories"));
+                        for (Category c : categories) {
+                %>
                 <a href="#!" class="category__card">
                     <div class="card__logo">
-                        <i class="fa-solid fa-computer"></i>
+                        <img src="<%=c.getImage()%>"/>
                     </div>
-                    <div class="card__name">IT & Software</div>
+                    <div class="card__name"><%=c.getName()%></div>
                 </a>
-                <!-- item2 -->
-                <a href="#!" class="category__card">
-                    <div class="card__logo">
-                        <i class="fa-solid fa-computer"></i>
-                    </div>
-                    <div class="card__name">IT & Software</div>
-                </a>
-                <!-- item3 -->
-                <a href="#!" class="category__card">
-                    <div class="card__logo">
-                        <i class="fa-solid fa-computer"></i>
-                    </div>
-                    <div class="card__name">IT & Software</div>
-                </a>
-                <!-- item4 -->
-                <a href="#!" class="category__card">
-                    <div class="card__logo">
-                        <i class="fa-solid fa-computer"></i>
-                    </div>
-                    <div class="card__name">IT & Software</div>
-                </a>
-                <!-- item5 -->
-                <a href="#!" class="category__card">
-                    <div class="card__logo">
-                        <i class="fa-solid fa-computer"></i>
-                    </div>
-                    <div class="card__name">IT & Software</div>
-                </a>
-                <!-- item6 -->
-                <a href="#!" class="category__card">
-                    <div class="card__logo">
-                        <i class="fa-solid fa-computer"></i>
-                    </div>
-                    <div class="card__name">IT & Software</div>
-                </a>
-                <!-- item7 -->
-                <a href="#!" class="category__card">
-                    <div class="card__logo">
-                        <i class="fa-solid fa-computer"></i>
-                    </div>
-                    <div class="card__name">IT & Software</div>
-                </a>
-                <!-- item8 -->
-                <a href="#!" class="category__card">
-                    <div class="card__logo">
-                        <i class="fa-solid fa-computer"></i>
-                    </div>
-                    <div class="card__name">IT & Software</div>
-                </a>
+                <%
+                        }
+                    }
+                %>
+
 
             </div>
         </div>
@@ -240,7 +225,7 @@
             <h1 class="title title__popular-courses">Popular Courses</h1>
             <div class="owl-carousel owl-theme">
                 <!-- item 1 -->
-                <% for(int i = 0; i < 6; i++){ %>
+                <% for (int i = 0; i < 6; i++) { %>
                 <%@ include file="../Component/card-courses.jsp" %>
                 <% } %>
             </div>
@@ -280,7 +265,7 @@
                 <!-- items -->
                 <%
                     for (int i = 1; i <= 6; i++) { %>
-                    <%@ include file="../Component/card-blog.jsp" %>
+                <%@ include file="../Component/card-blog.jsp" %>
                 <% }%>
             </div>
         </div>
@@ -343,8 +328,8 @@
                         <button class="carousel-control-prev" type="button" data-bs-target="#testimonial-carousel"
                                 data-bs-slide="prev" style=" background-color: #FFD43B; width: 40px; height: 40px;
                         opacity: 1; display: block; top: 60%">
-                        <span class=" carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
+                            <span class=" carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
                         </button>
                         <button class="carousel-control-next" type="button" data-bs-target="#testimonial-carousel"
                                 data-bs-slide="next" style=" background-color: #FFD43B; width: 40px; height: 40px;
@@ -372,4 +357,4 @@
         </div>
     </div>
 </main>
-<%@include file="../Component/footer.jsp"%>
+<%@include file="../Component/footer.jsp" %>

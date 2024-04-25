@@ -73,7 +73,7 @@ public class LessionCommentDAO extends DBContext{
     }
 
     public void update(LessionComment LessionComment) {
-        String sql = "update LessionComments LessionId=?,AuthorId =?,ParentId=?,Content=? where Id=? ";
+        String sql = "update LessionComments set LessionId=?,AuthorId =?,ParentId=?,Content=? where Id=? ";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setInt(1, LessionComment.getLessionId());

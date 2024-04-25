@@ -1,0 +1,601 @@
+/*begin common*/
+*{
+    box-sizing: border-box;
+}
+
+:root{
+}
+
+html{
+    font-size: 62.5%;
+}
+
+body{
+    font-size: 1.6rem;
+    font-family: "Roboto", sans-serif;
+}
+
+/*end common*/
+
+/*begin head*/
+.study .head{
+    display: flex;
+    height: 50px;
+    position: relative;
+    z-index: 1;
+    justify-content: left;
+    background-color: #29303b;
+    text-align: center;
+}
+
+.study .head .head-back{
+    display: inline-block;
+    font-size: 1.6rem;
+    cursor: pointer;
+    width: 60px;
+}
+
+.study .head .head-back:hover{
+    background-color: rgba(0,0,0,.1);
+}
+
+.study .head .head-back .fa-arrow-left{
+    font-size: 1.6rem;
+    color: #fff;
+    margin: auto;
+    line-height: 1;
+    padding: 18px;
+}
+
+.study .head .head-logo img{
+    width: 5.2rem;
+    padding: 11px;
+
+}
+
+
+.study .head .head-title{
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #fff;
+    margin-top: 2rem;
+    display: block;
+}
+
+.study .progress-bar{
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin-right: 6rem;
+    text-align: center;
+}
+
+.study .progress-bar .percent{
+    display: inline-block;
+    font-size: 1.6rem;
+    line-height: 1;
+    color: #fff;
+}
+
+.study .progress-bar .completed{
+    font-size: 1.3rem;
+    margin-left: 6px;
+    color: #fff;
+    padding: 18px;
+    display: inline-block;
+}
+
+/*end head*/
+
+/*begin playlist*/
+.study .playlist{
+    position: fixed;
+    top: 0;
+    right: 0;
+    border-left: 1px solid #e7e7e7;
+    z-index: 2;
+    margin: 50px 0;
+    width: 23%;
+    height: calc(100% - 10rem);
+    overflow-y: auto;
+}
+
+.study .playlist .playlist-contain{
+    height: 100%;
+    overscroll-y:auto;
+}
+
+.study .playlist .head{
+    background-color: #fff;
+    padding: 12px 16px;
+
+}
+
+.study .playlist .head h{
+    font-size: 1.6rem;
+    line-height: 3rem;
+    font-weight: 600;
+}
+
+.study .chapter{
+    border-radius: 0;
+}
+
+.study .chapter button{
+    font-size: 1.6rem;
+    font-weight: 600;
+    background-color: #f7f8fa;
+    border-bottom: 1px solid #dedfe0;
+    line-height: 2.8rem;
+}
+
+.study .chapter button .id{
+    margin-right: .8rem;
+}
+
+.study .playlist .videos{
+    padding: 0;
+    list-style: none;
+}
+.study .playlist .videos li:hover{
+    background-color: #f1f1f1;
+    cursor: pointer;
+}
+
+
+.study .video{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 8px 20px;
+}
+
+.study .video.active{
+    background-color: #f1f1f1;
+}
+
+
+.study .video .col1{
+    margin-right: .8rem;
+    padding: .5rem;
+}
+
+.study .video .col2{
+    padding: 1rem;
+}
+
+.study .video .col1 p{
+    display: inline;
+    margin-right: .8rem;
+    font-size: 1.4rem;
+    margin-top: .2rem;
+}
+
+.study .video .col1 img{
+    width: 1.5rem;
+    display: inline-block;
+    margin-right: .5rem;
+}
+
+
+
+.study .video .col2 img{
+    width: 2rem;
+}
+
+.study .video .timeplay{
+    display:flex;
+    margin-top: .5rem;
+}
+
+.study .video .title{
+    display: flex;
+    align-items: center;
+}
+
+
+/*end playlist*/
+
+/*begin video-content*/
+.study .video-content{
+    margin: 50px 0;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 77%;
+    height:100%;
+    overflow-y:auto;
+}
+
+.study .video .text{
+    display: none;
+}
+
+.study .main-video{
+    width: 100%;
+    padding: 0 8.5%;
+    background-color: black;
+}
+
+.study .main-video iframe{
+    width: 100%;
+    min-height: 500px;
+}
+
+.study .main-video-description{
+    min-height: 400px;
+    padding: 0 8.5%;
+    text-align: left;
+}
+
+.study .main-video-description .title{
+    font-size: 2.8rem;
+    margin: 48px 0;
+    font-weight: 600;
+    color: black;
+    display: block;
+}
+
+.study .main-video-description .title p{
+    display:inline;
+    margin-right: 1rem;
+}
+
+.study .main-video-description .content{
+    font-size: 1.6rem;
+    line-height: 32px;
+    display: block;
+    margin: 6px 0;
+    color: black;
+}
+
+/*end video-content*/
+
+/*begin footer*/
+.study .footer{
+    height: 50px;
+    background-color: #f0f0f0;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    z-index: 2;
+    width: 100%;
+}
+
+.study .footer p{
+    font-size: 1.4rem;
+    color: #666;
+    padding: 12px 0;
+    display: inline-block;
+    margin-left: 20px;
+    margin-top: 0.8rem;
+}
+
+.study .footer .btn-comment{
+    position: absolute;
+    display: inline-block;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #fff;
+    font-size: 1.6rem;
+    padding: 8px 12px;
+    color: #f05123;
+    cursor: pointer;
+    border-radius: 999px;
+    border-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    border-style: none;
+    line-height: 18.4px;
+    height: 36px;
+    margin-right: 32px;
+    margin-top: 7px;
+}
+
+/*end footer*/
+
+/*begin modal comment*/
+.modal-comment{
+    position: fixed;
+    right:0;
+    top: 0;
+    bottom:0;
+    left: 0;
+    background-color: rgba(0,0,0,.2);
+    max-height: 100vh;
+    justify-content: flex-end;
+    /*display: flex;*/
+    display: none;
+    z-index: 35;
+}
+
+.modal-comment.open{
+    display: flex;
+}
+
+.modal-comment .btn-reply:hover{
+    text-decoration: underline;
+}
+
+.modal-container{
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .15);
+    background-color: #fff;
+    width: 43%;
+    height: 100%;
+    position: relative;
+    animation:VerticalModalSlideIn ease 0.5s;
+    max-width: 100%;
+    min-width: 72rem;
+}
+
+.modal-comment  .body{
+    padding: 0 40px 60px;
+    height: 100%;
+    max-height: 100vh;
+    overflow-y: auto;
+}
+
+.modal-comment  .body .row{
+    margin-top: 5rem;
+}
+
+.modal-comment  .comment-head{
+    margin-bottom: 4.6rem;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.modal-comment .comment-head h4{
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin: 0 auto 0 0;
+}
+
+.modal-comment .comment-head p{
+    color: rgb(102,102,102);
+    font-size: 1.3rem;
+    font-style: italic;
+    line-height: 1.4;
+    margin: 1.3rem 0;
+}
+
+.modal-comment .comment-box{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    line-height: 1.6rem;
+    padding-bottom: 4.8rem;
+}
+
+.modal-comment .avatar{
+    margin-right: 1.2rem;
+}
+
+.modal-comment .avatar img{
+    height: 3rem;
+    width: 3rem;
+}
+
+.modal-comment .comment-box_detail{
+    flex-grow: 1;
+}
+
+.modal-comment .comment-box_detail .first-box{
+    padding: .8rem 0;
+    height: 3.3rem;
+    cursor: text;
+    border-bottom: .1rem solid #ccc;
+}
+
+.modal-comment .comment-box_detail .second-box{
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-comment .second-box .row1 textarea{
+    width: 100%;
+    border: .2rem solid #ccc;
+    border-radius: .6rem;
+    padding: 1rem 1.5rem;
+}
+
+.modal-comment .second-box .row2{
+    display: flex;
+    justify-content: right;
+    margin-top: 2rem;
+}
+
+.modal-comment .btn-cancel-comment{
+    padding: 1rem 1.6rem;
+    margin-right: 1.6rem;
+    border-style: none;
+    color: #888;
+    font-size: 1.4rem;
+    font-weight: 600;
+    border-radius: 2rem;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+
+.modal-comment .btn-cancel-comment:hover{
+    background-color: #ebebeb;
+}
+
+.modal-comment .btn-post-comment{
+    background-color: #f05123;
+    color:#fff;
+    border-radius: 2rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+    padding: 1rem 1.6rem;
+    border-style: none;
+    cursor: pointer;
+}
+
+.modal-comment .btn-post-comment:hover{
+    opacity: 0.8;
+}
+
+.modal-comment .comment-box_detail span{
+    color: #999;
+    font-size: 1.4rem;
+}
+
+.modal-comment .modal-container .modal-close{
+    color: #757575;
+    padding: 1.6rem 2rem;
+    position: absolute;
+    top: 0;
+    right: .6rem;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.modal-comment .modal-container .modal-close:hover{
+    color:#333;
+}
+
+.modal-comment .comment{
+    display: flex;
+    flex-direction: row;
+    margin-top: 1.6rem;
+}
+
+.modal-comment .comment .body{
+    padding-left: .4rem;
+    margin-left: .8rem;
+}
+
+.modal-comment .comment-wrapper{
+    width: 90%;
+}
+
+
+.modal-comment .comment-wrapper .comment-content{
+    padding: .9rem 1.2rem;
+    background-color: #f2f3f5;
+    border-radius: 1.8rem;
+}
+
+.modal-comment .comment-wrapper .comment-time{
+    margin-top: .8rem;
+    min-height: 2.7rem;
+}
+
+.modal-comment .comment-time .comment-createdAt{
+    display: flex;
+    align-items: center;
+}
+
+.modal-comment .comment-createdAtLeft .btn-reply,
+.modal-comment .comment-createdAtLeft .btn-like{
+    color: #e87a5a;
+    font-size: 1.3rem;
+    border-style: none;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.modal-comment .time,
+.modal-comment .btn-reply,
+.modal-comment .btn-like{
+    margin: 0 .4rem 0;
+}
+
+.modal-comment .time .btn-more,
+.modal-comment .time{
+    font-size: 1.3rem;
+    color: #999;
+}
+
+.modal-comment .btn-more{
+    cursor: pointer;
+}
+
+.modal-comment .comment-content__head a{
+    font-size: 1.4rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: #000;
+}
+
+.modal-comment .comment-content__body{
+    margin: .6rem 0;
+    font-weight: 400;
+    font-size: 1.4rem;
+    line-height: 2;
+}
+
+.modal-comment .btn-more{
+    position: relative;
+    display:inline;
+}
+
+.modal-comment .btn-more .list-option-more{
+    display: block;
+    background-color: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .15);
+    position: absolute;
+    top: 100%;
+}
+
+.modal-comment .btn-more .list-option-more{
+    display: block;
+    background-color: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .15);
+    position: absolute;
+    top: 100%;
+}
+
+.modal-comment .btn-more li{
+    font-size: 1.3rem;
+    font-family: "Roboto", sans-serif;
+    font-weight: normal;
+    padding: .8rem;
+    cursor: pointer;
+}
+
+.modal-comment .btn-more li:hover{
+    background-color: #f0f0f0;
+}
+
+.modal-comment .comment-createdat{
+    position:relative;
+}
+
+.modal-comment .comment-box-reply{
+    margin-top: 2rem;
+    width:90%;
+}
+
+
+/*end modal comment*/
+
+
+/*animation*/
+@keyframes VerticalModalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(80%);
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes HorizontalModalSlideIn {
+    from{
+        opacity: 0;
+        transform: translateY(-15rem);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+    

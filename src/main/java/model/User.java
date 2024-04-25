@@ -9,9 +9,10 @@ public class User {
     public User() {
     }
 
-    public User(int id, int banlance, String name, String username, String phone, String role, String email, String password) {
+    public User(int id, int balance, String name, String username, String phone, String role, String email,
+                String password) {
         Id = id;
-        Balance = banlance;
+        Balance = balance;
         Name = name;
         Username = username;
         Phone = phone;
@@ -20,8 +21,8 @@ public class User {
         Password = password;
     }
 
-    public User(int banlance, String name, String username, String phone, String role, String email, String password) {
-        Balance = banlance;
+    public User(int balance, String name, String username, String phone, String role, String email, String password) {
+        Balance = balance;
         Name = name;
         Username = username;
         Phone = phone;
@@ -42,8 +43,8 @@ public class User {
         return Balance;
     }
 
-    public void setBanlance(int banlance) {
-        Balance = banlance;
+    public void setBanlance(int balance) {
+        Balance = balance;
     }
 
     public String getName() {

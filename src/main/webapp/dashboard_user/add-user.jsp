@@ -6,7 +6,7 @@
             <h1 class="manage-user__title title">Add New Users</h1>
         </div>
         <div class="add-user add-block">
-            <form class="add-user__form add-form">
+            <form action="/dashboard/create-user" method="post" class="add-user__form add-form">
                 <div class="add-form__content">
                     <div class="name">
                         <label for="Name">Name</label>
@@ -36,8 +36,9 @@
                         <div class="role">
                             <label for="Role">Role</label>
                             <select name="Role" id="Role">
-                                <option value="Teacher">Teacher</option>
-                                <option value="Student">Student</option>
+                                <option value="R1">Admin</option>
+                                <option value="R2">Teacher</option>
+                                <option value="R3">Student</option>
                             </select>
                         </div>
                         <div class="balance">
@@ -47,7 +48,7 @@
                     </div>
                     <div class="submit">
                         <input type="submit" value="Confirm">
-                        <a href="../dashboard_user" class="btn__back">Back</a>
+                        <a href="/dashboard/users" class="btn__back">Back</a>
                     </div>
                 </div>
             </form>

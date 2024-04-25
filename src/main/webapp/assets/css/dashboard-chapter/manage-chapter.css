@@ -1,0 +1,29 @@
+.modal-header {
+    border-bottom: 0 none;
+}
+.modal-footer {
+    border-top: 0 none;
+}
+/* MODAL ADD */
+.btn__add-chapters{
+    background-color: green;
+}
+.modal__add .modal-footer, .modal__update .modal-footer{
+    text-align: center;
+    display: block;
+}
+.modal__add .modal-header, .modal__add .modal-footer, .modal__update .modal-header, .modal__update .modal-footer{
+    background-color: #f1f7fe;
+}
+.modal__add .modal-body, .modal__update .modal-body{
+    padding: 10px 10px;
+    background-color: #f1f7fe;
+}
+.modal__add .btn, .modal__update .btn{
+    padding: 8px 12px;
+    min-width: 80px;
+    font-size: 12px;
+}
+.modal__add .modal-body div, .modal__update .modal-body div{
+    margin-top: 12px;
+}

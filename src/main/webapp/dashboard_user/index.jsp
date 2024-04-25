@@ -1,10 +1,12 @@
+<%@ page import="java.util.List" %>
+<%@ page import="model.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include file="../Component/sidebar__dashboard.jsp"%>
+<%@include file="../Component/sidebar__dashboard.jsp" %>
 <div class="content-admin">
     <div class="manage-users">
         <div class="manage-user__block-title manage-block">
             <h1 class="manage-user__title title">Manage Users</h1>
-            <a href="../dashboard_user/add-user.jsp" class="btn-dashboard btn__add-users"><i
+            <a href="/dashboard/create-user" class="btn-dashboard btn__add-users"><i
                     class="fa-solid fa-plus"></i>Add new user</a>
         </div>
         <div class="table">
@@ -23,24 +25,38 @@
                 </tr>
                 </thead>
                 <tbody>
+                <%
+                    if (request.getAttribute("users") != null) {
+                        List<User> list = (List<User>) request.getAttribute("users");
+                        for (User user : list) {
+                        String role ="";
+                        if(user.getRole().equals("R1")){
+                            role = "Admin";
+                        }else if(user.getRole().equals("R2")){
+                            role = "Teacher";
+                        }else if(user.getRole().equals("R3")){
+                            role = "Student";
+                        }
+
+                %>
                 <tr>
-                    <td>US123</td>
-                    <td>Đặng Xuân Khánh</td>
-                    <td>0912312412</td>
-                    <td>caubesuuca123@gmail.com</td>
-                    <td>xuankhanh2911</td>
-                    <td>Xuankhanh2911@</td>
-                    <td>800$</td>
-                    <td>Admin</td>
-                    <td><a href="../dashboard_user/update-user.jsp"><i class="fa-solid fa-pen"></i></a>
+                    <td><%=user.getId()%></td>
+                    <td><%=user.getName()%></td>
+                    <td><%=user.getPhone()%></td>
+                    <td><%=user.getEmail()%></td>
+                    <td><%=user.getUsername()%></td>
+                    <td><%=user.getPassword()%></td>
+                    <td><%=user.getBanlance()%>$</td>
+                    <td><%=role%></td>
+                    <td><a href="/dashboard/update-user?id=<%=user.getId()%>"><i class="fa-solid fa-pen"></i></a>
                         <!-- Button trigger modal -->
                         <button type="button" class="btn__modal" data-bs-toggle="modal"
-                                data-bs-target="#modal__delete">
+                                data-bs-target="#modal__delete_<%=user.getId()%>">
                             <i class="fa-solid fa-trash"></i>
                         </button>
                     </td>
                     <!--------------- MODAL DELETE-------------- -->
-                    <div class="modal fade" id="modal__delete">
+                    <div class="modal fade" id="modal__delete_<%=user.getId()%>">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -55,16 +71,21 @@
                                         cannot be recovered.</p>
                                 </div>
                                 <div class="modal-footer">
-                                    <a href="../dashboard_user" class="btn btn-primary">Yes</a>
+                                    <a href="/dashboard/delete-user?id=<%=user.getId()%>" class="btn btn-primary">Yes
+                                    </a>
                                     <button type="button" class="btn btn-danger"
-                                            data-bs-dismiss="modal">No</button>
+                                            data-bs-dismiss="modal">No
+                                    </button>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                     <!-- ------------------------------------->
                 </tr>
+                <%
+                        }
+                    }
+                %>
 
                 </tbody>
             </table>
@@ -72,11 +93,6 @@
                 <div class="hint-text">Showing <b>10</b> out of <b>50</b> entries</div>
                 <ul class="pagination">
                     <li class="page-item"><a href="#" class="page-link">Previous</a></li>
-                    <li class="page-item"><a href="#" class="page-link">1</a></li>
-                    <li class="page-item"><a href="#" class="page-link">2</a></li>
-                    <li class="page-item active"><a href="#" class="page-link">3</a></li>
-                    <li class="page-item"><a href="#" class="page-link">4</a></li>
-                    <li class="page-item"><a href="#" class="page-link">5</a></li>
                     <li class="page-item"><a href="#" class="page-link">Next</a></li>
                 </ul>
             </div>

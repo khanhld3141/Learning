@@ -11,7 +11,7 @@ import model.User;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "UserControllerServlet", value = "/users")
+@WebServlet(name = "UserControllerServlet", value = "/dashboard/users")
 public class index extends HttpServlet {
     private String message;
     private UserDAO userDao;
@@ -22,10 +22,14 @@ public class index extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        List<User> list = userDao.getAll();
+        int currentPage = 1;
+        if (request.getParameter("page") != null) {
+            currentPage = Integer.parseInt(request.getParameter("page"));
+        }
+        List<User> list = userDao.getAll(currentPage,10);
         request.setAttribute("users", list);
 
-        request.getRequestDispatcher("Home/user.jsp").forward(request, response);
+        request.getRequestDispatcher("/dashboard_user/index.jsp").forward(request, response);
     }
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 

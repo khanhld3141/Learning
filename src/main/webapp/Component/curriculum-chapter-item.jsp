@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%-- boc trong khoi <div class="accordion" id="accordionCurriculum"></div> de su dung bootstrap--%>
 <div class="accordion-item">
     <h2 class="accordion-header" id="heading<%=i%>">
@@ -13,8 +14,6 @@
          aria-labelledby="heading<%=i%>" data-bs-parent="#accordionCurriculum">
         <div class="accordion-body">
             <ul>
-                <li><a href="#"><i class="fa-solid fa-play"></i>HTML Elements</a>
-                </li>
                 <li><a href="#"><i class="fa-solid fa-play"></i>Nested HTML
                     Elements</a></li>
                 <li><a href="#"><i class="fa-solid fa-play"></i>HTML

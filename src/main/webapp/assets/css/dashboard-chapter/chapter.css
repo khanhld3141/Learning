@@ -1,0 +1,7 @@
+.modify-chapter{
+    font-size: 12px;
+    color: blue;
+}
+.modify-chapter:hover{
+    color: red;
+}

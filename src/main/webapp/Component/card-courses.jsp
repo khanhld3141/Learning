@@ -1,5 +1,5 @@
 <div class="item__card-courses">
-    <figure class="card-courses" id="card-courses">
+    <div class="card-courses" id="card-courses">
         <div class="card-courses__thumb">
             <img src="../img/slide-courses/slide1.jpg" alt="" class="card-courses__img">
             <p class="price__courses">50$</p>
@@ -23,5 +23,5 @@
                 <button class="btn btn--enroll">ENROLL NOW</button>
             </div>
         </div>
-    </figure>
+    </div>
 </div>

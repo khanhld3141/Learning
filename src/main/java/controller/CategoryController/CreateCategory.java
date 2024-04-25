@@ -26,8 +26,8 @@ public class CreateCategory extends HttpServlet {
     }
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String name = request.getParameter("name");
-
-        categoryDAO.create(new Category(name));
+        String image = request.getParameter("image");
+        categoryDAO.create(new Category(name,image));
 
         request.setAttribute("message","Add new category successfully");
         response.sendRedirect("/categories");

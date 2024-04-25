@@ -514,3 +514,25 @@ footer{
 .recent-posts .posts__infor .posts__cate:hover,  .recent-posts .posts__infor .posts__date:hover{
     color: red;
 }
+
+/* icon modify chapter and lession in curriculum block */
+.fa-square-pen{
+    font-size: 20px;
+    margin-left: 8px;
+    color: rgb(244, 130, 9);
+    transition: 0.25s;
+}
+.fa-square-pen:hover{
+    transform: scale(1.1);
+    color: #1a73e8;
+}
+.fa-pen-to-square{
+    color: #FFF;
+    transition: 0.25s;
+    font-size: 18px;
+    margin-left: 10px;
+}
+.fa-pen-to-square:hover{
+    transform: scale(1.1);
+    color: #000000;
+}

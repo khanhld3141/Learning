@@ -4,7 +4,7 @@ public class LessionComment {
 
     private int Id,LessionId,AuthorId,ParentId;
     private String Content;
-
+    private User author;
     public LessionComment() {
     }
 
@@ -61,5 +61,13 @@ public class LessionComment {
 
     public void setContent(String content) {
         Content = content;
+    }
+
+    public User getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(User author) {
+        this.author = author;
     }
 }

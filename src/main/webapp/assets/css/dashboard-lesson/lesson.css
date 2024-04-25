@@ -1,0 +1,7 @@
+.modify-lessons{
+    font-size: 12px;
+    color: blue;
+}
+.modify-lessons:hover{
+    color: red;
+}

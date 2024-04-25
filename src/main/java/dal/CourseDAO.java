@@ -1,6 +1,8 @@
 package dal;
 
+import model.Category;
 import model.Course;
+import model.User;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,17 +14,22 @@ public class CourseDAO extends DBContext{
     public CourseDAO(){
         super();
     }
-    public List<Course> getAllCourses(){
+    public List<Course> getAllCourses(int page,int  recordsPerPage){
         List <Course> list = new ArrayList<>();
-        String sql = "select * from Courses";
+        String sql = "select Courses.*, Users.Name as Teacher,Categories.Name as Cate,Categories.Image as CateImage " +
+                "from courses left join Categories on Courses.CateId=Categories.id\n" +
+                "left join users on Courses.TeacherId = users.id ORDER BY Id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
 
         try {
             PreparedStatement st = connection.prepareStatement(sql);
+            int offset = (page - 1) * recordsPerPage;
+            st.setInt(1, offset);
+            st.setInt(2, recordsPerPage);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 Course Course = new Course(
                         rs.getInt("Id"),
-                        rs.getInt("TeachId"),
+                        rs.getInt("TeacherId"),
                         rs.getInt("price"),
                         rs.getInt("CateId"),
                         rs.getString("Name"),
@@ -31,6 +38,41 @@ public class CourseDAO extends DBContext{
                         rs.getString("Overview"),
                         rs.getString("Result")
                 );
+                Course.setTeacher(new User(0,rs.getString("Teacher"),"","","","",""));
+                Course.setCategory(new Category(rs.getString("Cate"),rs.getString("CateImage")));
+                list.add(Course);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+    public List<Course> getAllCoursesHome(int page,int  recordsPerPage){
+        List <Course> list = new ArrayList<>();
+        String sql = "select Courses.*,Star from Courses\n" +
+                "left join UserCourses on Courses.Id = UserCourses.CourseId ORDER BY Courses.Id OFFSET ? ROWS FETCH " +
+                "NEXT ? ROWS ONLY";
+
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            int offset = (page - 1) * recordsPerPage;
+            st.setInt(1, offset);
+            st.setInt(2, recordsPerPage);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Course Course = new Course(
+                        rs.getInt("Id"),
+                        rs.getInt("TeacherId"),
+                        rs.getInt("price"),
+                        rs.getInt("CateId"),
+                        rs.getString("Name"),
+                        rs.getString("Introduce"),
+                        rs.getString("Image"),
+                        rs.getString("Overview"),
+                        rs.getString("Result")
+                );
+
                 list.add(Course);
             }
 
@@ -49,7 +91,7 @@ public class CourseDAO extends DBContext{
             while (rs.next()) {
                 Course Course = new Course(
                         rs.getInt("Id"),
-                        rs.getInt("TeachId"),
+                        rs.getInt("TeacherId"),
                         rs.getInt("price"),
                         rs.getInt("CateId"),
                         rs.getString("Name"),
@@ -86,7 +128,8 @@ public class CourseDAO extends DBContext{
     }
 
     public void update(Course Course) {
-        String sql = "update Courses Name=?,Introduce =?,Image=?,Overview=?,Result=?,TeacherId=?,CateId=?,Price=?  " +
+        String sql = "update Courses set Name=?,Introduce =?,Image=?,Overview=?,Result=?,TeacherId=?,CateId=?,Price=?" +
+                "  " +
                 "where Id=? ";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
