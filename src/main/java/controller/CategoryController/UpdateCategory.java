@@ -41,8 +41,8 @@ public class UpdateCategory extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String id= request.getParameter("id");
         String name = request.getParameter("name");
-
-        categoryDAO.update(new Category(Integer.parseInt(id),name));
+        String image = request.getParameter("image");
+        categoryDAO.update(new Category(Integer.parseInt(id),name,image));
 
         request.setAttribute("message", "Update category successfully");
         response.sendRedirect("/categories");

@@ -1,5 +1,7 @@
+<%@ page import="java.util.List" %>
+<%@ page import="model.Voucher" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include file="../Component/sidebar__dashboard.jsp"%>
+<%@include file="../Component/sidebar__dashboard.jsp" %>
 <div class="content-admin">
     <div class="manage-vouchers">
         <div class="manage-voucher__block-title manage-block">
@@ -22,23 +24,31 @@
                 </tr>
                 </thead>
                 <tbody>
+                <%
+                    if (request.getAttribute("vouchers") != null) {
+                        List<Voucher> vouchers = (List<Voucher>) request.getAttribute("vouchers");
+
+                        for (Voucher v : vouchers) {
+
+
+                %>
                 <tr>
-                    <td>VC123</td>
-                    <td>QUOCKHANHXXX0902</td>
-                    <td>02/09/2024</td>
-                    <td>03/09/2004</td>
-                    <td>92</td>
-                    <td>29</td>
-                    <td>10%</td>
-                    <td><a href="../dashboard_voucher/update-voucher.jsp"><i class="fa-solid fa-pen"></i></a>
+                    <td><%=v.getId()%></td>
+                    <td><%=v.getCode()%></td>
+                    <td><%=v.getStartDay()%></td>
+                    <td><%=v.getEndDay()%></td>
+                    <td><%=v.getQuantity()%></td>
+                    <td><%=v.getUsed()%></td>
+                    <td><%=v.getDiscount()%></td>
+                    <td><a href="/dashboard/update-voucher?id=<%=v.getId()%>"><i class="fa-solid fa-pen"></i></a>
                         <!-- Button trigger modal -->
                         <button type="button" class="btn__modal" data-bs-toggle="modal"
-                                data-bs-target="#modal__delete">
+                                data-bs-target="#modal__delete_<%=v.getId()%>">
                             <i class="fa-solid fa-trash"></i>
                         </button>
                     </td>
                     <!--------------- MODAL DELETE-------------- -->
-                    <div class="modal fade" id="modal__delete">
+                    <div class="modal fade" id="modal__delete_<%=v.getId()%>">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -53,9 +63,11 @@
                                         cannot be recovered.</p>
                                 </div>
                                 <div class="modal-footer">
-                                    <a href="../dashboard_voucher" class="btn btn-primary">Yes</a>
+                                    <a href="/dashboard/delete-voucher?id=<%=v.getId()%>" class="btn btn-primary">
+                                        Yes</a>
                                     <button type="button" class="btn btn-danger"
-                                            data-bs-dismiss="modal">No</button>
+                                            data-bs-dismiss="modal">No
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -63,7 +75,10 @@
 
                     <!-- ------------------------------------->
                 </tr>
-
+                <%
+                        }
+                    }
+                %>
                 </tbody>
             </table>
             <div class="clearfix">

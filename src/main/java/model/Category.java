@@ -2,18 +2,19 @@ package model;
 
 public class Category {
     private int Id;
-    private String Name;
-
+    private String Name,Image;
     public Category() {
     }
 
-    public Category(String name) {
+    public Category(String name,String image) {
         Name = name;
+        Image = image;
     }
 
-    public Category(int id, String name) {
+    public Category(int id, String name,String image) {
         Id = id;
         Name = name;
+        Image = image;
     }
 
     public int getId() {
@@ -30,5 +31,13 @@ public class Category {
 
     public void setName(String name) {
         Name = name;
+    }
+
+    public String getImage() {
+        return Image;
+    }
+
+    public void setImage(String image) {
+        this.Image = image;
     }
 }

@@ -6,7 +6,7 @@
             <h1 class="manage-voucher__title title">Add New Voucher</h1>
         </div>
         <div class="add-voucher add-block">
-            <form class="add-voucher__form add-form">
+            <form action="/dashboard/create-voucher" method="post" class="add-voucher__form add-form">
                 <div class="add-form__content">
                     <div class="code">
                         <label for="Code">Code</label>
@@ -15,11 +15,11 @@
                     <div class="start-end-day">
                         <div class="start-day">
                             <label for="Start-day">Start day</label>
-                            <input type="date" name="Start-day" id="Start-day" placeholder="Enter start day" required>
+                            <input type="datetime-local" name="Startday" id="Start-day" placeholder="Enter start day" required>
                         </div>
                         <div class="end-day">
                             <label for="End-day">End day</label>
-                            <input type="date" name="End-day" id="End-day" placeholder="Enter end day" required>
+                            <input type="datetime-local" name="Endday" id="End-day" placeholder="Enter end day" required>
                         </div>
                     </div>
                     <div class="quantity-used-discount">
@@ -28,13 +28,14 @@
                             <input type="number" name="Quantity" id="Quantity" placeholder="Enter quantity voucher" required>
                         </div>
                         <div class="used">
-                            <label for="Used">Used</label>
-                            <input type="number" name="Used" id="Used" placeholder="Enter quantity used voucher" required>
+                            <label for="Used">Discount</label>
+                            <input type="number" name="Discount" id="Used" placeholder="Enter discount voucher"
+                                   required>
                         </div>
                     </div>
                     <div class="submit">
                         <input type="submit" value="Confirm">
-                        <a href="../dashboard_voucher" class="btn__back">Back</a>
+                        <a href="/dashboard/vouchers" class="btn__back">Back</a>
                     </div>
                 </div>
             </form>

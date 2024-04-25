@@ -12,12 +12,13 @@ public class CourseCommentDAO extends DBContext{
     public CourseCommentDAO(){
         super();
     }
-    public List<CourseComment> getAllCourseComments(){
+    public List<CourseComment> getAllCourseComments(int courseId){
         List <CourseComment> list = new ArrayList<>();
-        String sql = "select * from CourseComments";
+        String sql = "select * from CourseComments where CourseId = ?";
 
         try {
             PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1,courseId);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 CourseComment CourseComment = new CourseComment(
@@ -70,7 +71,7 @@ public class CourseCommentDAO extends DBContext{
     }
 
     public void update(CourseComment CourseComment) {
-        String sql = "update CourseComments CourseId=?,AuthorId =?,Content=?  where Id=? ";
+        String sql = "update CourseComments set CourseId=?,AuthorId =?,Content=?  where Id=? ";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setInt(1, CourseComment.getCourseId());

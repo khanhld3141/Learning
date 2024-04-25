@@ -12,7 +12,7 @@ import model.Voucher;
 
 import java.io.IOException;
 
-@WebServlet(name = "CreateVoucherServlet", value = "/create-voucher")
+@WebServlet(name = "CreateVoucherServlet", value = "/dashboard/create-voucher")
 public class CreateVoucher extends HttpServlet {
     private String message;
     private VoucherDAO VoucherDAO;
@@ -22,15 +22,15 @@ public class CreateVoucher extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        request.getRequestDispatcher("Banner/create-voucher.jsp").forward(request, response);
+        request.getRequestDispatcher("/dashboard_voucher/add-voucher.jsp").forward(request, response);
     }
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        String code = request.getParameter("code");
-        String quantity=request.getParameter("quantity");
-        String discount=request.getParameter("discount");
-        String startDay=request.getParameter("startday");
+        String code = request.getParameter("Code");
+        String quantity=request.getParameter("Quantity");
+        String discount=request.getParameter("Discount");
+        String startDay=request.getParameter("Startday");
         String starts[]=startDay.split("T");
-        String endDay=request.getParameter("endday");
+        String endDay=request.getParameter("Endday");
         String ends[]=endDay.split("T");
 
         VoucherDAO.create(new Voucher(
@@ -43,7 +43,7 @@ public class CreateVoucher extends HttpServlet {
         ));
 
         request.setAttribute("message","Add new Voucher successfully");
-        response.sendRedirect("/vouchers");
+        response.sendRedirect("/dashboard/vouchers");
 
     }
 

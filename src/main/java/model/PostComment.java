@@ -4,7 +4,7 @@ public class PostComment {
 
     private String Content;
     private int Id,AuthorId,PostId;
-
+    private User author;
     public PostComment() {
     }
 
@@ -51,5 +51,13 @@ public class PostComment {
 
     public void setPostId(int postId) {
         PostId = postId;
+    }
+
+    public User getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(User author) {
+        this.author = author;
     }
 }
