@@ -1,0 +1,130 @@
+.profile-block{
+    display: flex;
+    justify-content: space-between;
+}
+.profile-block{
+    min-height: 100vh;
+}
+.profile-box{
+    border: 1px solid #e9ecef;
+    border-radius: 4px;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, .1);
+}
+.profile-sidebar{
+    width: 23%;
+    margin-right: 2%;
+}
+.profile-title{
+    background: linear-gradient(90deg, #ff8100, #f05225);
+    font-size: 1.7rem;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 28px;
+    padding-right: 10px;
+    color: #fff;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    font-weight: 500;
+}
+
+.profile-box .navbar-profile li a{
+    padding: 13px 25px;
+    font-size: 15px;
+    color: #000;
+    display: block;
+    -webkit-transition: all .3s ease-out;
+    transition: all .3s ease-out;
+}
+.profile-box .navbar-profile li a:hover{
+    background-color: #e9ecef;
+}
+.profile-box .navbar-profile li i{
+    margin-right: 12px;
+    width: 13px;
+    vertical-align: unset;
+}
+.profile-right{
+    width: 75%;
+}
+.profile-right .profile-box{
+    padding: 20px;
+}
+.profile-right__title{
+    font-size: 20px;
+    text-transform: uppercase;
+    padding-bottom: 8px;
+    color: #635f5f;
+    font-weight: 700;
+    display: inline-block;
+    /* border-bottom: 2px solid #ff8100; */
+}
+.profile-right__content{
+    display: flex;
+    margin-top: 20px;
+}
+.change-avt-box{
+    width: 23%;
+    margin-right: 2%;
+}
+.personal-infor-box{
+    width: 75%;
+}
+.change-avt-box figure{
+    width: 140px;
+    height: 140px;
+    margin: 0 auto 18px;
+}
+.change-avt-box figure img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 1px solid #969595;
+    object-fit: cover;
+}
+.btn__profile{
+    width: 180px;
+    font-size: 14px;
+    font-weight: 700;
+    border: none;
+    background-color: #007bff;
+    color: #FFF;
+    padding: 10px 8px;
+    border-radius: 4px;
+}
+.change-avt__form input[type=file]{
+    font-size: 12px;
+    width: 100%;
+}
+.personal-infor-box{
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 20px;
+    padding-right: 0;
+}
+.btn__submit-personal-infor{
+    font-size: 18px;
+    float: right;
+    margin: 18px 0;
+}
+.personal-infor__form div{
+    padding: 15px 0;
+    display: flex;
+    align-items: center;
+}
+.personal-infor__form div label{
+    width: 33%;
+    margin-right: 2%;
+    font-size: 16px;
+    font-weight: 450;
+}
+.personal-infor__form div input{
+    width: 65%;
+    border-radius: 4px;
+    border: 1px solid #969595;
+    height: 36px;
+    font-weight: 400;
+    padding: 10px 10px;
+}
+.personal-infor__form div label i{
+    margin-right: 8px;
+}

@@ -19,7 +19,7 @@
                     <div class="teacher-cate-courses">
                         <div class="teacher-courses">
                             <label for="TeacherId">Teacher</label>
-                            <input list="_TeacherId" name="TeacherId" id="TeacherId" required>
+                            <input list="_TeacherId" name="TeacherId" id="TeacherId" placeholder="Choose a teacher" required>
                             <datalist id="_TeacherId">
                                 <%
                                     if (request.getAttribute("teachers") != null) {
@@ -37,7 +37,7 @@
                         </div>
                         <div class="cate-courses">
                             <label for="CateId">Category</label>
-                            <input list="_CateId" name="CateId" id="CateId" required>
+                            <input list="_CateId" name="CateId" id="CateId" placeholder="Choose a category" required>
                             <datalist id="_CateId">
                                 <%
                                     if (request.getAttribute("categories") != null) {

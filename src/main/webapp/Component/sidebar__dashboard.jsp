@@ -13,6 +13,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
+    <%-- Jquery--%>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <!-- google-font -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
           rel="stylesheet">
@@ -36,6 +38,10 @@
     <link rel="stylesheet" href="../assets/css/dashboard-chapter/manage-chapter.css">
     <link rel="stylesheet" href="../assets/css/dashboard-lesson/lesson.css">
     <link rel="stylesheet" href="../assets/css/dashboard-lesson/manage-lesson.css">
+    <link rel="stylesheet" href="../assets/css/dashboard_category/manage-category.css">
+    <link rel="stylesheet" href="../assets/css/dashboard_deposit/manage-deposit.css">
+    <link rel="stylesheet" href="../assets/css/dashboard_hashtag/manage-hashtag.css">
+    <link rel="stylesheet" href="../assets/css/dashboard_post/manage-post.css">
 
 </head>
 
@@ -55,16 +61,19 @@
                 <a href="../dashboard" class="active__side-bar nav__link"><i class="fa-solid fa-table-cells"></i>Dashboard</a>
             </li>
             <li>
-                <a href="/dashboard/users" class="nav__link"><i class="fa-solid fa-user"></i>Users</a>
+                <a href="../dashboard/users" class="nav__link"><i class="fa-solid fa-user"></i>Users</a>
             </li>
             <li>
-                <a href="/dashboard/courses" class="nav__link"><i class="fa-solid fa-file"></i>Courses</a>
+                <a href="../dashboard/courses" class="nav__link"><i class="fa-solid fa-file"></i>Courses</a>
             </li>
             <li>
                 <a href="../dashboard_lesson" class="nav__link"><i class="fa-solid fa-book"></i>Lesson</a>
             </li>
             <li>
                 <a href="../dashboard_chapter" class="nav__link"><i class="fa-solid fa-palette"></i>Chapter</a>
+            </li>
+            <li>
+                <a href="../dashboard-category" class="nav__link"><i class="fa-solid fa-palette"></i>Category</a>
             </li>
             <li>
                 <a href="../dashboard_voucher" class="nav__link"><i class="fa-solid fa-ticket"></i>Voucher</a>
@@ -98,6 +107,5 @@
                 });
             });
         });
-
     </script>
 </div>

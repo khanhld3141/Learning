@@ -5,22 +5,28 @@
 <div class="content-admin">
     <div class="manage-users">
         <div class="manage-user__block-title manage-block">
-            <h1 class="manage-user__title title">Manage Users</h1>
+            <div class="manage-title-search">
+                <h1 class="manage-user__title title">Manage Users</h1>
+                <form action="" class="search-form">
+                    <input type="text" placeholder="Search name user" class="search-input" name="Name">
+                    <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </form>
+            </div>
             <a href="/dashboard/create-user" class="btn-dashboard btn__add-users"><i
                     class="fa-solid fa-plus"></i>Add new user</a>
         </div>
         <div class="table">
-            <table class="custom-table table__users">
+            <table class="custom-table table__users" id="table-sort">
                 <thead>
                 <tr>
-                    <th>ID USER</th>
-                    <th>Name</th>
-                    <th>Phone</th>
-                    <th>Email</th>
-                    <th>Username</th>
-                    <th>Password</th>
-                    <th>Balance</th>
-                    <th>Role</th>
+                    <th onclick="sortTable(0)">ID USER</th>
+                    <th onclick="sortTable(1)">Name</th>
+                    <th onclick="sortTable(2)">Phone</th>
+                    <th onclick="sortTable(3)">Email</th>
+                    <th onclick="sortTable(4)">Username</th>
+                    <th onclick="sortTable(5)">Password</th>
+                    <th onclick="sortTable(6)">Balance</th>
+                    <th onclick="sortTable(7)">Role</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
@@ -48,15 +54,15 @@
                     <td><%=user.getPassword()%></td>
                     <td><%=user.getBanlance()%>$</td>
                     <td><%=role%></td>
-                    <td><a href="/dashboard/update-user?id=<%=user.getId()%>"><i class="fa-solid fa-pen"></i></a>
+                    <td><a href="/dashboard/update-user?id=<%=user.getId()%>" title="Update user"><i class="fa-solid fa-pen"></i></a>
                         <!-- Button trigger modal -->
                         <button type="button" class="btn__modal" data-bs-toggle="modal"
-                                data-bs-target="#modal__delete_<%=user.getId()%>">
+                                data-bs-target="#modal__delete_<%=user.getId()%>" title="Delete user">
                             <i class="fa-solid fa-trash"></i>
                         </button>
                     </td>
                     <!--------------- MODAL DELETE-------------- -->
-                    <div class="modal fade" id="modal__delete_<%=user.getId()%>">
+                    <div class="modal fade modal__delete" id="modal__delete_<%=user.getId()%>">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -86,7 +92,8 @@
                         }
                     }
                 %>
-
+                <!-- SORT TABLE -->
+                <script src="../assets/js/Sort_table/sort-table.js"></script>
                 </tbody>
             </table>
             <div class="clearfix">

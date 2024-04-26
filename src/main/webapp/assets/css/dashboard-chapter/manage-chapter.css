@@ -27,3 +27,6 @@
 .modal__add .modal-body div, .modal__update .modal-body div{
     margin-top: 12px;
 }
+#chapter-table th{
+    cursor: pointer;
+}
