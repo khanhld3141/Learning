@@ -1,22 +1,22 @@
 package model;
 
 public class UserCourse {
-    private int Id;
+    private int Id,UserId,CourseId;
     private User user;
     private  Course course;
 
     public UserCourse() {
     }
 
-    public UserCourse(int id, User user, Course course) {
-        Id = id;
-       this.user = user;
-       this.course = course;
+    public UserCourse(int userId, int courseId) {
+        UserId = userId;
+        CourseId = courseId;
     }
 
-    public UserCourse( User user, Course course) {
-        this.user = user;
-        this.course = course;
+    public UserCourse(int id, int userId, int courseId) {
+        Id = id;
+        UserId = userId;
+        CourseId = courseId;
     }
 
     public int getId() {
@@ -42,4 +42,5 @@ public class UserCourse {
     public void setCourse(Course course) {
         this.course = course;
     }
+
 }

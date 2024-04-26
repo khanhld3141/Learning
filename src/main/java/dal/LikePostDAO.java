@@ -80,12 +80,14 @@ public class LikePostDAO extends DBContext{
         }
     }
 
-    public void delete(int id) {
-        String sql = "delete from LikePosts where id = ?";
+    public void delete(LikePost likePost) {
+        String sql = "delete from LikePosts where id = ? and idpost=?and iduser=?";
 
         try {
             PreparedStatement st = connection.prepareStatement(sql);
-            st.setInt(1, id);
+            st.setInt(1, likePost.getId());
+            st.setInt(2, likePost.getPostId());
+            st.setInt(3, likePost.getUserId());
             st.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

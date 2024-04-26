@@ -12,12 +12,13 @@ public class LessionDAO extends DBContext{
     public LessionDAO(){
         super();
     }
-    public List<Lession> getAllLessions(){
+    public List<Lession> getAllLessions(int chapterid){
         List <Lession> list = new ArrayList<>();
-        String sql = "select * from Lessions";
+        String sql = "select * from Lessions where chapterid=?";
 
         try {
             PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1,chapterid);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 Lession Lession = new Lession(
