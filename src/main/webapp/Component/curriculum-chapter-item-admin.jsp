@@ -6,7 +6,7 @@
                 data-bs-target="#collapse<%=i%>" aria-expanded="true"
                 aria-controls="collapse<%=i%>">
             <span class="curriculum__title">Introduction to basic HTML</span>
-            <span class="curriculum__total-lecture">8 Lectures <a href="../dashboard_lesson/manage-lesson.jsp"><i
+            <span class="curriculum__total-lecture">8 Lectures <a href="../dashboard_lesson/index.jsp"><i
                     class="fa-solid fa-square-pen"></i></a></span>
         </button>
     </h2>

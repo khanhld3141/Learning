@@ -44,7 +44,7 @@
                     <div class="teacher-cate-courses">
                             <div class="teacher-courses">
                                 <label for="TeacherId">Teacher</label>
-                                <input list="_TeacherId" name="TeacherId" id="TeacherId" required value="<%=tech%>">
+                                <input list="_TeacherId" name="TeacherId" id="TeacherId" placeholder="Choose a teacher" required value="<%=tech%>">
                                 <datalist id="_TeacherId">
                                     <%
                                         if (request.getAttribute("teachers") != null) {
@@ -59,7 +59,7 @@
                             </div>
                         <div class="cate-courses">
                             <label for="CateId">Teacher</label>
-                            <input list="_CateId" name="CateId" id="CateId" required value="<%=cate%>">
+                            <input list="_CateId" name="CateId" id="CateId" placeholder="Choose a category" required value="<%=cate%>">
                             <datalist id="_CateId">
                                 <%
                                     if (request.getAttribute("categories") != null) {
@@ -100,13 +100,10 @@
                         </div>
                         <div class="image-courses">
                             <label for="Image">Image</label>
-                            <img src="/images/<%=course.getImage()%>"/>
                             <input type="file" name="Image" id="Image" placeholder="Choose image" required>
+                            <img src="/images/<%=course.getImage()%>"/>
                         </div>
                     </div>
-                    <!-- <div class="update-chapter">
-                        <a href="#!" class="btn-manage update-chapter">Update Chapter</a>
-                    </div> -->
                     <div class="submit">
                         <input type="submit" value="Confirm">
                         <a href="/dashboard/courses" class="btn__back">Back</a>

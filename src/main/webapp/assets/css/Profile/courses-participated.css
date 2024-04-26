@@ -1,0 +1,26 @@
+.courses-participated-table{
+    border: 1px solid #dee2e6;
+    width: 100%;
+    margin-top: 20px;
+}
+.courses-participated-table th, td{
+    border: 1px solid #dee2e6;
+    padding: 15px 10px;
+}
+.courses-participated-table tr{
+    border: 1px solid #dee2e6;
+}
+.courses-participated-table th{
+    font-size: 16px;
+    font-weight: 500;
+    color: #635f5f;
+}
+table.courses-participated-table tbody tr{
+    background-color: #f2f2f2;
+}
+table.courses-participated-table tbody tr:hover{
+    background-color: #dfdede;
+}
+.courses-participated-table td a{
+    color:#635f64;
+}
