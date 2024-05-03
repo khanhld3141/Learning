@@ -61,7 +61,7 @@
                 <thead>
                 <tr>
                     <th onclick="sortTable(0)">ID Deposit</th>
-                    <th onclick="sortTable(1)" >Name user</th>
+                    <th onclick="sortTable(1)">Name user</th>
                     <th onclick="sortTable(2)">Amount of money</th>
                     <th onclick="sortTable(3)">Status</th>
                     <th>Actions</th>
@@ -88,35 +88,37 @@
                                         <button type="button" class="btn-close"
                                                 data-bs-dismiss="modal"></button>
                                     </div>
-                                    <div class="modal-body">
-                                        <!-- <div class="name-user">
-                                            <label for="Name-user-update">Name's user</label>
-                                            <input list="_Name-user" name="UserId" id="Name-user-update"
-                                                placeholder="Choose a user" required>
-                                            <datalist id="_Name-user">
-                                                <option value="Dang Khanh">
-                                            </datalist>
-                                        </div> -->
-                                        <div class="money">
-                                            <label for="Money-update">Money</label>
-                                            <input type="number" placeholder="Enter amount of money"
-                                                   name="AmountOfMoney" id="Money-update">
+                                    <form action="">
+                                        <div class="modal-body">
+                                            <!-- <div class="name-user">
+                                                <label for="Name-user-update">Name's user</label>
+                                                <input list="_Name-user" name="UserId" id="Name-user-update"
+                                                    placeholder="Choose a user" required>
+                                                <datalist id="_Name-user">
+                                                    <option value="Dang Khanh">
+                                                </datalist>
+                                            </div> -->
+                                            <div class="money">
+                                                <label for="Money-update">Money</label>
+                                                <input type="number" placeholder="Enter amount of money"
+                                                       name="AmountOfMoney" id="Money-update">
+                                            </div>
+                                            <div class="status">
+                                                <label for="status-update">Status</label>
+                                                <input list="_Status-name-update" name="StatusId" id="status-update"
+                                                       placeholder="Choose a status" required>
+                                                <datalist id="_Status-name-update">
+                                                    <option value="Successful">
+                                                </datalist>
+                                            </div>
                                         </div>
-                                        <div class="status">
-                                            <label for="status-update">Status</label>
-                                            <input list="_Status-name-update" name="StatusId" id="status-update"
-                                                   placeholder="Choose a status" required>
-                                            <datalist id="_Status-name-update">
-                                                <option value="Successful">
-                                            </datalist>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-primary" type="submit">Confirm</button>
+                                            <button type="button" class="btn btn-danger"
+                                                    data-bs-dismiss="modal">No
+                                            </button>
                                         </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <a href="../dashboard_deposit"
-                                           class="btn btn-primary">Confirm</a>
-                                        <button type="button" class="btn btn-danger"
-                                                data-bs-dismiss="modal">No</button>
-                                    </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -145,7 +147,8 @@
                                 <div class="modal-footer">
                                     <a href="../dashboard_deposit" class="btn btn-primary">Yes</a>
                                     <button type="button" class="btn btn-danger"
-                                            data-bs-dismiss="modal">No</button>
+                                            data-bs-dismiss="modal">No
+                                    </button>
                                 </div>
                             </div>
                         </div>

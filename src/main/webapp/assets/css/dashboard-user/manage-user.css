@@ -1,10 +1,10 @@
 :root {
     --color-1: #0c2e60;
-    --color-2: #ef3e0f;
+    --color-3: #ef3e0f;
 }
 
 .manage-block {
-    background-color: var(--color-2);
+    background-color: var(--color-3);
     padding: 20px 20px;
     display: flex;
     justify-content: space-between;

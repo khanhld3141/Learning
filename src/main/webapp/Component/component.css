@@ -417,7 +417,7 @@ footer{
     margin-bottom: 30px;
     font-size: 2.4rem;
 }
-.comment-form form textarea {
+.comment-form form textarea, .comment__user form textarea {
     background-color: #f6f6f6;
     border: 1px solid #dadada;
     border-radius: 5px;
@@ -426,12 +426,79 @@ footer{
     width: 100%;
     min-height: 130px;
 }
-.comment-form form .btn{
+.comment-form form .btn, .comment__user .btn{
     width: 140px;
     border-radius: 50px;
+    float: right;
+    margin-bottom: 0 !important;
 }
 .comment-form form{
     text-align: center;
+}
+.display-none{
+    display: none;
+}
+.threedots-block{
+    display: flex;
+    align-items: center;
+    /* justify-content: space-between; */
+}
+.fa-ellipsis{
+    font-size: 20px;
+    margin-left: 10px;
+    padding: 2px 5px;
+    cursor: pointer;
+    border-radius: 20px;
+}
+.fa-ellipsis:hover{
+    background-color: rgb(111, 105, 105);
+}
+.action-cmt__block{
+    position: relative;
+}
+.edit-delete-comment-block{
+    box-shadow: -2px 0px 26px 15px rgba(0,0,0,0.1);
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 15px;
+    position: absolute;
+    top: -70px;
+    left: 45px;
+}
+.edit-delete-comment-block .button-edit-delete-comment{
+    border: none;
+    display: block;
+    padding: 10px;
+    width: 150px;
+    text-align: start;
+    color: black;
+    background-color: #FFF;
+    border-radius: 5px;
+    font-weight: 500;
+}
+.edit-delete-comment-block .button-edit-delete-comment:hover{
+    background-color: #f2f2f2;
+}
+.btn__edit-delete-comment{
+    float: none !important;
+}
+.btn__edit-delete-comment-yes{
+    padding: 10px 12px;
+    min-width: 80px;
+    background-color: #0d6efd;
+    color: #FFF;
+    border-radius: 10px;
+    font-size: 14px;
+    display: inline-block;
+}
+.btn__edit-delete-comment-no{
+    padding: 10px 12px;
+    min-width: 80px;
+    background-color: red;
+    color: #FFF;
+    border-radius: 10px;
+    font-size: 14px;
+    border: none;
 }
 /* -------------list - categories-----------------*/
 .widget__title{
@@ -535,4 +602,11 @@ footer{
 .fa-pen-to-square:hover{
     transform: scale(1.1);
     color: #000000;
+}
+.avatar-user{
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    position: absolute;
+    top: 5px;
 }

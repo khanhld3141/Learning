@@ -22,27 +22,30 @@
                         <div class="modal-header">
                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                         </div>
-                        <div class="modal-body">
-                            <div class="name-lesson">
-                                <label for="Name-Add">Name lesson</label>
-                                <input type="text" name="Name" id="Name-Add" placeholder="Enter name lesson"
-                                       required>
+                        <form action="">
+                            <div class="modal-body">
+                                <div class="name-lesson">
+                                    <label for="Name-Add">Name lesson</label>
+                                    <input type="text" name="Name" id="Name-Add" placeholder="Enter name lesson"
+                                           required>
+                                </div>
+                                <div class="description-lesson">
+                                    <label for="Description-Add">Description lesson</label>
+                                    <textarea name="Description" id="Description-Add" rows="10" required
+                                              placeholder="Enter description lesson"></textarea>
+                                </div>
+                                <div class="Video-lesson">
+                                    <label for="FileUpload-Add">Upload new video</label>
+                                    <input type="file" name="FileUpload-Update" id="FileUpload-Add"
+                                           placeholder="Enter video lesson" required>
+                                </div>
                             </div>
-                            <div class="description-lesson">
-                                <label for="Description-Add">Description lesson</label>
-                                <textarea name="Description" id="Description-Add" rows="10" required
-                                          placeholder="Enter description lesson"></textarea>
+                            <div class="modal-footer">
+                                <%--                            <a href="../dashboard_lesson" class="btn btn-primary">Confirm</a>--%>
+                                <button class="btn btn-primary" type="submit">Confirm</button>
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
                             </div>
-                            <div class="link-lesson">
-                                <label for="Link-Add">Link lesson</label>
-                                <input type="url" name="Link" id="Link-Add" placeholder="Enter link lesson"
-                                       required>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <a href="../dashboard_lesson" class="btn btn-primary">Confirm</a>
-                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -88,29 +91,32 @@
                                     <button type="button" class="btn-close"
                                             data-bs-dismiss="modal"></button>
                                 </div>
-                                <div class="modal-body">
-                                    <div class="name-lesson">
-                                        <label for="Name-Update">Name lesson</label>
-                                        <input type="text" name="Name" id="Name-Update"
-                                               placeholder="Enter name lesson" required>
+                                <form action="">
+                                    <div class="modal-body">
+                                        <div class="name-lesson">
+                                            <label for="Name-Update">Name lesson</label>
+                                            <input type="text" name="Name" id="Name-Update"
+                                                   placeholder="Enter name lesson" required>
+                                        </div>
+                                        <div class="description-lesson">
+                                            <label for="Description-Update">Description lesson</label>
+                                            <textarea name="Description" id="Description-Update" rows="10" required
+                                                      placeholder="Enter description lesson"></textarea>
+                                        </div>
+                                        <div class="Video-lesson">
+                                            <label for="FileUpload-Update">Upload new video</label>
+                                            <input type="file" name="FileUpload-Update" id="FileUpload-Update"
+                                                   placeholder="Enter video lesson" required>
+                                        </div>
                                     </div>
-                                    <div class="description-lesson">
-                                        <label for="Description-Update">Description lesson</label>
-                                        <textarea name="Description" id="Description-Update" rows="10" required
-                                                  placeholder="Enter description lesson"></textarea>
+                                    <div class="modal-footer">
+                                        <%--                                    <a href="../dashboard_lesson" class="btn btn-primary">Confirm</a>--%>
+                                        <button type="submit" class="btn btn-primary">Confirm</button>
+                                        <button type="button" class="btn btn-danger"
+                                                data-bs-dismiss="modal">No
+                                        </button>
                                     </div>
-                                    <div class="link-lesson">
-                                        <label for="Link-Update">Link lesson</label>
-                                        <input type="url" name="Link" id="Link-Update"
-                                               placeholder="Enter link lesson" required>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <a href="../dashboard_lesson" class="btn btn-primary">Confirm</a>
-                                    <button type="button" class="btn btn-danger"
-                                            data-bs-dismiss="modal">No
-                                    </button>
-                                </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -121,7 +127,6 @@
                                 <div class="modal-header">
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                 </div>
-
                                 <div class="modal-body border-0">
                                     <span><i class="fa-solid fa-triangle-exclamation"></i></span>
                                     <p>Are you sure you want to delete?</p>

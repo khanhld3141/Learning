@@ -58,28 +58,28 @@
     <nav class="side-bar__nav">
         <ul>
             <li>
-                <a href="../dashboard" class="active__side-bar nav__link"><i class="fa-solid fa-table-cells"></i>Dashboard</a>
+                <a href="/dashboard" class="nav__link"><i class="fa-solid fa-table-cells"></i>Dashboard</a>
             </li>
             <li>
-                <a href="../dashboard/users" class="nav__link"><i class="fa-solid fa-user"></i>Users</a>
+                <a href="/dashboard/users" class="nav__link"><i class="fa-solid fa-user"></i>Users</a>
             </li>
             <li>
-                <a href="../dashboard/courses" class="nav__link"><i class="fa-solid fa-file"></i>Courses</a>
+                <a href="/dashboard/courses" class="nav__link"><i class="fa-solid fa-file"></i>Courses</a>
             </li>
             <li>
-                <a href="../dashboard_lesson" class="nav__link"><i class="fa-solid fa-book"></i>Lesson</a>
+                <a href="/dashboard_lesson" class="nav__link"><i class="fa-solid fa-book"></i>Lesson</a>
             </li>
             <li>
-                <a href="../dashboard_chapter" class="nav__link"><i class="fa-solid fa-palette"></i>Chapter</a>
+                <a href="/dashboard_chapter" class="nav__link"><i class="fa-solid fa-palette"></i>Chapter</a>
             </li>
             <li>
-                <a href="../dashboard-category" class="nav__link"><i class="fa-solid fa-palette"></i>Category</a>
+                <a href="/dashboard-category" class="nav__link"><i class="fa-solid fa-palette"></i>Category</a>
             </li>
             <li>
-                <a href="../dashboard_voucher" class="nav__link"><i class="fa-solid fa-ticket"></i>Voucher</a>
+                <a href="/dashboard_voucher" class="nav__link"><i class="fa-solid fa-ticket"></i>Voucher</a>
             </li>
             <li>
-                <a href="#!" class="nav__link"><i class="fa-solid fa-hashtag"></i>Hastags</a>
+                <a href="/dashboard_hashtag" class="nav__link"><i class="fa-solid fa-hashtag"></i>Hastags</a>
             </li>
             <li>
                 <a href="#!" class="nav__link"><i class="fa-solid fa-right-from-bracket"></i>Log out</a>
@@ -87,25 +87,14 @@
         </ul>
     </nav>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const navLinkEls = document.querySelectorAll('.nav__link');
-            const activeLinkIndex = localStorage.getItem('activeLinkIndex');
-            if (activeLinkIndex !== null) {
-                navLinkEls.forEach(link => {
-                    link.classList.remove('active__side-bar');
-                });
-                navLinkEls[activeLinkIndex].classList.add('active__side-bar');
+        let dashboardItemElement = document.querySelectorAll(".nav__link");
+        var currentUrl = window.location.pathname;
+        console.log("sss:  "+currentUrl);
+        for (let item of dashboardItemElement) {
+            console.log(item.getAttribute("href"));
+            if (item.getAttribute("href") === currentUrl) {
+                item.parentElement.classList.add("active__side-bar");
             }
-
-            navLinkEls.forEach((navLinkEl, index) => {
-                navLinkEl.addEventListener('click', () => {
-                    navLinkEls.forEach(link => {
-                        link.classList.remove('active__side-bar');
-                    });
-                    navLinkEl.classList.add('active__side-bar');
-                    localStorage.setItem('activeLinkIndex', index);
-                });
-            });
-        });
+        }
     </script>
 </div>

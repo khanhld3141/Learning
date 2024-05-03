@@ -22,16 +22,19 @@
                         <div class="modal-header">
                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                         </div>
-                        <div class="modal-body">
-                            <div class="name-category">
-                                <label for="name-category-add">Name Category</label>
-                                <input type="text" name="Name" id="name-category-add" placeholder="Enter name category">
+                        <form action="">
+                            <div class="modal-body">
+                                <div class="name-category">
+                                    <label for="name-category-add">Name Category</label>
+                                    <input type="text" name="Name" id="name-category-add"
+                                           placeholder="Enter name category">
+                                </div>
                             </div>
-                        </div>
-                        <div class="modal-footer">
-                            <a href="../dashboard-category" class="btn btn-primary">Confirm</a>
-                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
-                        </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" type="submit">Confirm</button>
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -76,7 +79,8 @@
                                         <a href="../dashboard-category"
                                            class="btn btn-primary">Confirm</a>
                                         <button type="button" class="btn btn-danger"
-                                                data-bs-dismiss="modal">No</button>
+                                                data-bs-dismiss="modal">No
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -106,7 +110,8 @@
                                 <div class="modal-footer">
                                     <a href="../dashboard-category" class="btn btn-primary">Yes</a>
                                     <button type="button" class="btn btn-danger"
-                                            data-bs-dismiss="modal">No</button>
+                                            data-bs-dismiss="modal">No
+                                    </button>
                                 </div>
                             </div>
                         </div>

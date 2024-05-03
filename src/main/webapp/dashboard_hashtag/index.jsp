@@ -76,6 +76,7 @@
                                         <button type="button" class="btn-close"
                                                 data-bs-dismiss="modal"></button>
                                     </div>
+                                    <form action="">
                                     <div class="modal-body">
 <%--                                        <div class="Title-post">--%>
 <%--                                            <label for="Title-post-update">Name's post</label>--%>
@@ -93,11 +94,11 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <a href="../dashboard_hashtag"
-                                           class="btn btn-primary">Confirm</a>
+                                        <button type="submit" class="btn btn-primary">Confirm</button>
                                         <button type="button" class="btn btn-danger"
                                                 data-bs-dismiss="modal">No</button>
                                     </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
