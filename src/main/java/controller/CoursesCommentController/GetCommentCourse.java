@@ -24,9 +24,12 @@ public class GetCommentCourse extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        List<CourseComment> lists = courseCommentDAO.getAllCourseComments();
-        request.setAttribute("coursecomments", lists);
-        request.getRequestDispatcher("Status/index.jsp").forward(request, response);
+        if(request.getParameter("id")!=null){
+            String id = request.getParameter("id");
+            List<CourseComment> lists = courseCommentDAO.getAllCourseComments(Integer.parseInt(id));
+            request.setAttribute("coursecomments", lists);
+            request.getRequestDispatcher("Status/index.jsp").forward(request, response);
+        }
     }
 
     public void destroy() {

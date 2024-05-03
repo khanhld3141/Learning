@@ -3,14 +3,17 @@ package model;
 public class Deposit {
 
     private int Id,UserId,AmountOfMoney,StatusId;
-
+    private User user;
+    private Status status;
     public Deposit() {
+        user = new User();
     }
 
     public Deposit(int userId, int amountOfMoney, int status) {
         UserId = userId;
         AmountOfMoney = amountOfMoney;
         this.StatusId = status;
+        user = new User();
     }
 
     public Deposit(int id, int userId, int amountOfMoney, int status) {
@@ -18,6 +21,7 @@ public class Deposit {
         UserId = userId;
         AmountOfMoney = amountOfMoney;
         this.StatusId = status;
+        user = new User();
     }
 
     public int getId() {
@@ -50,5 +54,21 @@ public class Deposit {
 
     public void setStatusId(int statusId) {
         StatusId = statusId;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 }

@@ -1,14 +1,8 @@
 *{
     box-sizing: border-box;
 }
-@media screen and (max-width:767px) {
-    .banner-login {
-        padding-top: 130px;
-    }
-    .banner-login{
-        padding-bottom: 50px;
-    }
-    .banner-login .vector-img-login{
+@media screen and (max-width:760px) {
+     .vector-img-login{
         display:none;
     }
     .row-login {
@@ -18,31 +12,21 @@
 }
 
 @media screen and (max-width:1199px) {
-    .banner-login {
-        padding-top: 15%;
-    }
+
     .row-login {
         flex-direction: row;
         flex-wrap: nowrap;
     }
 }
-.banner-login{
-    display:block;
 
-    padding:7px 0px;
-    width: 100%;
-    margin-left: 7%;
-    margin-right: 7%;
-
-}
 .vector-img-login{
     display:block;
     position: relative;
-    left:40px;
+    left:50px;
     right:40%;
     margin-top:24px;
     margin-bottom:24px;
-    margin-left: 50px;
+    margin-left: 40px;
     flex:1;
 }
 .vector-img-login img{
@@ -50,24 +34,19 @@
     height: 80%;
 }
 .container-login{
-    display:flex;
-
+    /*display:flex;*/
     width: 100%;
-    padding-right: 15px;
-    padding-left: 15px;
+    /*padding-right: 15px;*/
+    /*padding-left: 15px;*/
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 40px;
+    margin-top: 45px;
+    margin-bottom: 45px;
 }
 
 .row-login{
     display:flex;
     flex-wrap: wrap;
-    margin-right: -15px;
-    margin-left: -15px;
-
-    /* flex:1; */
-
 }
 .col-md-6-login{
     flex:1
@@ -92,7 +71,7 @@
     margin-top: 0;
     margin-bottom: 34px;
     margin-block-start: 1em;
-    margin-block-end:1 em;
+
     margin-inline-start: 0px;
     margin-inline-end: 0px;
     unicode-bidi: isolate;
@@ -104,7 +83,7 @@
 
 .form-login{
     position:relative;
-    margin: 0, auto;
+    /*margin: 0, auto;*/
     width: 100%;
 }
 .form-login .form-group label{
@@ -116,23 +95,26 @@
     margin-bottom: 10px;
 }
 .form-login .form-group__input{
-    height:50px;
+    /*height:50px;*/
     width: 100%;
     border: 1px solid #e0e4e6;
     display:block;
     margin-bottom: 25px;
-    /* padding: 10px, 20px; */
-}
-.form-login input[type="email" ]{
+
     font-size: 15px;
     padding-block: 20px ;
     padding-inline: 15px;
 }
-.form-login input[type="password"]{
-    font-size: 15px;
-    padding-block: 20px ;
-    padding-inline: 15px;
-}
+/*.form-login input[type="email" ]{*/
+/*    font-size: 15px;*/
+/*    padding-block: 20px ;*/
+/*    padding-inline: 15px;*/
+/*}*/
+/*.form-login input[type="password"]{*/
+/*    font-size: 15px;*/
+/*    padding-block: 20px ;*/
+/*    padding-inline: 15px;*/
+/*}*/
 .form-login .form-check{
     display:block;
     min-height: 1.5rem;

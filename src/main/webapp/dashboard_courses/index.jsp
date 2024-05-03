@@ -5,20 +5,26 @@
 <div class="content-admin">
     <div class="manage-courses">
         <div class="manage-courses__block-title manage-block">
-            <h1 class="manage-courses__title title">Manage courses</h1>
+            <div class="manage-title-search">
+                <h1 class="manage-courses__title title">Manage courses</h1>
+                <form action="" class="search-form">
+                    <input type="text" placeholder="Search name course" class="search-input" name="Name">
+                    <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </form>
+            </div>
             <a href="/dashboard/create-course" class="btn-dashboard btn__add-courses"><i
                     class="fa-solid fa-plus"></i>Add new courses</a>
         </div>
         <div class="table">
-            <table class="custom-table table__users">
+            <table class="custom-table" id="table-sort">
                 <thead>
                 <tr>
-                    <th>ID Courses</th>
-                    <th>Name</th>
-                    <th>Category</th>
-                    <th>Price</th>
-                    <th>Teacher</th>
-                    <th>Quantity chapters</th>
+                    <th onclick="sortTable(0)">ID Courses</th>
+                    <th onclick="sortTable(1)">Name</th>
+                    <th onclick="sortTable(2)">Category</th>
+                    <th onclick="sortTable(3)">Price</th>
+                    <th onclick="sortTable(4)">Teacher</th>
+                    <th onclick="sortTable(5)">Quantity chapters</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
@@ -35,16 +41,17 @@
                     <td><%=c.getPrice()%>$</td>
                     <td><%=c.getTeacher().getName()%></td>
                     <td>10</td>
-                    <td><a href="../Courses_details_admin"><i class="fa-solid fa-eye"></i></a>
-                        <a href="/dashboard/update-course?id=<%=c.getId()%>"><i class="fa-solid fa-pen"></i></a>
+                    <td>
+                        <a href="/dashboard/update-course?id=<%=c.getId()%>" title="Edit course"><i class="fa-solid fa-pen"></i></a>
                         <!-- Button trigger modal -->
                         <button type="button" class="btn__modal" data-bs-toggle="modal"
-                                data-bs-target="#modal__delete_<%=c.getId()%>">
+                                data-bs-target="#modal__delete_<%=c.getId()%>" title="Delete course">
                             <i class="fa-solid fa-trash"></i>
                         </button>
+                        <a href="../dashboard_chapter" title="Manage chapters"><i class="fa-solid fa-eye"></i></a>
                     </td>
                     <!--------------- MODAL DELETE-------------- -->
-                    <div class="modal fade" id="modal__delete_<%=c.getId()%>">
+                    <div class="modal fade modal__delete" id="modal__delete_<%=c.getId()%>">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -74,6 +81,8 @@
                         }
                     }
                 %>
+
+                <script src="../assets/js/Sort_table/sort-table.js"></script>
                 </tbody>
             </table>
             <div class="clearfix">

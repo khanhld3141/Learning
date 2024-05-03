@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name = "DeleteVoucherServlet", value = "/delete-voucher")
+@WebServlet(name = "DeleteVoucherServlet", value = "/dashboard/delete-voucher")
 public class DeleteVoucher extends HttpServlet {
     private String message;
     private VoucherDAO voucherDAO;
@@ -28,13 +28,13 @@ public class DeleteVoucher extends HttpServlet {
             try {
                 int id = Integer.parseInt(idStr);
                 voucherDAO.delete(id);
-                response.sendRedirect("/vouchers");
+                response.sendRedirect("/dashboard/vouchers");
             } catch (Exception e) {
                 e.printStackTrace();
             }
         } else {
             request.setAttribute("message", "Missing parameter id");
-            request.getRequestDispatcher("/vouchers").forward(request, response);
+            request.getRequestDispatcher("/dashboard/vouchers").forward(request, response);
         }
     }
 

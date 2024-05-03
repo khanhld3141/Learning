@@ -79,7 +79,7 @@ public class VoucherDAO extends DBContext{
     }
 
     public void update(Voucher Voucher) {
-        String sql = "update Vouchers Code=?,Quantity=?,Used=?,Discount=?,StartDay=?,EndDay=? where Id=? ";
+        String sql = "update Vouchers set Code=?,Quantity=?,Used=?,Discount=?,StartDay=?,EndDay=? where Id=? ";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setString(1,Voucher.getCode());

@@ -1,5 +1,6 @@
 package controller.CategoryController;
 
+import controller.Ulti.FileUploadUtil;
 import dal.BannerDAO;
 import dal.CategoryDAO;
 import jakarta.servlet.ServletException;
@@ -7,6 +8,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.Part;
 import model.Banner;
 import model.Category;
 
@@ -26,11 +28,19 @@ public class CreateCategory extends HttpServlet {
     }
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String name = request.getParameter("name");
+        Part image = request.getPart("image");
+        String realPath = request.getServletContext().getRealPath("/images");
+        String filename = FileUploadUtil.uploadFile(image, realPath);
 
-        categoryDAO.create(new Category(name));
+        try{
+            categoryDAO.create(new Category(name,filename));
+            request.setAttribute("message","Add new category successfully");
+            response.sendRedirect("/categories");
+        }catch(Exception e){
+            request.setAttribute("error", "Please enter chapter id");
+            request.getRequestDispatcher("").forward(request, response);
+        }
 
-        request.setAttribute("message","Add new category successfully");
-        response.sendRedirect("/categories");
 
     }
 

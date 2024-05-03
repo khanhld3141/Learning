@@ -1,11 +1,13 @@
 package controller.CategoryController;
 
+import controller.Ulti.FileUploadUtil;
 import dal.CategoryDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import model.Category;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -26,6 +28,9 @@ public class DeleteCategory extends HttpServlet {
 
             try {
                 int id = Integer.parseInt(idStr);
+                Category category = CategoryDAO.get(id);
+                String realPath = request.getServletContext().getRealPath("/images");
+                FileUploadUtil.deleteFile(realPath, category.getImage());
                 CategoryDAO.delete(id);
                 response.sendRedirect("/categories");
             } catch (Exception e) {

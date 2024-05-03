@@ -4,7 +4,7 @@ public class Hashtag {
 
     private int Id,PostId;
     private String Tag;
-
+    private Post post;
     public Hashtag() {
     }
 
@@ -41,6 +41,14 @@ public class Hashtag {
 
     public void setTag(String tag) {
         Tag = tag;
+    }
+
+    public Post getPost() {
+        return post;
+    }
+
+    public void setPost(Post post) {
+        this.post = post;
     }
 }
 

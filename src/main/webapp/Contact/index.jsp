@@ -10,6 +10,11 @@
 <%@include  file="../Component/header.jsp"%>
 <main>
 
+    <jsp:include page="../Component/page-feature.jsp">
+        <jsp:param name="head" value="Contact"/>
+        <jsp:param name="span" value="Contact"/>
+    </jsp:include>
+
     <div class="contact-section">
         <div class="main-content">
             <div class="row-contact-title">

@@ -8,10 +8,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include  file="../Component/header.jsp"%>
 <main>
+    <jsp:include page="../Component/page-feature.jsp">
+        <jsp:param name="head" value="About"/>
+        <jsp:param name="span" value="About"/>
+    </jsp:include>
 
     <div class="about-section">
         <div class="container-about">
-            <div class="row-about-title">
+            <div class="row-about-title" style="margin-bottom: 45px">
                 <div class="row-about-title__tagline">ABOUT US</div>
                 <h3 class="row-about-title__title">Educating and empowering
                     <br> the community

@@ -27,6 +27,9 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="../owlcarousel/owl.carousel.min.js"></script>
     <!-- component CSS -->
+
+
+    <script src="../assets/js/comment-reply/comment-reply.js"></script>
     <link rel="stylesheet" href="../assets/css/event/event_layout.css">
     <link rel="stylesheet" href="../assets/css/pages/Pages-Sign-Up.css">
     <link rel="stylesheet" href="../assets/css/terms-conditions.css">
@@ -41,6 +44,10 @@
     <link rel="stylesheet" href="../assets/css/Contact/Contact.css">
     <link rel="stylesheet" href="../assets/css/Login/Login.css">
     <link rel="stylesheet" href="../assets/css/About/About.css">
+    <link rel="stylesheet" href="../assets/css/Profile/personal_information.css">
+    <link rel="stylesheet" href="../assets/css/Profile/change-password.css">
+    <link rel="stylesheet" href="../assets/css/Profile/courses-participated.css">
+
 </head>
 
 <body>
@@ -120,6 +127,10 @@
                     </li>
                     <li class="navbar__item">
                         <a href="../Login/Login.jsp">LOGIN</a>
+                    </li>
+                    <li class="navbar__item">
+                        <a href="../my"><img src="../img/avatar-user.jpg" class="avatar-user" alt="Avatar"
+                                          title="Avatar"></a>
                     </li>
                 </ul>
             </div>

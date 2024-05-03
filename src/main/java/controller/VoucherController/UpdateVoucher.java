@@ -13,7 +13,7 @@ import model.Voucher;
 
 import java.io.IOException;
 
-@WebServlet(name = "UpdateVoucherServlet", value = "/update-voucher")
+@WebServlet(name = "UpdateVoucherServlet", value = "/dashboard/update-voucher")
 public class UpdateVoucher extends HttpServlet {
     private String message;
     private VoucherDAO voucherDAO;
@@ -31,7 +31,7 @@ public class UpdateVoucher extends HttpServlet {
                 Voucher voucher= voucherDAO.get(id);
 
                 request.setAttribute("voucher", voucher);
-                request.getRequestDispatcher("Status/update-status.jsp").forward(request, response);
+                request.getRequestDispatcher("/dashboard_voucher/update-voucher.jsp").forward(request, response);
             }catch (Exception e){
                 e.printStackTrace();
             }
@@ -41,13 +41,14 @@ public class UpdateVoucher extends HttpServlet {
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        String id= request.getParameter("id");
-        String code = request.getParameter("code");
-        String quantity=request.getParameter("quantity");
-        String discount=request.getParameter("discount");
-        String startDay=request.getParameter("startday");
+        String id= request.getParameter("Id");
+        String code = request.getParameter("Code");
+        String quantity=request.getParameter("Quantity");
+        String discount=request.getParameter("Discount");
+        String startDay=request.getParameter("Startday");
+        String used=request.getParameter("Used");
         String starts[]=startDay.split("T");
-        String endDay=request.getParameter("endday");
+        String endDay=request.getParameter("Endday");
         String ends[]=endDay.split("T");
 
         voucherDAO.update(new Voucher(
@@ -56,12 +57,12 @@ public class UpdateVoucher extends HttpServlet {
                 ends[0]+" "+ends[1],
                 Integer.parseInt(id),
                 Integer.parseInt(quantity),
-                0,
+                Integer.parseInt(used),
                 Integer.parseInt(discount)
         ));
-
+        System.out.println("OK");
         request.setAttribute("message", "Update category successfully");
-        response.sendRedirect("/categories");
+        response.sendRedirect("/dashboard/vouchers");
 
     }
 

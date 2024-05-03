@@ -1,13 +1,14 @@
 :root {
     --color-1: #0c2e60;
-    --color-2: #ef3e0f;
+    --color-3: #ef3e0f;
 }
 
 .manage-block {
-    background-color: var(--color-2);
+    background-color: var(--color-3);
     padding: 20px 20px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .manage-user__title {
@@ -65,6 +66,7 @@ table.custom-table td, table.custom-table th {
 table.custom-table th {
     background-color: #7EA8F8;
     font-weight: 500;
+    cursor: pointer;
 }
 
 table.custom-table td {
@@ -151,33 +153,33 @@ table.custom-table thead {
     border: none !important;
 }
 
-#modal__delete .modal-title {
+.modal__delete .modal-title {
     font-size: 2rem;
     font-weight: 600;
 }
 
-#modal__delete .modal-body p {
+.modal__delete .modal-body p {
     padding: 5px 0;
     color: #2f3031;
     font-size: 2rem;
     font-weight: 500;
 }
 
-#modal__delete .modal-body {
+.modal__delete .modal-body {
     text-align: center;
 }
 
-#modal__delete .fa-triangle-exclamation {
+.modal__delete .fa-triangle-exclamation {
     color: #ffc71f;
     font-size: 70px;
 }
 
-#modal__delete .modal-footer {
+.modal__delete .modal-footer {
     text-align: center;
     display: block;
 }
 
-#modal__delete .modal-footer .btn {
+.modal__delete .modal-footer .btn {
     min-width: 80px;
     padding: 8px 12px;
     font-size: 12px;

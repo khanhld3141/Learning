@@ -22,7 +22,8 @@ public class CategoryDAO extends DBContext{
             while (rs.next()) {
                 Category Category = new Category(
                         rs.getInt("Id"),
-                        rs.getString("Name")
+                        rs.getString("Name"),
+                        rs.getString("Image")
                 );
                 list.add(Category);
             }
@@ -42,7 +43,8 @@ public class CategoryDAO extends DBContext{
             while (rs.next()) {
                 Category Category = new Category(
                         rs.getInt("Id"),
-                        rs.getString("Name")
+                        rs.getString("Name"),
+                        rs.getString("Image")
                 );
                 return Category;
             }
@@ -52,10 +54,11 @@ public class CategoryDAO extends DBContext{
         return null;
     }
     public void create(Category Category) {
-        String sql = "insert into Categoryies (Name) values(?)";
+        String sql = "insert into Categoryies (Name,Image) values(?,?)";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setString(1, Category.getName());
+            st.setString(2, Category.getImage());
             // Execute the update
             st.executeUpdate();
         } catch (SQLException e) {
@@ -64,11 +67,12 @@ public class CategoryDAO extends DBContext{
     }
 
     public void update(Category Category) {
-        String sql = "update Categories Name=? where Id=? ";
+        String sql = "update Categories set Name=?,Image=? where Id=? ";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setString(1, Category.getName());
-            st.setInt(2, Category.getId());
+            st.setString(2, Category.getImage());
+            st.setInt(3, Category.getId());
             // Execute the update
             st.executeUpdate();
         } catch (SQLException e) {

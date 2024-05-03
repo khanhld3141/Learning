@@ -12,12 +12,13 @@ public class ChapterDAO extends DBContext{
     public ChapterDAO(){
         super();
     }
-    public List<Chapter> getAllChapters(){
+    public List<Chapter> getAllChapters(int courseId){
         List <Chapter> list = new ArrayList<>();
-        String sql = "select * from Chapters";
+        String sql = "select * from Chapters where CourseId=?";
 
         try {
             PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1,courseId);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 Chapter Chapter = new Chapter(
@@ -28,7 +29,6 @@ public class ChapterDAO extends DBContext{
                 );
                 list.add(Chapter);
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -70,7 +70,7 @@ public class ChapterDAO extends DBContext{
     }
 
     public void update(Chapter Chapter) {
-        String sql = "update Chapters Name=?,CourseId =?,Ordinal=?  where Id=? ";
+        String sql = "update Chapters set Name=?,CourseId =?,Ordinal=?  where Id=? ";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setString(1, Chapter.getName());

@@ -3,7 +3,7 @@
 <%@include  file="../Component/header.jsp"%>
 <main>
 
-  <section class="banner-login">
+<%--  <section class="banner-login">--%>
     <div class="main-content">
     <div class="container-login">
         <div class="row-login">
@@ -46,11 +46,9 @@
             <img src="../img/login-img/vector.png" alt>
          </div>
         </div>
-        <!-- <div class="vector-img">
-            <img src="assets/img/vector.png" alt>
-         </div> -->
+
     </div>
     </div>
-</section>
+<%--</section>--%>
 </main>
 <%@include  file="../Component/footer.jsp"%>
