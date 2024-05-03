@@ -9,7 +9,7 @@ import jakarta.servlet.annotation.*;
 import model.Course;
 import model.Lession;
 
-@WebServlet(name = "DeleteLessionServlet", value = "/DeleteLession-servlet")
+@WebServlet(name = "DeleteLessionServlet", value = "/dashboard/delete-lession")
 public class DeleteLession extends HttpServlet {
     private String message;
     private LessionDAO lessionDAO;
@@ -20,15 +20,16 @@ public class DeleteLession extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        if (request.getParameter(("id")) != null) {
+        if (request.getParameter(("id")) != null && request.getParameter(("chapterid")) != null) {
             String idStr = request.getParameter(("id"));
             try {
+                String chapterid=request.getParameter(("chapterid"));
                 int id = Integer.parseInt(idStr);
                 Lession lession = lessionDAO.get(id);
                 String realPath = request.getServletContext().getRealPath("/images");
-                FileUploadUtil.deleteFile(realPath,lession.getLink());
+//                FileUploadUtil.deleteFile(realPath,lession.getLink());
                 lessionDAO.delete(id);
-                response.sendRedirect("");
+                response.sendRedirect("/dashboard/lessions?chapterid=" + chapterid);
             } catch (Exception e) {
                 e.printStackTrace();
             }

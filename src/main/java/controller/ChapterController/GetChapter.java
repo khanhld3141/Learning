@@ -4,6 +4,7 @@ import java.io.*;
 import java.util.List;
 
 import dal.ChapterDAO;
+import dal.CourseDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -14,17 +15,21 @@ import model.Course;
 public class GetChapter extends HttpServlet {
     private String message;
     private ChapterDAO chapterDAO;
+    private CourseDAO courseDAO;
     public void init() {
         message = "Hello World!";
         chapterDAO=new ChapterDAO();
+        courseDAO=new CourseDAO();
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         if(request.getParameter("courseid")!=null){
             String courseid = request.getParameter("courseid");
             try {
-                int course=Integer.parseInt(courseid);
-                List<Chapter> chapters=chapterDAO.getAllChapters(course);
+                int courseId=Integer.parseInt(courseid);
+                List<Chapter> chapters=chapterDAO.getAllChapters(courseId);
+                Course course = courseDAO.get(courseId);
+                request.setAttribute("course", course);
                 request.setAttribute("chapters", chapters);
                 request.getRequestDispatcher("/dashboard_chapter/index.jsp").forward(request,response);
             }catch (Exception e) {

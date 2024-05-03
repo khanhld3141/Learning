@@ -1,3 +1,6 @@
+<%@ page import="model.Chapter" %>
+<%@ page import="java.util.List" %>
+<%@ page import="model.Course" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="../Component/sidebar__dashboard.jsp" %>
 <div class="content-admin">
@@ -22,22 +25,34 @@
                         <div class="modal-header">
                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                         </div>
-                        <div class="modal-body">
-                            <div class="name-chapter">
-                                <label for="Name-Add">Name Chapter</label>
-                                <input type="text" name="Name" id="Name-Add" placeholder="Enter name chapter"
-                                       required>
-                            </div>
-                            <div class="ordinal-chapter">
-                                <label for="Ordinal-Add">Ordinal Chapter</label>
-                                <input type="number" name="Ordinal" id="Ordinal-Add"
-                                       placeholder="Enter ordinal chapter" required>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <a href="../dashboard_chapter" class="btn btn-primary">Confirm</a>
-                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
-                        </div>
+                        <%
+                            if(request.getAttribute("course")!=null){
+                                Course course = (Course)request.getAttribute("course");
+
+                        %>
+                       <form action="/dashboard/create-chapter" method="post">
+                           <div class="modal-body">
+                               <input name="courseid" type="text"
+                                      value="<%=course.getId() %>">
+                               <div class="name-chapter">
+                                   <label for="Name-Add">Name Chapter</label>
+                                   <input type="text" name="name" id="Name-Add" placeholder="Enter name chapter"
+                                          required>
+                               </div>
+                               <div class="ordinal-chapter">
+                                   <label for="Ordinal-Add">Ordinal Chapter</label>
+                                   <input type="number" name="ordinal" id="Ordinal-Add"
+                                          placeholder="Enter ordinal chapter" required>
+                               </div>
+                           </div>
+                           <div class="modal-footer">
+                               <button type="submit" class="btn btn-primary">Confirm</button>
+                               <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
+                           </div>
+                       </form>
+                        <%
+                            }
+                        %>
                     </div>
                 </div>
             </div>
@@ -50,62 +65,89 @@
                 <tr>
                     <th onclick="sortTable(0)">ID Chapters</th>
                     <th onclick="sortTable(1)">Name Chapters</th>
-                    <th onclick="sortTable(2)">Belongs to the courses</th>
-                    <th onclick="sortTable(3)">Ordinal</th>
+                    <th onclick="sortTable(2)">Ordinal</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
                 <tbody>
+                <%
+                    if (request.getAttribute("chapters") != null) {
+                        List<Chapter> chapters = (List<Chapter>) request.getAttribute("chapters");
+                        for (Chapter chapter : chapters) {
+
+
+                %>
                 <tr>
-                    <td>1</td>
-                    <td>Build a Project in HTML 5</td>
-                    <td>HTML And Javascript</td>
-                    <td>1</td>
+                    <td><%=chapter.getId()%>
+                    </td>
+                    <td><%=chapter.getName()%>
+                    </td>
+                    <td><%=chapter.getOrdinal()%>
+                    </td>
                     <td>
                         <!-- BUTTON TRIGGER UPDATE MODAL  -->
                         <button type="button" class="btn__modal" data-bs-toggle="modal"
-                                data-bs-target="#modal__update-chapter" style="border: none;" title="Edit chapter">
+                                data-bs-target="#modal__update-chapter_<%=chapter.getId()%>" style="border: none;"
+                                title="Edit chapter">
                             <i class="fa-solid fa-pen"></i>
                         </button>
                         <!-- BUTTON TRIGGER DELETE MODAL  -->
                         <button type="button" class="btn__modal" data-bs-toggle="modal"
-                                data-bs-target="#modal__delete" title="Delete chapter">
+                                data-bs-target="#modal__delete_<%=chapter.getId()%>" title="Delete chapter">
                             <i class="fa-solid fa-trash"></i>
                         </button>
-                        <a href="../dashboard_lesson/index.jsp" title="Manage list lessons"><i
+                        <a href="/dashboard/lessions?chapterid=<%=chapter.getId()%>" title="Manage list lessons"><i
                                 class="fa-solid fa-eye" style="font-size: 16px; padding: 0 8px;"></i></a>
                     </td>
                     <!--------------- MODAL UPDATE CHAPTER-------------- -->
-                    <div class="modal fade modal__update" id="modal__update-chapter">
+                    <div class="modal fade modal__update" id="modal__update-chapter_<%=chapter.getId()%>">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                 </div>
-                                <div class="modal-body">
-                                    <div class="name-chapter">
-                                        <label for="Name-Update">Name Chapter</label>
-                                        <input type="text" name="Name" id="Name-Update"
-                                               placeholder="Enter name chapter" required>
+                                <%
+                                    if(request.getAttribute("course")!=null){
+                                        Course course = (Course)request.getAttribute("course");
+
+                                %>
+                                <form action="/dashboard/update-chapter" method="post">
+                                    <div class="modal-body">
+                                        <input name="id" readonly type="text" value="<%=chapter.getId()%>">
+                                        <input name="courseid" type="text"
+                                               value="<%=course.getId() %>">
+                                        <div class="name-chapter">
+                                            <label for="Name-Update">Name Chapter</label>
+                                            <input value="<%=chapter.getName()%>" type="text" name="name" id="Name-Update"
+                                                   placeholder="Enter name chapter"
+                                                   required>
+                                        </div>
+                                        <div class="ordinal-chapter">
+                                            <label for="Ordinal-Update">Ordinal Chapter</label>
+                                            <input value="<%=chapter.getOrdinal()%>" type="number" name="ordinal"
+                                                   id="Ordinal-Update"
+                                                   placeholder="Enter ordinal chapter" required>
+                                        </div>
                                     </div>
-                                    <div class="ordinal-chapter">
-                                        <label for="Ordinal-Update">Ordinal Chapter</label>
-                                        <input type="number" name="Ordinal" id="Ordinal-Update"
-                                               placeholder="Enter ordinal chapter" required>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary">Confirm</button>
+                                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
                                     </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <a href="../dashboard_chapter"
-                                       class="btn btn-primary">Confirm</a>
-                                    <button type="button" class="btn btn-danger"
-                                            data-bs-dismiss="modal">No</button>
-                                </div>
+                                </form>
+                                <%
+                                    }
+                                %>
                             </div>
                         </div>
                     </div>
                     <!--------------- MODAL DELETE---------------------------- -->
-                    <div class="modal fade modal__delete" id="modal__delete">
+                    <div class="modal fade modal__delete" id="modal__delete_<%=chapter.getId()%>">
                         <div class="modal-dialog modal-dialog-centered">
+                            <%
+                                if(request.getAttribute("course")!=null){
+                                    Course course=(Course) request.getAttribute("course");
+
+                            %>
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
@@ -118,16 +160,24 @@
                                         cannot be recovered.</p>
                                 </div>
                                 <div class="modal-footer">
-                                    <a href="../dashboard_chapter"
+                                    <a href="/dashboard/delete-chapter?id=<%=chapter.getId()%>&courseid=<%=course.getId()%>"
                                        class="btn btn-primary">Yes</a>
                                     <button type="button" class="btn btn-danger"
-                                            data-bs-dismiss="modal">No</button>
+                                            data-bs-dismiss="modal">No
+                                    </button>
                                 </div>
                             </div>
+                            <%
+                                }
+                            %>
                         </div>
                     </div>
                     <!-- ------------------------------------------------->
                 </tr>
+                <%
+                        }
+                    }
+                %>
                 <!-- SORT TABLE -->
                 <script src="../assets/js/Sort_table/sort-table.js">
                 </script>

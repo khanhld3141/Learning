@@ -13,7 +13,7 @@ import model.Course;
 import model.Lession;
 import model.User;
 
-@WebServlet(name = "UpdateLessionServlet", value = "/UpdateLession-servlet")
+@WebServlet(name = "UpdateLessionServlet", value = "/dashboard/update-lession")
 public class UpdateLession extends HttpServlet {
     private String message;
     private LessionDAO lessionDAO;

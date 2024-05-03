@@ -13,7 +13,7 @@ import model.Category;
 
 import java.io.IOException;
 
-@WebServlet(name = "UpdateCategoryServlet", value = "/update-category")
+@WebServlet(name = "UpdateCategoryServlet", value = "/dashboard/update-category")
 public class UpdateCategory extends HttpServlet {
     private String message;
     private CategoryDAO categoryDAO;
@@ -49,11 +49,11 @@ public class UpdateCategory extends HttpServlet {
 
         try{
             Category category =categoryDAO.get(Integer.parseInt(id));
-            FileUploadUtil.deleteFile(realPath, category.getImage());
+//            FileUploadUtil.deleteFile(realPath, category.getImage());
             categoryDAO.update(new Category(Integer.parseInt(id),name,filename));
 
             request.setAttribute("message", "Update category successfully");
-            response.sendRedirect("/categories");
+            response.sendRedirect("/dashboard/categories");
         }catch(Exception e){
 
         }

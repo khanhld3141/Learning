@@ -58,7 +58,7 @@
                                 </datalist>
                             </div>
                         <div class="cate-courses">
-                            <label for="CateId">Teacher</label>
+                            <label for="CateId">Category</label>
                             <input list="_CateId" name="CateId" id="CateId" placeholder="Choose a category" required value="<%=cate%>">
                             <datalist id="_CateId">
                                 <%

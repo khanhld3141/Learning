@@ -10,24 +10,26 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CourseDAO extends DBContext{
-    public CourseDAO(){
+public class CourseDAO extends DBContext {
+    public CourseDAO() {
         super();
     }
-    public List<Course> getAllCourses(int page,int  recordsPerPage){
-        List <Course> list = new ArrayList<>();
-        String sql = "select Courses.*, Users.Name as Teacher,Categories.Name as Cate,Categories.Image as CateImage " +
-                "from courses left join Categories on Courses.CateId=Categories.id\n" +
-                "left join users on Courses.TeacherId = users.id ORDER BY Id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
 
+    public List<Course> getAllCourses(int page, int recordsPerPage) {
+        List<Course> list = new ArrayList<>();
+        String sql = "select courses.*,Categories.Name as CateName,Categories.Image as CateImage,Users.Name as Teacher from courses \n" +
+                "                left join Categories on Categories.id=Courses.CateId\n" +
+                "\t\t\t\tleft join Users on Courses.TeacherId=users.id ORDER BY Id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             int offset = (page - 1) * recordsPerPage;
             st.setInt(1, offset);
             st.setInt(2, recordsPerPage);
             ResultSet rs = st.executeQuery();
+            Course course = null;
             while (rs.next()) {
-                Course Course = new Course(
+
+                course = new Course(
                         rs.getInt("Id"),
                         rs.getInt("TeacherId"),
                         rs.getInt("price"),
@@ -38,9 +40,9 @@ public class CourseDAO extends DBContext{
                         rs.getString("Overview"),
                         rs.getString("Result")
                 );
-                Course.setTeacher(new User(0,rs.getString("Teacher"),"","","","",""));
-                Course.setCategory(new Category(rs.getString("Cate"),rs.getString("CateImage")));
-                list.add(Course);
+                course.setCategory(new Category(rs.getString("CateName"),rs.getString("CateImage")));
+                course.setTeacher(new User(rs.getInt("TeacherId"),rs.getString("Teacher"),"","","","",""));
+                list.add(course);
             }
 
         } catch (SQLException e) {
@@ -48,8 +50,9 @@ public class CourseDAO extends DBContext{
         }
         return list;
     }
-    public List<Course> getAllCoursesHome(int page,int  recordsPerPage){
-        List <Course> list = new ArrayList<>();
+
+    public List<Course> getAllCoursesHome(int page, int recordsPerPage) {
+        List<Course> list = new ArrayList<>();
         String sql = "select Courses.*,Star from Courses\n" +
                 "left join UserCourses on Courses.Id = UserCourses.CourseId ORDER BY Courses.Id OFFSET ? ROWS FETCH " +
                 "NEXT ? ROWS ONLY";
@@ -81,6 +84,7 @@ public class CourseDAO extends DBContext{
         }
         return list;
     }
+
     public Course get(int id) {
         String sql = "select * from Courses where id = ?";
         try {
@@ -107,6 +111,7 @@ public class CourseDAO extends DBContext{
         }
         return null;
     }
+
     public void create(Course Course) {
         String sql = "insert into Courses (Name,Introduce,Image,Overview,Result,TeacherId,CateId,Price) values(?,?,?," +
                 "?,?,?,?,?)";

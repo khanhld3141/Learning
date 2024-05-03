@@ -73,7 +73,7 @@
                         <i class="fa-solid fa-sort-down"></i>
                         <ul class="sub-menu">
                             <li>
-                                <a href="../Courses">COURSES</a>
+                                <a href="/courses">COURSES</a>
                             </li>
                             <li>
                                 <a href="../Courses_details">COURSES DETAILS</a>
@@ -85,7 +85,7 @@
                         <i class="fa-solid fa-sort-down"></i>
                         <ul class="sub-menu">
                             <li>
-                                <a href="../blog">BLOG</a>
+                                <a href="/blogs">BLOG</a>
                             </li>
                             <li>
                                 <a href="../blog-details">BLOG DETAILS</a>
@@ -97,7 +97,7 @@
                         <i class="fa-solid fa-sort-down"></i>
                         <ul class="sub-menu">
                             <li>
-                                <a href="../Event">EVENT</a>
+                                <a href="/events">EVENT</a>
                             </li>
                             <li>
                                 <a href="../Event_details">EVENT DETAILS</a>
@@ -129,8 +129,8 @@
                         <a href="../Login/Login.jsp">LOGIN</a>
                     </li>
                     <li class="navbar__item">
-                        <a href="../my"><img src="../img/avatar-user.jpg" class="avatar-user" alt="Avatar"
-                                          title="Avatar"></a>
+                        <div class="avatar" href="#"><img src="../img/avatar-user.jpg" class="avatar-user" alt="Avatar"
+                                          title="Avatar"></div>
                     </li>
                 </ul>
             </div>
