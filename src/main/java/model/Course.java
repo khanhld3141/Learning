@@ -10,9 +10,11 @@ public class Course {
     private List<Chapter> chapters;
     private Category Category;
     private User Teacher;
+    private List<User> students;
     public Course() {
         Category=new Category();
         Teacher = new User();
+        students=new ArrayList<User>();
     }
 
     public Course(int id, int teacherId, int price, int cateId, String name, String introduce, String image, String overview, String result) {
@@ -28,6 +30,7 @@ public class Course {
         chapters=new ArrayList<>();
         Category=new Category();
         Teacher = new User();
+        students=new ArrayList<User>();
     }
 
     public Course(int teacherId, int price, int cateId, String name, String introduce, String image, String overview, String result) {
@@ -42,6 +45,7 @@ public class Course {
         chapters=new ArrayList<>();
         Category=new Category();
         Teacher = new User();
+        students=new ArrayList<User>();
     }
 
     public int getId() {
@@ -138,5 +142,13 @@ public class Course {
 
     public void setTeacher(User teacher) {
         Teacher = teacher;
+    }
+
+    public List<User> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<User> students) {
+        this.students = students;
     }
 }

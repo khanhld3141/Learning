@@ -1,3 +1,6 @@
+<%@ page import="java.util.List" %>
+<%@ page import="model.Lession" %>
+<%@ page import="model.Chapter" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="../Component/sidebar__dashboard.jsp" %>
 <div class="content-admin">
@@ -22,30 +25,41 @@
                         <div class="modal-header">
                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                         </div>
-                        <form action="">
+                        <%
+                            if (request.getAttribute("chapter") != null) {
+                                Chapter chapter = (Chapter) request.getAttribute("chapter");
+
+
+                        %>
+                        <form name="form-add" action="/dashboard/create-lession" method="post"
+                              enctype="multipart/form-data">
                             <div class="modal-body">
+                                <input name="chapterid" type="text" value="<%=chapter.getId()%>" readonly>
                                 <div class="name-lesson">
                                     <label for="Name-Add">Name lesson</label>
-                                    <input type="text" name="Name" id="Name-Add" placeholder="Enter name lesson"
+                                    <input type="text" name="name" id="Name-Add" placeholder="Enter name lesson"
                                            required>
                                 </div>
                                 <div class="description-lesson">
                                     <label for="Description-Add">Description lesson</label>
-                                    <textarea name="Description" id="Description-Add" rows="10" required
+                                    <textarea name="description" id="Description-Add" rows="10" required
                                               placeholder="Enter description lesson"></textarea>
                                 </div>
                                 <div class="Video-lesson">
                                     <label for="FileUpload-Add">Upload new video</label>
-                                    <input type="file" name="FileUpload-Update" id="FileUpload-Add"
+                                    <input type="file" name="video" id="FileUpload-Add"
                                            placeholder="Enter video lesson" required>
                                 </div>
+                                <div class="modal-footer">
+                                    <input type="submit" value="Confirm">
+                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
+                                </div>
                             </div>
-                            <div class="modal-footer">
-                                <%--                            <a href="../dashboard_lesson" class="btn btn-primary">Confirm</a>--%>
-                                <button class="btn btn-primary" type="submit">Confirm</button>
-                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
-                            </div>
+
                         </form>
+                        <%
+                            }
+                        %>
                     </div>
                 </div>
             </div>
@@ -58,59 +72,66 @@
                 <tr>
                     <th onclick="sortTable(0)">ID lesson</th>
                     <th onclick="sortTable(1)">Name lesson</th>
-                    <th onclick="sortTable(2)">Belongs to chapter</th>
-                    <th onclick="sortTable(3)">Belongs to the course</th>
+                    <th onclick="sortTable(2)">Description</th>
                     <th>Link lesson</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
                 <tbody>
+                <%
+                    if (request.getAttribute("lessions") != null) {
+                        List<Lession> lessions = (List<Lession>) request.getAttribute("lessions");
+                        for (Lession l : lessions) {
+
+                %>
                 <tr>
-                    <td>1</td>
-                    <td>HTML Attributes</td>
-                    <td>Introduction to basic HTML</td>
-                    <td>HTML5 for beginners</td>
-                    <td><a href="#!">Link lesson</a></td>
+                    <td><%=l.getId()%>
+                    </td>
+                    <td><%=l.getName()%>
+                    </td>
+                    <td><%=l.getDescription()%>
+                    </td>
+                    <td><a href="/images/<%=l.getLink()%>">Link lesson</a></td>
                     <td>
                         <!-- BUTTON TRIGGER UPDATE MODAL  -->
                         <button type="button" class="btn__modal" data-bs-toggle="modal"
-                                data-bs-target="#modal__update-lesson" style="border: none;" title="Update lesson">
+                                data-bs-target="#modal__update-lesson_<%=l.getId()%>" style="border: none;"
+                                title="Update lesson">
                             <i class="fa-solid fa-pen"></i>
                         </button>
                         <!-- BUTTON TRIGGER DELETE MODAL  -->
                         <button type="button" class="btn__modal" data-bs-toggle="modal"
-                                data-bs-target="#modal__delete" title="Delete lesson">
+                                data-bs-target="#modal__delete_<%=l.getId()%>" title="Delete lesson">
                             <i class="fa-solid fa-trash"></i>
                         </button>
                     </td>
                     <!--------------- MODAL UPDATE LESSON-------------- -->
-                    <div class="modal fade modal__update" id="modal__update-lesson">
+                    <div class="modal fade modal__update" id="modal__update-lesson_<%=l.getId()%>">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <button type="button" class="btn-close"
                                             data-bs-dismiss="modal"></button>
                                 </div>
-                                <form action="">
+                                <form action="/dashboard/update-less">
                                     <div class="modal-body">
                                         <div class="name-lesson">
                                             <label for="Name-Update">Name lesson</label>
-                                            <input type="text" name="Name" id="Name-Update"
+                                            <input value="<%=l.getName()%>" type="text" name="Name" id="Name-Update"
                                                    placeholder="Enter name lesson" required>
                                         </div>
                                         <div class="description-lesson">
                                             <label for="Description-Update">Description lesson</label>
                                             <textarea name="Description" id="Description-Update" rows="10" required
-                                                      placeholder="Enter description lesson"></textarea>
+                                                      placeholder="Enter description lesson"><%=l.getDescription()%></textarea>
                                         </div>
                                         <div class="Video-lesson">
                                             <label for="FileUpload-Update">Upload new video</label>
-                                            <input type="file" name="FileUpload-Update" id="FileUpload-Update"
+                                            <input type="file" name="video" id="FileUpload-Update"
                                                    placeholder="Enter video lesson" required>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <%--                                    <a href="../dashboard_lesson" class="btn btn-primary">Confirm</a>--%>
                                         <button type="submit" class="btn btn-primary">Confirm</button>
                                         <button type="button" class="btn btn-danger"
                                                 data-bs-dismiss="modal">No
@@ -121,8 +142,12 @@
                         </div>
                     </div>
                     <!--------------- MODAL DELETE---------------------------- -->
-                    <div class="modal fade modal__delete" id="modal__delete">
+                    <div class="modal fade modal__delete" id="modal__delete_<%=l.getId()%>">
                         <div class="modal-dialog modal-dialog-centered">
+                            <%
+                                if (request.getAttribute("chapter") != null) {
+                                    Chapter chapter = (Chapter) request.getAttribute("chapter");
+                            %>
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
@@ -134,16 +159,25 @@
                                         cannot be recovered.</p>
                                 </div>
                                 <div class="modal-footer">
-                                    <a href="../dashboard_lesson" class="btn btn-primary">Yes</a>
+                                    <a href="/dashboard/delete-lession?id=<%=l.getId()%>&chapterid=<%=chapter.getId()%>"
+                                       class="btn btn-primary">
+                                        Yes</a>
                                     <button type="button" class="btn btn-danger"
                                             data-bs-dismiss="modal">No
                                     </button>
                                 </div>
                             </div>
+                            <%
+                                }
+                            %>
                         </div>
                     </div>
                     <!-- ------------------------------------------------->
                 </tr>
+                <%
+                        }
+                    }
+                %>
                 <!-- SORT TABLE-->
                 <script src="../assets/js/Sort_table/sort-table.js"></script>
                 </tbody>

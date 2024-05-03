@@ -14,7 +14,7 @@ import model.Category;
 
 import java.io.IOException;
 
-@WebServlet(name = "CreateCategoryServlet", value = "/create-category")
+@WebServlet(name = "CreateCategoryServlet", value = "/dashboard/create-category")
 public class CreateCategory extends HttpServlet {
     private String message;
     private CategoryDAO categoryDAO;
@@ -24,18 +24,19 @@ public class CreateCategory extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        request.getRequestDispatcher("Banner/create-category.jsp").forward(request, response);
+        request.getRequestDispatcher("/create-category.jsp").forward(request, response);
     }
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        String name = request.getParameter("name");
-        Part image = request.getPart("image");
+        String name = request.getParameter("Name");
+        Part image = request.getPart("Image");
         String realPath = request.getServletContext().getRealPath("/images");
+        System.out.println(name + ": " + image);
         String filename = FileUploadUtil.uploadFile(image, realPath);
 
         try{
             categoryDAO.create(new Category(name,filename));
             request.setAttribute("message","Add new category successfully");
-            response.sendRedirect("/categories");
+            response.sendRedirect("/dashboard/categories");
         }catch(Exception e){
             request.setAttribute("error", "Please enter chapter id");
             request.getRequestDispatcher("").forward(request, response);

@@ -1,3 +1,5 @@
+<%@ page import="java.util.List" %>
+<%@ page import="model.Post" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="../Component/sidebar__dashboard.jsp" %>
 <div class="content-admin">
@@ -18,10 +20,17 @@
                 </tr>
                 </thead>
                 <tbody>
+                <%
+                    if (request.getAttribute("posts") != null) {
+                        List<Post> posts = (List<Post>) request.getAttribute("posts");
+                        for (Post post : posts) {
+
+
+                %>
                 <tr>
-                    <td>1</td>
-                    <td>How to become the best developer</td>
-                    <td>Dang Khanh</td>
+                    <td><%=post.getId()%></td>
+                    <td><%=post.getTitle()%></td>
+                    <td><%=post.getAuthor().getName()%></td>
                     <td><a href="#!" title="View detail post"><i class="fa-solid fa-eye"></i></a>
                         <a href="../dashboard_post/update-post.jsp" title="Update post"><i
                                 class="fa-solid fa-pen"></i></a>
@@ -48,7 +57,8 @@
                                 <div class="modal-footer">
                                     <a href="#!" class="btn btn-primary">Yes</a>
                                     <button type="button" class="btn btn-danger"
-                                            data-bs-dismiss="modal">No</button>
+                                            data-bs-dismiss="modal">No
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -56,7 +66,10 @@
 
                     <!-- ------------------------------------->
                 </tr>
-
+                <%
+                        }
+                    }
+                %>
                 <script src="../assets/js/Sort_table/sort-table.js"></script>
                 </tbody>
             </table>

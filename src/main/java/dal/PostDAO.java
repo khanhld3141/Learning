@@ -1,6 +1,7 @@
 package dal;
 
 import model.Post;
+import model.User;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,7 +15,7 @@ public class PostDAO extends DBContext{
     }
     public List<Post> getAllPosts(){
         List <Post> list = new ArrayList<>();
-        String sql = "select * from Posts";
+        String sql = "select posts.*,users.name as UserName from posts inner join users on users.id=posts.AuthorId";
 
         try {
             PreparedStatement st = connection.prepareStatement(sql);
@@ -27,6 +28,7 @@ public class PostDAO extends DBContext{
                         rs.getInt("Id"),
                         rs.getInt("AuthorId")
                 );
+                Post.setAuthor(new User(0,rs.getString("UserName"),"","","","",""));
                 list.add(Post);
             }
 

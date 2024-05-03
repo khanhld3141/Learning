@@ -12,7 +12,7 @@ import model.Category;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name = "DeleteCategoryServlet", value = "/delete-category")
+@WebServlet(name = "DeleteCategoryServlet", value = "/dashboard/delete-category")
 public class DeleteCategory extends HttpServlet {
     private String message;
     private CategoryDAO CategoryDAO;
@@ -38,7 +38,7 @@ public class DeleteCategory extends HttpServlet {
             }
         } else {
             request.setAttribute("message", "Missing parameter id");
-            request.getRequestDispatcher("/categories").forward(request, response);
+            request.getRequestDispatcher("/dashboard/categories").forward(request, response);
         }
     }
 

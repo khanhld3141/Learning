@@ -33,21 +33,20 @@ public class UpdateChapter extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String id = request.getParameter("id");
-        String courseId = request.getParameter("courseid");
-        String name = request.getParameter("name");
+        String courseId=request.getParameter("courseid");
+        String name=request.getParameter("name");
         String ordinal=request.getParameter("ordinal");
-        try {
+        try{
             chapterDAO.update(new Chapter(
                     Integer.parseInt(id),
                     Integer.parseInt(courseId),
                     name,
                     ordinal
-
             ));
-            response.sendRedirect("");
+            response.sendRedirect("/dashboard/chapter?courseid="+courseId);
         } catch (Exception e) {
             request.setAttribute("error", "Please enter a post id");
-            request.getRequestDispatcher("").forward(request, response);
+            request.getRequestDispatcher("/dashboard/chapter?courseid="+courseId).forward(request, response);
         }
     }
 

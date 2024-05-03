@@ -74,7 +74,9 @@ public class UpdateCourse extends HttpServlet {
         Course course = courseDAO.get(Integer.parseInt(id));
 
         try {
-            FileUploadUtil.deleteFile(realPath,course.getImage());
+           if(course.getImage() != null){
+               FileUploadUtil.deleteFile(realPath,course.getImage());
+           }
             course.setName(name);
             course.setImage(filename);
             course.setPrice(Integer.parseInt(price));

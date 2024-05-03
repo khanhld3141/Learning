@@ -8,7 +8,7 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import model.Chapter;
 
-@WebServlet(name = "CreateChapterServlet", value = "/CreateChapter-servlet")
+@WebServlet(name = "CreateChapterServlet", value = "/dashboard/create-chapter")
 public class CreateChapter extends HttpServlet {
     private String message;
     private ChapterDAO chapterDAO;
@@ -28,17 +28,16 @@ public class CreateChapter extends HttpServlet {
         }
     }
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        String postid=request.getParameter("postid");
+        String courseId=request.getParameter("courseid");
         String name=request.getParameter("name");
         String ordinal=request.getParameter("ordinal");
-
         try{
             chapterDAO.create(new Chapter(
-                    Integer.parseInt(postid),
+                    Integer.parseInt(courseId),
                     name,
                     ordinal
             ));
-            response.sendRedirect("");
+            response.sendRedirect("/dashboard/chapter?courseid="+courseId);
         }catch (Exception e){
             request.setAttribute("error","Please enter a post id");
             request.getRequestDispatcher("").forward(request,response);

@@ -24,7 +24,6 @@
                     <th onclick="sortTable(2)">Category</th>
                     <th onclick="sortTable(3)">Price</th>
                     <th onclick="sortTable(4)">Teacher</th>
-                    <th onclick="sortTable(5)">Quantity chapters</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
@@ -40,7 +39,6 @@
                     <td><%=c.getCategory().getName()%></td>
                     <td><%=c.getPrice()%>$</td>
                     <td><%=c.getTeacher().getName()%></td>
-                    <td>10</td>
                     <td>
                         <a href="/dashboard/update-course?id=<%=c.getId()%>" title="Edit course"><i class="fa-solid fa-pen"></i></a>
                         <!-- Button trigger modal -->
@@ -48,7 +46,8 @@
                                 data-bs-target="#modal__delete_<%=c.getId()%>" title="Delete course">
                             <i class="fa-solid fa-trash"></i>
                         </button>
-                        <a href="../dashboard_chapter" title="Manage chapters"><i class="fa-solid fa-eye"></i></a>
+                        <a href="/dashboard/chapter?courseid=<%=c.getId()%>"
+                           title="Manage chapters"><i class="fa-solid fa-eye"></i></a>
                     </td>
                     <!--------------- MODAL DELETE-------------- -->
                     <div class="modal fade modal__delete" id="modal__delete_<%=c.getId()%>">

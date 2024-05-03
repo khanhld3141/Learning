@@ -73,13 +73,19 @@
                 <a href="/dashboard_chapter" class="nav__link"><i class="fa-solid fa-palette"></i>Chapter</a>
             </li>
             <li>
-                <a href="/dashboard-category" class="nav__link"><i class="fa-solid fa-palette"></i>Category</a>
+                <a href="/dashboard/categories" class="nav__link"><i class="fa-solid fa-palette"></i>Category</a>
             </li>
             <li>
-                <a href="/dashboard_voucher" class="nav__link"><i class="fa-solid fa-ticket"></i>Voucher</a>
+                <a href="/dashboard/vouchers" class="nav__link"><i class="fa-solid fa-ticket"></i>Voucher</a>
             </li>
             <li>
                 <a href="/dashboard_hashtag" class="nav__link"><i class="fa-solid fa-hashtag"></i>Hastags</a>
+            </li>
+            <li>
+                <a href="/dashboard_deposit" class="nav__link"><i class="fa-solid fa-hashtag"></i>Deposit</a>
+            </li>
+            <li>
+                <a href="/dashboard/posts" class="nav__link"><i class="fa-solid fa-hashtag"></i>Posts</a>
             </li>
             <li>
                 <a href="#!" class="nav__link"><i class="fa-solid fa-right-from-bracket"></i>Log out</a>

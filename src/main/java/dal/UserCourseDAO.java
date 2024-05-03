@@ -1,5 +1,6 @@
 package dal;
 
+import model.User;
 import model.UserCourse;
 
 import java.sql.PreparedStatement;
@@ -32,6 +33,27 @@ public class UserCourseDAO extends DBContext{
             e.printStackTrace();
         }
         return list;
+    }
+    public List<User> getCountStudent(int CourseId){
+        String sql = "select Users.Name from UserCourses\n" +
+                "left join Users on UserCourses.UserId=Users.id\n" +
+                "where CourseId=?";
+        List<User> users=new ArrayList<User>();
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, CourseId);
+            ResultSet rs = st.executeQuery();
+
+            while (rs.next()) {
+                User user=new User();
+                user.setName(rs.getString("Name"));
+                users.add(user);
+            }
+            return users;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
     public UserCourse get(int id) {
         String sql = "select * from UserCourses where id = ?";

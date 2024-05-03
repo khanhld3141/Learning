@@ -1,5 +1,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="model.Category" %>
+<%@ page import="model.Course" %>
+<%@ page import="model.Post" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="../Component/header.jsp" %>
 <main>
@@ -161,7 +163,8 @@
                     <div class="card__logo">
                         <img src="<%=c.getImage()%>"/>
                     </div>
-                    <div class="card__name"><%=c.getName()%></div>
+                    <div class="card__name"><%=c.getName()%>
+                    </div>
                 </a>
                 <%
                         }
@@ -225,9 +228,46 @@
             <h1 class="title title__popular-courses">Popular Courses</h1>
             <div class="owl-carousel owl-theme">
                 <!-- item 1 -->
-                <% for (int i = 0; i < 6; i++) { %>
-                <%@ include file="../Component/card-courses.jsp" %>
-                <% } %>
+                <%
+                    if (request.getAttribute("courses") != null) {
+                        List<Course> courses = (List<Course>) request.getAttribute("courses");
+                        for (Course c : courses) {
+
+                %>
+                <div class="item__card-courses">
+                    <div class="card-courses" id="card-courses">
+                        <div class="card-courses__thumb">
+                            <img src="/images/<%=c.getImage()%>" alt="" class="card-courses__img">
+                            <p class="price__courses"><%=c.getPrice()%>$</p>
+                        </div>
+
+                        <div class="card-courses__content">
+                            <a href="#!" class="card-courses__heading"><%=c.getName()%>
+                            </a>
+                            <h3 class="card-courses__desc"><%=c.getIntroduce()%>
+                            </h3>
+                            <div class="card-courses__enroll">
+                                <div class="enroll__left">
+                                    <p class="total-student"><i
+                                            class="fa-regular fa-user"></i> <%=c.getStudents().size()%>
+                                        Students</p>
+                                    <div class="total-star">
+                                        <i class="fa-regular fa-star" style="color: #FFD43B;"></i>
+                                        <i class="fa-regular fa-star" style="color: #FFD43B;"></i>
+                                        <i class="fa-regular fa-star" style="color: #FFD43B;"></i>
+                                        <i class="fa-regular fa-star" style="color: #FFD43B;"></i>
+                                        <i class="fa-regular fa-star" style="color: #FFD43B;"></i>
+                                    </div>
+                                </div>
+                                <button class="btn btn--enroll">ENROLL NOW</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <%
+                        }
+                    }
+                %>
             </div>
         </div>
     </div>
@@ -264,9 +304,37 @@
             <div class="owl-carousel owl-theme">
                 <!-- items -->
                 <%
-                    for (int i = 1; i <= 6; i++) { %>
-                <%@ include file="../Component/card-blog.jsp" %>
-                <% }%>
+                    if (request.getAttribute("posts") != null) {
+                        List<Post> posts = (List<Post>) request.getAttribute("posts");
+
+                        for (Post post : posts) {
+                %>
+                <div class="item__card-blog">
+                    <figure class="card-blog">
+                        <div class="card-blog__thumb">
+                            <img src="../img/slide-blog/slide3.jpg" alt="" class="card-blog__img">
+                        </div>
+
+                        <div class="card-blog__content">
+                            <div class="blog-meta-tags">
+                                <a href="#" class="blog-category">Data Science
+                                </a> <span>|</span> <a href="#" class="blog-date">25 April, 2024</a>
+                            </div>
+                            <div class="title-blog">
+                                Own may face grass dot subdue brought
+                            </div>
+                            <div class="blog-meta-tags">
+                                <a href="#" class="blog-comment"><i class="fa-regular fa-comment"></i> 2
+                                    Comments</a>
+                            </div>
+                        </div>
+                    </figure>
+                </div>
+
+                <%
+                        }
+                    }
+                %>
             </div>
         </div>
     </div>

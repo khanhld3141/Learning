@@ -33,7 +33,7 @@ public class CreateLession extends HttpServlet {
         String chapterId = request.getParameter("chapterid");
         String name = request.getParameter("name");
         String description = request.getParameter("description");
-
+        System.out.println(chapterId+" "+name+" "+description);
         Part video = request.getPart("video");
         String realPath = request.getServletContext().getRealPath("/images");
         String filename = FileUploadUtil.uploadFile(video, realPath);
@@ -45,7 +45,7 @@ public class CreateLession extends HttpServlet {
                     description,
                     filename
             ));
-            response.sendRedirect("");
+            response.sendRedirect("/dashboard/lessions?chapterid="+chapterId);
         }catch(Exception e){
             request.setAttribute("error", "Please enter chapter id");
             request.getRequestDispatcher("").forward(request, response);
