@@ -1,0 +1,253 @@
+/*begin common*/
+.payment{
+    width: 100%;
+    height: 90rem;
+    position: relative;
+    color:#dae4f0;
+    line-height: 4rem;
+}
+
+.payment h2{
+    display: block;
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-top: 1.6rem;
+    width: 100%;
+}
+
+.payment .course-name{
+    font-size: 1.8rem;
+    font-weight: 500;
+    width: 100%;
+}
+
+.payment .course-id{
+    color: #fa8c16;
+}
+
+.payment hr{
+    border: none;
+    border-radius: 2rem;
+    border-top: .1rem solid #333c6d;
+    margin: 1.6rem 0;
+    width: 100%;
+}
+
+.payment h1{
+    font-size: 2.4rem;
+    font-weight: 700;
+    margin: 3.2rem 0 0;
+}
+
+.payment-content{
+    background-color:#272a31;
+    display: flex;
+    flex-direction: row;
+    overflow-y: auto;
+    width: 100%;
+    height: 100%;
+}
+
+/*end common*/
+
+/*begin side-bar*/
+.payment .side-bar{
+    border-right: 1px solid #333c6d;
+    padding: 2rem 2.8rem;
+    width: 30%;
+    height: 100%;
+    line-height: 1.4;
+}
+
+.payment .price-box{
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    width: 100%;
+}
+
+.payment .price-box .price-desc{
+    font-size: 1.6rem;
+    font-weight: 500;
+}
+
+.payment .price-box .price-detail{
+    color: #52eeee;
+    font-size: 1.6rem;
+    font-weight: 500;
+}
+/*end side-bar*/
+
+/*begin body*/
+.payment .body{
+    width: 70%;
+    height: 100%;
+    overflow: auto;
+    padding: 8px 40px;
+}
+/*end body*/
+
+/*begin voucher-input*/
+.payment .voucher-input-typeID{
+    align-items: center;
+    display: flex;
+    gap: .8rem;
+    margin: 2.4rem 0;
+    position: relative;
+}
+
+.payment .voucher-input input{
+    background: #323c4a;
+    border: .1rem solid transparent;
+    border-radius: .8rem;
+    color: #fff;
+    font-size: 1.4rem;
+    font-weight: 400;
+    height: 3.6rem;
+    outline: none;
+    padding: 0 1.6rem;
+    width: 100%;
+}
+
+.payment .voucher-input .btn-apply-voucherID{
+    background-image: linear-gradient(141.34deg, #5ebbff, #a174ff 91.11%);
+    border-radius: .8rem;
+    cursor: pointer;
+    height: 3.6rem;
+    padding: .2rem;
+    opacity: 0.8;
+}
+
+.payment .voucher-input .btn-apply-voucherID:hover{
+    opacity: 1;
+}
+
+.payment .voucher-input-typeID span{
+    align-items: center;
+    background-color: #191d1e;
+    border-radius: .6rem;
+    color: #fff;
+    display: flex;
+    font-size: 1.2rem;
+    font-weight: 700;
+    height: 100%;
+    justify-content: center;
+    letter-spacing: .1rem;
+    padding: 0 .8rem;
+    transition: .3s;
+    white-space: nowrap;
+    width: 100%;
+}
+/*end voucher-input*/
+
+/*begin payment-detail*/
+.payment .payment-detail-wrapper{
+    align-items: center;
+    background-color: #202425;
+    border-radius: .8rem;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+    padding: 1.8rem 1.2rem;
+}
+/*end payment-detail*/
+
+/*begin bank-qr-detail*/
+.payment .bank-qr-detail{
+    display: flex;
+    margin-top: 16px;
+}
+
+.payment .qr-code{
+    background-color: #fff;
+    border-radius: 8px;
+    height: 125px;
+    margin-right: 8px;
+    overflow: hidden;
+    padding: 5px;
+    width: 125px;
+}
+
+.payment .qr-code img{
+    display: inline-block;
+    width: 100%;
+}
+
+.payment .instruction{
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 28px;
+    margin: 0;
+    padding-left: 16px;
+}
+/*end bank-qr-detail*/
+
+/*begin bank-manual*/
+.payment .bank-manual-detail{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.payment .bank-manual-detail li{
+    list-style: none;
+}
+
+.payment .bank-manual-box{
+    background-color: #202425;
+    border-radius: 8px;
+    flex: 1 1;
+    padding: 8px 16px;
+    position: relative;
+}
+
+.payment .bank-manual-box .box-label{
+    color: #a2adbd;
+    font-size: 1.2rem;
+    font-weight: 400;
+    line-height: 16px;
+    margin-bottom: 8px;
+}
+
+.payment .bank-manual-box .box-content{
+    align-items: center;
+    display: flex;
+    font-size: 1.8rem;
+    font-weight: 600;
+    justify-content: space-between;
+    line-height: 24px;
+}
+/*end bank-manual*/
+
+/*begin attention*/
+.payment .attention .attention-content{
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 24px;
+    text-decoration: none;
+    margin: 1.6rem 0;
+}
+
+.payment .contact-info-item{
+    align-items: flex-start;
+    display: flex;
+    margin-bottom: 16px;
+}
+
+.payment .contact-info .fa-solid{
+    margin-right: 12px;
+    padding-top: 4px;
+    font-size: 1.9rem;
+}
+
+.payment .contact-info a{
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 24px;
+    text-decoration: none;
+    color: #dae4f0;
+}
+/*end attention*/
