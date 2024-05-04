@@ -38,7 +38,7 @@
                 </button>
                 <p class="form-notice">
                     Don't have an account? 
-                    <a href="#" class="form-signup">Signup Now</a>
+                    <a href="/register" class="form-signup">Signup Now</a>
                 </p>
             </form>    
           </div>

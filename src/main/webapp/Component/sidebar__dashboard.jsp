@@ -66,12 +66,12 @@
             <li>
                 <a href="/dashboard/courses" class="nav__link"><i class="fa-solid fa-file"></i>Courses</a>
             </li>
-            <li>
+        <%--    <li>
                 <a href="/dashboard_lesson" class="nav__link"><i class="fa-solid fa-book"></i>Lesson</a>
             </li>
             <li>
                 <a href="/dashboard_chapter" class="nav__link"><i class="fa-solid fa-palette"></i>Chapter</a>
-            </li>
+            </li>--%>
             <li>
                 <a href="/dashboard/categories" class="nav__link"><i class="fa-solid fa-palette"></i>Category</a>
             </li>

@@ -39,7 +39,7 @@
     <link rel="stylesheet" href="../assets/css/courses/courses_detail.css">
     <link rel="stylesheet" href="../assets/css/blog/blog.css">
     <link rel="stylesheet" href="../assets/css/blog/blog_details.css">
-    <link rel="stylesheet" href="../Component/component.css">
+    <link rel="stylesheet" href="../Component/component.scss">
     <link rel="stylesheet" href="../assets/css/pages/pricing.css">
     <link rel="stylesheet" href="../assets/css/Contact/Contact.css">
     <link rel="stylesheet" href="../assets/css/Login/Login.css">
@@ -58,13 +58,13 @@
         <div class="header-content">
             <!-- logo -->
             <figure class="header__logo">
-                <a href="../Home"><img src="../img/e-learning-logo.svg" alt="Header__logo" class="logo__img"></a>
+                <a href="/home"><img src="../img/e-learning-logo.svg" alt="Header__logo" class="logo__img"></a>
             </figure>
             <!-- navbar -->
             <div class="navbar">
                 <ul class="navbar__list">
                     <li class="navbar__item">
-                        <a href="../Home">HOME</a>
+                        <a href="/home">HOME</a>
                     </li>
                     <li class="navbar__item">
                         <a href="../About">ABOUT</a>
@@ -86,7 +86,7 @@
                         <i class="fa-solid fa-sort-down"></i>
                         <ul class="sub-menu">
                             <li>
-                                <a href="/blogs">BLOG</a>
+                                <a href="../blog">BLOG</a>
                             </li>
                             <li>
                                 <a href="../blog-details">BLOG DETAILS</a>
@@ -98,7 +98,7 @@
                         <i class="fa-solid fa-sort-down"></i>
                         <ul class="sub-menu">
                             <li>
-                                <a href="/events">EVENT</a>
+                                <a href="../Event">EVENT</a>
                             </li>
                             <li>
                                 <a href="../Event_details">EVENT DETAILS</a>
@@ -116,23 +116,40 @@
                                 <a href="../Terms_Conditions">TERMS AND CONDITIONS</a>
                             </li>
                             <li>
-                                <a href="../Login/Login.jsp">LOGIN</a>
+                                <a href="/login">LOGIN</a>
                             </li>
                             <li>
-                                <a href="../Sing_up">SIGN UP</a>
+                                <a href="/register">SIGN UP</a>
                             </li>
                         </ul>
                     </li>
                     <li class="navbar__item">
                         <a href="../Contact">CONTACT</a>
                     </li>
+                    <%
+                        if(session.getAttribute("user")==null){
+
+                    %>
                     <li class="navbar__item">
-                        <a href="../Login/Login.jsp">LOGIN</a>
+                        <a href="/login">LOGIN</a>
+                    </li>
+
+                    <%
+                        }else{
+                    %>
+                    <li class="navbar__item">
+                        <a href="../my">Welcome ${sessionScope.user.name}</a>
                     </li>
                     <li class="navbar__item">
+                        <a href="/logout">LOGOUT</a>
+                    </li>
+                    <%
+                        }
+                    %>
+                    <%--<li class="navbar__item">
                         <div class="avatar" href="#"><img src="../img/avatar-user.jpg" class="avatar-user" alt="Avatar"
                                           title="Avatar"></div>
-                    </li>
+                    </li>--%>
                 </ul>
             </div>
         </div>

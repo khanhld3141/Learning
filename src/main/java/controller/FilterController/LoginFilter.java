@@ -5,6 +5,7 @@ import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import model.User;
 
 import java.io.IOException;
 
@@ -38,9 +39,8 @@ public class LoginFilter implements Filter {
 
         if (session.getAttribute("user") == null) {
             res.sendRedirect("/login");
-        }else{
-
-            chain.doFilter(request, response);  // invokes next filter in the chain
+        } else {
+            chain.doFilter(request, response);
         }
 
     }

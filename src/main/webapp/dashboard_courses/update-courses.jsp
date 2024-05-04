@@ -101,7 +101,9 @@
                         <div class="image-courses">
                             <label for="Image">Image</label>
                             <input type="file" name="Image" id="Image" placeholder="Choose image">
-                            <img src="/images/<%=course.getImage()%>"/>
+                            <img style="height: 300px; width: 100%; object-fit: cover; border-radius: 20px;
+                            margin-top: 12px"
+                                 src="/images/<%=course.getImage()%>"/>
                         </div>
                     </div>
                     <div class="submit">
