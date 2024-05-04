@@ -31,6 +31,7 @@ public class HashtagDAO extends DBContext{
                         rs.getString("Title"),
                         rs.getString("Content"),
                         rs.getString("Comment"),
+                        rs.getString("Image"),
                         rs.getInt("Id"),
                         rs.getInt("AuthorId")
                 ));
@@ -60,6 +61,7 @@ public class HashtagDAO extends DBContext{
                         rs.getString("Title"),
                         rs.getString("Content"),
                         rs.getString("Comment"),
+                        rs.getString("Image"),
                         rs.getInt("Id"),
                         rs.getInt("AuthorId")
                 ));

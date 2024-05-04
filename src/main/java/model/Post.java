@@ -3,26 +3,28 @@ package model;
 import java.util.List;
 
 public class Post {
-    private String Title,Content,Comment;
+    private String Title,Content,Comment,Image;
     private int Id,AuthorId;
     private User author;
     private List<CourseComment> comments;
     public Post() {
     }
 
-    public Post(String title, String content, String comment, int id, int authorId) {
+    public Post(String title, String content, String comment,String image, int id, int authorId) {
         Title = title;
         Content = content;
         Comment = comment;
         Id = id;
         AuthorId = authorId;
+        Image = image;
     }
 
-    public Post(String title, String content, String comment, int authorId) {
+    public Post(String title, String content, String comment,String image, int authorId) {
         Title = title;
         Content = content;
         Comment = comment;
         AuthorId = authorId;
+        Image = image;
     }
 
     public String getTitle() {
@@ -79,5 +81,13 @@ public class Post {
 
     public void setComments(List<CourseComment> comments) {
         this.comments = comments;
+    }
+
+    public String getImage() {
+        return Image;
+    }
+
+    public void setImage(String image) {
+        Image = image;
     }
 }

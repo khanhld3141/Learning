@@ -82,7 +82,7 @@
                 <a href="/dashboard_hashtag" class="nav__link"><i class="fa-solid fa-hashtag"></i>Hastags</a>
             </li>
             <li>
-                <a href="/dashboard_deposit" class="nav__link"><i class="fa-solid fa-hashtag"></i>Deposit</a>
+                <a href="/dashboard/deposits" class="nav__link"><i class="fa-solid fa-hashtag"></i>Deposit</a>
             </li>
             <li>
                 <a href="/dashboard/posts" class="nav__link"><i class="fa-solid fa-hashtag"></i>Posts</a>

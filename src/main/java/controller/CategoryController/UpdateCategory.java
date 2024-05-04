@@ -3,6 +3,7 @@ package controller.CategoryController;
 import controller.Ulti.FileUploadUtil;
 import dal.CategoryDAO;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -13,6 +14,7 @@ import model.Category;
 
 import java.io.IOException;
 
+@MultipartConfig
 @WebServlet(name = "UpdateCategoryServlet", value = "/dashboard/update-category")
 public class UpdateCategory extends HttpServlet {
     private String message;

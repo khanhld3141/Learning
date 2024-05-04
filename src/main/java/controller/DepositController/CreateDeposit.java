@@ -12,7 +12,7 @@ import model.Status;
 
 import java.io.IOException;
 
-@WebServlet(name = "CreateCategoryServlet", value = "/create-deposit")
+@WebServlet(name = "CreateDepositServlet", value = "/dashboard/create-deposit")
 public class CreateDeposit extends HttpServlet {
     private String message;
     private DepositDAO depositDAO;
@@ -25,18 +25,19 @@ public class CreateDeposit extends HttpServlet {
         request.getRequestDispatcher("Banner/create-category.jsp").forward(request, response);
     }
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        String userId=request.getParameter("userid");
+        String user=request.getParameter("user");
+        String users[]=user.split("-");
         String amountOfMoney=request.getParameter("amountofmoney");
 
 
         depositDAO.create(new Deposit(
-                Integer.parseInt(userId),
+                Integer.parseInt(users[0]),
                 Integer.parseInt(amountOfMoney),
                 1
         ));
 
         request.setAttribute("message","Add new deposit successfully");
-        response.sendRedirect("/deposits");
+        response.sendRedirect("/dashboard/deposits");
 
     }
 

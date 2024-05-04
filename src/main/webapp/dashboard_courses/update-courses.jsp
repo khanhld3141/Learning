@@ -100,7 +100,7 @@
                         </div>
                         <div class="image-courses">
                             <label for="Image">Image</label>
-                            <input type="file" name="Image" id="Image" placeholder="Choose image" required>
+                            <input type="file" name="Image" id="Image" placeholder="Choose image">
                             <img src="/images/<%=course.getImage()%>"/>
                         </div>
                     </div>

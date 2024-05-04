@@ -25,6 +25,7 @@ public class PostDAO extends DBContext{
                         rs.getString("Title"),
                         rs.getString("Content"),
                         rs.getString("Comment"),
+                        rs.getString("Image"),
                         rs.getInt("Id"),
                         rs.getInt("AuthorId")
                 );
@@ -49,6 +50,7 @@ public class PostDAO extends DBContext{
                         rs.getString("Title"),
                         rs.getString("Content"),
                         rs.getString("Comment"),
+                        rs.getString("Image"),
                         rs.getInt("Id"),
                         rs.getInt("AuthorId")
                 );
@@ -60,13 +62,14 @@ public class PostDAO extends DBContext{
         return null;
     }
     public void create(Post Post) {
-        String sql = "insert into Posts (AuthorId,Title,Comment,Content) values(?,?,?,?)";
+        String sql = "insert into Posts (AuthorId,Title,Comment,Content,Image) values(?,?,?,?,?)";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setInt(1, Post.getAuthorId());
             st.setString(2, Post.getTitle());
             st.setString(3, Post.getComment());
             st.setString(4, Post.getContent());
+            st.setString(5,Post.getImage());
             // Execute the update
             st.executeUpdate();
         } catch (SQLException e) {
@@ -75,14 +78,15 @@ public class PostDAO extends DBContext{
     }
 
     public void update(Post Post) {
-        String sql = "update Posts AuthorId=?,Title =?,Comment=?,Content=? where Id=? ";
+        String sql = "update Posts set AuthorId=?,Title =?,Comment=?,Content=?,Image=? where Id=? ";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setInt(1, Post.getAuthorId());
             st.setString(2, Post.getTitle());
             st.setString(3, Post.getComment());
             st.setString(4, Post.getContent());
-            st.setInt(5, Post.getId());
+            st.setString(5, Post.getImage());
+            st.setInt(6, Post.getId());
             // Execute the update
             st.executeUpdate();
         } catch (SQLException e) {

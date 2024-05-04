@@ -1,3 +1,5 @@
+<%@ page import="model.User" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="../Component/sidebar__dashboard.jsp" %>
 <div class="content-admin">
@@ -6,15 +8,36 @@
             <h1 class="manage-posts__title title">Add New Post</h1>
         </div>
         <div class="add-posts add-block">
-            <form class="add-posts__form add-form">
+            <form enctype="multipart/form-data" method="post" action="/dashboard/create-post"
+                  class="add-posts__form add-form">
                 <div class="add-form__content">
+                    <div class="teacher-courses">
+                        <label for="TeacherId">Author</label>
+                        <input list="_TeacherId" name="author" id="TeacherId" placeholder="Choose a teacher" required>
+                        <datalist id="_TeacherId">
+                            <%
+                                if (request.getAttribute("users") != null) {
+                                    List<User> users=(List<User>) request.getAttribute("users");
+                                    for (User user : users) {
+                            %>
+                            <option value=<%=user.getId() + "-" +user.getName()%>>
+                                    <%
+                                        }
+                                    }
+                                %>
+                        </datalist>
+                    </div>
                     <div class="title-posts">
                         <label for="Title-post">Name</label>
-                        <input type="text" name="Title" id="Title-post" placeholder="Enter title post" required>
+                        <input type="text" name="title" id="Title-post" placeholder="Enter title post" required>
+                    </div>
+                    <div class="title-posts">
+                        <label for="Image-post">Image</label>
+                        <input type="file" name="image" id="Image-post" placeholder="Enter title post" required>
                     </div>
                     <div class="Comment-author-posts">
                         <label for="Comment-author-post">Comment</label>
-                        <textarea name="Comment" id="Comment-author-post" rows="12" placeholder="Enter comment"
+                        <textarea name="comment" id="Comment-author-post" rows="12" placeholder="Enter comment"
                                   required></textarea>
                     </div>
                     <div class="content-post">

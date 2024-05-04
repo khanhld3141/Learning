@@ -6,7 +6,7 @@
     <div class="manage-posts">
         <div class="manage-posts__block-title manage-block">
             <h1 class="manage-posts__title title">Manage posts</h1>
-            <a href="../dashboard_post/add-post.jsp" class="btn-dashboard btn__add-posts"><i
+            <a href="/dashboard/create-post" class="btn-dashboard btn__add-posts"><i
                     class="fa-solid fa-plus"></i>Add new posts</a>
         </div>
         <div class="table">
@@ -32,16 +32,16 @@
                     <td><%=post.getTitle()%></td>
                     <td><%=post.getAuthor().getName()%></td>
                     <td><a href="#!" title="View detail post"><i class="fa-solid fa-eye"></i></a>
-                        <a href="../dashboard_post/update-post.jsp" title="Update post"><i
+                        <a href="/dashboard/update-post?id=<%=post.getId()%>" title="Update post"><i
                                 class="fa-solid fa-pen"></i></a>
                         <!-- Button trigger modal -->
                         <button type="button" class="btn__modal" data-bs-toggle="modal"
-                                data-bs-target="#modal__delete" title="Delete post">
+                                data-bs-target="#modal__delete_<%=post.getId()%>" title="Delete post">
                             <i class="fa-solid fa-trash"></i>
                         </button>
                     </td>
                     <!--------------- MODAL DELETE-------------- -->
-                    <div class="modal fade modal__delete" id="modal__delete">
+                    <div class="modal fade modal__delete" id="modal__delete_<%=post.getId()%>">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -55,7 +55,7 @@
                                         cannot be recovered.</p>
                                 </div>
                                 <div class="modal-footer">
-                                    <a href="#!" class="btn btn-primary">Yes</a>
+                                    <a href="/dashboard/delete-post?id=<%=post.getId()%>" class="btn btn-primary">Yes</a>
                                     <button type="button" class="btn btn-danger"
                                             data-bs-dismiss="modal">No
                                     </button>

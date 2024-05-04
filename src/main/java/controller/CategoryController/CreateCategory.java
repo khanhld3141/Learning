@@ -4,6 +4,7 @@ import controller.Ulti.FileUploadUtil;
 import dal.BannerDAO;
 import dal.CategoryDAO;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -13,7 +14,7 @@ import model.Banner;
 import model.Category;
 
 import java.io.IOException;
-
+@MultipartConfig()
 @WebServlet(name = "CreateCategoryServlet", value = "/dashboard/create-category")
 public class CreateCategory extends HttpServlet {
     private String message;
@@ -30,7 +31,6 @@ public class CreateCategory extends HttpServlet {
         String name = request.getParameter("Name");
         Part image = request.getPart("Image");
         String realPath = request.getServletContext().getRealPath("/images");
-        System.out.println(name + ": " + image);
         String filename = FileUploadUtil.uploadFile(image, realPath);
 
         try{

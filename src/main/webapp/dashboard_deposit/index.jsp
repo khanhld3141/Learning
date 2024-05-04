@@ -1,3 +1,7 @@
+<%@ page import="java.util.List" %>
+<%@ page import="model.Deposit" %>
+<%@ page import="model.Status" %>
+<%@ page import="model.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="../Component/sidebar__dashboard.jsp" %>
 <div class="content-admin">
@@ -18,39 +22,44 @@
             <!--------------- MODAL ADD NEW DEPOSIT-------------- -->
             <div class="modal fade modal__add" id="modal__add-new-deposit">
                 <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="name-user">
-                                <label for="Name-user-add">Name's user</label>
-                                <input list="_Name-user" name="UserId" id="Name-user-add"
-                                       placeholder="Choose a user" required>
-                                <datalist id="_Name-user">
-                                    <option value="Dang Khanh">
-                                </datalist>
+                    <form action="/dashboard/create-deposit" method="post">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                             </div>
-                            <div class="money">
-                                <label for="Money-add">Money</label>
-                                <input type="number" placeholder="Enter amount of money" name="AmountOfMoney"
-                                       id="Money-add">
-                            </div>
-                            <div class="status">
-                                <label for="status-add">Status</label>
-                                <input list="_Status-name-add" name="StatusId" id="status-add"
-                                       placeholder="Choose a status" required>
-                                <datalist id="_Status-name-add">
-                                    <option value="Successful">
-                                </datalist>
-                            </div>
-                        </div>
+                            <div class="modal-body">
+                                <div class="name-user">
+                                    <label for="Name-user-add">Name's user</label>
+                                    <input list="_Name-user" name="user" id="Name-user-add"
+                                           placeholder="Choose a user" required>
+                                    <datalist id="_Name-user">
+                                        <%
+                                            if (request.getAttribute("users") != null) {
+                                                List<User> users = (List<User>) request.getAttribute("users");
+                                                for (User user : users) {
 
-                        <div class="modal-footer">
-                            <a href="../dashboard_deposit" class="btn btn-primary">Confirm</a>
-                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
+
+                                        %>
+                                        <option value="<%=user.getId()%>-<%=user.getName()%>">
+                                                <%
+                                               }
+                                            }
+                                               %>
+                                    </datalist>
+                                </div>
+                                <div class="money">
+                                    <label for="Money-add">Money</label>
+                                    <input type="number" placeholder="Enter amount of money" name="amountofmoney"
+                                           id="Money-add">
+                                </div>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="submit">Submit</button>
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
             <!-- --------------------------------------------------------------->
@@ -68,49 +77,77 @@
                 </tr>
                 </thead>
                 <tbody>
+                <%
+                    if (request.getAttribute("deposits") != null) {
+                        List<Deposit> deposits = (List<Deposit>) request.getAttribute("deposits");
+                        List<Status> statuss=(List<Status>) request.getAttribute("statuss");
+                        String  statusValue="";
+
+
+
+                        for (Deposit deposit : deposits) {
+                            for(Status status : statuss) {
+                                if(status.getId()==deposit.getStatusId()){
+                                    statusValue=status.getId()+"-"+status.getName();
+                                }
+                            }
+
+                %>
                 <tr>
-                    <td>1</td>
-                    <td>Dang Khanh</td>
-                    <td>50000$</td>
-                    <td>Successful</td>
+                    <td><%=deposit.getId()%>
+                    </td>
+                    <td><%=deposit.getUser().getName()%>
+                    </td>
+                    <td><%=deposit.getAmountOfMoney()%>$</td>
+                    <td><%=deposit.getStatus().getName()%>
+                    </td>
                     <td>
                         <!-- BUTTON TRIGGER UPDATE MODAL  -->
                         <button type="button" class="btn__modal" data-bs-toggle="modal"
-                                data-bs-target="#modal__update-deposit" style="border: none;"
+                                data-bs-target="#modal__update-deposit_<%=deposit.getId()%>" style="border: none;"
                                 title="Update deposit">
                             <i class="fa-solid fa-pen"></i>
                         </button>
                         <!--------------- MODAL UPDATE DEPOSIT-------------- -->
-                        <div class="modal fade modal__update" id="modal__update-deposit">
+                        <div class="modal fade modal__update" id="modal__update-deposit_<%=deposit.getId()%>">
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <button type="button" class="btn-close"
                                                 data-bs-dismiss="modal"></button>
                                     </div>
-                                    <form action="">
+                                    <form action="/dashboard/update-deposit" method="post">
                                         <div class="modal-body">
-                                            <!-- <div class="name-user">
-                                                <label for="Name-user-update">Name's user</label>
-                                                <input list="_Name-user" name="UserId" id="Name-user-update"
-                                                    placeholder="Choose a user" required>
-                                                <datalist id="_Name-user">
-                                                    <option value="Dang Khanh">
-                                                </datalist>
-                                            </div> -->
+                                            <input name="id" value="<%=deposit.getId()%>" hidden="hidden">
+                                            <input name="userid" value="<%=deposit.getUserId()%>">
                                             <div class="money">
                                                 <label for="Money-update">Money</label>
-                                                <input type="number" placeholder="Enter amount of money"
-                                                       name="AmountOfMoney" id="Money-update">
+                                                <input value="<%=deposit.getAmountOfMoney()%>" type="number"
+                                                       placeholder="Enter amount of money"
+                                                       name="amountofmoney" id="Money-update">
                                             </div>
+
                                             <div class="status">
                                                 <label for="status-update">Status</label>
-                                                <input list="_Status-name-update" name="StatusId" id="status-update"
+                                                <input value="<%=statusValue%>" list="_Status-name-update" name="status"
+                                                       id="status-update"
                                                        placeholder="Choose a status" required>
                                                 <datalist id="_Status-name-update">
-                                                    <option value="Successful">
+                                                    <%
+                                                        if (request.getAttribute("statuss") != null) {
+                                                            List<Status> statuses = (List<Status>)
+                                                                    request.getAttribute("statuss");
+                                                            for (Status status : statuses) {
+
+                                                    %>
+                                                    <option value="<%=status.getId()%>-<%=status.getName()%>">
+                                                            <%
+                                                        }
+                                                            }
+                                                    %>
                                                 </datalist>
                                             </div>
+
                                         </div>
                                         <div class="modal-footer">
                                             <button class="btn btn-primary" type="submit">Confirm</button>
@@ -126,12 +163,12 @@
 
                         <!-- BUTTON TRIGGER DELETE MODAL  -->
                         <button type="button" class="btn__modal" data-bs-toggle="modal"
-                                data-bs-target="#modal__delete-category" title="Delete deposit">
+                                data-bs-target="#modal__delete-deposit_<%=deposit.getId()%>" title="Delete deposit">
                             <i class="fa-solid fa-trash"></i>
                         </button>
                     </td>
                     <!--------------- MODAL DELETE---------------------------- -->
-                    <div class="modal fade modal__delete" id="modal__delete-category">
+                    <div class="modal fade modal__delete" id="modal__delete-deposit_<%=deposit.getId()%>">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -145,7 +182,8 @@
                                         cannot be recovered.</p>
                                 </div>
                                 <div class="modal-footer">
-                                    <a href="../dashboard_deposit" class="btn btn-primary">Yes</a>
+                                    <a href="/dashboard/delete-deposit?id=<%=deposit.getId()%>" class="btn btn-primary">Yes
+                                    </a>
                                     <button type="button" class="btn btn-danger"
                                             data-bs-dismiss="modal">No
                                     </button>
@@ -154,6 +192,10 @@
                         </div>
                     </div>
                 </tr>
+                <%
+                        }
+                    }
+                %>
                 <!-- ------------------------------------------------->
                 <script src="../assets/js/Sort_table/sort-table.js"></script>
                 </tbody>

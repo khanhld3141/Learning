@@ -32,7 +32,7 @@ public class DeleteCategory extends HttpServlet {
                 String realPath = request.getServletContext().getRealPath("/images");
                 FileUploadUtil.deleteFile(realPath, category.getImage());
                 CategoryDAO.delete(id);
-                response.sendRedirect("/categories");
+                response.sendRedirect("/dashboard/categories");
             } catch (Exception e) {
                 e.printStackTrace();
             }

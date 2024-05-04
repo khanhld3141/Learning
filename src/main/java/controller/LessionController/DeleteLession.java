@@ -27,7 +27,7 @@ public class DeleteLession extends HttpServlet {
                 int id = Integer.parseInt(idStr);
                 Lession lession = lessionDAO.get(id);
                 String realPath = request.getServletContext().getRealPath("/images");
-//                FileUploadUtil.deleteFile(realPath,lession.getLink());
+                FileUploadUtil.deleteFile(realPath,lession.getLink());
                 lessionDAO.delete(id);
                 response.sendRedirect("/dashboard/lessions?chapterid=" + chapterid);
             } catch (Exception e) {

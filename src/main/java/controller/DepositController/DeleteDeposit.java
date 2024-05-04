@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name = "DeleteCategoryServlet", value = "/delete-deposit")
+@WebServlet(name = "DeleteDepositServlet", value = "/dashboard/delete-deposit")
 public class DeleteDeposit extends HttpServlet {
     private String message;
     private DepositDAO depositDAO;
@@ -34,7 +34,7 @@ public class DeleteDeposit extends HttpServlet {
             }
         } else {
             request.setAttribute("message", "Missing parameter id");
-            request.getRequestDispatcher("/deposits").forward(request, response);
+            request.getRequestDispatcher("/dashboard/deposits").forward(request, response);
         }
     }
 

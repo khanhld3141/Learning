@@ -13,21 +13,23 @@ import model.Course;
 import model.Lession;
 import model.User;
 
-@WebServlet(name = "UpdateLessionServlet", value = "/dashboard/update-lession")
+@MultipartConfig
+@WebServlet(name = "UpdateLessionServlet12424124", value = "/dashboard/update-lession")
 public class UpdateLession extends HttpServlet {
     private String message;
     private LessionDAO lessionDAO;
+
     public void init() {
         message = "Hello World!";
-        lessionDAO=new LessionDAO();
+        lessionDAO = new LessionDAO();
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         if (request.getParameter("id") != "") {
             String idStr = request.getParameter("id");
             try {
-               Lession lession=lessionDAO.get(Integer.parseInt(idStr));
-               request.setAttribute("lession", lession);
+                Lession lession = lessionDAO.get(Integer.parseInt(idStr));
+                request.setAttribute("lession", lession);
                 request.getRequestDispatcher("").forward(request, response);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -41,14 +43,14 @@ public class UpdateLession extends HttpServlet {
         String chapterId = request.getParameter("chapterid");
         String name = request.getParameter("name");
         String description = request.getParameter("description");
-        String id=request.getParameter("id");
+        String id = request.getParameter("id");
         Part video = request.getPart("video");
         String realPath = request.getServletContext().getRealPath("/images");
         String filename = FileUploadUtil.uploadFile(video, realPath);
         Lession lession = lessionDAO.get(Integer.parseInt(id));
 
         try {
-            FileUploadUtil.deleteFile(realPath,lession.getLink());
+//            FileUploadUtil.deleteFile(realPath, lession.getLink());
             lessionDAO.update(new Lession(
                     Integer.parseInt(id),
                     Integer.parseInt(chapterId),
@@ -56,10 +58,11 @@ public class UpdateLession extends HttpServlet {
                     description,
                     filename
             ));
-            response.sendRedirect("/dashboard/courses");
+            response.sendRedirect("/dashboard/lessions?chapterid=" + chapterId);
         } catch (Exception e) {
-            request.setAttribute("error", "Please enter chapter id");
-            request.getRequestDispatcher("").forward(request, response);
+            e.printStackTrace();
+//            request.setAttribute("error", "Please enter chapter id");
+//            request.getRequestDispatcher("").forward(request, response);
         }
     }
 

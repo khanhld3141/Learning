@@ -161,7 +161,7 @@
                 %>
                 <a href="#!" class="category__card">
                     <div class="card__logo">
-                        <img src="<%=c.getImage()%>"/>
+                        <img src="/images/<%=c.getImage()%>"/>
                     </div>
                     <div class="card__name"><%=c.getName()%>
                     </div>

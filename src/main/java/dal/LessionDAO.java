@@ -74,7 +74,7 @@ public class LessionDAO extends DBContext{
     }
 
     public void update(Lession Lession) {
-        String sql = "update Lessions ChapterId=?,Name =?,Description=?,Link=? where Id=? ";
+        String sql = "update Lessions set ChapterId=?,Name =?,Description=?,Link=? where Id=? ";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setInt(1, Lession.getChapterId());

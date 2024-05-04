@@ -54,7 +54,7 @@ public class CategoryDAO extends DBContext{
         return null;
     }
     public void create(Category Category) {
-        String sql = "insert into Categoryies (Name,Image) values(?,?)";
+        String sql = "insert into Categories (Name,Image) values(?,?)";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setString(1, Category.getName());

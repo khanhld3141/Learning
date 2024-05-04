@@ -113,22 +113,33 @@
                                     <button type="button" class="btn-close"
                                             data-bs-dismiss="modal"></button>
                                 </div>
-                                <form action="/dashboard/update-less">
+                                <%
+                                    if (request.getAttribute("chapter") != null) {
+                                        Chapter chapter = (Chapter) request.getAttribute("chapter");
+
+
+                                %>
+                                <form action="/dashboard/update-lession" method="post" enctype="multipart/form-data">
                                     <div class="modal-body">
+                                        <input type="text" value="<%=l.getId()%>" name="id" hidden="hidden">
+                                        <input type="text" value="<%=chapter.getId()%>" name="chapterid" readonly>
                                         <div class="name-lesson">
                                             <label for="Name-Update">Name lesson</label>
-                                            <input value="<%=l.getName()%>" type="text" name="Name" id="Name-Update"
+                                            <input value="<%=l.getName()%>" type="text" name="name" id="Name-Update"
                                                    placeholder="Enter name lesson" required>
                                         </div>
                                         <div class="description-lesson">
                                             <label for="Description-Update">Description lesson</label>
-                                            <textarea name="Description" id="Description-Update" rows="10" required
+                                            <textarea name="description" id="Description-Update" rows="10" required
                                                       placeholder="Enter description lesson"><%=l.getDescription()%></textarea>
                                         </div>
                                         <div class="Video-lesson">
                                             <label for="FileUpload-Update">Upload new video</label>
                                             <input type="file" name="video" id="FileUpload-Update"
-                                                   placeholder="Enter video lesson" required>
+                                                   placeholder="Enter video lesson">
+                                            <video controls width="100%" height="auto">
+                                                <source src="/images/<%=l.getLink()%>">
+                                            </video>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
@@ -138,6 +149,9 @@
                                         </button>
                                     </div>
                                 </form>
+                                <%
+                                    }
+                                %>
                             </div>
                         </div>
                     </div>
