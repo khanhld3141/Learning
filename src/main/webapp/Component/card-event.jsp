@@ -15,7 +15,7 @@
         <h1 class="content__time">
             <i class="fa-regular fa-clock"></i>
             ${param.time}</h1>
-        <a href="#!" class="content__name">${param.head}</a>
+        <a href="../Event_details/" class="content__name">${param.head}</a>
         <p class="content__text">${param.content}</p>
     </div>
 </div>

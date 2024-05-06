@@ -228,13 +228,13 @@
     box-sizing : border-box;
     display: block;
     flex-basis: 50%;
-    height: 629.2px;
+    height: 100%;
 
     max-width : 50%;
 
     padding-left: 15px;
     padding-right: 15px;
-
+    margin-bottom: 40px;
     position :relative;
     text-align: left;
     width: 480px;

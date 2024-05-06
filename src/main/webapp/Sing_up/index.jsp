@@ -50,10 +50,10 @@
                     </div>
                     <div class="form-check">
                         <input type="checkbox" class="form-check-input" name="" value="">
-                        <label class="form-check-label">Agree with <a href="#">Terms and Conditions</a></label>
+                        <label class="form-check-label">Agree with <a href="../Terms_Conditions">Terms and Conditions</a></label>
                     </div>
                     <button class="btn btn-filled btn-round">Signup</button>
-                    <p class="notice">Already have an account? <a href="#!">Login Account</a></p>
+                    <p class="notice">Already have an account? <a href="../Login/Login.jsp">Login Account</a></p>
                 </form>
             </div>
         </div>
