@@ -7,6 +7,7 @@
     </h2>
     <div id="collapse${param.number_chapter}" class="accordion-collapse collapse" aria-labelledby="heading${param.number_chapter}" data-bs-parent="#accordionExample">
 
+<%--        thay numberOfLessons --%>
         <%
             int numberOfLessons = 10;
         %>

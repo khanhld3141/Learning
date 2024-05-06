@@ -3,44 +3,44 @@
 <main>
     <div class="payment">
         <div class="payment-content">
-            <div class="side-bar">
-                <div class="course-name-box">
-                    <h2>Course's name:</h2>
-                    <span class="course-name">HTML CSS Pro</span>
-                </div>
-                <div class="course-id-box">
-                    <h2>Course's ID:</h2>
-                    <span class="course-id">F8C1FHP8</span>
-                </div>
-                <hr class="payment-divider">
-                <div class="voucher-input">
-                    <form action="" class="voucher-input-typeID">
-                        <input type="text" name="" id="" placeholder="Type voucher's ID here">
-                        <button class="btn-apply-voucherID"><span>APPLY</span></button>
-                    </form>
-                </div>
-                <div class="payment-detail">
-                    <div class="payment-detail-subtitle">
-                        <h2>Payment details:</h2>
-                    </div>
-                    <div class="payment-detail-wrapper">
-                        <div class="price-box">
-                            <span class="price-desc">Price:</span>
-                            <span class="price-detail">1.299.000 vnd</span>
-                        </div>
-                        <hr class="payment-divider">
-                        <div class="price-box price-reduced">
-                            <span class="price-desc">Reduced price:</span>
-                            <span class="price-detail">0 vnd</span>
-                        </div>
-                        <hr class="payment-divider">
-                        <div class="price-box total-price-box">
-                            <span class="price-desc">Total price:</span>
-                            <span class="price-detail">1.299.000 vnd</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<%--            <div class="side-bar">--%>
+<%--                <div class="course-name-box">--%>
+<%--                    <h2>Course's name:</h2>--%>
+<%--                    <span class="course-name">HTML CSS Pro</span>--%>
+<%--                </div>--%>
+<%--                <div class="course-id-box">--%>
+<%--                    <h2>Course's ID:</h2>--%>
+<%--                    <span class="course-id">F8C1FHP8</span>--%>
+<%--                </div>--%>
+<%--                <hr class="payment-divider">--%>
+<%--                <div class="voucher-input">--%>
+<%--                    <form action="" class="voucher-input-typeID">--%>
+<%--                        <input type="text" name="" id="" placeholder="Type voucher's ID here">--%>
+<%--                        <button class="btn-apply-voucherID"><span>APPLY</span></button>--%>
+<%--                    </form>--%>
+<%--                </div>--%>
+<%--                <div class="payment-detail">--%>
+<%--                    <div class="payment-detail-subtitle">--%>
+<%--                        <h2>Payment details:</h2>--%>
+<%--                    </div>--%>
+<%--                    <div class="payment-detail-wrapper">--%>
+<%--                        <div class="price-box">--%>
+<%--                            <span class="price-desc">Price:</span>--%>
+<%--                            <span class="price-detail">1.299.000 vnd</span>--%>
+<%--                        </div>--%>
+<%--                        <hr class="payment-divider">--%>
+<%--                        <div class="price-box price-reduced">--%>
+<%--                            <span class="price-desc">Reduced price:</span>--%>
+<%--                            <span class="price-detail">0 vnd</span>--%>
+<%--                        </div>--%>
+<%--                        <hr class="payment-divider">--%>
+<%--                        <div class="price-box total-price-box">--%>
+<%--                            <span class="price-desc">Total price:</span>--%>
+<%--                            <span class="price-detail">1.299.000 vnd</span>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </div>--%>
             <div class="body">
                 <div class="body-middle">
                     <div class="bank-qr">
@@ -51,7 +51,7 @@
                             </div>
                             <div class="instruction">
                                 <li>Step 1: Open the banking app and scan the QR code.</li>
-                                <li>Step 2: Make sure the transfer content is <span class="course-id">F8C1FHP8</span>.</li>
+                                <li>Step 2: Make sure the transfer content is RECHARGE.</li>
                                 <li>Step 3: Make payment.</li>
                             </div>
                         </div>
@@ -69,7 +69,7 @@
                             </li>
                             <li class="bank-manual-box">
                                 <div class="box-label">Account content</div>
-                                <div class="box-content"><span class="course-id">F8C1FHP8</span></div>
+                                <div class="box-content"><span class="course-id">RECHARGE</span></div>
                             </li>
                             <li class="bank-manual-box">
                                 <div class="box-label">Branch</div>
