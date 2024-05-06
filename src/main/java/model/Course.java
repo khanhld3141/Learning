@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -11,6 +12,7 @@ public class Course {
     private Category Category;
     private User Teacher;
     private List<User> students;
+    private Date CreatedAt;
     public Course() {
         Category=new Category();
         Teacher = new User();
@@ -31,6 +33,7 @@ public class Course {
         Category=new Category();
         Teacher = new User();
         students=new ArrayList<User>();
+        CreatedAt=new Date();
     }
 
     public Course(int teacherId, int price, int cateId, String name, String introduce, String image, String overview, String result) {
@@ -46,6 +49,15 @@ public class Course {
         Category=new Category();
         Teacher = new User();
         students=new ArrayList<User>();
+        CreatedAt=new Date();
+    }
+
+    public Date getCreatedAt() {
+        return CreatedAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        CreatedAt = createdAt;
     }
 
     public int getId() {

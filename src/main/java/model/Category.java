@@ -3,6 +3,7 @@ package model;
 public class Category {
     private int Id;
     private String Name,Image;
+    int totalCourse;
     public Category() {
     }
 
@@ -39,5 +40,13 @@ public class Category {
 
     public void setImage(String image) {
         this.Image = image;
+    }
+
+    public int getTotalCourse() {
+        return totalCourse;
+    }
+
+    public void setTotalCourse(int totalCourse) {
+        this.totalCourse = totalCourse;
     }
 }

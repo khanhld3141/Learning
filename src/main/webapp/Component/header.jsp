@@ -67,7 +67,7 @@
                         <a href="/home">HOME</a>
                     </li>
                     <li class="navbar__item">
-                        <a href="../About">ABOUT</a>
+                        <a href="/about">ABOUT</a>
                     </li>
                     <li class="navbar__item has-child">
                         <a href="#!">COURSES</a>
@@ -86,10 +86,10 @@
                         <i class="fa-solid fa-sort-down"></i>
                         <ul class="sub-menu">
                             <li>
-                                <a href="../blog">BLOG</a>
+                                <a href="/blogs">BLOG</a>
                             </li>
                             <li>
-                                <a href="../blog-details">BLOG DETAILS</a>
+                                <a href="/blog-details?id=6">BLOG DETAILS</a>
                             </li>
                         </ul>
                     </li>
@@ -98,7 +98,7 @@
                         <i class="fa-solid fa-sort-down"></i>
                         <ul class="sub-menu">
                             <li>
-                                <a href="../Event">EVENT</a>
+                                <a href="/event">EVENT</a>
                             </li>
                             <li>
                                 <a href="../Event_details">EVENT DETAILS</a>
@@ -110,10 +110,10 @@
                         <i class="fa-solid fa-sort-down"></i>
                         <ul class="sub-menu">
                             <li>
-                                <a href="../Pricing">PRICING</a>
+                                <a href="/pricing">PRICING</a>
                             </li>
                             <li>
-                                <a href="../Terms_Conditions">TERMS AND CONDITIONS</a>
+                                <a href="/term-and-conditions">TERMS AND CONDITIONS</a>
                             </li>
                             <li>
                                 <a href="/login">LOGIN</a>
@@ -124,7 +124,13 @@
                         </ul>
                     </li>
                     <li class="navbar__item">
-                        <a href="../Contact">CONTACT</a>
+                        <a href="/contact">CONTACT</a>
+                    </li>
+                    <li class="navbar__item">
+                        <a href="/payment">PAYMENT</a>
+                    </li>
+                    <li class="navbar__item">
+                        <a href="/learning">LEARN</a>
                     </li>
                     <%
                         if(session.getAttribute("user")==null){

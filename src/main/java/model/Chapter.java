@@ -5,21 +5,21 @@ import java.util.List;
 
 public class Chapter {
 
-    private int Id,CourseId;
-    private String Name,Ordinal;
+    private int Id,CourseId,Ordinal;
+    private String Name;
 
     private  List<Lession> lessions;
     public Chapter() {
     }
 
-    public Chapter(int courseId, String name, String ordinal) {
+    public Chapter(int courseId, String name, int ordinal) {
         CourseId = courseId;
         Name = name;
         Ordinal = ordinal;
         lessions=new ArrayList<>();
     }
 
-    public Chapter(int id, int courseId, String name, String ordinal) {
+    public Chapter(int id, int courseId, String name, int ordinal) {
         Id = id;
         CourseId = courseId;
         Name = name;
@@ -51,11 +51,11 @@ public class Chapter {
         Name = name;
     }
 
-    public String getOrdinal() {
+    public int getOrdinal() {
         return Ordinal;
     }
 
-    public void setOrdinal(String ordinal) {
+    public void setOrdinal(int ordinal) {
         Ordinal = ordinal;
     }
 

@@ -13,12 +13,15 @@ public class PostDAO extends DBContext{
     public PostDAO(){
         super();
     }
-    public List<Post> getAllPosts(){
+    public List<Post> getAllPosts(int page,int recordsPerPage){
         List <Post> list = new ArrayList<>();
-        String sql = "select posts.*,users.name as UserName from posts inner join users on users.id=posts.AuthorId";
+        String sql = "select posts.*,users.name as UserName from posts inner join users on users.id=posts.AuthorId  ORDER BY Id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
 
         try {
             PreparedStatement st = connection.prepareStatement(sql);
+            int offset = (page - 1) * recordsPerPage;
+            st.setInt(1, offset);
+            st.setInt(2, recordsPerPage);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 Post Post = new Post(
@@ -29,6 +32,7 @@ public class PostDAO extends DBContext{
                         rs.getInt("Id"),
                         rs.getInt("AuthorId")
                 );
+                Post.setCreatedAt(rs.getTimestamp("createdAt"));
                 Post.setAuthor(new User(0,rs.getString("UserName"),"","","","",""));
                 list.add(Post);
             }
@@ -39,7 +43,8 @@ public class PostDAO extends DBContext{
         return list;
     }
     public Post get(int id) {
-        String sql = "select * from Posts where id = ?";
+        String sql = "select posts.*,users.name as UserName from posts inner join users on users.id=posts.AuthorId " +
+                "where Posts.id = ?";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setInt(1, id);
@@ -54,6 +59,8 @@ public class PostDAO extends DBContext{
                         rs.getInt("Id"),
                         rs.getInt("AuthorId")
                 );
+                Post.setCreatedAt(rs.getTimestamp("createdAt"));
+                Post.setAuthor(new User(0,rs.getString("UserName"),"","","","",""));
                 return Post;
             }
         } catch (SQLException e) {

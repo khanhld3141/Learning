@@ -1,5 +1,7 @@
+<%@ page import="java.util.List" %>
+<%@ page import="model.*" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include file="../Component/header.jsp"%>
+<%@include file="../Component/header.jsp" %>
 
 <main>
     <style>
@@ -26,25 +28,33 @@
     <!-- courses details -->
     <section class="courses-details">
         <div class="main-content">
+            <%
+                if (request.getAttribute("course") != null) {
+                    Course course = (Course) request.getAttribute("course");
+                    List<CourseComment> courseComment = (List<CourseComment>) request.getAttribute("comments");
+            %>
             <div class="courses-details__content">
                 <!-- courses-details-left -->
+
+
                 <div class="courses-details__left">
                     <!-- video -->
                     <div class="courses-details__demo-video">
-                        <video controls width="100%" height="auto">
-                            <source src="../video/demo-video.mp4">
-                        </video>
+                        <img style="width: 100%;object-fit: cover" src="/images/<%=course.getImage()%>">
                     </div>
                     <!-- Information courses -->
                     <div class=" courses-details__infor">
-                        <h3 class="title">HTML5 for beginners</h3>
+                        <h3 class="title"><%=course.getName()%>
+                        </h3>
                         <span class="hot"><i class="fa-solid fa-bookmark"></i>Hot & new</span>
-                        <p class="desc">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eius, quae
-                            soluta. Praesentium consequatur odio recusandae nostrum pariatur unde</p>
+                        <p class="desc"><%=course.getIntroduce()%>
+                        </p>
                         <div class="details">
                             <span>By <a href="#">Von wick</a></span>
-                            <span>Last update 10 April 2024</span>
-                            <span>39 Reviews</span>
+                            <span>Last update <%=course.getCreatedAt().getDate()%> /
+                                <%=course.getCreatedAt().getMonth()%> /
+                                <%=course.getCreatedAt().getYear() + 1900%></span>
+                            <span><%=courseComment.size()%> Reviews</span>
                             <span class="ratings">
                                         <a href="#"><i class="fa-regular fa-star" style="color: #FFD43B;"></i></a>
                                         <a href="#"><i class="fa-regular fa-star" style="color: #FFD43B;"></i></a>
@@ -58,7 +68,8 @@
                     <div class="courses-details__overview">
                         <p class="btn courses-overview__btn">Overview</p>
                         <div class="courses-overview__infor">
-                            <!-- this courses include -->
+                            <%=course.getOverview()%>
+                            <%--<!-- this courses include -->
                             <div class="include">
                                 <h3 class="heading">This course includes</h3>
                                 <ul type="none">
@@ -113,7 +124,7 @@
                                     <li><i class="fa-solid fa-hand-point-right"></i> HTML elements are represented
                                         by tags</li>
                                 </ul>
-                            </div>
+                            </div>--%>
                         </div>
                     </div>
                     <!-- Curriculum -->
@@ -121,37 +132,49 @@
                         <h1 class="btn curriculum__btn" style="margin-bottom: 0;">Curriculum</h1>
                         <div class="curriculum__content">
                             <div class="accordion" id="accordionCurriculum">
-                                <% for (int i = 1; i < 10; i++) {%>
-                                <%@include file="../Component/curriculum-chapter-item.jsp"%>
-                                <% } %>
+                                <%@include file="../Component/curriculum-chapter-item.jsp" %>
                             </div>
                         </div>
                     </div>
                     <!--  comment-->
                     <div class="comment">
                         <h3 class="title">Comments</h3>
-                        <% for(int i = 0; i < 3; i++) { %>
-                        <%@include file="../Component/comment_item.jsp"%>
-                        <% } %>
+                        <%--                        <% for(int i = 0; i < 3; i++) { %>--%>
+                        <%--                        <%@include file="../Component/comment_item.jsp"%>--%>
+                        <%--                        <% } %>--%>
                     </div>
                     <!-- form comment -->
-                    <%@include file="../Component/comment_form.jsp"%>
+                    <%@include file="../Component/comment_form.jsp" %>
                 </div>
+
                 <!-- courses-details-right -->
                 <div class="courses-details__right">
                     <!-- buy courses -->
                     <div class="widget buy-courses">
-                        <p class="price"><strong>$11.39</strong><span>$111.00</span></p>
+                        <p class="price"><strong>$<%=course.getPrice()%></strong><span>$111.00</span></p>
                         <span class="discount-price"><i class="fa-regular fa-clock"></i>90% off for 23 hours</span>
-                        <a href="#" class="btn add-to-card__btn">Add to cart</a>
+
+                        <%
+                            if(session.getAttribute("user")!=null){
+
+                        %>
+
+                        <a href="#" class="btn buy-now__btn">Learn now</a>
+                        <%
+                            }else{
+
+                        %>
                         <a href="#" class="btn buy-now__btn">Buy now</a>
+                        <%
+                            }
+                        %>
                     </div>
                     <!-- instractors -->
                     <div class="widget instractors">
                         <figure>
-                            <img src="../img/Testimonial/avatar3.jpeg" alt="avatar" class="instractors__avatar">
+                            <img src="/images/<%=course.getTeacher().getAvatar()%>" alt="avatar" class="instractors__avatar">
                         </figure>
-                        <h4>Lisa Sordan</h4>
+                        <h4><%=course.getTeacher().getName()%></h4>
                         <span>Web designer</span>
                         <div class="socials">
                             <a href="#" class="facebook"><i class="fa-brands fa-facebook-f"></i></a>
@@ -166,23 +189,31 @@
                     <div class="widget list-categories">
                         <h3 class="widget__title list-categories__title">Categories</h3>
                         <ul>
-                            <% for (int i = 1; i <= 8; i++) {%>
-                                <li><a href="#">App Design <span>(5)</span></a></li>
-                            <% } %>
+                            <%
+                                if (request.getAttribute("categories") != null) {
+                                    List<Category> categories = (List<Category>) request.getAttribute("categories");
+                                    for (Category category : categories) {
+                            %>
+                            <li><a href="#"><%=category.getName()%> <span>(<%=category.getTotalCourse()%>)</span></a></li>
+                            <%
+                                    }
+                                }
+                            %>
                         </ul>
                     </div>
                     <!-- recent-courses -->
                     <div class="widget recent-courses">
                         <h3 class="widget__title recent-courses__title">Recent Courses</h3>
                         <ul>
-                            <% for (int i = 1; i <= 3; i++) {%>
-                            <%@include file="../Component/recent-courses__item.jsp"%>
-                            <% } %>
+                            <%@include file="../Component/recent-courses__item.jsp" %>
                         </ul>
                     </div>
                 </div>
             </div>
+            <%
+                }
+            %>
         </div>
     </section>
 </main>
-<%@include file="../Component/footer.jsp"%>
+<%@include file="../Component/footer.jsp" %>

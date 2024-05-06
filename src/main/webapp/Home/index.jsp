@@ -2,6 +2,7 @@
 <%@ page import="model.Category" %>
 <%@ page import="model.Course" %>
 <%@ page import="model.Post" %>
+<%@ page import="model.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="../Component/header.jsp" %>
 <main>
@@ -227,47 +228,7 @@
         <div class="main-content">
             <h1 class="title title__popular-courses">Popular Courses</h1>
             <div class="owl-carousel owl-theme">
-                <!-- item 1 -->
-                <%
-                    if (request.getAttribute("courses") != null) {
-                        List<Course> courses = (List<Course>) request.getAttribute("courses");
-                        for (Course c : courses) {
-
-                %>
-                <div class="item__card-courses">
-                    <div class="card-courses" id="card-courses">
-                        <div class="card-courses__thumb">
-                            <img src="/images/<%=c.getImage()%>" alt="" class="card-courses__img">
-                            <p class="price__courses"><%=c.getPrice()%>$</p>
-                        </div>
-
-                        <div class="card-courses__content">
-                            <a href="#!" class="card-courses__heading"><%=c.getName()%>
-                            </a>
-                            <h3 class="card-courses__desc"><%=c.getIntroduce()%>
-                            </h3>
-                            <div class="card-courses__enroll">
-                                <div class="enroll__left">
-                                    <p class="total-student"><i
-                                            class="fa-regular fa-user"></i> <%=c.getStudents().size()%>
-                                        Students</p>
-                                    <div class="total-star">
-                                        <i class="fa-regular fa-star" style="color: #FFD43B;"></i>
-                                        <i class="fa-regular fa-star" style="color: #FFD43B;"></i>
-                                        <i class="fa-regular fa-star" style="color: #FFD43B;"></i>
-                                        <i class="fa-regular fa-star" style="color: #FFD43B;"></i>
-                                        <i class="fa-regular fa-star" style="color: #FFD43B;"></i>
-                                    </div>
-                                </div>
-                                <button class="btn btn--enroll">ENROLL NOW</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <%
-                        }
-                    }
-                %>
+                <%@include file="../Component/card-courses.jsp"%>
             </div>
         </div>
     </div>
@@ -277,19 +238,47 @@
         <div class="main-content">
             <div class="list-high-light">
                 <div class="high-light__item">
-                    <span>291</span>
+                    <%
+                        if(request.getAttribute("courses")!=null){
+                            List<Course> courses = (List<Course>)request.getAttribute("courses");
+                    %>
+                    <span><%=courses.size()%></span>
+                    <%
+                        }
+                    %>
                     <p>Amazing Courses</p>
                 </div>
                 <div class="high-light__item">
-                    <span>38</span>
+                    <%
+                        if(request.getAttribute("teachers")!=null){
+                            List<User> teachers = (List<User>)request.getAttribute("teachers");
+                    %>
+                    <span><%=teachers.size()%></span>
+                    <%
+                        }
+                    %>
                     <p>talented instructors</p>
                 </div>
                 <div class="high-light__item">
-                    <span>3940</span>
+                    <%
+                        if(request.getAttribute("countStudent")!=null){
+                            int count=(int)request.getAttribute("countStudent");
+                    %>
+                    <span><%=count%></span>
+                    <%
+                        }
+                    %>
                     <p>Skilled Students</p>
                 </div>
                 <div class="high-light__item">
-                    <span>14</span>
+                    <%
+                        if (request.getAttribute(("categories")) != null) {
+                            List<Category> categories = (List<Category>) request.getAttribute(("categories"));
+                    %>
+                    <span><%=categories.size()%></span>
+                    <%
+                        }
+                    %>
                     <p>categories</p>
                 </div>
             </div>
@@ -312,20 +301,25 @@
                 <div class="item__card-blog">
                     <figure class="card-blog">
                         <div class="card-blog__thumb">
-                            <img src="../img/slide-blog/slide3.jpg" alt="" class="card-blog__img">
+                           <a href="/detail-blog?id=<%=post.getId()%>"> <img src="/images/<%=post.getImage()%>" alt=""
+                                                         class="card-blog__img"></a>
                         </div>
 
                         <div class="card-blog__content">
                             <div class="blog-meta-tags">
-                                <a href="#" class="blog-category">Data Science
-                                </a> <span>|</span> <a href="#" class="blog-date">25 April, 2024</a>
+                                 <a href="#"
+                                    class="blog-date"><%=post.getCreatedAt().getDate()
+                                         +" / "+post.getCreatedAt().getMonth()
+                                        +" / "+(post.getCreatedAt().getYear()+1900)
+
+                                 %></a>
                             </div>
                             <div class="title-blog">
-                                Own may face grass dot subdue brought
+                                <a href="/detail-blog?id=<%=post.getId()%>"><%=post.getTitle()%></a>
                             </div>
                             <div class="blog-meta-tags">
-                                <a href="#" class="blog-comment"><i class="fa-regular fa-comment"></i> 2
-                                    Comments</a>
+                                <a href="#" class="blog-comment"><i class="fa-regular fa-comment"></i>
+                                    <%=post.getAuthor().getName()%></a>
                             </div>
                         </div>
                     </figure>
@@ -424,5 +418,6 @@
             </div>
         </div>
     </div>
+    
 </main>
 <%@include file="../Component/footer.jsp" %>

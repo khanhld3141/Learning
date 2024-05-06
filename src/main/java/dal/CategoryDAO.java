@@ -53,6 +53,30 @@ public class CategoryDAO extends DBContext{
         }
         return null;
     }
+    public List<Category> getWithNumberOfCourses(){
+        List <Category> list = new ArrayList<>();
+        String sql = "SELECT Categories.id, Categories.Name, COUNT(courses.Id) AS Total\n" +
+                "FROM Categories\n" +
+                "LEFT JOIN courses ON Categories.Id = courses.CateId\n" +
+                "GROUP BY Categories.id, Categories.Name";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Category Category = new Category(
+                        rs.getInt("Id"),
+                        rs.getString("Name"),
+                        ""
+                );
+                Category.setTotalCourse(rs.getInt("Total"));
+                list.add(Category);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
     public void create(Category Category) {
         String sql = "insert into Categories (Name,Image) values(?,?)";
         try {

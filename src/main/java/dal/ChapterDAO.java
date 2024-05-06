@@ -25,7 +25,7 @@ public class ChapterDAO extends DBContext{
                         rs.getInt("Id"),
                         rs.getInt("CourseId"),
                         rs.getString("Name"),
-                        rs.getString("Ordinal")
+                        rs.getInt("Ordinal")
                 );
                 list.add(Chapter);
             }
@@ -46,7 +46,7 @@ public class ChapterDAO extends DBContext{
                         rs.getInt("Id"),
                         rs.getInt("CourseId"),
                         rs.getString("Name"),
-                        rs.getString("Ordinal")
+                        rs.getInt("Ordinal")
                 );
                 return Chapter;
             }
@@ -61,7 +61,7 @@ public class ChapterDAO extends DBContext{
             PreparedStatement st = connection.prepareStatement(sql);
             st.setInt(1, Chapter.getCourseId());
             st.setString(2, Chapter.getName());
-            st.setString(3, Chapter.getOrdinal());
+            st.setInt(3, Chapter.getOrdinal());
             // Execute the update
             st.executeUpdate();
         } catch (SQLException e) {
@@ -75,7 +75,7 @@ public class ChapterDAO extends DBContext{
             PreparedStatement st = connection.prepareStatement(sql);
             st.setString(1, Chapter.getName());
             st.setInt(2, Chapter.getCourseId());
-            st.setString(3, Chapter.getOrdinal());
+            st.setInt(3, Chapter.getOrdinal());
             st.setInt(4, Chapter.getId());
             // Execute the update
             st.executeUpdate();

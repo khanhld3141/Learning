@@ -40,6 +40,7 @@ public class CourseDAO extends DBContext {
                         rs.getString("Overview"),
                         rs.getString("Result")
                 );
+
                 course.setCategory(new Category(rs.getString("CateName"),rs.getString("CateImage")));
                 course.setTeacher(new User(rs.getInt("TeacherId"),rs.getString("Teacher"),"","","","",""));
                 list.add(course);
@@ -51,17 +52,13 @@ public class CourseDAO extends DBContext {
         return list;
     }
 
-    public List<Course> getAllCoursesHome(int page, int recordsPerPage) {
+    public List<Course> getAllCoursesHome() {
         List<Course> list = new ArrayList<>();
         String sql = "select Courses.*,Star from Courses\n" +
-                "left join UserCourses on Courses.Id = UserCourses.CourseId ORDER BY Courses.Id OFFSET ? ROWS FETCH " +
-                "NEXT ? ROWS ONLY";
+                "left join UserCourses on Courses.Id = UserCourses.CourseId";
 
         try {
             PreparedStatement st = connection.prepareStatement(sql);
-            int offset = (page - 1) * recordsPerPage;
-            st.setInt(1, offset);
-            st.setInt(2, recordsPerPage);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 Course Course = new Course(
@@ -75,7 +72,7 @@ public class CourseDAO extends DBContext {
                         rs.getString("Overview"),
                         rs.getString("Result")
                 );
-
+                Course.setCreatedAt(rs.getDate("CreatedAt"));
                 list.add(Course);
             }
 
@@ -86,7 +83,8 @@ public class CourseDAO extends DBContext {
     }
 
     public Course get(int id) {
-        String sql = "select * from Courses where id = ?";
+        String sql = "select Courses.*,users.name as teacher,users.avatar as avatar from courses left join users on " +
+                "users.id = courses.TeacherId where Courses.id = ?";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setInt(1, id);
@@ -104,6 +102,11 @@ public class CourseDAO extends DBContext {
                         rs.getString("Overview"),
                         rs.getString("Result")
                 );
+                Course.setCreatedAt(rs.getDate("CreatedAt"));
+                User user=new User();
+                user.setName(rs.getString("teacher"));
+                user.setAvatar(rs.getString("avatar"));
+                Course.setTeacher(user);
                 return Course;
             }
         } catch (SQLException e) {

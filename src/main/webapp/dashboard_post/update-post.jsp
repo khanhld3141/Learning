@@ -15,6 +15,7 @@
             <form action="/dashboard/update-post" method="post" enctype="multipart/form-data" class="update-posts__form update-form">
                 <div class="update-form__content">
                     <input value="<%=post.getId()%>" name="id" readonly>
+                    <input value="<%=post.getAuthorId()%>-<%=post.getAuthor().getName()%>" name="author" readonly>
                     <div class="title-posts">
                         <label for="Image-post">Image</label>
                         <input type="file" name="image" id="Image-post" placeholder="Enter title post" required>
