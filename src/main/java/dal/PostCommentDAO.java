@@ -1,6 +1,7 @@
 package dal;
 
 import model.PostComment;
+import model.User;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,12 +9,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PostCommentDAO extends DBContext{
-    public PostCommentDAO(){
+public class PostCommentDAO extends DBContext {
+    public PostCommentDAO() {
         super();
     }
-    public List<PostComment> getAllPostComments(){
-        List <PostComment> list = new ArrayList<>();
+
+    public List<PostComment> getAllPostComments() {
+        List<PostComment> list = new ArrayList<>();
         String sql = "select * from PostComments";
 
         try {
@@ -24,8 +26,9 @@ public class PostCommentDAO extends DBContext{
                         rs.getInt("Id"),
                         rs.getInt("AuthorId"),
                         rs.getInt("PostId"),
+                        rs.getInt("IdParent"),
                         rs.getString("Content")
-                        );
+                );
                 list.add(PostComment);
             }
 
@@ -34,6 +37,37 @@ public class PostCommentDAO extends DBContext{
         }
         return list;
     }
+
+    public List<PostComment> getAllPostCommentOfPost(int id) {
+        List<PostComment> list = new ArrayList<>();
+        String sql = "select PostComments.*,users.avatar as Avatar,users.name as Name from PostComments left join " +
+                "users on PostComments.AuthorId=users.id where PostId=?";
+
+
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                PostComment PostComment = new PostComment(
+                        rs.getInt("Id"),
+                        rs.getInt("AuthorId"),
+                        rs.getInt("PostId"),
+                        rs.getInt("IdParent"),
+                        rs.getString("Content")
+                );
+                User user = new User(0, rs.getString("Name"), "", "", "", "", "");
+                user.setAvatar(rs.getString("Avatar"));
+                PostComment.setAuthor(user);
+                list.add(PostComment);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
     public PostComment get(int id) {
         String sql = "select * from PostComments where id = ?";
         try {
@@ -46,6 +80,7 @@ public class PostCommentDAO extends DBContext{
                         rs.getInt("Id"),
                         rs.getInt("AuthorId"),
                         rs.getInt("PostId"),
+                        rs.getInt("IdParent"),
                         rs.getString("Content")
                 );
                 return PostComment;
@@ -55,6 +90,7 @@ public class PostCommentDAO extends DBContext{
         }
         return null;
     }
+
     public void create(PostComment PostComment) {
         String sql = "insert into PostComments (AuthorId,PostId,Content) values(?,?,?)";
         try {

@@ -4,7 +4,7 @@ public class User {
 
 
     private int Id,Balance;
-    private String Name,Username, Phone,Role,Email,Password;
+    private String Name,Username, Phone,Role,Email,Password,Avatar;
 
     public User() {
     }
@@ -93,5 +93,21 @@ public class User {
 
     public void setPassword(String password) {
         Password = password;
+    }
+
+    public int getBalance() {
+        return Balance;
+    }
+
+    public void setBalance(int balance) {
+        Balance = balance;
+    }
+
+    public String getAvatar() {
+        return Avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        Avatar = avatar;
     }
 }

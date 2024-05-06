@@ -1,12 +1,14 @@
 package model;
 
+import java.util.Date;
 import java.util.List;
 
 public class Post {
     private String Title,Content,Comment,Image;
     private int Id,AuthorId;
     private User author;
-    private List<CourseComment> comments;
+    private List<PostComment> comments;
+    private Date createdAt;
     public Post() {
     }
 
@@ -75,11 +77,11 @@ public class Post {
         this.author = author;
     }
 
-    public List<CourseComment> getComments() {
+    public List<PostComment> getComments() {
         return comments;
     }
 
-    public void setComments(List<CourseComment> comments) {
+    public void setComments(List<PostComment> comments) {
         this.comments = comments;
     }
 
@@ -89,5 +91,13 @@ public class Post {
 
     public void setImage(String image) {
         Image = image;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 }

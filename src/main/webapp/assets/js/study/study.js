@@ -1,9 +1,9 @@
 // xu li dong/mo chapter va  video
 let videos = document.querySelectorAll('.video');
-let main_video = document.querySelector('.main-video iframe')
+let main_video = document.querySelector('.main-video video source')
 let main_video_description_title = document.querySelector('.main-video-description .title h')
 let main_video_description_text = document.querySelector('.main-video-description .content')
-main_video.src = "https://www.youtube.com/embed/R6plN3FvzFY";
+main_video.src = "/images/4d9bc353-f5c6-4f11-abfe-aea1ff5b839a_demo-video.mp4";
 
 
 videos.forEach(selected_video => {
@@ -19,10 +19,10 @@ videos.forEach(selected_video => {
         selected_video.querySelector('.video .col1 img').src = "../img/study/pause.svg"
 
         // selected_video.querySelector('img').src = 'images/pause.svg';
-
+        console.log(selected_video.getAttribute("id"))
         main_video_description_title.innerHTML = selected_video.querySelector('.video .col1 .title').innerHTML;
         main_video_description_text.innerHTML = selected_video.querySelector('.video .text').innerHTML;
-        main_video.src ="https://www.youtube.com/embed/" + selected_video.getAttribute('id')
+        main_video.src ="/images/" + selected_video.getAttribute('id')
     }
 });
 

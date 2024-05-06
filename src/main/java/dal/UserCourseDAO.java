@@ -75,6 +75,21 @@ public class UserCourseDAO extends DBContext{
         }
         return null;
     }
+    public int Count(){
+        String sql = "select count(*) as count from UserCourses";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+
+            while(rs.next()){
+                int count =rs.getInt("count");
+                return count;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
     public void create(UserCourse UserCourse) {
         String sql = "insert into UserCourses (UserId,CourseId) values(?,?)";
         try {

@@ -3,22 +3,24 @@ package model;
 public class PostComment {
 
     private String Content;
-    private int Id,AuthorId,PostId;
+    private int Id,AuthorId,PostId,IdParent;
     private User author;
     public PostComment() {
     }
 
-    public PostComment( int id, int authorId, int postId,String content) {
+    public PostComment( int id, int authorId, int postId,int idParent,String content) {
         Content = content;
         Id = id;
         AuthorId = authorId;
         PostId = postId;
+        IdParent=idParent;
     }
 
-    public PostComment(int authorId, int postId,String content) {
+    public PostComment(int authorId, int postId,int idParent,String content) {
         Content = content;
         AuthorId = authorId;
         PostId = postId;
+        IdParent=idParent;
     }
 
     public String getContent() {
@@ -59,5 +61,13 @@ public class PostComment {
 
     public void setAuthor(User author) {
         this.author = author;
+    }
+
+    public int getIdParent() {
+        return IdParent;
+    }
+
+    public void setIdParent(int idParent) {
+        IdParent = idParent;
     }
 }
