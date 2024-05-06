@@ -38,7 +38,7 @@
                                     <input type="file" name="Image" id="image-category-add">
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="submit">Submit</button>
+                                    <button class="btn btn-primary" type="submit">Confirm</button>
                                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
                                 </div>
                             </div>
@@ -78,8 +78,7 @@
                         <!-- BUTTON TRIGGER UPDATE MODAL  -->
                         <button type="button" class="btn__modal" data-bs-toggle="modal"
                                 data-bs-target="#modal__update-category_<%=category.getId()%>" style="border: none;"
-                                title="Edit
-                                category">
+                                title="Edit category">
                             <i class="fa-solid fa-pen"></i>
                         </button>
                         <!--------------- MODAL UPDATE CHAPTER-------------- -->
@@ -102,11 +101,11 @@
                                                 <input type="file" name="image" id="image-category-update"
                                                        placeholder="Enter name category">
                                             </div>
-                                            <img src="/images/<%=category.getImage()%>">
+                                            <img src="/images/<%=category.getImage()%>" style="width: 120px; height: 80px; border-radius: 10px; object-fit: cover; margin-top: 15px">
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="submit">Confirm</button>
+                                        <button class="btn btn-primary" type="submit">Confirm</button>
                                         <button type="button" class="btn btn-danger"
                                                 data-bs-dismiss="modal">No
                                         </button>
@@ -149,8 +148,8 @@
                     <!-- ------------------------------------------------->
                 </tr>
                 <%
+                        }
                     }
-}
                 %>
                 <script src="../assets/js/Sort_table/sort-table.js"></script>
                 </tbody>

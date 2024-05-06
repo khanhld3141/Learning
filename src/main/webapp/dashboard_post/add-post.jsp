@@ -28,7 +28,7 @@
                         </datalist>
                     </div>
                     <div class="title-posts">
-                        <label for="Title-post">Name</label>
+                        <label for="Title-post">Title</label>
                         <input type="text" name="title" id="Title-post" placeholder="Enter title post" required>
                     </div>
                     <div class="title-posts">
@@ -36,7 +36,7 @@
                         <input type="file" name="image" id="Image-post" placeholder="Enter title post" required>
                     </div>
                     <div class="Comment-author-posts">
-                        <label for="Comment-author-post">Comment</label>
+                        <label for="Comment-author-post">Comment author</label>
                         <textarea name="comment" id="Comment-author-post" rows="12" placeholder="Enter comment"
                                   required></textarea>
                     </div>

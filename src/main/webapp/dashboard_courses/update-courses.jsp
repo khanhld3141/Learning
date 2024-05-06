@@ -118,5 +118,9 @@
         </div>
     </div>
 </div>
+<script src="https://cdn.ckeditor.com/4.22.1/full/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace('Overview');
+</script>
 </body>
 </html>

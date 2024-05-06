@@ -1,0 +1,114 @@
+*{
+    box-sizing: border-box;
+}
+:root{
+    --color-1: #d53509;
+}
+html{
+    font-size: 62.5%;
+}
+body{
+    font-size: 1.6rem;
+    /* font-family: "Roboto", sans-serif; */
+    font-family: "Poppins", sans-serif;
+}
+a{
+    text-decoration: none;
+}
+/*---------- .side-bar ----------*/
+.side-bar{
+    height: 100vh;
+    width: 250px;
+    background-color: #15283c;
+    color: #fff;
+    transition: all 0.3s;
+    z-index: 11;
+    box-shadow: 0 0 3px 0px rgba(0, 0, 0, 0.4);
+    float: left;
+    background-image: url(../img/side-bar-admin/pattern_h.png);
+    position: fixed;
+    overflow: auto;
+
+}
+/* Tùy chỉnh thanh cuộn */
+.side-bar::-webkit-scrollbar {
+    width: 8px;
+}
+
+.side-bar::-webkit-scrollbar-thumb {
+    background-color: #7e0404;
+    border-radius: 10px;
+}
+.side-bar__logo{
+    width: 60px;
+    height: 60px;
+    display: block;
+    margin: 0 auto;
+    color: #ffffff;
+}
+.side-bar__nav{
+    margin-top: 30px;
+}
+.side-bar__nav a{
+    display: block;
+    padding: 15px 25px;
+    color: #FFF;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 300;
+    transition: all 0.5s;
+}
+.side-bar__nav a i{
+    margin-right: 20px;
+    width: 15px;
+    font-size: 16px;
+}
+.side-bar__nav a:hover{
+    background-color: #214162;
+}
+.active__side-bar{
+    background-color: #214162;
+}
+/*  */
+.content-admin{
+    margin-left: 250px;
+    /*background-color:  #f6f7fb;*/
+    padding: 30px;
+}
+.img-user-dashboard{
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.user_profle_side{
+    padding: 17px 25px;
+    display: flex;
+    align-items: center;
+    background-color: #214162;
+
+}
+.user_info{
+    margin-left: 16px;
+    font-size: 17px;
+    font-weight: 500;
+    color: #fff;
+    letter-spacing: 0;
+    font-family: "Poppins", sans-serif;
+}
+.user_info p {
+    font-size: 13px;
+    font-weight: 500;
+    color: #1ed085;
+    margin: 0;
+    line-height: 21px;
+    margin-top: 4px;
+}
+.general-block{
+    padding: 20px 25px;
+    border-bottom: solid #ff5722 1px;
+}
+.general-title{
+    font-weight: 500;
+    font-size: 18px;
+}

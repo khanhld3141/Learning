@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -8,8 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HOME</title>
     <!-- BOOTSTRAP -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+            crossorigin="anonymous"></script>
     <!-- RESET CSS -->
     <link rel="stylesheet" href="../assets/css/reset.css">
     <!-- google-font -->
@@ -39,15 +41,16 @@
     <link rel="stylesheet" href="../assets/css/courses/courses_detail.css">
     <link rel="stylesheet" href="../assets/css/blog/blog.css">
     <link rel="stylesheet" href="../assets/css/blog/blog_details.css">
-    <link rel="stylesheet" href="../Component/component.scss">
+    <link rel="stylesheet" href="../Component/component.css">
     <link rel="stylesheet" href="../assets/css/pages/pricing.css">
     <link rel="stylesheet" href="../assets/css/Contact/Contact.css">
     <link rel="stylesheet" href="../assets/css/Login/Login.css">
     <link rel="stylesheet" href="../assets/css/About/About.css">
     <link rel="stylesheet" href="../assets/css/Profile/personal_information.css">
     <link rel="stylesheet" href="../assets/css/Profile/change-password.css">
-    <link rel="stylesheet" href="../assets/css/Profile/courses-participated.css">
+    <link rel="stylesheet" href="../assets/css/Profile/courses-participated.scss">
     <link rel="stylesheet" href="../assets/css/payment/payment.css">
+    <link rel="stylesheet" href="../assets/css/Blog-user/post-user.scss">
 
 </head>
 
@@ -58,7 +61,7 @@
         <div class="header-content">
             <!-- logo -->
             <figure class="header__logo">
-                <a href="/home"><img src="../img/e-learning-logo.svg" alt="Header__logo" class="logo__img"></a>
+                <a href="/home"><img src="../img/icons8-education-100.png" alt="Header__logo" class="logo__img" style="width: 70px"></a>
             </figure>
             <!-- navbar -->
             <div class="navbar">
@@ -70,40 +73,40 @@
                         <a href="/about">ABOUT</a>
                     </li>
                     <li class="navbar__item has-child">
-                        <a href="#!">COURSES</a>
-                        <i class="fa-solid fa-sort-down"></i>
-                        <ul class="sub-menu">
-                            <li>
-                                <a href="/courses">COURSES</a>
-                            </li>
-                            <li>
-                                <a href="../Courses_details">COURSES DETAILS</a>
-                            </li>
-                        </ul>
+                        <a href="/courses">COURSES</a>
+<%--                        <i class="fa-solid fa-sort-down"></i>--%>
+<%--                        <ul class="sub-menu">--%>
+<%--                            <li>--%>
+<%--                                <a href="/courses">COURSES</a>--%>
+<%--                            </li>--%>
+<%--                            <li>--%>
+<%--                                <a href="../Courses_details">COURSES DETAILS</a>--%>
+<%--                            </li>--%>
+<%--                        </ul>--%>
+<%--                    </li>--%>
+                    <li class="navbar__item has-child">
+                        <a href="/blogs">POSTS</a>
+<%--                        <i class="fa-solid fa-sort-down"></i>--%>
+<%--                        <ul class="sub-menu">--%>
+<%--                            <li>--%>
+<%--                                <a href="/blogs">BLOG</a>--%>
+<%--                            </li>--%>
+<%--                            <li>--%>
+<%--                                <a href="/blog-details?id=6">BLOG DETAILS</a>--%>
+<%--                            </li>--%>
+<%--                        </ul>--%>
                     </li>
                     <li class="navbar__item has-child">
-                        <a href="#!">BLOG</a>
-                        <i class="fa-solid fa-sort-down"></i>
-                        <ul class="sub-menu">
-                            <li>
-                                <a href="/blogs">BLOG</a>
-                            </li>
-                            <li>
-                                <a href="/blog-details?id=6">BLOG DETAILS</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="navbar__item has-child">
-                        <a href="#!">EVENTS</a>
-                        <i class="fa-solid fa-sort-down"></i>
-                        <ul class="sub-menu">
-                            <li>
-                                <a href="/event">EVENT</a>
-                            </li>
-                            <li>
-                                <a href="../Event_details">EVENT DETAILS</a>
-                            </li>
-                        </ul>
+                        <a href="/event">EVENTS</a>
+<%--                        <i class="fa-solid fa-sort-down"></i>--%>
+<%--                        <ul class="sub-menu">--%>
+<%--                            <li>--%>
+<%--                                <a href="/event">EVENT</a>--%>
+<%--                            </li>--%>
+<%--                            <li>--%>
+<%--                                <a href="../Event_details">EVENT DETAILS</a>--%>
+<%--                            </li>--%>
+<%--                        </ul>--%>
                     </li>
                     <li class="navbar__item has-child">
                         <a href="#!">PAGES</a>
@@ -126,36 +129,37 @@
                     <li class="navbar__item">
                         <a href="/contact">CONTACT</a>
                     </li>
-                    <li class="navbar__item">
-                        <a href="/payment">PAYMENT</a>
-                    </li>
-                    <li class="navbar__item">
-                        <a href="/learning">LEARN</a>
-                    </li>
-                    <%
-                        if(session.getAttribute("user")==null){
 
+                    <%
+                        if (session.getAttribute("user") == null) {
                     %>
                     <li class="navbar__item">
                         <a href="/login">LOGIN</a>
                     </li>
-
                     <%
-                        }else{
+                    } else {
                     %>
                     <li class="navbar__item">
-                        <a href="../my">Welcome ${sessionScope.user.name}</a>
+                        <a href="#!">TOP UP BALANCE</a>
                     </li>
-                    <li class="navbar__item">
-                        <a href="/logout">LOGOUT</a>
+                    <li class="navbar__item has-child">
+                        <div class="avatar">
+                            <a href="../my"><img src="../img/avatar-user.jpg" class="avatar-user" alt="Avatar"
+                                                 title="Avatar"></a>
+                            <ul class="sub-menu-profile">
+                                <li>
+                                    <a href="../my">SEE ALL PROFILE</a>
+                                </li>
+                                <li>
+                                    <a href="/logout">LOG OUT</a>
+                                </li>
+                            </ul>
+                        </div>
                     </li>
                     <%
                         }
                     %>
-                    <%--<li class="navbar__item">
-                        <div class="avatar" href="#"><img src="../img/avatar-user.jpg" class="avatar-user" alt="Avatar"
-                                          title="Avatar"></div>
-                    </li>--%>
+
                 </ul>
             </div>
         </div>

@@ -2,16 +2,21 @@
 <%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="../Component/header.jsp" %>
+<style>
+    .btn:hover{
+        color: #FFF;
+    }
+</style>
 <main>
     <!-- feature header -->
     <div class="feature-header">
         <div class="main-content">
             <div class="feature-header__text-center">
-                <h1 class="title feature-header__title">Blog</h1>
+                <h1 class="title feature-header__title">Posts</h1>
                 <div class="feature-header__link">
                     <a href="../Home/index.jsp" class="home">Home</a>
                     <span>/</span>
-                    <a href="index.jsp" class="blog">Blog</a>
+                    <a href="index.jsp" class="blog">Posts</a>
                 </div>
             </div>
         </div>
@@ -63,7 +68,7 @@
                     </div>
 
                     <ul class="pagination justify-content-start">
-                        <li class=" page-item"><a class="page-link" href="#">Previous</a></li>
+                        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
                         <li class="page-item"><a class="page-link" href="#">1</a></li>
                         <li class="page-item"><a class="page-link" href="#">2</a></li>
                         <li class="page-item"><a class="page-link" href="#">3</a></li>
@@ -72,6 +77,11 @@
                     </ul>
                 </div>
                 <div class="blog-posts__right">
+                    <!-- add new post -->
+                    <% if (session.getAttribute("user") != null) { %>
+                        <a href="../Manage-users-blog/add-post.jsp" class="btn btn__add-new-post" style="background: #0c2e60">Add new post</a>
+                    <% }%>
+
                     <!-- search form -->
                     <div class="widget widget-search">
                         <form action="#">

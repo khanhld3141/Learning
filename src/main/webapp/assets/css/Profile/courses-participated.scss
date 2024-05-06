@@ -6,6 +6,7 @@
 .courses-participated-table th, td{
     border: 1px solid #dee2e6;
     padding: 15px 10px;
+    cursor: pointer;
 }
 .courses-participated-table tr{
     border: 1px solid #dee2e6;
@@ -21,6 +22,6 @@ table.courses-participated-table tbody tr{
 table.courses-participated-table tbody tr:hover{
     background-color: #dfdede;
 }
-.courses-participated-table td a{
+.courses-participated-table td, .courses-participated-table td a{
     color:#635f64;
 }
