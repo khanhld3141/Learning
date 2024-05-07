@@ -37,6 +37,32 @@ public class VoucherDAO extends DBContext{
         }
         return list;
     }
+    public List<Voucher> searchByName(String name){
+        List <Voucher> list = new ArrayList<>();
+        String sql = "select * from Vouchers where code like ?";
+
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, "%" + name + "%");
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Voucher Voucher = new Voucher(
+                        rs.getString("Code"),
+                        rs.getString("StartDay"),
+                        rs.getString("EndDay"),
+                        rs.getInt("Id"),
+                        rs.getInt("Quantity"),
+                        rs.getInt("Used"),
+                        rs.getInt("Discount")
+                );
+                list.add(Voucher);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
     public Voucher get(int id) {
         String sql = "select * from Vouchers where id = ?";
         try {

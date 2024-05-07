@@ -150,7 +150,7 @@
                                                  title="Avatar"></a>
                             <ul class="sub-menu-profile">
                                 <li>
-                                    <a href="../my">SEE ALL PROFILE</a>
+                                    <a href="/my-profile">SEE ALL PROFILE</a>
                                 </li>
                                 <%
                                         User user = (User) session.getAttribute("user");

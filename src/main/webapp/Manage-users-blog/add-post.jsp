@@ -15,6 +15,9 @@
                 </div>
                 <div class="add-posts add-block">
                     <form
+                            action="/create-my-post"
+                            method="post"
+                            enctype="multipart/form-data"
                           class="add-posts__form add-form">
                         <div class="add-form__content">
                             <div class="title-posts">
@@ -32,7 +35,7 @@
                             </div>
                             <div class="content-post">
                                 <label for="Content-post">Content post</label>
-                                <textarea name="Content" id="Content-post" rows="50"
+                                <textarea name="content" id="Content-post" rows="50"
                                           placeholder="Enter content post"></textarea>
                             </div>
                             <div class="submit">
@@ -46,7 +49,7 @@
         </div>
         <script src="https://cdn.ckeditor.com/4.22.1/full/ckeditor.js"></script>
         <script>
-            CKEDITOR.replace('Content');
+            CKEDITOR.replace('content');
         </script>
     </div>
 </main>

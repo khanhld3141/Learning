@@ -1,9 +1,12 @@
+<%@ page import="java.util.List" %>
+<%@ page import="model.Post" %>
+<%@ page import="model.Course" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include file="../Component/header.jsp"%>
+<%@include file="../Component/header.jsp" %>
 <main>
     <div class="main-content">
         <div class="profile-block">
-            <%@include file="../Component/sidebar-profile.jsp"%>
+            <%@include file="../Component/sidebar-profile.jsp" %>
             <div class="profile-right">
                 <div class="profile-box">
                     <div class="courses-participated">
@@ -15,17 +18,36 @@
                                     <th onclick="sortTable(0)">ID Course</th>
                                     <th onclick="sortTable(1)">Name course</th>
                                     <th onclick="sortTable(2)">Category</th>
-                                    <th onclick="sortTable(3)">Teacher</th>
+                                    <th onclick="sortTable(3)">Actions</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    <tr onclick="redirectToAnchor(this)">
-                               <%-- bỏ link của mỗi bài viết ở thẻ a dưới đây (nằm trong thẻ td chứa id) là được--%>
-                                        <td><a href="#!">1</a></td>
-                                        <td>HTML CSS Javascript</td>
-                                        <td>FE</td>
-                                        <td>Dang Khanh</td>
-                                    </tr>
+                                <%
+                                    if (request.getAttribute("courses") != null) {
+                                        List<Course> courses = (List<Course>) request.getAttribute("courses");
+                                        for (Course c : courses) {
+
+                                %>
+                                <tr style="align-items: center" onclick="redirectToAnchor(this)">
+                                    <%-- bỏ link của mỗi bài viết ở thẻ a dưới đây (nằm trong thẻ td chứa id) là được--%>
+                                    <td><a href="/learning?courseid=<%=c.getId()%>"><%=c.getId()%>
+                                    </a></td>
+                                    <td><%=c.getName()%>
+                                    </td>
+                                    <td>
+                                        <img style="width: 100px;object-fit: cover" src="/images/<%=c.getImage()%>">
+                                    </td>
+                                    <td>
+                                        <a href="/learning?courseid=<%=c.getId()%>" title="View this course"
+                                           style="margin-right: 14px; color: #196fee"><i
+                                                class="fa-solid fa-eye"></i></a>
+                                    </td>
+
+                                </tr>
+                                <%
+                                        }
+                                    }
+                                %>
                                 </tbody>
                                 <script>
                                     function redirectToAnchor(row) {
@@ -44,4 +66,4 @@
         </div>
     </div>
 </main>
-<%@include file="../Component/footer.jsp"%>
+<%@include file="../Component/footer.jsp" %>

@@ -13,6 +13,7 @@ public class PostDAO extends DBContext{
     public PostDAO(){
         super();
     }
+
     public List<Post> getAllPosts(int page,int recordsPerPage){
         List <Post> list = new ArrayList<>();
         String sql = "select posts.*,users.name as UserName from posts inner join users on users.id=posts.AuthorId  ORDER BY Id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
@@ -34,6 +35,60 @@ public class PostDAO extends DBContext{
                 );
                 Post.setCreatedAt(rs.getTimestamp("createdAt"));
                 Post.setAuthor(new User(0,rs.getString("UserName"),"","","","",""));
+                list.add(Post);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+    public List<Post> searchByName(String name){
+        List <Post> list = new ArrayList<>();
+        String sql = "select posts.*,users.name as UserName from posts inner join users on users.id=posts.AuthorId " +
+                "where posts.title like ?";
+
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, "%" + name + "%");
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Post Post = new Post(
+                        rs.getString("Title"),
+                        rs.getString("Content"),
+                        rs.getString("Comment"),
+                        rs.getString("Image"),
+                        rs.getInt("Id"),
+                        rs.getInt("AuthorId")
+                );
+                Post.setCreatedAt(rs.getTimestamp("createdAt"));
+                Post.setAuthor(new User(0,rs.getString("UserName"),"","","","",""));
+                list.add(Post);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+    public List<Post> getMyPost(int idAuthor){
+        List <Post> list = new ArrayList<>();
+        String sql = "select * from posts where AuthorId=?";
+
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1,idAuthor);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Post Post = new Post(
+                        rs.getString("Title"),
+                        rs.getString("Content"),
+                        rs.getString("Comment"),
+                        rs.getString("Image"),
+                        rs.getInt("Id"),
+                        rs.getInt("AuthorId")
+                );
+                Post.setCreatedAt(rs.getTimestamp("createdAt"));
                 list.add(Post);
             }
 
@@ -100,6 +155,7 @@ public class PostDAO extends DBContext{
             e.printStackTrace();
         }
     }
+
 
     public void delete(int id) {
         String sql = "delete from Posts where id = ?";

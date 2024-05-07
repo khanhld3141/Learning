@@ -46,6 +46,35 @@ public class UserDAO extends DBContext {
 
         return list;
     }
+    public List<User> searchByName(String name) {
+        List<User> list = new ArrayList<>();
+        String sql =  "SELECT * FROM Users WHERE Name LIKE ?";
+
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, "%" + name + "%");
+            ResultSet rs = st.executeQuery();
+
+            while (rs.next()) {
+                User user = new User(
+                        rs.getInt("Id"),
+                        rs.getInt("Balance"),
+                        rs.getString("Name"),
+                        rs.getString("Username"),
+                        rs.getString("Phone"),
+                        rs.getString("Role"),
+                        rs.getString("Email"),
+                        rs.getString("Password")
+                );
+                list.add(user);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return list;
+    }
     public List<User> getAllUser() {
         List<User> list = new ArrayList<>();
         String sql =  "SELECT * FROM Users ";
@@ -141,13 +170,7 @@ public class UserDAO extends DBContext {
                         rs.getString("Email"),
                         rs.getString("Password")
                 );
-                String password = "";
-                try {
-                    password = AESUtil.decrypt(user.getPassword());
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-                user.setPassword(password);
+                user.setAvatar(rs.getString("Avatar"));
                 return user;
             }
         } catch (SQLException e) {
@@ -212,23 +235,38 @@ public class UserDAO extends DBContext {
     }
 
     public void update(User user) {
-        String sql = "update users set Name=?,UserName=?,Email=?,Password=?,Phone=?,Role=?,Balance=? where Id=? ";
-        String hashPassword = "";
-        try {
-            hashPassword = AESUtil.encrypt(user.getPassword());
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        String sql = "update users set Name=?,UserName=?,Email=?,Password=?,Phone=?,Role=?,Balance=?,Avatar=? where " +
+                "Id=? ";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setString(1, user.getName());
             st.setString(2, user.getUsername());
             st.setString(3, user.getEmail());
-            st.setString(4, hashPassword);
+            st.setString(4, user.getPassword());
             st.setString(5, user.getPhone());
             st.setString(6, user.getRole());
             st.setInt(7, user.getBanlance());
-            st.setInt(8, user.getId());
+            st.setString(8,user.getAvatar());
+            st.setInt(9, user.getId());
+            // Execute the update
+            st.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public void changePassword(String password,int id) {
+
+        String sql = "update users set password=? where id=?";
+        String hashPassword = "";
+        try {
+            hashPassword = AESUtil.encrypt(password);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, hashPassword);
+            st.setInt(2, id);
             // Execute the update
             st.executeUpdate();
         } catch (SQLException e) {

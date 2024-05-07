@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -8,6 +9,7 @@ public class Post {
     private int Id,AuthorId;
     private User author;
     private List<PostComment> comments;
+    List<Hashtag> hashtags;
     private Date createdAt;
     public Post() {
     }
@@ -19,6 +21,7 @@ public class Post {
         Id = id;
         AuthorId = authorId;
         Image = image;
+        hashtags = new ArrayList<>();
     }
 
     public Post(String title, String content, String comment,String image, int authorId) {
@@ -27,6 +30,7 @@ public class Post {
         Comment = comment;
         AuthorId = authorId;
         Image = image;
+        hashtags = new ArrayList<>();
     }
 
     public String getTitle() {
@@ -99,5 +103,13 @@ public class Post {
 
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public List<Hashtag> getHashtags() {
+        return hashtags;
+    }
+
+    public void setHashtags(List<Hashtag> hashtags) {
+        this.hashtags = hashtags;
     }
 }

@@ -36,6 +36,30 @@ public class BannerDAO extends DBContext{
         }
         return list;
     }
+    public List<Banner> searchByName(String name){
+        List <Banner> list = new ArrayList<>();
+        String sql = "select * from Banners WHERE Content LIKE ?";
+
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, "%" + name + "%");
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Banner banner = new Banner(
+                        rs.getInt("Id"),
+                        rs.getString("Image"),
+                        rs.getString("Content"),
+                        rs.getString("Startday"),
+                        rs.getString("Endday")
+                );
+                list.add(banner);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
     public Banner get(int id) {
         String sql = "select * from Banners where id = ?";
         try {

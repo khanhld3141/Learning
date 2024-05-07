@@ -79,7 +79,8 @@
                 <div class="blog-posts__right">
                     <!-- add new post -->
                     <% if (session.getAttribute("user") != null) { %>
-                        <a href="../Manage-users-blog/add-post.jsp" class="btn btn__add-new-post" style="background: #0c2e60">Add new post</a>
+                        <a href="/create-my-post" class="btn btn__add-new-post" style="background: #0c2e60">Add new
+                            post</a>
                     <% }%>
 
                     <!-- search form -->

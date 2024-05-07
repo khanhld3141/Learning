@@ -9,10 +9,10 @@ public class DBContext {
 
     public DBContext() {
         try {
-            String url = "jdbc:sqlserver://BUT\\SQLEXPRESS:1433;databaseName=elearning2;encrypt=false";
+            String url = "jdbc:sqlserver://localhost:1433;databaseName=ELEARNING;encrypt=false";
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             String username = "sa";
-            String password = "291104";
+            String password = "3141";
             connection = DriverManager.getConnection(url, username, password);
         } catch (ClassNotFoundException | SQLException ex) {
             ex.printStackTrace();

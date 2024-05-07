@@ -50,7 +50,6 @@ public class UpdatePost extends HttpServlet {
         String filename = FileUploadUtil.uploadFile(image, realPath);
         Post post = postDAO.get(Integer.parseInt(id));
         try {
-//            FileUploadUtil.deleteFile(post.getImage(), realPath);
             postDAO.update(new Post(title, content, comment, filename,Integer.parseInt(id),
                     Integer.parseInt(authors[0])));
             response.sendRedirect("/dashboard/posts");

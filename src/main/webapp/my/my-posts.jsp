@@ -1,12 +1,14 @@
+<%@ page import="java.util.List" %>
+<%@ page import="model.Post" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include file="../Component/header.jsp"%>
+<%@include file="../Component/header.jsp" %>
 <main>
-<%--    <style>--%>
-<%--        <%@include file="../assets/css/dashboard-user/add-user.css"%>--%>
-<%--        <%@include file="../assets/css/dashboard-chapter/manage-chapter.css"%>--%>
-<%--        <%@include file="../assets/css/dashboard-user/update-user.css"%>--%>
-<%--        <%@include file="../assets/css/dashboard-user/manage-user.css"%>--%>
-<%--    </style>--%>
+    <%--    <style>--%>
+    <%--        <%@include file="../assets/css/dashboard-user/add-user.css"%>--%>
+    <%--        <%@include file="../assets/css/dashboard-chapter/manage-chapter.css"%>--%>
+    <%--        <%@include file="../assets/css/dashboard-user/update-user.css"%>--%>
+    <%--        <%@include file="../assets/css/dashboard-user/manage-user.css"%>--%>
+    <%--    </style>--%>
     <link rel="stylesheet" href="../assets/css/dashboard-user/add-user.css">
     <link rel="stylesheet" href="../assets/css/dashboard-chapter/manage-chapter.css">
     <link rel="stylesheet" href="../assets/css/dashboard-user/update-user.css">
@@ -14,7 +16,7 @@
 
     <div class="main-content">
         <div class="profile-block">
-            <%@include file="../Component/sidebar-profile.jsp"%>
+            <%@include file="../Component/sidebar-profile.jsp" %>
             <div class="profile-right">
                 <div class="profile-box">
                     <div class="courses-participated">
@@ -29,19 +31,34 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr onclick="redirectToAnchor(this)">
-                                <%-- bỏ link của mỗi bài viết ở thẻ a dưới đây (nằm trong thẻ td chứa id) là được--%>
-                                    <td><a href="#!">1</a></td>
-                                    <td>How to learn HTML CSS Javascript to become the best developer</td>
-                                    <td><a href="#!" title="View this post" style="margin-right: 14px; color: #196fee"><i class="fa-solid fa-eye"></i></a>
-                                        <a href="../Manage-users-blog/update-post.jsp" title="Edit this post" style="margin-right: 3px ; color: #ffb800"><i class="fa-solid fa-marker"></i></a>
+                                <%
+                                    if (request.getAttribute("posts") != null) {
+                                        List<Post> posts = (List<Post>) request.getAttribute("posts");
+                                        for (Post post : posts) {
+                                %>
+                                <tr style="align-items: center" onclick="redirectToAnchor(this)">
+                                    <%-- bỏ link của mỗi bài viết ở thẻ a dưới đây (nằm trong thẻ td chứa id) là được--%>
+                                    <td><a href="#!"><%=post.getId()%>
+                                    </a></td>
+                                    <td><a href="/detail-blog?id=<%=post.getId()%>"><%=post.getTitle()%>
+                                    </a></td>
+                                    <td>
+                                        <img style="width: 100px;object-fit: cover" src="/images/<%=post.getImage()%>">
+                                    </td>
+                                    <td><a href="/detail-blog?id=<%=post.getId()%>" title="View this post"
+                                           style="margin-right: 14px; color: #196fee"><i
+                                            class="fa-solid fa-eye"></i></a>
+                                        <a href="/update-my-post?id=<%=post.getId()%>" title="Edit this post"
+                                           style="margin-right: 3px ; color: #ffb800"><i class="fa-solid fa-marker"></i></a>
                                         <button type="button" data-bs-toggle="modal"
-                                                class="edit-blogs-user" data-bs-target="#modal__delete"
-                                                title="Delete this blog" style="margin-right: 14px;color: #ffb800; border: none">
+                                                class="edit-blogs-user"
+                                                data-bs-target="#modal__delete_<%=post.getId()%>"
+                                                title="Delete this blog"
+                                                style="margin-right: 14px;color: #ffb800; border: none">
                                             <i class="fa-solid fa-trash"></i>
                                         </button>
                                     </td>
-                                    <div class="modal fade modal__delete" id="modal__delete">
+                                    <div class="modal fade modal__delete" id="modal__delete_<%=post.getId()%>">
                                         <div class="modal-dialog modal-dialog-centered">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -56,15 +73,20 @@
                                                         cannot be recovered.</p>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <a href="#!"
+                                                    <a href="/delete-my-post?id=<%=post.getId()%>"
                                                        class="btn-primary btn__edit-delete-comment-yes">Yes</a>
                                                     <button type="button" class="btn-danger btn__edit-delete-comment-no"
-                                                            data-bs-dismiss="modal">No</button>
+                                                            data-bs-dismiss="modal">No
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </tr>
+                                <%
+                                        }
+                                    }
+                                %>
                                 </tbody>
                                 <script>
                                     function redirectToAnchor(row) {
@@ -83,4 +105,4 @@
         </div>
     </div>
 </main>
-<%@include file="../Component/footer.jsp"%>
+<%@include file="../Component/footer.jsp" %>

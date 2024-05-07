@@ -4,16 +4,16 @@
         <div class="navbar-profile">
             <ul>
                 <li>
-                    <a href="../my"><i class="fa-solid fa-user"></i>Personal information</a>
+                    <a href="/my-profile"><i class="fa-solid fa-user"></i>Personal information</a>
                 </li>
                 <li>
-                    <a href="../my/my-courses.jsp"><i class="fa-solid fa-graduation-cap"></i>My courses</a>
+                    <a href="/my-courses"><i class="fa-solid fa-graduation-cap"></i>My courses</a>
                 </li>
                 <li>
-                    <a href="../my/my-posts.jsp"><i class="fa-solid fa-blog"></i>My posts</a>
+                    <a href="/my-posts"><i class="fa-solid fa-blog"></i>My posts</a>
                 </li>
                 <li>
-                    <a href="../my/change-password.jsp"><i class="fa-solid fa-key"></i>Change Password</a>
+                    <a href="/change-password"><i class="fa-solid fa-key"></i>Change Password</a>
                 </li>
             </ul>
         </div>

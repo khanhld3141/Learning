@@ -1,10 +1,8 @@
 <%@ page import="java.util.List" %>
-<%@ page import="model.Post" %>
-<%@ page import="model.Category" %>
-<%@ page import="model.PostComment" %>
 <%@ page import="java.io.Writer" %>
 <%@ page import="controller.Ulti.CommentUtils" %>
 <%@ page import="java.io.PrintWriter" %>
+<%@ page import="model.*" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="../Component/header.jsp" %>
 <!-- main -->
@@ -51,6 +49,17 @@
                             <h3><%=post.getTitle()%>
                             </h3>
                             <%=post.getContent()%>
+                        </div>
+                        <div class="hashtag">
+                            <%
+                                List<Hashtag> hashtags=post.getHashtags();
+                                for(Hashtag tag : hashtags){
+                            %>
+                            <button><%=tag.getTag()%></button>
+
+                            <%
+                                }
+                            %>
                         </div>
                         <!--  comment-->
                         <div id="comments" class="comment">

@@ -43,6 +43,28 @@ public class HashtagDAO extends DBContext{
         }
         return list;
     }
+    public List<Hashtag> getAllHashTagOfPost(int postid){
+        List <Hashtag> list = new ArrayList<>();
+        String sql = "select * from Hashtags where postid=?";
+
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1,postid);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Hashtag Hashtag = new Hashtag(
+                        rs.getInt("Id"),
+                        rs.getInt("PostId"),
+                        rs.getString("Tag")
+                );
+                list.add(Hashtag);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
     public Hashtag get(int id) {
         String sql = "select Posts.*,Tag,Hashtags.Id as TagId from Hashtags\n" +
                 "left join Posts on Hashtags.PostId=Posts.Id Where Hashtags.Id=?";

@@ -33,6 +33,29 @@ public class CategoryDAO extends DBContext{
         }
         return list;
     }
+    public List<Category> searchByName(String name){
+        List <Category> list = new ArrayList<>();
+        String sql = "select * from Categories where name like ?";
+
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, "%" + name + "%");
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Category Category = new Category(
+                        rs.getInt("Id"),
+                        rs.getString("Name"),
+                        rs.getString("Image")
+                );
+                list.add(Category);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
     public Category get(int id) {
         String sql = "select * from Categories where id = ?";
         try {

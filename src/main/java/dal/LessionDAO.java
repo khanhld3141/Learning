@@ -36,6 +36,31 @@ public class LessionDAO extends DBContext{
         }
         return list;
     }
+    public List<Lession> searchByName(int chapterid,String name){
+        List <Lession> list = new ArrayList<>();
+        String sql = "select * from Lessions where chapterid=? and name like ?";
+
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1,chapterid);
+            st.setString(2, "%" + name + "%");
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Lession Lession = new Lession(
+                        rs.getInt("Id"),
+                        rs.getInt("ChapterId"),
+                        rs.getString("Name"),
+                        rs.getString("Description"),
+                        rs.getString("Link")
+                );
+                list.add(Lession);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
     public Lession get(int id) {
         String sql = "select * from Lessions where id = ?";
         try {

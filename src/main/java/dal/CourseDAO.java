@@ -81,6 +81,66 @@ public class CourseDAO extends DBContext {
         }
         return list;
     }
+    public List<Course> searchByName(String name) {
+        List<Course> list = new ArrayList<>();
+        String sql = "select Courses.*,Star from Courses\n" +
+                "left join UserCourses on Courses.Id = UserCourses.CourseId where name like ?";
+
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, "%" + name + "%");
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Course Course = new Course(
+                        rs.getInt("Id"),
+                        rs.getInt("TeacherId"),
+                        rs.getInt("price"),
+                        rs.getInt("CateId"),
+                        rs.getString("Name"),
+                        rs.getString("Introduce"),
+                        rs.getString("Image"),
+                        rs.getString("Overview"),
+                        rs.getString("Result")
+                );
+                Course.setCreatedAt(rs.getDate("CreatedAt"));
+                list.add(Course);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+    public List<Course> getAllCourseOfUser(int userId) {
+        List<Course> list = new ArrayList<>();
+        String sql = "select Courses.* from courses inner join UserCourses on courses.id = UserCourses.CourseId\n" +
+                "left join users on users.id = UserCourses.UserId where users.id=?";
+
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1,userId);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Course Course = new Course(
+                        rs.getInt("Id"),
+                        rs.getInt("TeacherId"),
+                        rs.getInt("price"),
+                        rs.getInt("CateId"),
+                        rs.getString("Name"),
+                        rs.getString("Introduce"),
+                        rs.getString("Image"),
+                        rs.getString("Overview"),
+                        rs.getString("Result")
+                );
+                Course.setCreatedAt(rs.getDate("CreatedAt"));
+                list.add(Course);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
 
     public Course get(int id) {
         String sql = "select Courses.*,users.name as teacher,users.avatar as avatar from courses left join users on " +

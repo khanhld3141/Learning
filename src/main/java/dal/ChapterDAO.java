@@ -34,6 +34,29 @@ public class ChapterDAO extends DBContext{
         }
         return list;
     }
+    public List<Chapter> searchByName(int courseId,String name){
+        List <Chapter> list = new ArrayList<>();
+        String sql = "select * from Chapters where CourseId=?  and Name like ?";
+
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1,courseId);
+            st.setString(2, "%" + name + "%");
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Chapter Chapter = new Chapter(
+                        rs.getInt("Id"),
+                        rs.getInt("CourseId"),
+                        rs.getString("Name"),
+                        rs.getInt("Ordinal")
+                );
+                list.add(Chapter);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
     public Chapter get(int id) {
         String sql = "select * from Chapters where id = ?";
         try {
