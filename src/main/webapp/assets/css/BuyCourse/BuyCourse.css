@@ -16,6 +16,11 @@
     justify-content: center;
 }
 
+.modalFail .fa-bell,
+.successNotification .fa-bell{
+    margin-right: 5px;
+}
+
 .buy-course h2{
     display: block;
     font-size: 1.8rem;
@@ -230,8 +235,38 @@
 /*end buy-course-desc*/
 
 /*modal*/
-.btnBC.btn-buy-course.btnModalBuyCourse{
+.btnModalBuyCourse{
     width: 20%;
     margin-left: 10px;
 }
 
+ .btnModalBuyCourse{
+    border-style: none;
+    border-radius: 5px;
+    padding: 10px 10px;
+    margin-left:8px;
+}
+
+ .btnModalBuyCourse__Buy{
+    background-color: #198754;
+    color:#fff;
+}
+
+.successNotification{
+    height: 100px;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.successNotification .toast-header{
+    display: flex;
+    justify-content: space-between;
+}
+
+.successNotification .toast-header button{
+    border-style: none;
+    border-radius: 5px;
+    background-color: red;
+    color: #fff;
+    padding: 0 10px;
+}
