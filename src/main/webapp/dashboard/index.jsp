@@ -1,69 +1,64 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="../Component/sidebar__dashboard.jsp"%>
+
+<% if (session.getAttribute("user") != null) { %>
+<div class="header-dashboard-overview">
+    <figure>
+        <a href="/home"><img src="../img/icons8-education-100.png" alt="" class="header-sidebar__logo"></a>
+    </figure>
+    <div class="avatar-profile-notification">
+        <div class="notification">
+            <ul>
+                <li>
+                    <a href="#!"><i class="fa-solid fa-bell"></i></a>
+                </li>
+                <li>
+                    <a href="#!"><i class="fa-solid fa-circle-question"></i></a>
+                </li>
+                <li>
+                    <a href="#!"><i class="fa-solid fa-envelope"></i></a>
+                </li>
+            </ul>
+        </div>
+        <div class="avatar-profile">
+            <figure>
+                <img src="../img/side-bar-admin/user_img.jpg" alt="" class="avatar-admin">
+            </figure>
+            <span class="name-admin">John David<i class="fa-solid fa-chevron-down"></i></span>
+            <div class="sub-menu display-none">
+                <ul>
+                    <li>
+                        <a href="../my">My profile</a>
+                    </li>
+                    <li>
+                        <a href="#!">Help</a>
+                    </li>
+                    <li>
+                        <a href="/logout">Log out <i class="fa-solid fa-right-from-bracket"></i></a>
+                    </li>
+                </ul>
+            </div>
+            <script>
+                var avatarProfiles = document.querySelectorAll('.avatar-profile');
+
+                avatarProfiles.forEach(function (avatarProfile) {
+                    avatarProfile.addEventListener('click', function () {
+                        var subMenu = this.querySelector('.sub-menu');
+
+                        if (subMenu.classList.contains('display-none')) {
+                            subMenu.classList.remove('display-none');
+                        } else {
+                            subMenu.classList.add('display-none');
+                        }
+                    });
+                });
+            </script>
+        </div>
+    </div>
+</div>
+<% } %>
 <div class="content-admin">
-    <div class="welcome">
-        <p class="title-welcome title">Welcome back, Dang Khanh</p>
-        <div class="block-item__list">
-            <div class="block-item">
-                <p>25</p>
-                <span>Total courses</span>
-            </div>
-            <div class="block-item">
-                <p>1000</p>
-                <span>Total users</span>
-            </div>
-            <div class="block-item">
-                <p>100</p>
-                <span>Total teacher</span>
-            </div>
-            <div class="block-item">
-                <p>1000$</p>
-                <span>Sales revenue</span>
-            </div>
-        </div>
-    </div>
-    <div class="popular-courses">
-        <p class="title-popular-courses title">Popular courses</p>
-        <div class="block-item__list">
-            <a href="#!" class="block-item">
-                <p>250 Users</p>
-                <span>HTML CSS Javascript</span>
-            </a>
-            <a href="#!" class="block-item">
-                <p>250 Users</p>
-                <span>HTML CSS Javascript</span>
-            </a>
-            <a href="#!" class="block-item">
-                <p>250 Users</p>
-                <span>HTML CSS Javascript</span>
-            </a>
-            <a href="#!" class="block-item">
-                <p>250 Users</p>
-                <span>HTML CSS Javascript</span>
-            </a>
-        </div>
-    </div>
-    <div class="popular-post">
-        <p class="title-popular-post title">Popular post</p>
-        <div class="block-item__list">
-            <a href="#!" class="block-item">
-                <p>250 Comment</p>
-                <span>Lorem ipsum dolor sit amet.</span>
-            </a>
-            <a href="#!" class="block-item">
-                <p>250 Comment</p>
-                <span>Lorem ipsum dolor sit amet.</span>
-            </a>
-            <a href="#!" class="block-item">
-                <p>250 Comment</p>
-                <span>Lorem ipsum dolor sit amet.</span>
-            </a>
-            <a href="#!" class="block-item">
-                <p>250 Comment</p>
-                <span>Lorem ipsum dolor sit amet.</span>
-            </a>
-        </div>
-    </div>
+
 </div>
 </body>
 </html>

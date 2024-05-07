@@ -1,3 +1,4 @@
+<%@ page import="model.User" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,7 +25,7 @@
     <!-- font-awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="../Component/component__dashboard.scss">
-    <link rel="stylesheet" href="../assets/css/dashboard/dashboard.css">
+    <link rel="stylesheet" href="../assets/css/dashboard/dashboard.scss">
     <link rel="stylesheet" href="../assets/css/dashboard-user/manage-user.css">
     <link rel="stylesheet" href="../assets/css/dashboard-user/add-user.css">
     <link rel="stylesheet" href="../assets/css/dashboard-user/update-user.css">
@@ -50,7 +51,8 @@
     <div class="sidebar_user_info">
         <div class="icon_setting"></div>
         <div class="user_profle_side">
-            <div class="user_img"><img class="img-user-dashboard" src="../img/side-bar-admin/user_img.jpg" alt="#"></div>
+            <div class="user_img"><img class="img-user-dashboard" src="../img/side-bar-admin/user_img.jpg" alt="#">
+            </div>
             <div class="user_info">
                 <h6>John David</h6>
                 <p><span class="online_animation"></span> Online</p>
@@ -71,38 +73,43 @@
             <li>
                 <a href="/dashboard/courses" class="nav__link"><i class="fa-solid fa-file" style="color: #03a9f4"></i>Courses</a>
             </li>
-        <%--    <li>
-                <a href="/dashboard_lesson" class="nav__link"><i class="fa-solid fa-book"></i>Lesson</a>
+            <%--    <li>
+                    <a href="/dashboard_lesson" class="nav__link"><i class="fa-solid fa-book"></i>Lesson</a>
+                </li>
+                <li>
+                    <a href="/dashboard_chapter" class="nav__link"><i class="fa-solid fa-palette"></i>Chapter</a>
+                </li>--%>
+            <li>
+                <a href="/dashboard/categories" class="nav__link"><i class="fa-solid fa-palette"
+                                                                     style="color: #9c27b0"></i>Category</a>
             </li>
             <li>
-                <a href="/dashboard_chapter" class="nav__link"><i class="fa-solid fa-palette"></i>Chapter</a>
-            </li>--%>
-            <li>
-                <a href="/dashboard/categories" class="nav__link"><i class="fa-solid fa-palette" style="color: #9c27b0"></i>Category</a>
+                <a href="/dashboard/vouchers" class="nav__link"><i class="fa-solid fa-ticket"
+                                                                   style="color: #e91e63"></i>Voucher</a>
             </li>
             <li>
-                <a href="/dashboard/vouchers" class="nav__link"><i class="fa-solid fa-ticket" style="color: #e91e63"></i>Voucher</a>
+                <a href="/dashboard_hashtag" class="nav__link"><i class="fa-solid fa-hashtag"
+                                                                  style="color:  #ff9800"></i>Hastags</a>
             </li>
             <li>
-                <a href="/dashboard_hashtag" class="nav__link"><i class="fa-solid fa-hashtag" style="color:  #ff9800"></i>Hastags</a>
-            </li>
-            <li>
-                <a href="/dashboard/deposits" class="nav__link"><i class="fa-solid fa-receipt" style="color: #009688"></i>Deposit</a>
+                <a href="/dashboard/deposits" class="nav__link"><i class="fa-solid fa-receipt"
+                                                                   style="color: #009688"></i>Deposit</a>
             </li>
             <li>
                 <a href="/dashboard/posts" class="nav__link"><i class="fa-solid fa-blog" style="color: #ff9800"></i>Posts</a>
             </li>
             <% if (session.getAttribute("user") != null) { %>
-              <li>
-                  <a href="/logout" class="nav__link"><i class="fa-solid fa-right-from-bracket" style="color: #e91e63"></i>Log out</a>
-              </li>
-             <% } %>
+            <li>
+                <a href="/logout" class="nav__link"><i class="fa-solid fa-right-from-bracket"
+                                                       style="color: #e91e63"></i>Log out</a>
+            </li>
+            <% } %>
         </ul>
     </nav>
     <script>
         let dashboardItemElement = document.querySelectorAll(".nav__link");
         var currentUrl = window.location.pathname;
-        console.log("sss:  "+currentUrl);
+        console.log("sss:  " + currentUrl);
         for (let item of dashboardItemElement) {
             console.log(item.getAttribute("href"));
             if (item.getAttribute("href") === currentUrl) {

@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="../assets/css/dashboard-user/manage-user.css">
     <link rel="stylesheet" href="../assets/css/dashboard-user/add-user.css">
     <link rel="stylesheet" href="../assets/css/dashboard_courses/add-courses.css">
-    <link rel="stylesheet" href="../assets/css/dashboard/dashboard.css">
+    <link rel="stylesheet" href="../assets/css/dashboard/dashboard.scss">
     <link rel="stylesheet" href="../assets/css/Blog-user/post-user.scss">
     <div class="main-content">
         <div class="content-admin">

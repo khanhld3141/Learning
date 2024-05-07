@@ -1,3 +1,4 @@
+<%@ page import="model.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -61,7 +62,8 @@
         <div class="header-content">
             <!-- logo -->
             <figure class="header__logo">
-                <a href="/home"><img src="../img/icons8-education-100.png" alt="Header__logo" class="logo__img" style="width: 70px"></a>
+                <a href="/home"><img src="../img/icons8-education-100.png" alt="Header__logo" class="logo__img"
+                                     style="width: 70px"></a>
             </figure>
             <!-- navbar -->
             <div class="navbar">
@@ -74,39 +76,39 @@
                     </li>
                     <li class="navbar__item has-child">
                         <a href="/courses">COURSES</a>
-<%--                        <i class="fa-solid fa-sort-down"></i>--%>
-<%--                        <ul class="sub-menu">--%>
-<%--                            <li>--%>
-<%--                                <a href="/courses">COURSES</a>--%>
-<%--                            </li>--%>
-<%--                            <li>--%>
-<%--                                <a href="../Courses_details">COURSES DETAILS</a>--%>
-<%--                            </li>--%>
-<%--                        </ul>--%>
-<%--                    </li>--%>
+                        <%--                        <i class="fa-solid fa-sort-down"></i>--%>
+                        <%--                        <ul class="sub-menu">--%>
+                        <%--                            <li>--%>
+                        <%--                                <a href="/courses">COURSES</a>--%>
+                        <%--                            </li>--%>
+                        <%--                            <li>--%>
+                        <%--                                <a href="../Courses_details">COURSES DETAILS</a>--%>
+                        <%--                            </li>--%>
+                        <%--                        </ul>--%>
+                        <%--                    </li>--%>
                     <li class="navbar__item has-child">
                         <a href="/blogs">POSTS</a>
-<%--                        <i class="fa-solid fa-sort-down"></i>--%>
-<%--                        <ul class="sub-menu">--%>
-<%--                            <li>--%>
-<%--                                <a href="/blogs">BLOG</a>--%>
-<%--                            </li>--%>
-<%--                            <li>--%>
-<%--                                <a href="/blog-details?id=6">BLOG DETAILS</a>--%>
-<%--                            </li>--%>
-<%--                        </ul>--%>
+                        <%--                        <i class="fa-solid fa-sort-down"></i>--%>
+                        <%--                        <ul class="sub-menu">--%>
+                        <%--                            <li>--%>
+                        <%--                                <a href="/blogs">BLOG</a>--%>
+                        <%--                            </li>--%>
+                        <%--                            <li>--%>
+                        <%--                                <a href="/blog-details?id=6">BLOG DETAILS</a>--%>
+                        <%--                            </li>--%>
+                        <%--                        </ul>--%>
                     </li>
                     <li class="navbar__item has-child">
                         <a href="/event">EVENTS</a>
-<%--                        <i class="fa-solid fa-sort-down"></i>--%>
-<%--                        <ul class="sub-menu">--%>
-<%--                            <li>--%>
-<%--                                <a href="/event">EVENT</a>--%>
-<%--                            </li>--%>
-<%--                            <li>--%>
-<%--                                <a href="../Event_details">EVENT DETAILS</a>--%>
-<%--                            </li>--%>
-<%--                        </ul>--%>
+                        <%--                        <i class="fa-solid fa-sort-down"></i>--%>
+                        <%--                        <ul class="sub-menu">--%>
+                        <%--                            <li>--%>
+                        <%--                                <a href="/event">EVENT</a>--%>
+                        <%--                            </li>--%>
+                        <%--                            <li>--%>
+                        <%--                                <a href="../Event_details">EVENT DETAILS</a>--%>
+                        <%--                            </li>--%>
+                        <%--                        </ul>--%>
                     </li>
                     <li class="navbar__item has-child">
                         <a href="#!">PAGES</a>
@@ -144,12 +146,17 @@
                     </li>
                     <li class="navbar__item has-child">
                         <div class="avatar">
-                            <a href="../my"><img src="../img/avatar-user.jpg" class="avatar-user" alt="Avatar"
+                            <a href="#!"><img src="../img/avatar-user.jpg" class="avatar-user" alt="Avatar"
                                                  title="Avatar"></a>
                             <ul class="sub-menu-profile">
                                 <li>
                                     <a href="../my">SEE ALL PROFILE</a>
                                 </li>
+                                <%
+                                        User user = (User) session.getAttribute("user");
+                                        if (user.getRole().equals("R1")) { %>
+                                          <li><a href="/dashboard">DASHBOARD</a></li>
+                                <% } %>
                                 <li>
                                     <a href="/logout">LOG OUT</a>
                                 </li>

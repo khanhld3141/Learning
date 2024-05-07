@@ -18,7 +18,7 @@ a{
 /*---------- .side-bar ----------*/
 .side-bar{
     height: 100vh;
-    width: 250px;
+    width: 270px;
     background-color: #15283c;
     color: #fff;
     transition: all 0.3s;
@@ -71,8 +71,7 @@ a{
 }
 /*  */
 .content-admin{
-    margin-left: 250px;
-    /*background-color:  #f6f7fb;*/
+    margin-left: 270px;
     padding: 30px;
 }
 .img-user-dashboard{
@@ -111,4 +110,9 @@ a{
 .general-title{
     font-weight: 500;
     font-size: 18px;
+}
+.manage-block .title{
+    font-size: 3rem;
+    color: #fff;
+    font-weight: 600;
 }
