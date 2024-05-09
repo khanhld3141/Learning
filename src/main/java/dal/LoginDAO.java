@@ -32,6 +32,7 @@ public class LoginDAO extends DBContext {
                         rs.getString("Email"),
                         rs.getString("Password")
                 );
+                user.setAvatar(rs.getString("Avatar"));
                 return user;
             }
         } catch (SQLException e) {
@@ -58,7 +59,7 @@ public class LoginDAO extends DBContext {
             st.setString(4, hashPassword);
             st.setString(5, user.getPhone());
             st.setString(6, user.getRole());
-            st.setInt(7, user.getBanlance());
+            st.setInt(7, user.getBalance());
             st.executeUpdate();
             return true;
         } catch (SQLException e) {

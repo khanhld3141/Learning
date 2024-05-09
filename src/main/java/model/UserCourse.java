@@ -43,4 +43,19 @@ public class UserCourse {
         this.course = course;
     }
 
+    public int getUserId() {
+        return UserId;
+    }
+
+    public void setUserId(int userId) {
+        UserId = userId;
+    }
+
+    public int getCourseId() {
+        return CourseId;
+    }
+
+    public void setCourseId(int courseId) {
+        CourseId = courseId;
+    }
 }

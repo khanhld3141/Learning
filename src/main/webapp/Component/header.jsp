@@ -142,20 +142,23 @@
                     } else {
                     %>
                     <li class="navbar__item">
-                        <a href="#!">TOP UP BALANCE</a>
+                        <a>$${sessionScope.user.balance}</a>
                     </li>
                     <li class="navbar__item has-child">
                         <div class="avatar">
-                            <a href="#!"><img src="../img/avatar-user.jpg" class="avatar-user" alt="Avatar"
-                                                 title="Avatar"></a>
+                            <a href="#!"><img src="images/${sessionScope.user.avatar}" class="avatar-user" alt="Avatar"
+                                              title="Avatar"></a>
                             <ul class="sub-menu-profile">
                                 <li>
                                     <a href="/my-profile">SEE ALL PROFILE</a>
                                 </li>
+                                <li>
+                                    <a href="/deposits">Deposit</a>
+                                </li>
                                 <%
-                                        User user = (User) session.getAttribute("user");
-                                        if (user.getRole().equals("R1")) { %>
-                                          <li><a href="/dashboard">DASHBOARD</a></li>
+                                    User user = (User) session.getAttribute("user");
+                                    if (user.getRole().equals("R1")) { %>
+                                <li><a href="/dashboard">DASHBOARD</a></li>
                                 <% } %>
                                 <li>
                                     <a href="/logout">LOG OUT</a>

@@ -9,12 +9,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BannerDAO extends DBContext{
-    public BannerDAO(){
+public class BannerDAO extends DBContext {
+    public BannerDAO() {
         super();
     }
-    public List<Banner> getAllBanners(){
-        List <Banner> list = new ArrayList<>();
+
+    public List<Banner> getAllBanners() {
+        List<Banner> list = new ArrayList<>();
         String sql = "select * from Banners";
 
         try {
@@ -36,8 +37,9 @@ public class BannerDAO extends DBContext{
         }
         return list;
     }
-    public List<Banner> searchByName(String name){
-        List <Banner> list = new ArrayList<>();
+
+    public List<Banner> searchByName(String name) {
+        List<Banner> list = new ArrayList<>();
         String sql = "select * from Banners WHERE Content LIKE ?";
 
         try {
@@ -60,6 +62,7 @@ public class BannerDAO extends DBContext{
         }
         return list;
     }
+
     public Banner get(int id) {
         String sql = "select * from Banners where id = ?";
         try {
@@ -82,6 +85,7 @@ public class BannerDAO extends DBContext{
         }
         return null;
     }
+
     public void create(Banner banner) {
         String sql = "insert into Banners (Image,Content,Startday,Endday) values(?,?,?,?)";
         try {

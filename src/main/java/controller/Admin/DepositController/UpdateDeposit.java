@@ -2,6 +2,7 @@ package controller.Admin.DepositController;
 
 import dal.DepositDAO;
 import dal.StatusDAO;
+import dal.UserDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -9,6 +10,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.Deposit;
 import model.Status;
+import model.User;
 
 import java.io.IOException;
 
@@ -16,10 +18,12 @@ import java.io.IOException;
 public class UpdateDeposit extends HttpServlet {
     private String message;
     private DepositDAO depositDAO;
+    private UserDAO userDAO;
 
     public void init() {
         message = "Hello World!";
         depositDAO = new DepositDAO();
+        userDAO=new UserDAO();
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -40,21 +44,29 @@ public class UpdateDeposit extends HttpServlet {
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        String id = request.getParameter("id");
-        String userId = request.getParameter("userid");
-        String amountOfMoney = request.getParameter("amountofmoney");
-        String status = request.getParameter("status");
-        String statuss[] = status.split("-");
+       try{
+           String id = request.getParameter("id");
+           String userId = request.getParameter("userid");
+           String amountOfMoney = request.getParameter("amountofmoney");
+           String status = request.getParameter("status");
+           String statuss[] = status.split("-");
 
-        depositDAO.update(new Deposit(
-                Integer.parseInt(id),
-                Integer.parseInt(userId),
-                Integer.parseInt(amountOfMoney),
-                Integer.parseInt(statuss[0])
-        ));
-
-        request.setAttribute("message", "Update category successfully");
-        response.sendRedirect("/dashboard/deposits");
+           depositDAO.update(new Deposit(
+                   Integer.parseInt(id),
+                   Integer.parseInt(userId),
+                   Integer.parseInt(amountOfMoney),
+                   Integer.parseInt(statuss[0])
+           ));
+          if(statuss[0].equals("2")){
+              User user=userDAO.get(Integer.parseInt(userId));
+              user.setBalance(user.getBalance()+Integer.parseInt(amountOfMoney));
+              userDAO.deposit(user);
+          }
+           request.setAttribute("message", "Update category successfully");
+           response.sendRedirect("/dashboard/deposits");
+       }catch (Exception e){
+           e.printStackTrace();
+       }
 
     }
 

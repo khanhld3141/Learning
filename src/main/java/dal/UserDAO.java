@@ -226,14 +226,27 @@ public class UserDAO extends DBContext {
             st.setString(4, hashPassword);
             st.setString(5, user.getPhone());
             st.setString(6, user.getRole());
-            st.setInt(7, user.getBanlance());
+            st.setInt(7, user.getBalance());
             // Execute the update
             st.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+    public void deposit(User user) {
+        String sql = "update users set Balance=? where " +
+                "Id=? ";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, user.getBalance());
+            st.setInt(2, user.getId());
 
+            // Execute the update
+            st.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
     public void update(User user) {
         String sql = "update users set Name=?,UserName=?,Email=?,Password=?,Phone=?,Role=?,Balance=?,Avatar=? where " +
                 "Id=? ";
@@ -245,7 +258,7 @@ public class UserDAO extends DBContext {
             st.setString(4, user.getPassword());
             st.setString(5, user.getPhone());
             st.setString(6, user.getRole());
-            st.setInt(7, user.getBanlance());
+            st.setInt(7, user.getBalance());
             st.setString(8,user.getAvatar());
             st.setInt(9, user.getId());
             // Execute the update

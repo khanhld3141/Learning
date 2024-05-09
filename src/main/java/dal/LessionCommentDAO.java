@@ -1,6 +1,7 @@
 package dal;
 
 import model.LessionComment;
+import model.User;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -27,6 +28,34 @@ public class LessionCommentDAO extends DBContext{
                         rs.getInt("ParentId"),
                         rs.getString("Content")
                 );
+                list.add(LessionComment);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+    public List<LessionComment> getAllLessionCommentsById(int idlesson){
+        List <LessionComment> list = new ArrayList<>();
+        String sql = "select LessionComments.*,Users.name as UserName,Users.avatar as Avatar from LessionComments " +
+                "inner join Users on users.id=LessionComments.AuthorId where lessionid=?";
+
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, idlesson);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                LessionComment LessionComment = new LessionComment(
+                        rs.getInt("Id"),
+                        rs.getInt("LessionId"),
+                        rs.getInt("AuthorId"),
+                        rs.getInt("ParentId"),
+                        rs.getString("Content")
+                );
+                User user = new User(0, rs.getString("UserName"), "", "", "", "", "");
+                user.setAvatar(rs.getString("Avatar"));
+                LessionComment.setAuthor(user);
                 list.add(LessionComment);
             }
 
@@ -62,9 +91,9 @@ public class LessionCommentDAO extends DBContext{
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setInt(1, LessionComment.getLessionId());
-            st.setInt(1, LessionComment.getAuthorId());
-            st.setInt(1, LessionComment.getParentId());
-            st.setString(2, LessionComment.getContent());
+            st.setInt(2, LessionComment.getAuthorId());
+            st.setInt(3, LessionComment.getParentId());
+            st.setString(4, LessionComment.getContent());
             // Execute the update
             st.executeUpdate();
         } catch (SQLException e) {

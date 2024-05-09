@@ -52,7 +52,7 @@
                     <td><%=user.getEmail()%></td>
                     <td><%=user.getUsername()%></td>
                     <td><%=user.getPassword()%></td>
-                    <td><%=user.getBanlance()%>$</td>
+                    <td><%=user.getBalance()%>$</td>
                     <td><%=role%></td>
                     <td><a href="/dashboard/update-user?id=<%=user.getId()%>" title="Update user"><i class="fa-solid fa-pen"></i></a>
                         <!-- Button trigger modal -->

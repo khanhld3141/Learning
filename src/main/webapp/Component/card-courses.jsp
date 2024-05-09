@@ -26,7 +26,7 @@
                             <i class="fa-regular fa-star" style="color: #FFD43B;"></i>
                         </div>
                     </div>
-                    <button class="btn btn--enroll">ENROLL NOW</button>
+                    <a href="/buy?courseid=${course.id}" class="btn btn--enroll">ENROLL NOW</a>
                 </div>
             </div>
         </div>

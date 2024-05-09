@@ -61,7 +61,7 @@
                         </div>
                         <div class="balance">
                             <label for="Balance">Balance</label>
-                            <input value=<%=user.getBanlance()%> type="number" name="Balance" id="Balance"
+                            <input value=<%=user.getBalance()%> type="number" name="Balance" id="Balance"
                                    placeholder="Enter balance">
                         </div>
                     </div>

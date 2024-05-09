@@ -2,7 +2,8 @@
 <%@ page import="model.Course" %>
 <%@ page import="model.Chapter" %>
 <%@ page import="java.util.List" %>
-<%@ page import="model.Lession" %><%--
+<%@ page import="model.Lession" %>
+<%@ page import="model.LessionComment" %><%--
   Created by IntelliJ IDEA.
   User: ADMIN
   Date: 4/20/2024
@@ -58,7 +59,7 @@
                 <video autoplay controls width="100%" height="auto">
                     <source src="">
                 </video>
-<%--                <iframe src="" frameborder="0" allowfullscreen></iframe>--%>
+                <%--                <iframe src="" frameborder="0" allowfullscreen></iframe>--%>
             </div>
             <div class="main-video-description">
                 <div class="title">
@@ -68,6 +69,10 @@
                     Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took
                     a galley of type and scrambled it to make a type specimen book. It has survived not only five
                     centuries, but also the leap into electroni</p>
+                <button id="btnComment" class="btn-comment">
+                    <i class="fa-solid fa-cloud"></i>
+                    Ask&Answer
+                </button>
             </div>
         </div>
         <%--  end content--%>
@@ -83,7 +88,7 @@
                     <div class="accordion" id="accordionPlaylist-Videos">
                         <%
                             c.getChapters().sort((co1, co2) -> co1.getOrdinal() - co2.getOrdinal());
-                            for(Chapter chapter:c.getChapters()) {
+                            for (Chapter chapter : c.getChapters()) {
 
                         %>
                         <div class="accordion-item chapter">
@@ -100,12 +105,13 @@
 
                                 <div class="accordion-body videos">
                                     <%
-                                        for(Lession l: chapter.getLessions()){
+                                        for (Lession l : chapter.getLessions()) {
                                     %>
-                                    <li class="video" id="<%=l.getLink()%>">
+                                    <li class="video" id="<%=l.getLink()%>" data-lesson="<%=l.getId()%>">
 
-                                        <div class="col1">
-                                            <h class="title"><p class="id"><%=l.getId()%>.</p><%=l.getName()%></h>
+                                        <div data-lesson="<%=l.getId()%>" class="col1">
+                                            <h class="title"><p class="id"><%=l.getId()%>.</p><%=l.getName()%>
+                                            </h>
                                             <div class="timeplay">
                                                 <img src="../img/study/play.svg" alt="">
                                                 <p class="time">${param.time_video}</p>
@@ -118,6 +124,7 @@
                                         <div class="text">
                                             <%=l.getDescription()%>
                                         </div>
+
                                     </li>
                                     <%}%>
                                 </div>
@@ -140,10 +147,7 @@
         <div class="footer">
             <p>Made with love</p>
             <p>Powered by GBN</p>
-            <button class="btn-comment">
-                <i class="fa-solid fa-cloud"></i>
-                Ask&Answer
-            </button>
+
         </div>
         <%--    end footer--%>
 
@@ -162,17 +166,13 @@
         <div class="body">
             <div class="row">
 
-                <%
-                    int numberOfComments = 8;
-                %>
-
                 <div class="comment-head">
-                    <h4><%=numberOfComments%> comments</h4>
+                    <h4 id="numberComment"></h4>
                     <p>(Don't hesitate to report if you see spam comments)</p>
                 </div>
                 <div class="comment-box">
-                    <div class="avatar">
-                        <img src="../img/study/User-Profile-PNG.png" alt="">
+                    <div id="avatar" class="avatar">
+                        <img src="images/${sessionScope.user.avatar}" alt="">
                     </div>
                     <div class="comment-box_detail">
                         <%--                            show first-box->display:flex --%>
@@ -187,28 +187,23 @@
                             </div>
                             <div class="row2">
                                 <button class="btn-cancel-comment">Cancel</button>
-                                <button class="btn-post-comment">Comment</button>
+                                <button id="btnSubmitComment" class="btn-post-comment">Comment</button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="comments">
-                    <%for (int i = 1; i < numberOfComments; i++) {%>
-                    <jsp:include page="../Component/comment.jsp">
-                        <jsp:param name="avatar" value="../img/study/User-Profile-PNG.png"/>
-                        <jsp:param name="user_name" value="User's name"/>
-                        <jsp:param name="comment_text"
-                                   value="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled"/>
-                        <jsp:param name="comment_time" value="1 month ago"/>
-                    </jsp:include>
-                    <%}%>
+                <div id="comments" class="comments">
+
                 </div>
+
+
             </div>
         </div>
     </div>
 </div>
 
 <%--<script src="../assets/js/study/study.js"></script>--%>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
     // xu li dong/mo chapter va  video
     let videos = document.querySelectorAll('.video');
@@ -216,8 +211,9 @@
     let main_video_description_title = document.querySelector('.main-video-description .title h')
     let main_video_description_text = document.querySelector('.main-video-description .content')
     main_video.src = "/images/4d9bc353-f5c6-4f11-abfe-aea1ff5b839a_demo-video.mp4";
+    let btnCommentModal = document.querySelector('#btnComment');
 
-
+    let col = document.querySelector('.col1')
     videos.forEach(selected_video => {
         selected_video.onclick = () => {
 
@@ -231,12 +227,11 @@
             selected_video.querySelector('.video .col1 img').src = "../img/study/pause.svg"
 
             // selected_video.querySelector('img').src = 'images/pause.svg';
-            console.log("/images/" + selected_video.getAttribute('id'))
             main_video_description_title.innerHTML = selected_video.querySelector('.video .col1 .title').innerHTML;
             main_video_description_text.innerHTML = selected_video.querySelector('.video .text').innerHTML;
-           main_video.src=""
-            main_video.src ="/images/" + selected_video.getAttribute('id')
-
+            main_video.src = ""
+            main_video.src = "/images/" + selected_video.getAttribute('id')
+            col.dataset.lesson = selected_video.dataset.lesson;
             main_video.parentElement.load();
 
         }
@@ -252,14 +247,68 @@
     let modalComment = document.querySelector('.modal-comment');
     let btnClose = document.querySelector('.btn-commentClose');
     let modalCommentContainer = document.querySelector('.modal-container')
+    let contentModal = document.querySelector('#comments')
+    let btnSubmitComment=document.querySelector('#btnSubmitComment')
+    let commentText=document.querySelector('#CommentTextArea')
+    btnSubmitComment.addEventListener('click',()=>{
+        let formData = new FormData();
+        formData.append('lessonid', col.dataset.lesson);
+        formData.append('content',commentText.value)
+        $.ajax({
+            url: '/post-comment',
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success:()=>{
+                contentModal.innerHTML=''
+                showComment();
+            }
+        })
 
-    function showComment()
-    {
+    })
+    function showComment() {
+        let formData = new FormData();
+        formData.append('id', col.dataset.lesson);
+        $.ajax({
+            url: '/get-comment',
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: (data) => {
+                let numberofComments = document.querySelector('#numberComment')
+                numberofComments.innerHTML = '<h4>' + data.length + ' comments </h4>';
+                let html = '';
+                data.map(item => {
+                    html += `
+                        <div class="comment">
+                            <div class="avatar">
+                                <img src="/images/`+item.author.Avatar+`" alt="">
+                            </div>
+                            <div class="comment-body">
+                                <div class="comment-wrapper">
+                                    <div class="comment-content">
+                                        <div class="comment-content__head">
+                                            <a href="">`+item.author.Name+`</a>
+                                        </div>
+                                        <div class="comment-content__body">
+                                           `+item.Content+`
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+            `;
+
+                })
+                contentModal.innerHTML = html;
+            }
+        });
         modalComment.classList.add('open')
     }
 
-    function closeComment()
-    {
+    function closeComment() {
         modalComment.classList.remove('open')
     }
 
@@ -268,8 +317,7 @@
 
     modalComment.addEventListener('click', closeComment)
 
-    modalCommentContainer.addEventListener('click', function(event)
-    {
+    modalCommentContainer.addEventListener('click', function (event) {
         event.stopPropagation();
     })
 
@@ -281,16 +329,13 @@
     let btnPostComment = document.querySelector('.btn-post-comment');
 
 
-
-    function showSecondBoxComment()
-    {
+    function showSecondBoxComment() {
         firstBoxComment.style.display = 'none';
         secondBoxComment.style.display = 'flex';
     }
 
-    function closeSecondBoxComment()
-    {
-        document.getElementById('CommentTextArea').value='';
+    function closeSecondBoxComment() {
+        document.getElementById('CommentTextArea').value = '';
         firstBoxComment.style.display = 'flex';
         secondBoxComment.style.display = 'none';
     }
@@ -310,31 +355,25 @@
             for (btnMore of btnMores) {
                 btnMore.querySelector('.more').style.display = 'none';
             }
-            if(!moreVisible)
-            {
+            if (!moreVisible) {
                 selected_btn.querySelector('.more').style.display = 'block';
                 moreVisible = true;
-            }
-            else{
+            } else {
                 selected_btn.querySelector('.more').style.display = 'none';
                 moreVisible = false;
             }
         }
     });
 
-    modalCommentContainer.addEventListener('click', function ()
-    {
-        for(btnMore of btnMores)
-        {
+    modalCommentContainer.addEventListener('click', function () {
+        for (btnMore of btnMores) {
             btnMore.querySelector('.more').style.display = 'none';
 
         }
     })
 
-    for(btnMore of btnMores)
-    {
-        btnMore.addEventListener('click', function (event)
-        {
+    for (btnMore of btnMores) {
+        btnMore.addEventListener('click', function (event) {
             event.stopPropagation();
         })
     }
@@ -364,7 +403,6 @@
     });
 
     // ... (phần code tiếp theo)
-
 
 
 </script>

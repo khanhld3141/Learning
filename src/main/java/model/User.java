@@ -39,13 +39,6 @@ public class User {
         Id = id;
     }
 
-    public int getBanlance() {
-        return Balance;
-    }
-
-    public void setBanlance(int balance) {
-        Balance = balance;
-    }
 
     public String getName() {
         return Name;
