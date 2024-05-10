@@ -13,6 +13,9 @@
                     <a href="/my-posts"><i class="fa-solid fa-blog"></i>My posts</a>
                 </li>
                 <li>
+                    <a href="../my/my-deposit.jsp"><i class="fa-solid fa-receipt"></i>My deposits</a>
+                </li>
+                <li>
                     <a href="/change-password"><i class="fa-solid fa-key"></i>Change Password</a>
                 </li>
             </ul>
