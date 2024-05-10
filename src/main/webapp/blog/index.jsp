@@ -85,7 +85,7 @@
                     <div class="widget widget-search">
                         <form action="/blogs" method="get">
                             <input type="text" name="query" placeholder="Search..." required="">
-                            <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                            <button type="submit" style="background-color: #fff; border: none;"><i class="fa-solid fa-magnifying-glass"></i></button>
                         </form>
                     </div>
                     <!-- list categories -->

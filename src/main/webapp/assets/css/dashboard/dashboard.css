@@ -27,7 +27,7 @@
 .avatar-profile{
   display: flex;
   align-items: center;
-  width: 170px;
+  //width: 170px;
   background-color: #ff5722;
   /* height: 100%; */
   padding: 12px 12px;
