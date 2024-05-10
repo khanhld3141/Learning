@@ -7,8 +7,8 @@
         <div class="manage-user__block-title manage-block">
             <div class="manage-title-search">
                 <h1 class="manage-user__title title">Manage Users</h1>
-                <form action="" class="search-form">
-                    <input type="text" placeholder="Search name user" class="search-input" name="Name">
+                <form action="/dashboard/users" method="get" class="search-form">
+                    <input type="text" placeholder="Search name user" class="search-input" name="query">
                     <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </form>
             </div>
@@ -35,26 +35,34 @@
                     if (request.getAttribute("users") != null) {
                         List<User> list = (List<User>) request.getAttribute("users");
                         for (User user : list) {
-                        String role ="";
-                        if(user.getRole().equals("R1")){
-                            role = "Admin";
-                        }else if(user.getRole().equals("R2")){
-                            role = "Teacher";
-                        }else if(user.getRole().equals("R3")){
-                            role = "Student";
-                        }
+                            String role = "";
+                            if (user.getRole().equals("R1")) {
+                                role = "Admin";
+                            } else if (user.getRole().equals("R2")) {
+                                role = "Teacher";
+                            } else if (user.getRole().equals("R3")) {
+                                role = "Student";
+                            }
 
                 %>
                 <tr>
-                    <td><%=user.getId()%></td>
-                    <td><%=user.getName()%></td>
-                    <td><%=user.getPhone()%></td>
-                    <td><%=user.getEmail()%></td>
-                    <td><%=user.getUsername()%></td>
-                    <td><%=user.getPassword()%></td>
+                    <td><%=user.getId()%>
+                    </td>
+                    <td><%=user.getName()%>
+                    </td>
+                    <td><%=user.getPhone()%>
+                    </td>
+                    <td><%=user.getEmail()%>
+                    </td>
+                    <td><%=user.getUsername()%>
+                    </td>
+                    <td><%=user.getPassword()%>
+                    </td>
                     <td><%=user.getBalance()%>$</td>
-                    <td><%=role%></td>
-                    <td><a href="/dashboard/update-user?id=<%=user.getId()%>" title="Update user"><i class="fa-solid fa-pen"></i></a>
+                    <td><%=role%>
+                    </td>
+                    <td><a href="/dashboard/update-user?id=<%=user.getId()%>" title="Update user"><i
+                            class="fa-solid fa-pen"></i></a>
                         <!-- Button trigger modal -->
                         <button type="button" class="btn__modal" data-bs-toggle="modal"
                                 data-bs-target="#modal__delete_<%=user.getId()%>" title="Delete user">
@@ -99,13 +107,59 @@
             <div class="clearfix">
                 <div class="hint-text">Showing <b>10</b> out of <b>50</b> entries</div>
                 <ul class="pagination">
-                    <li class="page-item"><a href="#" class="page-link">Previous</a></li>
-                    <li class="page-item"><a href="#" class="page-link">Next</a></li>
+                    <li id="prev" onclick="previousPage()"
+                        class="page-item"><a class="page-link" href="#">Previous</a></li>
+                    <li id="next" onclick="nextPage()" class="page-item"><a class="page-link" href="#">Next</a></li>
                 </ul>
             </div>
             <!-- Generated at CSSPortal.com -->
         </div>
     </div>
 </div>
+<script>
+    function previousPage() {
+        let query = <%=request.getParameter("query") !=null ? request.getParameter("query").toString() :""%>;
+        let currentPage = <%= request.getParameter("page") != null ? Integer.parseInt(request.getParameter("page")) : 1
+         %>;
+        let previousPage = currentPage - 1;
+        if (previousPage >= 1) {
+            if (query != "") {
+                alert(query)
+                let queryString = "/dashboard/users?page=" + previousPage.toString() + "&query=" + query;
+                window.location.href = queryString;
+            } else {
+                alert("not")
+                window.location.href = "/dashboard/users?page=" + previousPage;
+            }
+        }
+    }
+
+    function nextPage() {
+        let query = <%=request.getParameter("query") !=null ? request.getParameter("query").toString() :""%>;
+        let currentPage = <%= request.getParameter("page") != null ?
+            Integer.parseInt(request.getParameter("page")) : 1
+         %>;
+        let nextPage = currentPage + 1;
+        if (query !== "") {
+            alert("query")
+            let queryString = "/dashboard/users?page=" + nextPage.toString() + "&query=" + query;
+            window.location.href = queryString;
+        } else {
+            alert("not")
+            window.location.href = "/dashboard/users?page=" + nextPage;
+        }
+    }
+
+    window.onload = function () {
+        let currentPage = <%= request.getParameter("page") != null ? Integer.parseInt(request.getParameter("page")) : 1
+         %>;
+        let previousButton = document.getElementById("prev");
+        if (currentPage == 1) {
+            previousButton.disabled = true;
+        } else {
+            previousButton.disabled = false;
+        }
+    };
+</script>
 </body>
 </html>

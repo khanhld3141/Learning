@@ -15,14 +15,17 @@ public class DepositDAO extends DBContext {
         super();
     }
 
-    public List<Deposit> getAllDeposits() {
+    public List<Deposit> getAllDeposits(int page,int recordsPerPage) {
         List<Deposit> list = new ArrayList<>();
         String sql = "select Users.*,AmountOfMoney,StatusId,Statuss.Name as NameStatus,Deposits.Id as IdD from Deposits \n" +
                 "left join Statuss on Deposits.StatusId=Statuss.Id\n" +
-                "left join Users on Deposits.UserId=Users.Id";
+                "left join Users on Deposits.UserId=Users.Id   ORDER BY Id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
 
         try {
             PreparedStatement st = connection.prepareStatement(sql);
+            int offset = (page - 1) * recordsPerPage;
+            st.setInt(1, offset);
+            st.setInt(2, recordsPerPage);
             ResultSet rs = st.executeQuery();
             Deposit deposit = new Deposit();
             while (rs.next()) {

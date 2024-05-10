@@ -22,9 +22,9 @@ public class UserCourseDAO extends DBContext{
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 UserCourse UserCourse = new UserCourse(
-//                        rs.getInt("Id"),
-//                        rs.getInt("UserId"),
-//                        rs.getInt("CourseId")
+                        rs.getInt("Id"),
+                        rs.getInt("UserId"),
+                        rs.getInt("CourseId")
                 );
                 list.add(UserCourse);
             }
@@ -60,6 +60,27 @@ public class UserCourseDAO extends DBContext{
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
+
+            while (rs.next()) {
+                UserCourse UserCourse = new UserCourse(
+                        rs.getInt("Id"),
+                        rs.getInt("UserId"),
+                        rs.getInt("CourseId")
+                );
+                return UserCourse;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public UserCourse findByUserAndCourse(int userid,int courseid) {
+        String sql = "select * from usercourses where userid=? and CourseId=?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, userid);
+            st.setInt(2, courseid);
             ResultSet rs = st.executeQuery();
 
             while (rs.next()) {

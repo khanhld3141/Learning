@@ -16,7 +16,7 @@ public class Data extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("/Payment/index.jsp").forward(request, response);
+        request.getRequestDispatcher("/payment/index.jsp").forward(request, response);
     }
 
     public void destroy() {

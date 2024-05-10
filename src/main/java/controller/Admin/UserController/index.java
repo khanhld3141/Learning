@@ -26,7 +26,12 @@ public class index extends HttpServlet {
         if (request.getParameter("page") != null) {
             currentPage = Integer.parseInt(request.getParameter("page"));
         }
-        List<User> list = userDao.getAll(currentPage,10);
+        String query = "";
+        if(request.getParameter("query") != null){
+            query=request.getParameter("query");
+        }
+
+        List<User> list = userDao.searchByName(currentPage,10,query);
         request.setAttribute("users", list);
 
         request.getRequestDispatcher("/dashboard_user/index.jsp").forward(request, response);

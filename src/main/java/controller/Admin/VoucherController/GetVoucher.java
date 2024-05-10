@@ -22,7 +22,15 @@ public class GetVoucher extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        List<Voucher> lists = voucherDAO.getAllVouchers();
+        int page=1;
+        if(request.getParameter("page") != null){
+            try{
+                page=Integer.parseInt(request.getParameter("page"));
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        List<Voucher> lists = voucherDAO.getAllVouchers(page,10);
         request.setAttribute("vouchers", lists);
         request.getRequestDispatcher("/dashboard_voucher/index.jsp").forward(request, response);
     }

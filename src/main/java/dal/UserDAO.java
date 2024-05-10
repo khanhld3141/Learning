@@ -46,7 +46,39 @@ public class UserDAO extends DBContext {
 
         return list;
     }
-    public List<User> searchByName(String name) {
+    public List<User> searchByName(int page, int recordsPerPage,String name) {
+        List<User> list = new ArrayList<>();
+        String sql =  "SELECT * FROM Users WHERE Name LIKE ? ORDER BY Id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
+
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            int offset = (page - 1) * recordsPerPage;
+            st.setString(1, "%" + name + "%");
+            st.setInt(2, offset);
+            st.setInt(3, recordsPerPage);
+            ResultSet rs = st.executeQuery();
+
+            while (rs.next()) {
+                User user = new User(
+                        rs.getInt("Id"),
+                        rs.getInt("Balance"),
+                        rs.getString("Name"),
+                        rs.getString("Username"),
+                        rs.getString("Phone"),
+                        rs.getString("Role"),
+                        rs.getString("Email"),
+                        rs.getString("Password")
+                );
+                list.add(user);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return list;
+    }
+    public List<User> searchByName1(String name) {
         List<User> list = new ArrayList<>();
         String sql =  "SELECT * FROM Users WHERE Name LIKE ?";
 

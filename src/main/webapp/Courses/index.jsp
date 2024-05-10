@@ -37,14 +37,35 @@
             </div>
             <!-- pagination -->
             <ul class="pagination justify-content-start">
-                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">4</a></li>
-                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                <li id="prev" onclick="previousPage()"
+                    class="page-item"><a class="page-link" href="#">Previous</a></li>
+                <li id="next" onclick="nextPage()" class="page-item"><a class="page-link" href="#">Next</a></li>
             </ul>
         </div>
     </div>
 </main>
+<script>
+    function previousPage() {
+        var currentPage = <%= request.getParameter("page") != null ? Integer.parseInt(request.getParameter("page")) : 1 %>;
+        var previousPage = currentPage - 1;
+        if (previousPage >= 1) {
+            window.location.href = "/courses?page=" + previousPage;
+        }
+    }
+
+    function nextPage() {
+        var currentPage = <%= request.getParameter("page") != null ? Integer.parseInt(request.getParameter("page")) : 1 %>;
+        var nextPage = currentPage + 1;
+        window.location.href = "/courses?page=" + nextPage;
+    }
+    window.onload = function() {
+        var currentPage = <%= request.getParameter("page") != null ? Integer.parseInt(request.getParameter("page")) : 1 %>;
+        var previousButton = document.getElementById("prev");
+        if (currentPage == 1) {
+            previousButton.disabled = true;
+        } else {
+            previousButton.disabled = false;
+        }
+    };
+</script>
 <%@include file="../Component/footer.jsp" %>

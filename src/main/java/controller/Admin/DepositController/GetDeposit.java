@@ -29,7 +29,15 @@ public class GetDeposit extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        List<Deposit> lists = depositDAO.getAllDeposits();
+        int page=1;
+        if(request.getParameter("page") != null){
+            try{
+                page=Integer.parseInt(request.getParameter("page"));
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        List<Deposit> lists = depositDAO.getAllDeposits(page,10);
         List<Status> statuses=statusDAO.getAllStatuss();
         List<User> users=userDAO.getAllUser();
         request.setAttribute("users",users);

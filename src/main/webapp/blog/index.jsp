@@ -1,5 +1,6 @@
 <%@ page import="model.Post" %>
 <%@ page import="java.util.List" %>
+<%@ page import="model.Category" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="../Component/header.jsp" %>
 <style>
@@ -29,8 +30,8 @@
                     <!-- list card blog -->
                     <div class="list-item-courses">
                         <%
-                            if (request.getAttribute("posts") != null) {
-                                List<Post> posts = (List<Post>) request.getAttribute("posts");
+                            if (request.getAttribute("allposts") != null) {
+                                List<Post> posts = (List<Post>) request.getAttribute("allposts");
 
                                 for (Post post : posts) {
                         %>
@@ -68,12 +69,9 @@
                     </div>
 
                     <ul class="pagination justify-content-start">
-                        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">4</a></li>
-                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                        <li id="prev" onclick="previousPage()"
+                            class="page-item"><a class="page-link" href="#">Previous</a></li>
+                        <li id="next" onclick="nextPage()" class="page-item"><a class="page-link" href="#">Next</a></li>
                     </ul>
                 </div>
                 <div class="blog-posts__right">
@@ -94,18 +92,24 @@
                     <div class="widget list-categories">
                         <h3 class="widget__title list-categories__title">Categories</h3>
                         <ul>
-                            <% for (int i = 1; i <= 8; i++) {%>
-                            <li><a href="#">App Design <span>(5)</span></a></li>
-                            <% } %>
+                            <%
+                                if (request.getAttribute("categories") != null) {
+                                    List<Category> categories = (List<Category>) request.getAttribute("categories");
+                                    for (Category category : categories) {
+                            %>
+                            <li><a href="#"><%=category.getName()%> <span>(<%=category.getTotalCourse()%>)</span></a>
+                            </li>
+                            <%
+                                    }
+                                }
+                            %>
                         </ul>
                     </div>
                     <!-- recent-posts -->
                     <div class="widget recent-posts">
                         <h3 class="widget__title">recent posts</h3>
                         <ul>
-                            <% for (int i = 1; i <= 3; i++) {%>
                             <%@include file="../Component/recent-posts__item.jsp" %>
-                            <% } %>
                         </ul>
                     </div>
                 </div>
@@ -113,4 +117,28 @@
         </div>
     </div>
 </main>
+<script>
+    function previousPage() {
+        var currentPage = <%= request.getParameter("page") != null ? Integer.parseInt(request.getParameter("page")) : 1 %>;
+        var previousPage = currentPage - 1;
+        if (previousPage >= 1) {
+            window.location.href = "/blogs?page=" + previousPage;
+        }
+    }
+
+    function nextPage() {
+        var currentPage = <%= request.getParameter("page") != null ? Integer.parseInt(request.getParameter("page")) : 1 %>;
+        var nextPage = currentPage + 1;
+        window.location.href = "/blogs?page=" + nextPage;
+    }
+    window.onload = function() {
+        var currentPage = <%= request.getParameter("page") != null ? Integer.parseInt(request.getParameter("page")) : 1 %>;
+        var previousButton = document.getElementById("prev");
+        if (currentPage == 1) {
+            previousButton.disabled = true;
+        } else {
+            previousButton.disabled = false;
+        }
+    };
+</script>
 <%@include file="../Component/footer.jsp" %>

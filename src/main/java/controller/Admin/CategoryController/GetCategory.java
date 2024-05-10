@@ -22,7 +22,15 @@ public class GetCategory extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        List<Category> lists = categoryDAO.getAllCategorys();
+        int page=1;
+        if(request.getParameter("page") != null){
+            try{
+                page=Integer.parseInt(request.getParameter("page"));
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+        }
+        List<Category> lists = categoryDAO.getAllCategoryPaging(page,10);
         request.setAttribute("categories", lists);
 
         request.getRequestDispatcher("/dashboard-category/index.jsp").forward(request, response);

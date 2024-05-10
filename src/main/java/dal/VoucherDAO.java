@@ -12,12 +12,15 @@ public class VoucherDAO extends DBContext{
     public VoucherDAO(){
         super();
     }
-    public List<Voucher> getAllVouchers(){
+    public List<Voucher> getAllVouchers(int page, int recordsPerPage ){
         List <Voucher> list = new ArrayList<>();
-        String sql = "select * from Vouchers";
+        String sql = "select * from Vouchers  ORDER BY Id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
 
         try {
             PreparedStatement st = connection.prepareStatement(sql);
+            int offset = (page - 1) * recordsPerPage;
+            st.setInt(1, offset);
+            st.setInt(2, recordsPerPage);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 Voucher Voucher = new Voucher(

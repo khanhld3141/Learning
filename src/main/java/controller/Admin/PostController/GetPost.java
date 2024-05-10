@@ -24,7 +24,15 @@ public class GetPost extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         try {
-            List<Post> posts = postDAO.getAllPosts(1,10);
+            int page=1;
+            if(request.getParameter("page") != null){
+                try{
+                    page=Integer.parseInt(request.getParameter("page"));
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+            List<Post> posts = postDAO.getAllPosts(page,10);
             request.setAttribute("posts", posts);
             request.getRequestDispatcher("/dashboard_post/index.jsp").forward(request, response);
         } catch (Exception e) {

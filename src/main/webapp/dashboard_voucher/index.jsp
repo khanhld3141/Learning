@@ -91,13 +91,39 @@
             <div class="clearfix">
                 <div class="hint-text">Showing <b>10</b> out of <b>50</b> entries</div>
                 <ul class="pagination">
-                    <li class="page-item"><a href="#" class="page-link">Previous</a></li>
-                    <li class="page-item"><a href="#" class="page-link">Next</a></li>
+                    <li id="prev" onclick="previousPage()"
+                        class="page-item"><a class="page-link" href="#">Previous</a></li>
+                    <li id="next" onclick="nextPage()" class="page-item"><a class="page-link" href="#">Next</a></li>
                 </ul>
             </div>
             <!-- Generated at CSSPortal.com -->
         </div>
     </div>
 </div>
+
+<script>
+    function previousPage() {
+        var currentPage = <%= request.getParameter("page") != null ? Integer.parseInt(request.getParameter("page")) : 1 %>;
+        var previousPage = currentPage - 1;
+        if (previousPage >= 1) {
+            window.location.href = "/dashboard/vouchers?page=" + previousPage;
+        }
+    }
+
+    function nextPage() {
+        var currentPage = <%= request.getParameter("page") != null ? Integer.parseInt(request.getParameter("page")) : 1 %>;
+        var nextPage = currentPage + 1;
+        window.location.href = "/dashboard/vouchers?page=" + nextPage;
+    }
+    window.onload = function() {
+        var currentPage = <%= request.getParameter("page") != null ? Integer.parseInt(request.getParameter("page")) : 1 %>;
+        var previousButton = document.getElementById("prev");
+        if (currentPage == 1) {
+            previousButton.disabled = true;
+        } else {
+            previousButton.disabled = false;
+        }
+    };
+</script>
 </body>
 </html>

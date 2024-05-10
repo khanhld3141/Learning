@@ -5,7 +5,7 @@
          version="5.0">
 
 <!--    LOGIN-->
-   <!-- <filter>
+    <filter>
         <filter-name>FilterLogin</filter-name>
         <filter-class>filter.LoginFilter</filter-class>
     </filter>
@@ -42,10 +42,17 @@
         <url-pattern>/dashboard/create-deposit</url-pattern>
         <url-pattern>/dashboard/update-deposit</url-pattern>
         <url-pattern>/dashboard/delete-deposit</url-pattern>
+
+        <url-pattern>/my-profile</url-pattern>
+        <url-pattern>/my-courses</url-pattern>
+        <url-pattern>/my-posts</url-pattern>
+        <url-pattern>/change-password</url-pattern>
+        <url-pattern>/deposits</url-pattern>
+
     </filter-mapping>
 
 
-&lt;!&ndash;    TEACHER&ndash;&gt;
+<!--    TEACHER-->
     <filter>
         <filter-name>FilterTeacher</filter-name>
         <filter-class>filter.TeacherFilter</filter-class>
@@ -76,7 +83,7 @@
     </filter-mapping>
 
 
-&lt;!&ndash;    ADMIN&ndash;&gt;
+<!--    ADMIN-->
     <filter>
         <filter-name>FilterAdmin</filter-name>
         <filter-class>filter.AdminFilter</filter-class>
@@ -110,7 +117,15 @@
         <url-pattern>/dashboard/update-deposit</url-pattern>
         <url-pattern>/dashboard/delete-deposit</url-pattern>
 
-    </filter-mapping>-->
+    </filter-mapping>
 
+     <filter>
+         <filter-name>CourseFilter</filter-name>
+         <filter-class>filter.CourseFilter</filter-class>
+     </filter>
+     <filter-mapping>
+         <filter-name>CourseFilter</filter-name>
+         <url-pattern>/learning</url-pattern>
+     </filter-mapping>
 
-</web-app>
+ </web-app>

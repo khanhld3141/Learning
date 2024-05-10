@@ -14,10 +14,34 @@ public class CategoryDAO extends DBContext{
     }
     public List<Category> getAllCategorys(){
         List <Category> list = new ArrayList<>();
-        String sql = "select * from Categories";
+        String sql = "select * from Categories ";
 
         try {
             PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Category Category = new Category(
+                        rs.getInt("Id"),
+                        rs.getString("Name"),
+                        rs.getString("Image")
+                );
+                list.add(Category);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+    public List<Category> getAllCategoryPaging(int page, int recordsPerPage){
+        List <Category> list = new ArrayList<>();
+        String sql = "select * from Categories ORDER BY Id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
+
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            int offset = (page - 1) * recordsPerPage;
+            st.setInt(1, offset);
+            st.setInt(2, recordsPerPage);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 Category Category = new Category(

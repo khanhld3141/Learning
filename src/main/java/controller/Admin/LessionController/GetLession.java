@@ -25,6 +25,14 @@ public class GetLession extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         if(request.getParameter("chapterid")!=null){
             String chapterid = request.getParameter("chapterid");
+            int page=1;
+            if(request.getParameter("page") != null){
+                try{
+                    page=Integer.parseInt(request.getParameter("page"));
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
             try {
                 int chapterId=Integer.parseInt(chapterid);
                 List<Lession> lessions=lessionDAO.getAllLessions(chapterId);
