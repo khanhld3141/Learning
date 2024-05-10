@@ -28,7 +28,7 @@
 
     <%--  css--%>
     <link rel="stylesheet" href="../assets/css/reset.css">
-    <link rel="stylesheet" href="../assets/css/study/study.css">
+    <link rel="stylesheet" href="../assets/css/study/study.scss">
 
 </head>
 <body>
@@ -41,7 +41,7 @@
 
         <%--            begin head--%>
         <div class="head">
-            <div class="head-back"><a href="#"><i class="fa-solid fa-arrow-left"></i></a></div>
+            <div class="head-back"><a href="../Home"><i class="fa-solid fa-arrow-left"></i></a></div>
             <a href="" class="head-logo"><img src="../img/study/6783729.png" alt=""></a>
             <div class="head-title">HTML CSS for beginners</div>
             <div class="progress-bar">

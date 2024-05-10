@@ -33,9 +33,9 @@
                     <h2>Payment details:</h2>
                 </div>
                 <div class="buy-course-detail-wrapper">
-                    <form action="/buy" method="post">
+                    <form action="/buy" method="post" style="width: 100%;">
                         <input name="courseid" value="<%=c.getId()%>" hidden="hidden">
-                        <div class="voucher-input">
+                        <div class="voucher-input" style="margin-bottom: 16px;">
                             <input type="text" name="voucher" id="" placeholder="Type voucher's ID here">
                         </div>
                         <div class="price-box">
@@ -50,9 +50,9 @@
                         <hr class="buy-course-divider">
                         <div class="price-box total-price-box">
                             <span class="price-desc">Total price:</span>
-                            <input name="" value="<%=c.getPrice()%>">
+                            <span class="price-detail">$<%=c.getPrice()%></span>
                         </div>
-                        <input value="Buy" type="submit">
+                        <input class="btn" value="Buy" type="submit" style="margin: 10px 0">
                     </form>
                 </div>
 

@@ -96,8 +96,8 @@
                     <div class="enter-money">
                         <form action="/deposits" method="post">
                             <div class="form-payment-block">
-                                <input name="amountofmoney" type="number" placeholder="Enter amount of money">
-                                <button type="submit">Confirm payment</button>
+                                <input name="amountofmoney" class="money-input" type="number" placeholder="Enter amount of money">
+                                <button type="submit" class="btn" style="max-width: 20%; margin-bottom: 0">Confirm payment</button>
                             </div>
                         </form>
                     </div>
