@@ -45,14 +45,13 @@ public class DetailCourse extends HttpServlet {
                 List<CourseComment> comments=courseCommentDAO.getAllCourseComments(id);
                 request.setAttribute("comments", comments);
 
-                List<Course> courses=courseDAO.getAllCourses(1,3);
-                request.setAttribute("courses", courses);
+                List<Course> recentcourse=courseDAO.getAllCourses(1,3);
+                request.setAttribute("coursesrecent", recentcourse);
 
                 List<Category> categories=categoryDAO.getWithNumberOfCourses();
                 request.setAttribute("categories", categories);
-
-
-
+                List<Course> courses=courseDAO.getCourseByCate(1,10,course.getCateId());
+                request.setAttribute("courses", courses);
                 request.getRequestDispatcher("/Courses_details/index.jsp").forward(request, response);
             }catch(Exception e){
                 e.printStackTrace();

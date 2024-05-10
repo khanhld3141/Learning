@@ -1,3 +1,5 @@
+<%@ page import="java.util.List" %>
+<%@ page import="model.Hashtag" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="../Component/sidebar__dashboard.jsp" %>
 <div class="content-admin">
@@ -51,16 +53,20 @@
                 <thead>
                 <tr>
                     <th onclick="sortTable(0)">ID Hashtag</th>
-                    <th onclick="sortTable(1)">Title post</th>
-                    <th onclick="sortTable(2)">Tag</th>
+                    <th onclick="sortTable(1)">Tag</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
                 <tbody>
+                <%
+                    if (request.getAttribute("hashtags") != null) {
+                        List<Hashtag> hashtags = (List<Hashtag>) request.getAttribute("hashtags");
+                        for (Hashtag hashtag : hashtags) {
+                %>
                 <tr>
-                    <td>1</td>
-                    <td>HELLO KITTY</td>
-                    <td>Big cute cat</td>
+                    <td><%=hashtag.getId()%>
+                    </td>
+                    <td><%=hashtag.getTag()%></td>
                     <td>
                         <!-- BUTTON TRIGGER UPDATE MODAL  -->
                         <button type="button" class="btn__modal" data-bs-toggle="modal"
@@ -77,27 +83,28 @@
                                                 data-bs-dismiss="modal"></button>
                                     </div>
                                     <form action="">
-                                    <div class="modal-body">
-<%--                                        <div class="Title-post">--%>
-<%--                                            <label for="Title-post-update">Name's post</label>--%>
-<%--                                            <input list="_Title-post-update" name="PostId"--%>
-<%--                                                   id="Title-post-update" placeholder="Choose a title post"--%>
-<%--                                                   required>--%>
-<%--                                            <datalist id="_Title-post-update">--%>
-<%--                                                <option value="Python Review - is it any good? (2023)">--%>
-<%--                                            </datalist>--%>
-<%--                                        </div>--%>
-                                        <div class="tag">
-                                            <label for="Tag-update">Tag</label>
-                                            <input type="text" placeholder="Enter tag" name="Tag"
-                                                   id="Tag-update">
+                                        <div class="modal-body">
+                                            <%--                                        <div class="Title-post">--%>
+                                            <%--                                            <label for="Title-post-update">Name's post</label>--%>
+                                            <%--                                            <input list="_Title-post-update" name="PostId"--%>
+                                            <%--                                                   id="Title-post-update" placeholder="Choose a title post"--%>
+                                            <%--                                                   required>--%>
+                                            <%--                                            <datalist id="_Title-post-update">--%>
+                                            <%--                                                <option value="Python Review - is it any good? (2023)">--%>
+                                            <%--                                            </datalist>--%>
+                                            <%--                                        </div>--%>
+                                            <div class="tag">
+                                                <label for="Tag-update">Tag</label>
+                                                <input type="text" placeholder="Enter tag" name="Tag"
+                                                       id="Tag-update">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="submit" class="btn btn-primary">Confirm</button>
-                                        <button type="button" class="btn btn-danger"
-                                                data-bs-dismiss="modal">No</button>
-                                    </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-primary">Confirm</button>
+                                            <button type="button" class="btn btn-danger"
+                                                    data-bs-dismiss="modal">No
+                                            </button>
+                                        </div>
                                     </form>
                                 </div>
                             </div>
@@ -127,12 +134,17 @@
                                 <div class="modal-footer">
                                     <a href="../dashboard_hashtag" class="btn btn-primary">Yes</a>
                                     <button type="button" class="btn btn-danger"
-                                            data-bs-dismiss="modal">No</button>
+                                            data-bs-dismiss="modal">No
+                                    </button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </tr>
+                <%
+                        }
+                    }
+                %>
 
                 <%-- SORT TABLE --%>
                 <script src="../assets/js/Sort_table/sort-table.js"></script>

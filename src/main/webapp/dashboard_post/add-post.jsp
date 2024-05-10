@@ -11,22 +11,6 @@
             <form enctype="multipart/form-data" method="post" action="/dashboard/create-post"
                   class="add-posts__form add-form">
                 <div class="add-form__content">
-                    <div class="author-post">
-                        <label for="UserId">Author</label>
-                        <input list="_UserId" name="author" id="UserId" placeholder="Choose a author" required>
-                        <datalist id="_UserId">
-                            <%
-                                if (request.getAttribute("users") != null) {
-                                    List<User> users=(List<User>) request.getAttribute("users");
-                                    for (User user : users) {
-                            %>
-                            <option value=<%=user.getId() + "-" +user.getName()%>>
-                                    <%
-                                        }
-                                    }
-                                %>
-                        </datalist>
-                    </div>
                     <div class="title-posts">
                         <label for="Title-post">Title</label>
                         <input type="text" name="title" id="Title-post" placeholder="Enter title post" required>
@@ -70,7 +54,7 @@
                     </div>
                     <div class="submit">
                         <input type="submit" value="Confirm">
-                        <a href="../dashboard/posts" class="btn__back">Back</a>
+                        <a href="/dashboard/posts" class="btn__back">Back</a>
                     </div>
                 </div>
             </form>

@@ -59,7 +59,7 @@
                                 List<Hashtag> hashtags=post.getHashtags();
                                 for(Hashtag tag : hashtags){
                             %>
-                            <button class="hashtag-button">#<%=tag.getTag()%></button>
+                            <a href="/blogs?hashtag=<%=tag.getTag()%>" class="hashtag-button">#<%=tag.getTag()%></a>
                             <%
                                 }
                             %>
@@ -96,7 +96,7 @@
                                     List<Category> categories = (List<Category>) request.getAttribute("categories");
                                     for (Category category : categories) {
                             %>
-                            <li><a href="#"><%=category.getName()%> <span>(<%=category.getTotalCourse()%>)</span></a>
+                            <li><a href="/courses?category=<%=category.getId()%>"><%=category.getName()%> <span>(<%=category.getTotalCourse()%>)</span></a>
                             </li>
                             <%
                                     }

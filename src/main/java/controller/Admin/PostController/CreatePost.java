@@ -34,13 +34,14 @@ public class CreatePost extends HttpServlet {
         String comment=request.getParameter("comment");
         String title=request.getParameter("title");
         Part image=request.getPart("image");
-        String author=request.getParameter("author");
-        String authors[]=author.split("-");
+
+        HttpSession session=request.getSession();
+        User user=(User)session.getAttribute("user");
         String realPath = request.getServletContext().getRealPath("/images");
         String filename = FileUploadUtil.uploadFile(image, realPath);
 
         try{
-            postDAO.create(new Post(title,content,comment,filename,Integer.parseInt(authors[0])));
+            postDAO.create(new Post(title,content,comment,filename,user.getId()));
             response.sendRedirect("/dashboard/posts");
         }catch (Exception e){
             e.printStackTrace();

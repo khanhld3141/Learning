@@ -54,8 +54,7 @@ public class CourseDAO extends DBContext {
 
     public List<Course> getAllCoursesHome() {
         List<Course> list = new ArrayList<>();
-        String sql = "select Courses.*,Star from Courses\n" +
-                "left join UserCourses on Courses.Id = UserCourses.CourseId";
+        String sql = "select * from Courses\n";
 
         try {
             PreparedStatement st = connection.prepareStatement(sql);
@@ -92,6 +91,45 @@ public class CourseDAO extends DBContext {
             PreparedStatement st = connection.prepareStatement(sql);
             int offset = (page - 1) * recordsPerPage;
             st.setString(1,"%"+query+"%");
+            st.setInt(2, offset);
+            st.setInt(3, recordsPerPage);
+            ResultSet rs = st.executeQuery();
+            Course course = null;
+            while (rs.next()) {
+
+                course = new Course(
+                        rs.getInt("Id"),
+                        rs.getInt("TeacherId"),
+                        rs.getInt("price"),
+                        rs.getInt("CateId"),
+                        rs.getString("Name"),
+                        rs.getString("Introduce"),
+                        rs.getString("Image"),
+                        rs.getString("Overview"),
+                        rs.getString("Result")
+                );
+
+                course.setCategory(new Category(rs.getString("CateName"),rs.getString("CateImage")));
+                course.setTeacher(new User(rs.getInt("TeacherId"),rs.getString("Teacher"),"","","","",""));
+                list.add(course);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+    public List<Course> getCourseByCate(int page, int recordsPerPage,int cate) {
+        List<Course> list = new ArrayList<>();
+        String sql = "select courses.*,Categories.Name as CateName,Categories.Image as CateImage,Users.Name as Teacher from courses \n" +
+                "                left join Categories on Categories.id=Courses.CateId\n" +
+                "\t\t\t\tleft join Users on Courses.TeacherId=users.id where courses.cateid =? ORDER BY Id OFFSET ?" +
+                " " +
+                "ROWS FETCH NEXT ? ROWS ONLY";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            int offset = (page - 1) * recordsPerPage;
+            st.setInt(1,cate);
             st.setInt(2, offset);
             st.setInt(3, recordsPerPage);
             ResultSet rs = st.executeQuery();

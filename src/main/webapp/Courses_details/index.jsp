@@ -156,21 +156,7 @@
                         <p class="price"><strong>$<%=course.getPrice()%>
                         </strong><span>$111.00</span></p>
                         <span class="discount-price"><i class="fa-regular fa-clock"></i>90% off for 23 hours</span>
-
-                        <%
-                            if (session.getAttribute("user") != null) {
-
-                        %>
-
-                        <a href="#" class="btn buy-now__btn">Learn now</a>
-                        <%
-                        } else {
-
-                        %>
-                        <a href="#" class="btn buy-now__btn">Buy now</a>
-                        <%
-                            }
-                        %>
+                        <a href="/buy?courseid<%=course.getId()%>" class="btn buy-now__btn">Buy now</a>
                     </div>
                     <!-- instractors -->
                     <div class="widget instractors">
@@ -199,7 +185,7 @@
                                     List<Category> categories = (List<Category>) request.getAttribute("categories");
                                     for (Category category : categories) {
                             %>
-                            <li><a href="#"><%=category.getName()%> <span>(<%=category.getTotalCourse()%>)</span></a>
+                            <li><a href="/courses?category=<%=category.getId()%>"><%=category.getName()%> <span>(<%=category.getTotalCourse()%>)</span></a>
                             </li>
                             <%
                                     }
@@ -221,6 +207,36 @@
             %>
         </div>
     </section>
+    <script>
+        $(document).ready(function () {
+            $('.owl-carousel').owlCarousel({
+                loop: true,
+                nav: true,
+                margin: 30,
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    768: {
+                        items: 2
+                    },
+                    992: {
+                        items: 3
+                    }
+                }
+            })
+        });
+    </script>
+
+    <div class="slide-courses">
+
+        <div class="main-content">
+            <h1 class="title title__popular-courses">Related Courses</h1>
+            <div class="owl-carousel owl-theme">
+                <%@include file="../Component/card-courses.jsp"%>
+            </div>
+        </div>
+    </div>
 </main>
 <%--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>--%>
 <%--<script>--%>

@@ -52,10 +52,10 @@
     <div class="sidebar_user_info">
         <div class="icon_setting"></div>
         <div class="user_profle_side">
-            <div class="user_img"><img class="img-user-dashboard" src="../img/side-bar-admin/user_img.jpg" alt="#">
+            <div class="user_img"><img class="img-user-dashboard" src="/images/${sessionScope.user.avatar}" alt="#">
             </div>
             <div class="user_info">
-                <h6>John David</h6>
+                <h6>${sessionScope.user.name}</h6>
                 <p><span class="online_animation"></span> Online</p>
             </div>
         </div>
@@ -89,7 +89,7 @@
                                                                    style="color: #e91e63"></i>Voucher</a>
             </li>
             <li>
-                <a href="/dashboard_hashtag" class="nav__link"><i class="fa-solid fa-hashtag"
+                <a href="/dashboard/hashtags" class="nav__link"><i class="fa-solid fa-hashtag"
                                                                   style="color:  #ff9800"></i>Hastags</a>
             </li>
             <li>

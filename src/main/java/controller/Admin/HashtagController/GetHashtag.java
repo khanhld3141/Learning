@@ -21,7 +21,7 @@ public class GetHashtag extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         List<Hashtag> hashtags=hashtagDAO.getAllHashtags();
         request.setAttribute("hashtags", hashtags);
-        request.getRequestDispatcher("").forward(request,response);
+        request.getRequestDispatcher("/dashboard_hashtag/index.jsp").forward(request,response);
     }
 
     public void destroy() {

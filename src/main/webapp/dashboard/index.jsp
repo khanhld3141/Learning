@@ -1,3 +1,9 @@
+<%@ page import="java.util.List" %>
+<%@ page import="model.Category" %>
+<%@ page import="com.oracle.wls.shaded.org.apache.xpath.operations.String" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="com.google.gson.Gson" %>
+<%@ page import="java.util.Comparator" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="../Component/sidebar__dashboard.jsp"%>
 
@@ -22,9 +28,9 @@
         </div>
         <div class="avatar-profile">
             <figure>
-                <img src="../img/side-bar-admin/user_img.jpg" alt="" class="avatar-admin">
+                <img src="/images/${sessionScope.user.avatar}" alt="" class="avatar-admin">
             </figure>
-            <span class="name-admin">John David<i class="fa-solid fa-chevron-down"></i></span>
+            <span class="name-admin">${sessionScope.user.name}<i class="fa-solid fa-chevron-down"></i></span>
             <div class="sub-menu display-none">
                 <ul>
                     <li>
@@ -74,10 +80,17 @@
             </div>
             <div class="card">
                 <figure><i class="fa-regular fa-clock"></i></figure>
+               <%
+                if(request.getAttribute("categories") != null){
+                    List<Category> categories=(List<Category>)request.getAttribute("categories");
+               %>
                 <div class="infor-card">
-                    <div class="total">123.50</div>
-                    <div class="title-card">Average Time</div>
+                    <div class="total"><%=categories.size()%></div>
+                    <div class="title-card">Category</div>
                 </div>
+                <%
+                    }
+                %>
             </div>
             <div class="card">
                 <figure><i class="fa-solid fa-cloud"></i></figure>
@@ -180,11 +193,34 @@
             <div class="chart-1-title block-title">
                 <h2>Courses and category chart</h2>
             </div>
+            <%
+                if(request.getAttribute("categories") != null){
+                    List<Category> categories =(List<Category>) request.getAttribute("categories");
+                    categories.sort(Comparator.comparingInt(Category::getTotalCourse).reversed());
+                    List<java.lang.String> courseNames = new ArrayList<>();
+                    List<Integer> courseCounts = new ArrayList<>();
+                    int count = 0;
+                    int totalOther = 0;
+                    for (Category category : categories) {
+                        if (count >= 4) {
+                            totalOther+=category.getTotalCourse();
+                        }else{
+                            courseNames.add(category.getName());
+                            courseCounts.add(category.getTotalCourse());
+
+                        }
+
+                        count++;
+                    }
+                    courseNames.add("Others");
+                    courseCounts.add(totalOther);
+            %>
             <div class="chart-1-block">
                 <canvas id="courses-chart" style="max-width: 500px;"></canvas>
                 <script>
-                    var xValues = ["AI", "Data science", "Front-end", "Back-end", "Other"];
-                    var yValues = [55, 49, 44, 24, 15];
+
+                    var xValues = <%= new Gson().toJson(courseNames) %>;
+                    var yValues = <%= new Gson().toJson(courseCounts) %>;
                     var barColors = [
                         "#ff9800",
                         "#2196f3",
@@ -211,6 +247,9 @@
                     });
                 </script>
             </div>
+            <%
+                }
+            %>
         </div>
         <div class="statistics-5">
             <div class="chart-1-title block-title">
@@ -220,9 +259,10 @@
                 <canvas id="revenueChart" style="width:100%"></canvas>
 
                 <script>
-                    var xValues = ['January', 'February', 'March', 'April', 'May', 'Jun', 'July', 'August', 'September', 'October', 'November', 'December'];
-                    var yValues = [535, 449, 434, 242, 152, 124, 120, 264, 1240, 523, 123, 452];
-                    var barColors = [
+                    var xValues2 = ['January', 'February', 'March', 'April', 'May', 'Jun', 'July', 'August',
+                        'September', 'October', 'November', 'December'];
+                    var yValues2 = [535, 449, 434, 242, 152, 124, 120, 264, 1240, 523, 123, 452];
+                    var barColors2 = [
                         "#E74C3C",
                         "#2ECC71",
                         "#3498DB",
@@ -240,10 +280,10 @@
                     new Chart("revenueChart", {
                         type: "bar",
                         data: {
-                            labels: xValues,
+                            labels: xValues2,
                             datasets: [{
-                                backgroundColor: barColors,
-                                data: yValues
+                                backgroundColor: barColors2,
+                                data: yValues2
                             }]
                         },
                         options: {

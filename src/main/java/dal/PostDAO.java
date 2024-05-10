@@ -47,8 +47,45 @@ public class PostDAO extends DBContext {
     public List<Post> searchByName(int page, int recordsPerPage,String query) {
 
         List<Post> list = new ArrayList<>();
-        String sql = "select posts.*,users.name as UserName from posts inner join users on users.id=posts.AuthorId " +
-                "where title like ?" +
+        String sql = "select posts.*,users.name as UserName from posts inner join users on users.id=posts.AuthorId\n" +
+                "\t\tinner join Hashtags on Hashtags.PostId=Posts.id\n" +
+                "                where title like ? or Tag like ?" +
+                "  ORDER BY Id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
+
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            int offset = (page - 1) * recordsPerPage;
+            st.setString(1,"%" + query + "%");
+            st.setString(2,"%" + query + "%");
+            st.setInt(3, offset);
+            st.setInt(4, recordsPerPage);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Post Post = new Post(
+                        rs.getString("Title"),
+                        rs.getString("Content"),
+                        rs.getString("Comment"),
+                        rs.getString("Image"),
+                        rs.getInt("Id"),
+                        rs.getInt("AuthorId")
+                );
+                Post.setCreatedAt(rs.getTimestamp("createdAt"));
+                Post.setAuthor(new User(0, rs.getString("UserName"), "", "", "", "", ""));
+                list.add(Post);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+
+    }
+    public List<Post> searchByHashTag(int page, int recordsPerPage,String query) {
+
+        List<Post> list = new ArrayList<>();
+        String sql = "select posts.*,users.name as UserName from posts inner join users on users.id=posts.AuthorId\n" +
+                "       inner join Hashtags on Hashtags.PostId=Posts.id\n" +
+                "\t   where Hashtags.Tag like ?" +
                 "  ORDER BY Id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
 
         try {

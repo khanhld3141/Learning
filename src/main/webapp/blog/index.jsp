@@ -84,7 +84,7 @@
                     <!-- search form -->
                     <div class="widget widget-search">
                         <form action="/blogs" method="get">
-                            <input type="text" name="query" placeholder="Search..." required="">
+                            <input type="text" name="query" placeholder="Search...">
                             <button type="submit" style="background-color: #fff; border: none;"><i class="fa-solid fa-magnifying-glass"></i></button>
                         </form>
                     </div>
@@ -97,7 +97,7 @@
                                     List<Category> categories = (List<Category>) request.getAttribute("categories");
                                     for (Category category : categories) {
                             %>
-                            <li><a href="#"><%=category.getName()%> <span>(<%=category.getTotalCourse()%>)</span></a>
+                            <li><a href="/courses?category=<%=category.getId()%>"><%=category.getName()%> <span>(<%=category.getTotalCourse()%>)</span></a>
                             </li>
                             <%
                                     }

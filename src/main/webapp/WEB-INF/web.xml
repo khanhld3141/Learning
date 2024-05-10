@@ -48,6 +48,20 @@
         <url-pattern>/my-posts</url-pattern>
         <url-pattern>/change-password</url-pattern>
         <url-pattern>/deposits</url-pattern>
+        <url-pattern>/my-deposits</url-pattern>
+        <url-pattern>/comment-blog</url-pattern>
+        <url-pattern>/create-my-post</url-pattern>
+        <url-pattern>/delete-my-post</url-pattern>
+        <url-pattern>/update-my-post</url-pattern>
+        <url-pattern>/upload-image-blog</url-pattern>
+        <url-pattern>/buy</url-pattern>
+        <url-pattern>/comment-course</url-pattern>
+        <url-pattern>/comment-blog</url-pattern>
+        <url-pattern>/comment-blog</url-pattern>
+        <url-pattern>/learning</url-pattern>
+        <url-pattern>/get-comment</url-pattern>
+        <url-pattern>/post-comment</url-pattern>
+        <url-pattern>/upload-user-image</url-pattern>
 
     </filter-mapping>
 
@@ -126,6 +140,8 @@
      <filter-mapping>
          <filter-name>CourseFilter</filter-name>
          <url-pattern>/learning</url-pattern>
+         <url-pattern>/get-comment</url-pattern>
+         <url-pattern>/post-comment</url-pattern>
      </filter-mapping>
 
  </web-app>

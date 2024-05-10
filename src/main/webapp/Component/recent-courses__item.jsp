@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
-    if(request.getAttribute("course")!=null){
-        List<Course> courses=(List<Course>) request.getAttribute("courses");
+    if(request.getAttribute("coursesrecent")!=null){
+        List<Course> courses=(List<Course>) request.getAttribute("coursesrecent");
         for(Course c : courses){
 %>
 <li>

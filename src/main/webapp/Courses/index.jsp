@@ -1,5 +1,6 @@
 <%@ page import="java.util.List" %>
 <%@ page import="model.Course" %>
+<%@ page import="model.Category" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="../Component/header.jsp" %>
 
@@ -43,6 +44,9 @@
             </ul>
         </div>
     </div>
+
+
+
 </main>
 <script>
     function previousPage() {
