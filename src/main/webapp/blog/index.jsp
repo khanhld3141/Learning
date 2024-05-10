@@ -83,9 +83,9 @@
 
                     <!-- search form -->
                     <div class="widget widget-search">
-                        <form action="#">
-                            <input type="text" name="s" placeholder="Search..." required="">
-                            <a href="#!"><i class="fa-solid fa-magnifying-glass"></i></a>
+                        <form action="/blogs" method="get">
+                            <input type="text" name="query" placeholder="Search..." required="">
+                            <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                         </form>
                     </div>
                     <!-- list categories -->

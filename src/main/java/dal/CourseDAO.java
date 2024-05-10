@@ -81,17 +81,24 @@ public class CourseDAO extends DBContext {
         }
         return list;
     }
-    public List<Course> searchByName(String name) {
+    public List<Course> searchByName(int page, int recordsPerPage,String query) {
         List<Course> list = new ArrayList<>();
-        String sql = "select Courses.*,Star from Courses\n" +
-                "left join UserCourses on Courses.Id = UserCourses.CourseId where name like ?";
-
+        String sql = "select courses.*,Categories.Name as CateName,Categories.Image as CateImage,Users.Name as Teacher from courses \n" +
+                "                left join Categories on Categories.id=Courses.CateId\n" +
+                "\t\t\t\tleft join Users on Courses.TeacherId=users.id where courses.name like ? ORDER BY Id OFFSET ?" +
+                " " +
+                "ROWS FETCH NEXT ? ROWS ONLY";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
-            st.setString(1, "%" + name + "%");
+            int offset = (page - 1) * recordsPerPage;
+            st.setString(1,"%"+query+"%");
+            st.setInt(2, offset);
+            st.setInt(3, recordsPerPage);
             ResultSet rs = st.executeQuery();
+            Course course = null;
             while (rs.next()) {
-                Course Course = new Course(
+
+                course = new Course(
                         rs.getInt("Id"),
                         rs.getInt("TeacherId"),
                         rs.getInt("price"),
@@ -102,8 +109,10 @@ public class CourseDAO extends DBContext {
                         rs.getString("Overview"),
                         rs.getString("Result")
                 );
-                Course.setCreatedAt(rs.getDate("CreatedAt"));
-                list.add(Course);
+
+                course.setCategory(new Category(rs.getString("CateName"),rs.getString("CateImage")));
+                course.setTeacher(new User(rs.getInt("TeacherId"),rs.getString("Teacher"),"","","","",""));
+                list.add(course);
             }
 
         } catch (SQLException e) {

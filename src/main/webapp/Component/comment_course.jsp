@@ -6,10 +6,7 @@
 
 
 <%
-    if(request.getAttribute("post")!=null){
-        List<PostComment> comments = post.getComments();
-
-        request.setAttribute("comments", comments);
+    if(request.getAttribute("comments")!=null){
 %>
 <c:forEach var="comment" items="${comments}">
     <div class="comment__item">
@@ -89,7 +86,7 @@
             <!--------------------------------------->
 
             <p class="comment__user-text">
-                ${comment.content}
+                    ${comment.content}
             </p>
             <span class="comment__reply" style="cursor: pointer"><i
                     class="fa-solid fa-reply fa-rotate-180"></i>Reply</span>
@@ -104,6 +101,6 @@
     </div>
 </c:forEach>
 <%
-}
+    }
 %>
 

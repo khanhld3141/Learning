@@ -94,9 +94,9 @@
                         </div>
                     </div>
                     <div class="enter-money">
-                        <form action="">
+                        <form action="/deposits" method="post">
                             <div class="form-payment-block">
-                                <input type="number" placeholder="Enter amount of money">
+                                <input name="amountofmoney" type="number" placeholder="Enter amount of money">
                                 <button type="submit">Confirm payment</button>
                             </div>
                         </form>

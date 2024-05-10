@@ -57,13 +57,16 @@ public class CategoryDAO extends DBContext{
         }
         return list;
     }
-    public List<Category> searchByName(String name){
+    public List<Category> searchByName(int page, int recordsPerPage,String query){
         List <Category> list = new ArrayList<>();
-        String sql = "select * from Categories where name like ?";
+        String sql = "select * from Categories where name like ? ORDER BY Id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
 
         try {
             PreparedStatement st = connection.prepareStatement(sql);
-            st.setString(1, "%" + name + "%");
+            int offset = (page - 1) * recordsPerPage;
+            st.setString(1,"%"+query+"%");
+            st.setInt(2, offset);
+            st.setInt(3, recordsPerPage);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 Category Category = new Category(

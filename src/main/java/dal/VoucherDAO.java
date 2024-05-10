@@ -40,13 +40,16 @@ public class VoucherDAO extends DBContext{
         }
         return list;
     }
-    public List<Voucher> searchByName(String name){
+    public List<Voucher> searchByName(int page, int recordsPerPage ,String query){
         List <Voucher> list = new ArrayList<>();
-        String sql = "select * from Vouchers where code like ?";
+        String sql = "select * from Vouchers where code like ? ORDER BY Id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
 
         try {
             PreparedStatement st = connection.prepareStatement(sql);
-            st.setString(1, "%" + name + "%");
+            int offset = (page - 1) * recordsPerPage;
+            st.setString(1,"%"+query+"%");
+            st.setInt(2, offset);
+            st.setInt(3, recordsPerPage);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 Voucher Voucher = new Voucher(

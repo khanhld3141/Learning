@@ -30,7 +30,11 @@ public class GetCategory extends HttpServlet {
                 e.printStackTrace();
             }
         }
-        List<Category> lists = categoryDAO.getAllCategoryPaging(page,10);
+        String query = "";
+        if(request.getParameter("query") != null){
+            query=request.getParameter("query");
+        }
+        List<Category> lists = categoryDAO.searchByName(page,10,query);
         request.setAttribute("categories", lists);
 
         request.getRequestDispatcher("/dashboard-category/index.jsp").forward(request, response);

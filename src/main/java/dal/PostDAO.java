@@ -9,13 +9,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PostDAO extends DBContext{
-    public PostDAO(){
+public class PostDAO extends DBContext {
+    public PostDAO() {
         super();
     }
 
-    public List<Post> getAllPosts(int page,int recordsPerPage){
-        List <Post> list = new ArrayList<>();
+    public List<Post> getAllPosts(int page, int recordsPerPage) {
+        List<Post> list = new ArrayList<>();
         String sql = "select posts.*,users.name as UserName from posts inner join users on users.id=posts.AuthorId  ORDER BY Id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
 
         try {
@@ -34,7 +34,7 @@ public class PostDAO extends DBContext{
                         rs.getInt("AuthorId")
                 );
                 Post.setCreatedAt(rs.getTimestamp("createdAt"));
-                Post.setAuthor(new User(0,rs.getString("UserName"),"","","","",""));
+                Post.setAuthor(new User(0, rs.getString("UserName"), "", "", "", "", ""));
                 list.add(Post);
             }
 
@@ -43,14 +43,20 @@ public class PostDAO extends DBContext{
         }
         return list;
     }
-    public List<Post> searchByName(String name){
-        List <Post> list = new ArrayList<>();
+
+    public List<Post> searchByName(int page, int recordsPerPage,String query) {
+
+        List<Post> list = new ArrayList<>();
         String sql = "select posts.*,users.name as UserName from posts inner join users on users.id=posts.AuthorId " +
-                "where posts.title like ?";
+                "where title like ?" +
+                "  ORDER BY Id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
 
         try {
             PreparedStatement st = connection.prepareStatement(sql);
-            st.setString(1, "%" + name + "%");
+            int offset = (page - 1) * recordsPerPage;
+            st.setString(1,"%" + query + "%");
+            st.setInt(2, offset);
+            st.setInt(3, recordsPerPage);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 Post Post = new Post(
@@ -62,7 +68,7 @@ public class PostDAO extends DBContext{
                         rs.getInt("AuthorId")
                 );
                 Post.setCreatedAt(rs.getTimestamp("createdAt"));
-                Post.setAuthor(new User(0,rs.getString("UserName"),"","","","",""));
+                Post.setAuthor(new User(0, rs.getString("UserName"), "", "", "", "", ""));
                 list.add(Post);
             }
 
@@ -70,14 +76,16 @@ public class PostDAO extends DBContext{
             e.printStackTrace();
         }
         return list;
+
     }
-    public List<Post> getMyPost(int idAuthor){
-        List <Post> list = new ArrayList<>();
+
+    public List<Post> getMyPost(int idAuthor) {
+        List<Post> list = new ArrayList<>();
         String sql = "select * from posts where AuthorId=?";
 
         try {
             PreparedStatement st = connection.prepareStatement(sql);
-            st.setInt(1,idAuthor);
+            st.setInt(1, idAuthor);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 Post Post = new Post(
@@ -97,6 +105,7 @@ public class PostDAO extends DBContext{
         }
         return list;
     }
+
     public Post get(int id) {
         String sql = "select posts.*,users.name as UserName from posts inner join users on users.id=posts.AuthorId " +
                 "where Posts.id = ?";
@@ -115,7 +124,7 @@ public class PostDAO extends DBContext{
                         rs.getInt("AuthorId")
                 );
                 Post.setCreatedAt(rs.getTimestamp("createdAt"));
-                Post.setAuthor(new User(0,rs.getString("UserName"),"","","","",""));
+                Post.setAuthor(new User(0, rs.getString("UserName"), "", "", "", "", ""));
                 return Post;
             }
         } catch (SQLException e) {
@@ -123,6 +132,7 @@ public class PostDAO extends DBContext{
         }
         return null;
     }
+
     public void create(Post Post) {
         String sql = "insert into Posts (AuthorId,Title,Comment,Content,Image) values(?,?,?,?,?)";
         try {
@@ -131,7 +141,7 @@ public class PostDAO extends DBContext{
             st.setString(2, Post.getTitle());
             st.setString(3, Post.getComment());
             st.setString(4, Post.getContent());
-            st.setString(5,Post.getImage());
+            st.setString(5, Post.getImage());
             // Execute the update
             st.executeUpdate();
         } catch (SQLException e) {

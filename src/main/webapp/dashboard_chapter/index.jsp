@@ -8,8 +8,8 @@
         <div class="manage-chapters__block-title manage-block">
             <div class="manage-title-search">
                 <h1 class="manage-chapters__title title">Manage chapters</h1>
-                <form action="" class="search-form">
-                    <input type="text" placeholder="Search name chapter" class="search-input" name="Name">
+                <form action="/dashboard/chapter" method="get" class="search-form">
+                    <input type="text" placeholder="Search name user" class="search-input" name="query">
                     <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </form>
             </div>

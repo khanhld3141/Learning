@@ -30,7 +30,11 @@ public class GetVoucher extends HttpServlet {
                 e.printStackTrace();
             }
         }
-        List<Voucher> lists = voucherDAO.getAllVouchers(page,10);
+        String query = "";
+        if(request.getParameter("query") != null){
+            query=request.getParameter("query");
+        }
+        List<Voucher> lists = voucherDAO.searchByName(page,10,query);
         request.setAttribute("vouchers", lists);
         request.getRequestDispatcher("/dashboard_voucher/index.jsp").forward(request, response);
     }

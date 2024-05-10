@@ -118,36 +118,25 @@
 </div>
 <script>
     function previousPage() {
-        let query = <%=request.getParameter("query") !=null ? request.getParameter("query").toString() :""%>;
         let currentPage = <%= request.getParameter("page") != null ? Integer.parseInt(request.getParameter("page")) : 1
          %>;
         let previousPage = currentPage - 1;
         if (previousPage >= 1) {
-            if (query != "") {
-                alert(query)
-                let queryString = "/dashboard/users?page=" + previousPage.toString() + "&query=" + query;
-                window.location.href = queryString;
-            } else {
-                alert("not")
-                window.location.href = "/dashboard/users?page=" + previousPage;
-            }
+            let queryString = "/dashboard/users?page=" + previousPage.toString();
+            window.location.href = queryString;
+
         }
     }
 
     function nextPage() {
-        let query = <%=request.getParameter("query") !=null ? request.getParameter("query").toString() :""%>;
         let currentPage = <%= request.getParameter("page") != null ?
             Integer.parseInt(request.getParameter("page")) : 1
          %>;
         let nextPage = currentPage + 1;
-        if (query !== "") {
-            alert("query")
-            let queryString = "/dashboard/users?page=" + nextPage.toString() + "&query=" + query;
-            window.location.href = queryString;
-        } else {
-            alert("not")
-            window.location.href = "/dashboard/users?page=" + nextPage;
-        }
+
+        let queryString = "/dashboard/users?page=" + nextPage.toString();
+        window.location.href = queryString;
+
     }
 
     window.onload = function () {

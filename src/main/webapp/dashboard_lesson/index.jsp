@@ -8,8 +8,8 @@
         <div class="manage-lessons__block-title manage-block">
             <div class="manage-title-search">
                 <h1 class="manage-lessons__title title">Manage lessons</h1>
-                <form action="" class="search-form">
-                    <input type="text" placeholder="Search name lesson" class="search-input" name="Name">
+                <form action="/dashboard/lessions" method="get" class="search-form">
+                    <input type="text" placeholder="Search name user" class="search-input" name="query">
                     <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </form>
             </div>

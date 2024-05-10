@@ -24,7 +24,11 @@ public class index extends HttpServlet {
         if (request.getParameter("page") != null) {
             currentPage = Integer.parseInt(request.getParameter("page"));
         }
-        List<Course> courses = courseDAO.getAllCourses(currentPage,10);
+        String query = "";
+        if(request.getParameter("query") != null){
+            query=request.getParameter("query");
+        }
+        List<Course> courses = courseDAO.searchByName(currentPage,10,query);
         request.setAttribute("courses", courses);
         request.getRequestDispatcher("/dashboard_courses/index.jsp").forward(request, response);
     }

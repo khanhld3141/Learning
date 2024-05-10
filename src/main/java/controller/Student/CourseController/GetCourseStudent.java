@@ -29,7 +29,11 @@ public class GetCourseStudent extends HttpServlet {
         if (request.getParameter("page") != null) {
             currentPage = Integer.parseInt(request.getParameter("page"));
         }
-        List<Course> courses = courseDAO.getAllCourses(currentPage, 10);
+        String query="";
+        if(request.getParameter("query") != null) {
+            query=request.getParameter("query");
+        }
+        List<Course> courses = courseDAO.searchByName(currentPage, 10,query);
         for (int i = 0; i < courses.size(); i++) {
             List<User> users = userCourseDAO.getCountStudent(courses.get(i).getId());
             courses.get(i).setStudents(users);

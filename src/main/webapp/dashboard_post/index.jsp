@@ -5,7 +5,13 @@
 <div class="content-admin">
     <div class="manage-posts">
         <div class="manage-posts__block-title manage-block">
-            <h1 class="manage-posts__title title">Manage posts</h1>
+            <div class="manage-title-search">
+                <h1 class="manage-courses__title title">Manage posts</h1>
+                <form action="/dashboard/posts" method="get" class="search-form">
+                    <input type="text" placeholder="Search name user" class="search-input" name="query">
+                    <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </form>
+            </div>
             <a href="/dashboard/create-post" class="btn-dashboard btn__add-posts"><i
                     class="fa-solid fa-plus"></i>Add new posts</a>
         </div>

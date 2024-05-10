@@ -1,6 +1,7 @@
 package dal;
 
 import model.CourseComment;
+import model.User;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,7 +15,9 @@ public class CourseCommentDAO extends DBContext{
     }
     public List<CourseComment> getAllCourseComments(int courseId){
         List <CourseComment> list = new ArrayList<>();
-        String sql = "select * from CourseComments where CourseId = ?";
+        String sql = "\n" +
+                "select CourseComments.*,Users.name as UserName, Users.avatar as Avatar from CourseComments inner " +
+                "join users on users.id = CourseComments.AuthorId where CourseId = ?";
 
         try {
             PreparedStatement st = connection.prepareStatement(sql);
@@ -27,6 +30,9 @@ public class CourseCommentDAO extends DBContext{
                         rs.getInt("AuthorId"),
                         rs.getString("Content")
                 );
+                User user = new User(0, rs.getString("UserName"), "", "", "", "", "");
+                user.setAvatar(rs.getString("Avatar"));
+                CourseComment.setAuthor(user);
                 list.add(CourseComment);
             }
 

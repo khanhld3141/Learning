@@ -8,8 +8,8 @@
         <div class="manage-categories__block-title manage-block">
             <div class="manage-title-search">
                 <h1 class="manage-categories__title title">Manage categories</h1>
-                <form action="" class="search-form">
-                    <input type="text" placeholder="Search name category" class="search-input" name="Name">
+                <form action="/dashboard/categories" method="get" class="search-form">
+                    <input type="text" placeholder="Search name user" class="search-input" name="query">
                     <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </form>
             </div>

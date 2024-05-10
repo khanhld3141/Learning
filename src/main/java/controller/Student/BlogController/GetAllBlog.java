@@ -33,8 +33,11 @@ public class GetAllBlog extends HttpServlet {
         }
         List<Category> categories=categoryDAO.getWithNumberOfCourses();
         request.setAttribute("categories", categories);
-
-        List<Post> posts=postDAO.getAllPosts(page,10);
+        String query="";
+        if(request.getParameter("query") != null) {
+            query=request.getParameter("query");
+        }
+        List<Post> posts=postDAO.searchByName(page,10,query);
         request.setAttribute("allposts", posts);
 
         List<Post> postList=postDAO.getAllPosts(1,3);

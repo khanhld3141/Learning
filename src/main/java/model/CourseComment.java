@@ -4,7 +4,7 @@ public class CourseComment {
 
     private int Id,CourseId,AuthorId;
     private String Content;
-
+    private User Author;
     public CourseComment() {
     }
 
@@ -51,5 +51,13 @@ public class CourseComment {
 
     public void setContent(String content) {
         Content = content;
+    }
+
+    public User getAuthor() {
+        return Author;
+    }
+
+    public void setAuthor(User author) {
+        Author = author;
     }
 }

@@ -66,18 +66,14 @@
                             <div>
                                 <%@include file="../Component/comment_item.jsp" %>
                             </div>
-                            <%
-                                List<PostComment> comments = post.getComments();
-                                PrintWriter out1 = response.getWriter();  // Get the JSP output writer
-                                CommentUtils.displayComments(comments, 0, 0, out1);
-                            %>
                         </div>
                         <!-- form comment -->
                         <div class="comment-form">
                             <h4 class="comment-title">Leave a comment</h4>
-                            <form action="#">
-                                <textarea placeholder="Write Comments"></textarea>
-                                <button class="btn submit-comment__btn">SUBMIT</button>
+                            <form action="/comment-blog" method="post">
+                                <textarea id="comment" placeholder="Write Comments" name="comment"></textarea>
+                                <input hidden="hidden" name="postid" id="idcourse" value="<%=post.getId()%>">
+                                <button id="btnComment" class="btn submit-comment__btn">SUBMIT</button>
                             </form>
                         </div>
                     </div>

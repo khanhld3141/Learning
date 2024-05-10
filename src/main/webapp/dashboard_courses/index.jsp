@@ -7,8 +7,8 @@
         <div class="manage-courses__block-title manage-block">
             <div class="manage-title-search">
                 <h1 class="manage-courses__title title">Manage courses</h1>
-                <form action="" class="search-form">
-                    <input type="text" placeholder="Search name course" class="search-input" name="Name">
+                <form action="/dashboard/courses" method="get" class="search-form">
+                    <input type="text" placeholder="Search name user" class="search-input" name="query">
                     <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </form>
             </div>

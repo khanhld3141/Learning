@@ -21,8 +21,8 @@
     <!-- find-courses -->
     <div class="find-courses">
         <div class="main-content">
-            <form action="" class="courses__search-form">
-                <input type="text" placeholder="Enter a Subject">
+            <form action="/courses" method="get" class="courses__search-form">
+                <input name="query" type="text" placeholder="Enter a Subject">
                 <button type="submit">Find now</button>
             </form>
         </div>

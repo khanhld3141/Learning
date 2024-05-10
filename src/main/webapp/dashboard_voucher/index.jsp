@@ -7,8 +7,8 @@
         <div class="manage-voucher__block-title manage-block">
             <div class="manage-title-search">
                 <h1 class="manage-voucher__title title">Manage Voucher</h1>
-                <form action="" class="search-form">
-                    <input type="text" placeholder="Search code voucher" class="search-input" name="Code">
+                <form action="/dashboard/vouchers" method="get" class="search-form">
+                    <input type="text" placeholder="Search name user" class="search-input" name="query">
                     <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </form>
             </div>

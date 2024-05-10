@@ -1,3 +1,5 @@
+<%@ page import="java.util.List" %>
+<%@ page import="model.Deposit" %>
 <%@include file="../Component/header.jsp" %>
 <main>
     <div class="main-content">
@@ -16,18 +18,28 @@
                                 <thead>
                                 <tr>
                                     <th onclick="sortTable(0)">ID Deposits</th>
-                                    <th onclick="sortTable(1)">Name user</th>
-                                    <th onclick="sortTable(2)">Amount of money ($)</th>
-                                    <th onclick="sortTable(3)">Status</th>
+                                    <th onclick="sortTable(1)">Amount of money ($)</th>
+                                    <th onclick="sortTable(2)">Status</th>
                                 </tr>
                                 </thead>
                                 <tbody>
+
+                                <%
+                                    if (request.getAttribute("deposits") != null) {
+                                        List<Deposit> deposits = (List<Deposit>) request.getAttribute("deposits");
+                                        for (Deposit deposit : deposits) {
+                                %>
                                 <tr style="align-items: center">
-                                    <td>1</td>
-                                    <td>Dang Khanh</td>
-                                    <td>200</td>
-                                    <td>Success</td>
+                                    <td><%=deposit.getId()%></td>
+                                    <td>$<%=deposit.getAmountOfMoney()%></td>
+                                    <td><%=deposit.getStatus().getName()%></td>
                                 </tr>
+                                <%
+                                        }
+                                    }
+                                %>
+
+
                                 </tbody>
                                 <script src="../assets/js/Sort_table/sort-table.js"></script>
                             </table>

@@ -37,7 +37,11 @@ public class GetDeposit extends HttpServlet {
                 e.printStackTrace();
             }
         }
-        List<Deposit> lists = depositDAO.getAllDeposits(page,10);
+        String query = "";
+        if(request.getParameter("query") != null){
+            query=request.getParameter("query");
+        }
+        List<Deposit> lists = depositDAO.searchByName(page,10,query);
         List<Status> statuses=statusDAO.getAllStatuss();
         List<User> users=userDAO.getAllUser();
         request.setAttribute("users",users);
