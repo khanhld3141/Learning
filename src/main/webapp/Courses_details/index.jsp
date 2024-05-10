@@ -4,13 +4,10 @@
 <%@include file="../Component/header.jsp" %>
 
 <main>
-    <style>
-        <%@include file="../assets/css/dashboard-user/add-user.css"%>
-        <%@include file="../assets/css/dashboard-chapter/manage-chapter.css"%>
-        <%@include file="../assets/css/dashboard-user/update-user.css"%>
-        <%@include file="../assets/css/dashboard-user/manage-user.scss"%>
-
-    </style>
+    <link rel="stylesheet" href="../assets/css/dashboard-user/add-user.css">
+    <link rel="stylesheet" href="../assets/css/dashboard-chapter/manage-chapter.css">
+    <link rel="stylesheet" href="../assets/css/dashboard-user/update-user.css">
+    <link rel="stylesheet" href="../assets/css/dashboard-user/manage-user.scss">
     <!-- courses feature -->
     <div class="feature-header">
         <div class="main-content">

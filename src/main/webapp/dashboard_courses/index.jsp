@@ -8,7 +8,7 @@
             <div class="manage-title-search">
                 <h1 class="manage-courses__title title">Manage courses</h1>
                 <form action="/dashboard/courses" method="get" class="search-form">
-                    <input type="text" placeholder="Search name user" class="search-input" name="query">
+                    <input type="text" placeholder="Search name courses" class="search-input" name="query">
                     <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </form>
             </div>
@@ -34,13 +34,18 @@
                         for (Course c : courses) {
                 %>
                 <tr>
-                    <td><%=c.getId()%></td>
-                    <td><%=c.getName()%></td>
-                    <td><%=c.getCategory().getName()%></td>
+                    <td><%=c.getId()%>
+                    </td>
+                    <td><%=c.getName()%>
+                    </td>
+                    <td><%=c.getCategory().getName()%>
+                    </td>
                     <td><%=c.getPrice()%>$</td>
-                    <td><%=c.getTeacher().getName()%></td>
+                    <td><%=c.getTeacher().getName()%>
+                    </td>
                     <td>
-                        <a href="/dashboard/update-course?id=<%=c.getId()%>" title="Edit course"><i class="fa-solid fa-pen"></i></a>
+                        <a href="/dashboard/update-course?id=<%=c.getId()%>" title="Edit course"><i
+                                class="fa-solid fa-pen"></i></a>
                         <!-- Button trigger modal -->
                         <button type="button" class="btn__modal" data-bs-toggle="modal"
                                 data-bs-target="#modal__delete_<%=c.getId()%>" title="Delete course">
@@ -48,6 +53,37 @@
                         </button>
                         <a href="/dashboard/chapter?courseid=<%=c.getId()%>"
                            title="Manage chapters"><i class="fa-solid fa-eye"></i></a>
+                        <button type="button" class="btn__modal" data-bs-toggle="modal"
+                                data-bs-target="#modal__add-student-into-courses" title="Add student into this course">
+                            <i class="fa-solid fa-user-plus" style="color: green; font-size: 16px"></i>
+                        </button>
+                        <%-- MODAL ADD STUDENT INTO COURSES --%>
+                        <div class="modal fade modal__add" id="modal__add-student-into-courses">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <form action="" style="width: 100%">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="student-name">
+                                                <label for="student-name">Username</label>
+                                                <input list="_student-name" name="Id" id="student-name"
+                                                       placeholder="Enter username" required>
+                                                <datalist id="_student-name">
+                                                    <option value="Dang Khanh">
+                                                </datalist>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-primary">Confirm</button>
+                                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                     </td>
                     <!--------------- MODAL DELETE-------------- -->
                     <div class="modal fade modal__delete" id="modal__delete_<%=c.getId()%>">
@@ -110,7 +146,8 @@
         var nextPage = currentPage + 1;
         window.location.href = "/dashboard/courses?page=" + nextPage;
     }
-    window.onload = function() {
+
+    window.onload = function () {
         var currentPage = <%= request.getParameter("page") != null ? Integer.parseInt(request.getParameter("page")) : 1 %>;
         var previousButton = document.getElementById("prev");
         if (currentPage == 1) {

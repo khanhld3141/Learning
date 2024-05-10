@@ -32,7 +32,16 @@
                                 <tr style="align-items: center">
                                     <td><%=deposit.getId()%></td>
                                     <td>$<%=deposit.getAmountOfMoney()%></td>
-                                    <td><%=deposit.getStatus().getName()%></td>
+<%--                                    <td><%=deposit.getStatus().getName()%></td>--%>
+                                    <%
+                                        String ms = deposit.getStatus().getName();
+                                        if (ms.equals("Cancelled")) { %>
+                                            <td style="color: red; font-weight: 500"><%=ms%></td>
+                                    <% } else if(ms.equals("Waiting")) { %>
+                                            <td style="color: #f2980b; font-weight: 500"><%=ms%></td>
+                                    <% } else if(ms.equals("Successful")) { %>
+                                             <td style="color: green; font-weight: 500"><%=ms%></td>
+                                    <% } %>
                                 </tr>
                                 <%
                                         }

@@ -88,15 +88,15 @@
             <p class="comment__user-text">
                     ${comment.content}
             </p>
-            <span class="comment__reply" style="cursor: pointer"><i
-                    class="fa-solid fa-reply fa-rotate-180"></i>Reply</span>
-            <div class="reply-form display-none">
-                <form action="">
-                                            <textarea placeholder="Write reply comment" rows="3"
-                                                      style="margin-top: 20px;"></textarea>
-                    <button type= "submit" class="btn submit-comment__btn">SUBMIT</button>
-                </form>
-            </div>
+<%--            <span class="comment__reply" style="cursor: pointer"><i--%>
+<%--                    class="fa-solid fa-reply fa-rotate-180"></i>Reply</span>--%>
+<%--            <div class="reply-form display-none">--%>
+<%--                <form action="">--%>
+<%--                                            <textarea placeholder="Write reply comment" rows="3"--%>
+<%--                                                      style="margin-top: 20px;"></textarea>--%>
+<%--                    <button type= "submit" class="btn submit-comment__btn">SUBMIT</button>--%>
+<%--                </form>--%>
+<%--            </div>--%>
         </div>
     </div>
 </c:forEach>
