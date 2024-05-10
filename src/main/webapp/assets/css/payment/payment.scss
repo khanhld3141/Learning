@@ -258,4 +258,11 @@
     display: flex;
     justify-content: space-between;
     padding: 15px 0 50px;
+    align-items: center;
+}
+
+.payment .money-input{
+    padding: 0 10px;
+    border: 1px solid #ccc;
+    border-radius: .2rem;
 }

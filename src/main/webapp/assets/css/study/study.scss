@@ -273,8 +273,7 @@ body{
     margin-top: 0.8rem;
 }
 
-.study .footer .btn-comment{
-    position: absolute;
+.study  .btn-comment{
     display: inline-block;
     top: 0;
     right: 0;
@@ -286,7 +285,7 @@ body{
     cursor: pointer;
     border-radius: 999px;
     border-shadow: 0 0 10px rgba(0, 0, 0, .2);
-    border-style: none;
+    border-color:#ccc;
     line-height: 18.4px;
     height: 36px;
     margin-right: 32px;
@@ -528,6 +527,8 @@ body{
     font-weight: 400;
     font-size: 1.4rem;
     line-height: 2;
+    overflow: hidden;
+    word-wrap: break-word;
 }
 
 .modal-comment .btn-more{
