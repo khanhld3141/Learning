@@ -42,15 +42,15 @@
     <link rel="stylesheet" href="../assets/css/courses/courses_detail.css">
     <link rel="stylesheet" href="../assets/css/blog/blog.css">
     <link rel="stylesheet" href="../assets/css/blog/blog_details.css">
-    <link rel="stylesheet" href="../Component/component.css">
+    <link rel="stylesheet" href="../Component/component.scss">
     <link rel="stylesheet" href="../assets/css/pages/pricing.css">
     <link rel="stylesheet" href="../assets/css/Contact/Contact.css">
     <link rel="stylesheet" href="../assets/css/Login/Login.css">
     <link rel="stylesheet" href="../assets/css/About/About.css">
     <link rel="stylesheet" href="../assets/css/Profile/personal_information.css">
     <link rel="stylesheet" href="../assets/css/Profile/change-password.css">
-    <link rel="stylesheet" href="../assets/css/Profile/courses-participated.scss">
-    <link rel="stylesheet" href="../assets/css/payment/payment.css">
+    <link rel="stylesheet" href="../assets/css/Profile/courses-participated.css">
+    <link rel="stylesheet" href="../assets/css/payment/payment.scss">
     <link rel="stylesheet" href="../assets/css/Blog-user/post-user.scss">
 
 </head>

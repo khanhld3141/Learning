@@ -22,7 +22,7 @@
             <!--------------- MODAL ADD NEW DEPOSIT-------------- -->
             <div class="modal fade modal__add" id="modal__add-new-deposit">
                 <div class="modal-dialog modal-dialog-centered">
-                    <form action="/dashboard/create-deposit" method="post">
+                    <form action="/dashboard/create-deposit" method="post" style="width: 100%">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
@@ -53,9 +53,8 @@
                                            id="Money-add">
                                 </div>
                             </div>
-
                             <div class="modal-footer">
-                                <button type="submit">Submit</button>
+                                <button class="btn btn-primary" type="submit">Confirm</button>
                                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
                             </div>
                         </div>
@@ -119,7 +118,10 @@
                                     <form action="/dashboard/update-deposit" method="post">
                                         <div class="modal-body">
                                             <input name="id" value="<%=deposit.getId()%>" hidden="hidden">
-                                            <input name="userid" value="<%=deposit.getUserId()%>">
+                                            <div class="userId">
+                                                <label for="userid-update">User ID</label>
+                                                <input name="userid" value="<%=deposit.getUserId()%>" id="userid-update" readonly>
+                                            </div>
                                             <div class="money">
                                                 <label for="Money-update">Money</label>
                                                 <input value="<%=deposit.getAmountOfMoney()%>" type="number"

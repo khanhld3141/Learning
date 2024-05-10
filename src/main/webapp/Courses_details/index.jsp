@@ -8,7 +8,7 @@
         <%@include file="../assets/css/dashboard-user/add-user.css"%>
         <%@include file="../assets/css/dashboard-chapter/manage-chapter.css"%>
         <%@include file="../assets/css/dashboard-user/update-user.css"%>
-        <%@include file="../assets/css/dashboard-user/manage-user.css"%>
+        <%@include file="../assets/css/dashboard-user/manage-user.scss"%>
 
     </style>
     <!-- courses feature -->

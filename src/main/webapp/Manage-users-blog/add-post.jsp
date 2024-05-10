@@ -2,7 +2,7 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <main>
-    <link rel="stylesheet" href="../assets/css/dashboard-user/manage-user.css">
+    <link rel="stylesheet" href="../assets/css/dashboard-user/manage-user.scss">
     <link rel="stylesheet" href="../assets/css/dashboard-user/add-user.css">
     <link rel="stylesheet" href="../assets/css/dashboard_courses/add-courses.css">
     <link rel="stylesheet" href="../assets/css/dashboard/dashboard.scss">

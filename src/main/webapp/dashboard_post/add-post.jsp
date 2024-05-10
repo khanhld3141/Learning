@@ -11,10 +11,10 @@
             <form enctype="multipart/form-data" method="post" action="/dashboard/create-post"
                   class="add-posts__form add-form">
                 <div class="add-form__content">
-                    <div class="teacher-courses">
-                        <label for="TeacherId">Author</label>
-                        <input list="_TeacherId" name="author" id="TeacherId" placeholder="Choose a teacher" required>
-                        <datalist id="_TeacherId">
+                    <div class="author-post">
+                        <label for="UserId">Author</label>
+                        <input list="_UserId" name="author" id="UserId" placeholder="Choose a author" required>
+                        <datalist id="_UserId">
                             <%
                                 if (request.getAttribute("users") != null) {
                                     List<User> users=(List<User>) request.getAttribute("users");
@@ -47,7 +47,7 @@
                     </div>
                     <div class="submit">
                         <input type="submit" value="Confirm">
-                        <a href="../dashboard_post" class="btn__back">Back</a>
+                        <a href="../dashboard/posts" class="btn__back">Back</a>
                     </div>
                 </div>
             </form>

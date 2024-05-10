@@ -3,16 +3,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="../Component/header.jsp" %>
 <main>
-    <%--    <style>--%>
-    <%--        <%@include file="../assets/css/dashboard-user/add-user.css"%>--%>
-    <%--        <%@include file="../assets/css/dashboard-chapter/manage-chapter.css"%>--%>
-    <%--        <%@include file="../assets/css/dashboard-user/update-user.css"%>--%>
-    <%--        <%@include file="../assets/css/dashboard-user/manage-user.css"%>--%>
-    <%--    </style>--%>
     <link rel="stylesheet" href="../assets/css/dashboard-user/add-user.css">
     <link rel="stylesheet" href="../assets/css/dashboard-chapter/manage-chapter.css">
     <link rel="stylesheet" href="../assets/css/dashboard-user/update-user.css">
-    <link rel="stylesheet" href="../assets/css/dashboard-user/manage-user.css">
+    <link rel="stylesheet" href="../assets/css/dashboard-user/manage-user.scss">
 
     <div class="main-content">
         <div class="profile-block">
@@ -20,14 +14,19 @@
             <div class="profile-right">
                 <div class="profile-box">
                     <div class="courses-participated">
-                        <h2 class="profile-right__title">My courses</h2>
+                        <div class="block-1">
+                            <h2 class="profile-right__title">My posts</h2>
+                            <a href="/create-my-post" class="btn btn__add-new-post-profile" style="background: #0c2e60; width: 150px; margin-bottom: 0">Add new
+                                post</a>
+                        </div>
                         <div class="table">
                             <table class="courses-participated-table" id="table-sort">
                                 <thead>
                                 <tr>
-                                    <th onclick="sortTable(0)">ID Blogs</th>
+                                    <th onclick="sortTable(0)">ID Posts</th>
                                     <th onclick="sortTable(1)">Title</th>
-                                    <th onclick="sortTable(3)">Actions</th>
+                                    <th onclick="sortTable(2)">Image</th>
+                                    <th>Actions</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -38,16 +37,14 @@
                                 %>
                                 <tr style="align-items: center" onclick="redirectToAnchor(this)">
                                     <%-- bỏ link của mỗi bài viết ở thẻ a dưới đây (nằm trong thẻ td chứa id) là được--%>
-                                    <td><a href="#!"><%=post.getId()%>
+                                    <td><a href="/detail-blog?id=<%=post.getId()%>"><%=post.getId()%>
                                     </a></td>
-                                    <td><a href="/detail-blog?id=<%=post.getId()%>"><%=post.getTitle()%>
-                                    </a></td>
+                                    <td><%=post.getTitle()%>
+                                    </></td>
                                     <td>
-                                        <img style="width: 100px;object-fit: cover" src="/images/<%=post.getImage()%>">
+                                        <img style="width: 100px;height: 40px;object-fit: cover; border-radius: 4px" src="/images/<%=post.getImage()%>">
                                     </td>
-                                    <td><a href="/detail-blog?id=<%=post.getId()%>" title="View this post"
-                                           style="margin-right: 14px; color: #196fee"><i
-                                            class="fa-solid fa-eye"></i></a>
+                                    <td>
                                         <a href="/update-my-post?id=<%=post.getId()%>" title="Edit this post"
                                            style="margin-right: 3px ; color: #ffb800"><i class="fa-solid fa-marker"></i></a>
                                         <button type="button" data-bs-toggle="modal"

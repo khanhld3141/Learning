@@ -85,7 +85,7 @@
 .payment .body{
     width: 70%;
     height: 100%;
-    overflow: auto;
+    /*overflow: auto;*/
     padding: 8px 40px;
 }
 /*end body*/
@@ -252,3 +252,10 @@
     color: #dae4f0;
 }
 /*end attention*/
+
+
+.form-payment-block{
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 0 50px;
+}

@@ -20,7 +20,7 @@
                         <label for="Image-post">Image</label>
                         <input type="file" name="image" id="Image-post" placeholder="Enter title post" required>
                     </div>
-                    <img src="/images/<%=post.getImage()%>">
+                    <img src="/images/<%=post.getImage()%>" style="width: 50%; height: 265px; object-fit: cover; border-radius: 18px; margin: 16px 0 6px">
                     <div class="title-posts">
                         <label for="Title-post">Name</label>
                         <input value="<%=post.getTitle()%>" type="text" name="title" id="Title-post"
@@ -39,7 +39,7 @@
                     </div>
                     <div class="submit">
                         <input type="submit" value="Confirm">
-                        <a href="../dashboard_post" class="btn__back">Back</a>
+                        <a href="../dashboard/posts" class="btn__back">Back</a>
                     </div>
                 </div>
             </form>

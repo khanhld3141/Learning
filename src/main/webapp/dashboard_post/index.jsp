@@ -31,7 +31,7 @@
                     <td><%=post.getId()%></td>
                     <td><%=post.getTitle()%></td>
                     <td><%=post.getAuthor().getName()%></td>
-                    <td><a href="#!" title="View detail post"><i class="fa-solid fa-eye"></i></a>
+                    <td><a href="/detail-blog?id=<%=post.getId()%>" title="View detail post"><i class="fa-solid fa-eye"></i></a>
                         <a href="/dashboard/update-post?id=<%=post.getId()%>" title="Update post"><i
                                 class="fa-solid fa-pen"></i></a>
                         <!-- Button trigger modal -->

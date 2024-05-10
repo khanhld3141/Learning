@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="../Component/component__dashboard.scss">
     <link rel="stylesheet" href="../assets/css/dashboard/dashboard.scss">
-    <link rel="stylesheet" href="../assets/css/dashboard-user/manage-user.css">
+    <link rel="stylesheet" href="../assets/css/dashboard-user/manage-user.scss">
     <link rel="stylesheet" href="../assets/css/dashboard-user/add-user.css">
     <link rel="stylesheet" href="../assets/css/dashboard-user/update-user.css">
     <link rel="stylesheet" href="../assets/css/dashboard-voucher/manage-voucher.css">
@@ -43,6 +43,7 @@
     <link rel="stylesheet" href="../assets/css/dashboard_deposit/manage-deposit.css">
     <link rel="stylesheet" href="../assets/css/dashboard_hashtag/manage-hashtag.css">
     <link rel="stylesheet" href="../assets/css/dashboard_post/manage-post.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 
 </head>
 

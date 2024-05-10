@@ -4,11 +4,13 @@
 }
 
 .manage-block {
-    background-color: var(--color-3);
+    /*background-color: var(--color-3);*/
     padding: 20px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-image: url(/img/side-bar-admin/pattern_h.png);
+    background-color: #15283c;
 }
 
 .manage-user__title {

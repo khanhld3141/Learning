@@ -18,7 +18,6 @@
                                     <th onclick="sortTable(0)">ID Course</th>
                                     <th onclick="sortTable(1)">Name course</th>
                                     <th onclick="sortTable(2)">Category</th>
-                                    <th onclick="sortTable(3)">Actions</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -35,14 +34,8 @@
                                     <td><%=c.getName()%>
                                     </td>
                                     <td>
-                                        <img style="width: 100px;object-fit: cover" src="/images/<%=c.getImage()%>">
+                                        <img style="width: 100px;height: 40px ;object-fit: cover; border-radius: 4px" src="/images/<%=c.getImage()%>">
                                     </td>
-                                    <td>
-                                        <a href="/learning?courseid=<%=c.getId()%>" title="View this course"
-                                           style="margin-right: 14px; color: #196fee"><i
-                                                class="fa-solid fa-eye"></i></a>
-                                    </td>
-
                                 </tr>
                                 <%
                                         }

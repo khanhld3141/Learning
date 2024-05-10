@@ -11,11 +11,11 @@
     <div class="feature-header">
         <div class="main-content">
             <div class="feature-header__text-center">
-                <h1 class="title feature-header__title">Blog Details</h1>
+                <h1 class="title feature-header__title">Post Details</h1>
                 <div class="feature-header__link">
                     <a href="/home" class="home">Home</a>
                     <span>/</span>
-                    <a href="" class="blog-details">Blog Details</a>
+                    <a href="" class="blog-details">Post Details</a>
                 </div>
             </div>
         </div>
@@ -55,8 +55,7 @@
                                 List<Hashtag> hashtags=post.getHashtags();
                                 for(Hashtag tag : hashtags){
                             %>
-                            <button><%=tag.getTag()%></button>
-
+                            <button class="hashtag-button">#<%=tag.getTag()%></button>
                             <%
                                 }
                             %>
