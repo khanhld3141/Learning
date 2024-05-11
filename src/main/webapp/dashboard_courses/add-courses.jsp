@@ -28,7 +28,7 @@
 
 
                                 %>
-                                <option value=<%=user.getId() + "-" +user.getName()%>>
+                                <option value="<%=user.getId() + "-" +user.getName()%>">
                                         <%
                                         }
                                     }
@@ -46,7 +46,7 @@
 
 
                                 %>
-                                <option value=<%=category.getId() + "-" +category.getName()%>>
+                                <option value="<%=category.getId() + "-" +category.getName()%>">
                                         <%
                                         }
                                     }

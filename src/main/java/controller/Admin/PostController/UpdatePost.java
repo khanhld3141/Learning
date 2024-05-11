@@ -61,10 +61,12 @@ public class UpdatePost extends HttpServlet {
         hashtagDAO.deleteAllOfPost(post.getId());
         String[] hashtags = request.getParameterValues("hashtag[]");
         for (String hashtag : hashtags) {
-            hashtagDAO.create(new Hashtag(
-                    post.getId(),
-                    hashtag
-            ));
+            if(!hashtag.isEmpty()){
+                hashtagDAO.create(new Hashtag(
+                        post.getId(),
+                        hashtag
+                ));
+            }
         }
         try {
             postDAO.update(new Post(title, content, comment, filename, Integer.parseInt(id),

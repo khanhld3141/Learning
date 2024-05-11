@@ -3,10 +3,12 @@ package controller.Student.BlogController;
 import java.io.*;
 
 import controller.Ulti.FileUploadUtil;
+import dal.HashtagDAO;
 import dal.PostDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import model.Hashtag;
 import model.Post;
 import model.User;
 
@@ -15,10 +17,12 @@ import model.User;
 public class CreateMyPost extends HttpServlet {
     private String message;
     private PostDAO postDAO;
+    private HashtagDAO hashtagDAO;
 
     public void init() {
         message = "Hello World!";
         postDAO = new PostDAO();
+        hashtagDAO=new HashtagDAO();
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -33,9 +37,19 @@ public class CreateMyPost extends HttpServlet {
         String filename = FileUploadUtil.uploadFile(image, realPath);
         HttpSession session = request.getSession();
         User user =(User) session.getAttribute("user");
-
+        String[] hashtags = request.getParameterValues("hashtag[]");
         try{
-            postDAO.create(new Post(title,content,comment,filename,user.getId()));
+           int postid= postDAO.create(new Post(title,content,comment,filename,user.getId()));
+            if (hashtags != null && postid!=-1) {
+                for (String hashtag : hashtags) {
+                    if(!hashtag.isEmpty()){
+                        hashtagDAO.create(new Hashtag(
+                                postid,
+                                hashtag
+                        ));
+                    }
+                }
+            }
             response.sendRedirect("/my-posts");
         }catch (Exception e){
             e.printStackTrace();

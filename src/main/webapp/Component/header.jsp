@@ -157,7 +157,7 @@
                                 </li>
                                 <%
                                     User user = (User) session.getAttribute("user");
-                                    if (user.getRole().equals("R1")) { %>
+                                    if (user.getRole().equals("R1") || user.getRole().equals("R2")) { %>
                                 <li><a href="/dashboard">DASHBOARD</a></li>
                                 <% } %>
                                 <li>

@@ -1,4 +1,6 @@
 <%@ page import="model.Post" %>
+<%@ page import="model.Hashtag" %>
+<%@ page import="java.util.List" %>
 <%@include file="../Component/header.jsp" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -48,27 +50,38 @@
                                           placeholder="Enter content post"><%=post.getContent()%></textarea>
                             </div>
                             <div class="hashtag-list">
-                                <div class="hashtag-1">
-                                    <label for="hashtag-1">Hashtag 1</label>
-                                    <input type="text" placeholder="Enter hashtag 1" name="hashtag-1" id="hashtag-1">
-                                </div>
-                                <div class="hashtag-2">
-                                    <label for="hashtag-2">Hashtag 2</label>
-                                    <input type="text" placeholder="Enter hashtag 2" name="hashtag-2" id="hashtag-2">
-                                </div>
-                                <div class="hashtag-3">
-                                    <label for="hashtag-3">Hashtag 3</label>
-                                    <input type="text" placeholder="Enter hashtag 3" name="hashtag-3" id="hashtag-3">
-                                </div>
-                                <div class="hashtag-4">
-                                    <label for="hashtag-4">Hashtag 4</label>
-                                    <input type="text" placeholder="Enter hashtag 4" name="hashtag-4" id="hashtag-4">
-                                </div>
-                                <div class="hashtag-5">
-                                    <label for="hashtag-5">Hashtag 5</label>
-                                    <input type="text" placeholder="Enter hashtag 5" name="hashtag-5" id="hashtag-5">
-                                </div>
+                                <%
+                                    if (request.getAttribute("hashtags") != null) {
 
+                                        List<Hashtag> hashtags = (List<Hashtag>) request.getAttribute("hashtags");
+
+                                        for (int i = 0; i < 5; i++) {
+                                            if (i < hashtags.size()) {
+
+
+                                %>
+                                <div class="hashtag-<%= i+1 %>">
+                                    <label for="hashtag-<%= i+1 %>">Hashtag <%= i + 1 %>
+                                    </label>
+                                    <input type="text" placeholder="Enter hashtag <%= i+1 %>" name="hashtag[]"
+                                           id="hashtag-<%= i+1 %>" value="<%= hashtags.get(i).getTag() %>">
+                                </div>
+                                <%
+                                } else {
+
+                                %>
+                                <div class="hashtag-<%= i+1 %>">
+                                    <label for="hashtag-<%= i+1 %>">Hashtag <%= i + 1 %>
+                                    </label>
+                                    <input type="text" placeholder="Enter hashtag <%= i+1 %>" name="hashtag[]"
+                                           id="hashtag-<%= i+1 %>">
+                                </div>
+                                <%
+                                            }
+                                        }
+
+                                    }
+                                %>
                             </div>
                             <div class="submit">
                                 <input type="submit" value="Confirm">

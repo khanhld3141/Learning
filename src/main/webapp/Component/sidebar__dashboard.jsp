@@ -74,12 +74,11 @@
             <li>
                 <a href="/dashboard/courses" class="nav__link"><i class="fa-solid fa-file" style="color: #03a9f4"></i>Courses</a>
             </li>
-            <%--    <li>
-                    <a href="/dashboard_lesson" class="nav__link"><i class="fa-solid fa-book"></i>Lesson</a>
-                </li>
-                <li>
-                    <a href="/dashboard_chapter" class="nav__link"><i class="fa-solid fa-palette"></i>Chapter</a>
-                </li>--%>
+            <%
+                if (session.getAttribute("user") != null) {
+                    User user = (User) session.getAttribute("user");
+                    if (user.getRole().equals("R1")) {
+            %>
             <li>
                 <a href="/dashboard/categories" class="nav__link"><i class="fa-solid fa-palette"
                                                                      style="color: #9c27b0"></i>Category</a>
@@ -90,7 +89,7 @@
             </li>
             <li>
                 <a href="/dashboard/hashtags" class="nav__link"><i class="fa-solid fa-hashtag"
-                                                                  style="color:  #ff9800"></i>Hastags</a>
+                                                                   style="color:  #ff9800"></i>Hastags</a>
             </li>
             <li>
                 <a href="/dashboard/deposits" class="nav__link"><i class="fa-solid fa-receipt"
@@ -99,6 +98,10 @@
             <li>
                 <a href="/dashboard/posts" class="nav__link"><i class="fa-solid fa-blog" style="color: #ff9800"></i>Posts</a>
             </li>
+            <%
+                    }
+                }
+            %>
             <% if (session.getAttribute("user") != null) { %>
             <li>
                 <a href="/logout" class="nav__link"><i class="fa-solid fa-right-from-bracket"

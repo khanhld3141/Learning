@@ -50,10 +50,12 @@ public class CreatePost extends HttpServlet {
             int postid=postDAO.create(new Post(title,content,comment,filename,user.getId()));
             if (hashtags != null && postid!=-1) {
                 for (String hashtag : hashtags) {
-                   hashtagDAO.create(new Hashtag(
-                           postid,
-                           hashtag
-                   ));
+                   if(!hashtag.isEmpty()){
+                       hashtagDAO.create(new Hashtag(
+                               postid,
+                               hashtag
+                       ));
+                   }
                 }
             }
             response.sendRedirect("/dashboard/posts");
