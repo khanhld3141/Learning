@@ -164,6 +164,35 @@ public class UserDAO extends DBContext {
 
         return list;
     }
+    public List<User> getAllStudent() {
+        List<User> list = new ArrayList<>();
+        String sql =  "SELECT * FROM Users Where Role='R3'";
+
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+
+            ResultSet rs = st.executeQuery();
+
+            while (rs.next()) {
+                User user = new User(
+                        rs.getInt("Id"),
+                        rs.getInt("Balance"),
+                        rs.getString("Name"),
+                        rs.getString("Username"),
+                        rs.getString("Phone"),
+                        rs.getString("Role"),
+                        rs.getString("Email"),
+                        rs.getString("Password")
+                );
+                list.add(user);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return list;
+    }
     public int getTotalPages(int recordsPerPage) {
         int totalPages = 0;
         String sql = "SELECT COUNT(*) AS total FROM Users";

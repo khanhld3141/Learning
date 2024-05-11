@@ -22,10 +22,10 @@
                 <h2>Course's ID:</h2>
                 <span class="course-id"><%=c.getId()%></span>
             </div>
-            <div class="course-id-box">
-                <h2>Category:</h2>
-                <span class="course-id"><%=c.getCategory().getName()%></span>
-            </div>
+<%--            <div class="course-id-box">--%>
+<%--                <h2>Category:</h2>--%>
+<%--                <span class="course-id"><%=c.getCategory().getName()%></span>--%>
+<%--            </div>--%>
             <hr class="buy-course-divider">
 
             <div class="buy-course-detail">

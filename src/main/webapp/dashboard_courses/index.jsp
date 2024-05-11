@@ -54,29 +54,42 @@
                         <a href="/dashboard/chapter?courseid=<%=c.getId()%>"
                            title="Manage chapters"><i class="fa-solid fa-eye"></i></a>
                         <button type="button" class="btn__modal" data-bs-toggle="modal"
-                                data-bs-target="#modal__add-student-into-courses" title="Add student into this course">
+                                data-bs-target="#modal__add-student-into-courses_<%=c.getId()%>"
+                                title="Add student into this course">
                             <i class="fa-solid fa-user-plus" style="color: green; font-size: 16px"></i>
                         </button>
                         <%-- MODAL ADD STUDENT INTO COURSES --%>
-                        <div class="modal fade modal__add" id="modal__add-student-into-courses">
+                        <div class="modal fade modal__add" id="modal__add-student-into-courses_<%=c.getId()%>">
                             <div class="modal-dialog modal-dialog-centered">
-                                <form action="" style="width: 100%">
+                                <form action="/create-user-course" method="post" style="width: 100%">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                         </div>
                                         <div class="modal-body">
+                                            <span>Course Name: <%=c.getName()%></span>
+                                            <input name="courseid" value="<%=c.getId()%>" hidden="hidden">
                                             <div class="student-name">
                                                 <label for="student-name">Username</label>
-                                                <input list="_student-name" name="Id" id="student-name"
+                                                <input list="_student-name" name="userid" id="student-name"
                                                        placeholder="Enter username" required>
                                                 <datalist id="_student-name">
-                                                    <option value="Dang Khanh">
+                                                    <%
+                                                        if (request.getAttribute("students") != null) {
+                                                            List<User> students = (List<User>) request.getAttribute("students");
+                                                            for (User student : students) {
+                                                    %>
+                                                    <option value="<%=student.getId()%>-<%=student.getUsername()%>">
+                                                            <%
+                                                    }
+                                                            }
+                                                    %>
                                                 </datalist>
                                             </div>
+
                                         </div>
                                         <div class="modal-footer">
-                                            <button class="btn btn-primary">Confirm</button>
+                                            <button type="submit" class="btn btn-primary">Confirm</button>
                                             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No
                                             </button>
                                         </div>

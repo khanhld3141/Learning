@@ -172,12 +172,13 @@
                                     if (check) {
 
                         %>
-                        <span style="color: green"><a style="background: #1ed085;color: #FFFFFF" href="/buy?courseid=<%=course.getId()%>"
+                        <span style="color: green"><a style="background: #1ed085;color: #FFFFFF"
+                                                      href="/learning?courseid=<%=course.getId()%>"
                                                        class="btn buy-now__btn">LEARN NOW</a></span>
                         <%
                         } else {
                         %>
-                        <a href="/buy?courseid=<%=course.getId()%>" class="btn buy-now__btn">BUY NOW</a>
+                        <a href="/learning?courseid=<%=course.getId()%>" class="btn buy-now__btn">BUY NOW</a>
 
                         <%
                                 }
@@ -185,7 +186,7 @@
 
                         } else {
                         %>
-                        <a href="/buy?courseid=<%=course.getId()%>" class="btn buy-now__btn">BUY NOW</a>
+                        <a href="/learning?courseid=<%=course.getId()%>" class="btn buy-now__btn">BUY NOW</a>
                         <%
                             }
                         %>

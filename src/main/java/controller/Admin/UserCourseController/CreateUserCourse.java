@@ -29,16 +29,18 @@ public class CreateUserCourse extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String userid=request.getParameter("userid");
+        String user[]=userid.split("-");
         String courseid=request.getParameter("courseid");
 
         try{
             userCourseDAO.create(new UserCourse(
-                    Integer.parseInt(userid),
+                    Integer.parseInt(user[0]),
                     Integer.parseInt(courseid)
             ));
+            response.sendRedirect("/dashboard/courses");
         }catch(Exception e){
             request.setAttribute("error","An error occurred");
-            request.getRequestDispatcher("").forward(request,response);
+            request.getRequestDispatcher("/404notfound/index.jsp").forward(request,response);
         }
     }
 

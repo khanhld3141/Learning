@@ -270,6 +270,7 @@
     function showComment() {
         let formData = new FormData();
         formData.append('id', col.dataset.lesson);
+        console.log(col.dataset.lesson)
         $.ajax({
             url: '/get-comment',
             type: 'POST',
@@ -277,6 +278,7 @@
             processData: false,
             contentType: false,
             success: (data) => {
+                console.log(data);
                 let numberofComments = document.querySelector('#numberComment')
                 numberofComments.innerHTML = '<h4>' + data.length + ' comments </h4>';
                 let html = '';

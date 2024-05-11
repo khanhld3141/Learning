@@ -59,8 +59,6 @@
         <url-pattern>/comment-blog</url-pattern>
         <url-pattern>/comment-blog</url-pattern>
         <url-pattern>/learning</url-pattern>
-        <url-pattern>/get-comment</url-pattern>
-        <url-pattern>/post-comment</url-pattern>
         <url-pattern>/upload-user-image</url-pattern>
 
     </filter-mapping>
@@ -140,8 +138,8 @@
      <filter-mapping>
          <filter-name>CourseFilter</filter-name>
          <url-pattern>/learning</url-pattern>
-         <url-pattern>/get-comment</url-pattern>
-         <url-pattern>/post-comment</url-pattern>
+<!--         <url-pattern>/get-comment</url-pattern>-->
+<!--         <url-pattern>/post-comment</url-pattern>-->
      </filter-mapping>
 
  </web-app>

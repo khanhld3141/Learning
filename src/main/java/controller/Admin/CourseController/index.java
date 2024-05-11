@@ -4,19 +4,23 @@ import java.io.*;
 import java.util.List;
 
 import dal.CourseDAO;
+import dal.UserDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import model.Course;
+import model.User;
 
 @WebServlet(name = "courseIndexServler", value = "/dashboard/courses")
 public class index extends HttpServlet {
     private String message;
     private CourseDAO courseDAO;
+    private UserDAO userDAO;
 
     public void init() {
         message = "Hello World!";
         courseDAO = new CourseDAO();
+        userDAO=new UserDAO();
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -30,6 +34,8 @@ public class index extends HttpServlet {
         }
         List<Course> courses = courseDAO.searchByName(currentPage,10,query);
         request.setAttribute("courses", courses);
+        List<User> users=userDAO.getAllStudent();
+        request.setAttribute("students",users);
         request.getRequestDispatcher("/dashboard_courses/index.jsp").forward(request, response);
     }
 
