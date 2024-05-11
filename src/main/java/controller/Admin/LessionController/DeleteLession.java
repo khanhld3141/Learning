@@ -4,6 +4,7 @@ import java.io.*;
 
 import controller.Ulti.FileUploadUtil;
 import dal.LessionDAO;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import model.Course;
@@ -19,7 +20,7 @@ public class DeleteLession extends HttpServlet {
         lessionDAO=new LessionDAO();
     }
 
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         if (request.getParameter(("id")) != null && request.getParameter(("chapterid")) != null) {
             String idStr = request.getParameter(("id"));
             try {
@@ -31,8 +32,11 @@ public class DeleteLession extends HttpServlet {
                 lessionDAO.delete(id);
                 response.sendRedirect("/dashboard/lessions?chapterid=" + chapterid);
             } catch (Exception e) {
+                request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
                 e.printStackTrace();
             }
+        }else{
+            request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
         }
     }
 

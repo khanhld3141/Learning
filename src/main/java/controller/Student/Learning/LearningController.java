@@ -41,6 +41,8 @@ public class LearningController extends HttpServlet {
             request.setAttribute("course", course);
 
             request.getRequestDispatcher("/study/index.jsp").forward(request, response);
+        }else{
+            request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
         }
     }
 

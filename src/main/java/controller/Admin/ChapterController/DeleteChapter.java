@@ -23,8 +23,7 @@ public class DeleteChapter extends HttpServlet {
             chapterDAO.delete(Integer.parseInt(id));
             response.sendRedirect("/dashboard/chapter?courseid="+courseId);
         }else{
-            request.setAttribute("error","Please enter a post id");
-            request.getRequestDispatcher("").forward(request,response);
+            request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
         }
     }
 

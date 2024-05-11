@@ -33,36 +33,43 @@ public class UpdateVoucher extends HttpServlet {
                 request.setAttribute("voucher", voucher);
                 request.getRequestDispatcher("/dashboard_voucher/update-voucher.jsp").forward(request, response);
             }catch (Exception e){
+                request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
                 e.printStackTrace();
             }
 
 
+        }else{
+            request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
         }
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        String id= request.getParameter("Id");
-        String code = request.getParameter("Code");
-        String quantity=request.getParameter("Quantity");
-        String discount=request.getParameter("Discount");
-        String startDay=request.getParameter("Startday");
-        String used=request.getParameter("Used");
-        String starts[]=startDay.split("T");
-        String endDay=request.getParameter("Endday");
-        String ends[]=endDay.split("T");
+        try {
 
-        voucherDAO.update(new Voucher(
-                code,
-                starts[0]+" "+starts[1],
-                ends[0]+" "+ends[1],
-                Integer.parseInt(id),
-                Integer.parseInt(quantity),
-                Integer.parseInt(used),
-                Integer.parseInt(discount)
-        ));
-        System.out.println("OK");
-        request.setAttribute("message", "Update category successfully");
-        response.sendRedirect("/dashboard/vouchers");
+            String id = request.getParameter("Id");
+            String code = request.getParameter("Code");
+            String quantity = request.getParameter("Quantity");
+            String discount = request.getParameter("Discount");
+            String startDay = request.getParameter("Startday");
+            String used = request.getParameter("Used");
+            String starts[] = startDay.split("T");
+            String endDay = request.getParameter("Endday");
+            String ends[] = endDay.split("T");
+
+            voucherDAO.update(new Voucher(
+                    code,
+                    starts[0] + " " + starts[1],
+                    ends[0] + " " + ends[1],
+                    Integer.parseInt(id),
+                    Integer.parseInt(quantity),
+                    Integer.parseInt(used),
+                    Integer.parseInt(discount)
+            ));
+            request.setAttribute("message", "Update category successfully");
+            response.sendRedirect("/dashboard/vouchers");
+        }catch (Exception e){
+            request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
+        }
 
     }
 

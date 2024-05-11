@@ -40,6 +40,7 @@ public class ChangePassword extends HttpServlet {
 
 
        }catch (Exception e){
+           request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
            e.printStackTrace();
        }
 

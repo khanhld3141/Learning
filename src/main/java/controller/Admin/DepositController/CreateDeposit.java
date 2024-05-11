@@ -25,19 +25,25 @@ public class CreateDeposit extends HttpServlet {
         request.getRequestDispatcher("Banner/create-category.jsp").forward(request, response);
     }
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        String user=request.getParameter("user");
-        String users[]=user.split("-");
-        String amountOfMoney=request.getParameter("amountofmoney");
+        try {
+
+            String user = request.getParameter("user");
+            String users[] = user.split("-");
+            String amountOfMoney = request.getParameter("amountofmoney");
 
 
-        depositDAO.create(new Deposit(
-                Integer.parseInt(users[0]),
-                Integer.parseInt(amountOfMoney),
-                1
-        ));
+            depositDAO.create(new Deposit(
+                    Integer.parseInt(users[0]),
+                    Integer.parseInt(amountOfMoney),
+                    1
+            ));
 
-        request.setAttribute("message","Add new deposit successfully");
-        response.sendRedirect("/dashboard/deposits");
+            request.setAttribute("message", "Add new deposit successfully");
+            response.sendRedirect("/dashboard/deposits");
+        }catch (Exception e){
+            request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
+            e.printStackTrace();
+        }
 
     }
 

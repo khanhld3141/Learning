@@ -24,7 +24,7 @@ public class UpdateLession extends HttpServlet {
         lessionDAO = new LessionDAO();
     }
 
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         if (request.getParameter("id") != "") {
             String idStr = request.getParameter("id");
             try {
@@ -36,6 +36,8 @@ public class UpdateLession extends HttpServlet {
             }
 
 
+        }else{
+            request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
         }
     }
 
@@ -50,7 +52,7 @@ public class UpdateLession extends HttpServlet {
         Lession lession = lessionDAO.get(Integer.parseInt(id));
 
         try {
-//            FileUploadUtil.deleteFile(realPath, lession.getLink());
+            FileUploadUtil.deleteFile(realPath, lession.getLink());
             lessionDAO.update(new Lession(
                     Integer.parseInt(id),
                     Integer.parseInt(chapterId),
@@ -61,8 +63,7 @@ public class UpdateLession extends HttpServlet {
             response.sendRedirect("/dashboard/lessions?chapterid=" + chapterId);
         } catch (Exception e) {
             e.printStackTrace();
-//            request.setAttribute("error", "Please enter chapter id");
-//            request.getRequestDispatcher("").forward(request, response);
+            request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
         }
     }
 

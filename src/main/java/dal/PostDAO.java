@@ -6,6 +6,7 @@ import model.User;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -170,10 +171,11 @@ public class PostDAO extends DBContext {
         return null;
     }
 
-    public void create(Post Post) {
+    public int create(Post Post) {
         String sql = "insert into Posts (AuthorId,Title,Comment,Content,Image) values(?,?,?,?,?)";
+        int postid=-1;
         try {
-            PreparedStatement st = connection.prepareStatement(sql);
+            PreparedStatement st = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             st.setInt(1, Post.getAuthorId());
             st.setString(2, Post.getTitle());
             st.setString(3, Post.getComment());
@@ -181,9 +183,18 @@ public class PostDAO extends DBContext {
             st.setString(5, Post.getImage());
             // Execute the update
             st.executeUpdate();
+
+            ResultSet generatedKeys = st.getGeneratedKeys();
+            if (generatedKeys.next()) {
+                postid = generatedKeys.getInt(1);
+
+            } else {
+                throw new SQLException("Creating post failed, no ID obtained.");
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return postid;
     }
 
     public void update(Post Post) {

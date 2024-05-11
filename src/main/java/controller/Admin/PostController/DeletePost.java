@@ -28,7 +28,7 @@ public class DeletePost extends HttpServlet {
             }
         } else {
             request.setAttribute("message", "Missing parameter id");
-            request.getRequestDispatcher("/statuss").forward(request, response);
+            request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
         }
     }
 

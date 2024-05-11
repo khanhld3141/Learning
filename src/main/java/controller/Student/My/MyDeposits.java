@@ -4,6 +4,7 @@ import java.io.*;
 import java.util.List;
 
 import dal.DepositDAO;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import model.Deposit;
@@ -19,7 +20,7 @@ public class MyDeposits extends HttpServlet {
         depositDAO=new DepositDAO();
     }
 
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         HttpSession session=request.getSession();
         User user = (User) session.getAttribute("user");
 
@@ -30,6 +31,7 @@ public class MyDeposits extends HttpServlet {
             request.getRequestDispatcher("/my/my-deposit.jsp").forward(request,response);
 
         }catch (Exception e){
+            request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
             e.printStackTrace();
         }
 

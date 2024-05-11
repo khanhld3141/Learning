@@ -43,7 +43,7 @@ public class CreatePostComment extends HttpServlet {
             response.sendRedirect("");
         }catch(Exception e){
             request.setAttribute("error","Error");
-            request.getRequestDispatcher("").forward(request,response);
+            request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
         }
     }
 

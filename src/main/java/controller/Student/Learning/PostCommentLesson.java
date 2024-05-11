@@ -3,6 +3,7 @@ package controller.Student.Learning;
 import java.io.*;
 
 import dal.LessionCommentDAO;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import model.LessionComment;
@@ -28,7 +29,7 @@ public class PostCommentLesson extends HttpServlet {
         out.println("<h1>" + message + "</h1>");
         out.println("</body></html>");
     }
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
        String lessonid=request.getParameter("lessonid");
        String content=request.getParameter("content");
        HttpSession session=request.getSession();
@@ -44,6 +45,7 @@ public class PostCommentLesson extends HttpServlet {
 
 
        }catch (Exception e){
+           request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
            e.printStackTrace();
        }
     }

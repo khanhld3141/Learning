@@ -42,6 +42,7 @@ public class CreateUser extends HttpServlet {
                 userDao.create(user);
                 response.sendRedirect("/dashboard/users");
             } catch (Exception e) {
+                request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
                 e.printStackTrace();
             }
         }

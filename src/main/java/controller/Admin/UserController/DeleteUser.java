@@ -1,6 +1,7 @@
 package controller.Admin.UserController;
 
 import dal.UserDAO;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -17,7 +18,7 @@ public class DeleteUser extends HttpServlet {
         userDAO = new UserDAO();
     }
 
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         if(request.getParameter(("id"))!=null){
             String idStr=request.getParameter(("id"));
             try{
@@ -27,6 +28,8 @@ public class DeleteUser extends HttpServlet {
             }catch (Exception e){
                 e.printStackTrace();
             }
+        }else{
+            request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
         }
     }
 

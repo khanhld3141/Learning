@@ -27,8 +27,11 @@ public class UpdateMyPost extends HttpServlet {
                 request.setAttribute("post", post);
                 request.getRequestDispatcher("/Manage-users-blog/update-post.jsp").forward(request,response);
             }catch (Exception e){
+                request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
                 e.printStackTrace();
             }
+        }else{
+            request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
         }
     }
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -44,6 +47,7 @@ public class UpdateMyPost extends HttpServlet {
             postDAO.update(post);
             response.sendRedirect("/my-posts");
         } catch (Exception e) {
+            request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
             e.printStackTrace();
         }
     }

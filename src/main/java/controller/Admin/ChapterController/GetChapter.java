@@ -36,6 +36,8 @@ public class GetChapter extends HttpServlet {
                 request.setAttribute("error", "Please enter a course ID");
                 request.getRequestDispatcher("/dashboard/courses").forward(request, response);
             }
+        }else{
+            request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
         }
     }
 

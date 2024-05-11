@@ -133,4 +133,15 @@ public class HashtagDAO extends DBContext{
             e.printStackTrace();
         }
     }
+    public void deleteAllOfPost(int postid) {
+        String sql = "delete from Hashtags where postid = ?";
+
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, postid);
+            st.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -156,7 +156,41 @@
                         <p class="price"><strong>$<%=course.getPrice()%>
                         </strong><span>$111.00</span></p>
                         <span class="discount-price"><i class="fa-regular fa-clock"></i>90% off for 23 hours</span>
-                        <a href="/buy?courseid<%=course.getId()%>" class="btn buy-now__btn">Buy now</a>
+
+
+                        <%
+                            if (session.getAttribute("user") != null) {
+                                if (request.getAttribute("usercourse") != null) {
+                                    List<UserCourse> userCourses = (List<UserCourse>) request.getAttribute("usercourse");
+                                    boolean check = false;
+                                    for (UserCourse userCourse : userCourses) {
+                                        if (userCourse.getCourseId() == course.getId()) {
+                                            check = true;
+                                            break;
+                                        }
+                                    }
+                                    if (check) {
+
+                        %>
+                        <span style="color: green"><a style="background: #1ed085;color: #FFFFFF" href="/buy?courseid=<%=course.getId()%>"
+                                                       class="btn buy-now__btn">LEARN NOW</a></span>
+                        <%
+                        } else {
+                        %>
+                        <a href="/buy?courseid=<%=course.getId()%>" class="btn buy-now__btn">BUY NOW</a>
+
+                        <%
+                                }
+                            }
+
+                        } else {
+                        %>
+                        <a href="/buy?courseid=<%=course.getId()%>" class="btn buy-now__btn">BUY NOW</a>
+                        <%
+                            }
+                        %>
+
+
                     </div>
                     <!-- instractors -->
                     <div class="widget instractors">
@@ -185,7 +219,8 @@
                                     List<Category> categories = (List<Category>) request.getAttribute("categories");
                                     for (Category category : categories) {
                             %>
-                            <li><a href="/courses?category=<%=category.getId()%>"><%=category.getName()%> <span>(<%=category.getTotalCourse()%>)</span></a>
+                            <li><a href="/courses?category=<%=category.getId()%>"><%=category.getName()%>
+                                <span>(<%=category.getTotalCourse()%>)</span></a>
                             </li>
                             <%
                                     }
@@ -233,7 +268,7 @@
         <div class="main-content">
             <h1 class="title title__popular-courses">Related Courses</h1>
             <div class="owl-carousel owl-theme">
-                <%@include file="../Component/card-courses.jsp"%>
+                <%@include file="../Component/card-courses.jsp" %>
             </div>
         </div>
     </div>

@@ -24,7 +24,7 @@ public class CreateChapter extends HttpServlet {
             request.getRequestDispatcher("").forward(request,response);
         }else{
             request.setAttribute("error","Please enter a post id");
-            request.getRequestDispatcher("").forward(request,response);
+            request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
         }
     }
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -40,7 +40,7 @@ public class CreateChapter extends HttpServlet {
             response.sendRedirect("/dashboard/chapter?courseid="+courseId);
         }catch (Exception e){
             request.setAttribute("error","Please enter a post id");
-            request.getRequestDispatcher("").forward(request,response);
+            request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
         }
     }
     public void destroy() {

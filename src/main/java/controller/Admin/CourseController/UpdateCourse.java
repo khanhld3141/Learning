@@ -30,7 +30,7 @@ public class UpdateCourse extends HttpServlet {
         userDAO = new UserDAO();
     }
 
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         if (request.getParameter("id") != "") {
             String idStr = request.getParameter("id");
             try {
@@ -47,6 +47,8 @@ public class UpdateCourse extends HttpServlet {
             }
 
 
+        }else{
+            request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
         }
     }
 
@@ -86,6 +88,7 @@ public class UpdateCourse extends HttpServlet {
             courseDAO.update(course);
             response.sendRedirect("/dashboard/courses");
         } catch (Exception e) {
+            request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
             e.printStackTrace();
         }
     }

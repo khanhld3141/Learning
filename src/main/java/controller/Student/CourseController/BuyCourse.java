@@ -66,23 +66,30 @@ public class BuyCourse extends HttpServlet {
             Voucher v = voucherDAO.findCode(voucher);
             Course course = courseDAO.get(Integer.parseInt(courseid));
             int price = course.getPrice();
-            if(v!=null){
-                price-=v.getDiscount();
-                v.setUsed(v.getUsed()+1);
+            if (v != null) {
+                price -= v.getDiscount();
+                v.setUsed(v.getUsed() + 1);
                 voucherDAO.update(v);
             }
             HttpSession session = request.getSession();
             User us = (User) session.getAttribute("user");
-            if (price > 0) {
-                User user = userDAO.get(us.getId());
-                user.setBalance(user.getBalance() - price);
-                userDAO.deposit(user);
+
+
+            User user = userDAO.get(us.getId());
+            if (user.getBalance() < price) {
+                response.sendRedirect("/payment");
+            } else {
+                if (price > 0) {
+                    user.setBalance(user.getBalance() - price);
+                    userDAO.deposit(user);
+                }
+                userCourseDAO.create(new UserCourse(
+                        us.getId(),
+                        Integer.parseInt(courseid)
+                ));
+                response.sendRedirect("/learning?courseid=" + courseid);
             }
-            userCourseDAO.create(new UserCourse(
-                    us.getId(),
-                    Integer.parseInt(courseid)
-            ));
-            response.sendRedirect("/learning?courseid=" + courseid);
+
         } catch (Exception e) {
             e.printStackTrace();
         }

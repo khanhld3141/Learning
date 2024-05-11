@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.google.gson.Gson;
 import dal.LessionCommentDAO;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import model.LessionComment;
@@ -27,7 +28,7 @@ public class GetCommentOfLesson extends HttpServlet {
         out.println("<h1>" + message + "</h1>");
         out.println("</body></html>");
     }
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String id=request.getParameter("id");
         try{
             List<LessionComment> comments=lessionCommentDAO.getAllLessionCommentsById(Integer.parseInt(id));
@@ -44,6 +45,7 @@ public class GetCommentOfLesson extends HttpServlet {
             out.print(jsonComments);
             out.flush();
         }catch(Exception e){
+            request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
             e.printStackTrace();
         }
     }

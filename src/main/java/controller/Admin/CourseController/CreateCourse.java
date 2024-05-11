@@ -65,6 +65,7 @@ public class CreateCourse extends HttpServlet {
            courseDAO.create(course);
            response.sendRedirect("/dashboard/courses");
        }catch (Exception e){
+           request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
            e.printStackTrace();
        }
     }

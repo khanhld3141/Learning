@@ -3,6 +3,7 @@ package controller.Student.BlogController;
 import java.io.*;
 
 import dal.PostDAO;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
@@ -15,15 +16,18 @@ public class DeleteMyPost extends HttpServlet {
         postDAO=new PostDAO();
     }
 
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         if(request.getParameter("id")!=null){
            try{
                int id=Integer.parseInt(request.getParameter("id"));
                postDAO.delete(id);
                response.sendRedirect("/my-posts");
            }catch (Exception e){
+               request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
                e.printStackTrace();
            }
+        }else{
+            request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
         }
     }
 

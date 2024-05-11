@@ -37,7 +37,7 @@ private DepositDAO depositDAO;
           request.setAttribute("message","Add new deposit successfully");
           response.sendRedirect("/home");
       }catch(Exception e){
-
+          request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
       }
     }
     public void destroy() {

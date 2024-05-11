@@ -1,4 +1,6 @@
 <%@ page import="model.Post" %>
+<%@ page import="java.util.List" %>
+<%@ page import="model.Hashtag" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="../Component/sidebar__dashboard.jsp" %>
 <div class="content-admin">
@@ -7,12 +9,13 @@
             <h1 class="manage-posts__title title">Update Post</h1>
         </div>
         <div class="update-posts update-block">
-           <%
-            if(request.getAttribute("post")!=null){
-                Post post=(Post)request.getAttribute("post");
+            <%
+                if (request.getAttribute("post") != null) {
+                    Post post = (Post) request.getAttribute("post");
 
-           %>
-            <form action="/dashboard/update-post" method="post" enctype="multipart/form-data" class="update-posts__form update-form">
+            %>
+            <form action="/dashboard/update-post" method="post" enctype="multipart/form-data"
+                  class="update-posts__form update-form">
                 <div class="update-form__content">
                     <input value="<%=post.getId()%>" name="id" readonly hidden="hidden">
                     <input value="<%=post.getAuthorId()%>-<%=post.getAuthor().getName()%>" name="author" readonly>
@@ -20,7 +23,8 @@
                         <label for="Image-post">Image</label>
                         <input type="file" name="image" id="Image-post" placeholder="Enter title post" required>
                     </div>
-                    <img src="/images/<%=post.getImage()%>" style="width: 50%; height: 265px; object-fit: cover; border-radius: 18px; margin: 16px 0 6px">
+                    <img src="/images/<%=post.getImage()%>"
+                         style="width: 50%; height: 265px; object-fit: cover; border-radius: 18px; margin: 16px 0 6px">
                     <div class="title-posts">
                         <label for="Title-post">Name</label>
                         <input value="<%=post.getTitle()%>" type="text" name="title" id="Title-post"
@@ -38,31 +42,42 @@
                                   placeholder="Enter content post"><%=post.getContent()%></textarea>
                     </div>
                     <div class="hashtag-list">
-                        <div class="hashtag-1">
-                            <label for="hashtag-1">Hashtag 1</label>
-                            <input type="text" placeholder="Enter hashtag 1" name="hashtag-1" id="hashtag-1">
-                        </div>
-                        <div class="hashtag-2">
-                            <label for="hashtag-2">Hashtag 2</label>
-                            <input type="text" placeholder="Enter hashtag 2" name="hashtag-2" id="hashtag-2">
-                        </div>
-                        <div class="hashtag-3">
-                            <label for="hashtag-3">Hashtag 3</label>
-                            <input type="text" placeholder="Enter hashtag 3" name="hashtag-3" id="hashtag-3">
-                        </div>
-                        <div class="hashtag-4">
-                            <label for="hashtag-4">Hashtag 4</label>
-                            <input type="text" placeholder="Enter hashtag 4" name="hashtag-4" id="hashtag-4">
-                        </div>
-                        <div class="hashtag-5">
-                            <label for="hashtag-5">Hashtag 5</label>
-                            <input type="text" placeholder="Enter hashtag 5" name="hashtag-5" id="hashtag-5">
-                        </div>
+                        <%
+                            if (request.getAttribute("hashtags") != null) {
 
+                                List<Hashtag> hashtags = (List<Hashtag>) request.getAttribute("hashtags");
+
+                                for (int i = 0; i < 5; i++) {
+                                    if (i < hashtags.size()) {
+
+
+                        %>
+                        <div class="hashtag-<%= i+1 %>">
+                            <label for="hashtag-<%= i+1 %>">Hashtag <%= i + 1 %>
+                            </label>
+                            <input type="text" placeholder="Enter hashtag <%= i+1 %>" name="hashtag[]"
+                                   id="hashtag-<%= i+1 %>" value="<%= hashtags.get(i).getTag() %>">
+                        </div>
+                        <%
+                        } else {
+
+                        %>
+                        <div class="hashtag-<%= i+1 %>">
+                            <label for="hashtag-<%= i+1 %>">Hashtag <%= i + 1 %>
+                            </label>
+                            <input type="text" placeholder="Enter hashtag <%= i+1 %>" name="hashtag[]"
+                                   id="hashtag-<%= i+1 %>">
+                        </div>
+                        <%
+                                    }
+                                }
+
+                            }
+                        %>
                     </div>
                     <div class="submit">
                         <input type="submit" value="Confirm">
-                        <a href="../dashboard/posts" class="btn__back">Back</a>
+                        <a href="/dashboard/posts" class="btn__back">Back</a>
                     </div>
                 </div>
             </form>

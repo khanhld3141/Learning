@@ -29,7 +29,7 @@ public class MyCourse extends HttpServlet {
 
             request.getRequestDispatcher("/my/my-courses.jsp").forward(request, response);
         }catch (Exception e){
-
+            request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
         }
 
 

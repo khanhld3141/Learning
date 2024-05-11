@@ -30,6 +30,7 @@ public class DeleteDeposit extends HttpServlet {
                 depositDAO.delete(id);
                 response.sendRedirect("/deposits");
             } catch (Exception e) {
+                request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
                 e.printStackTrace();
             }
         } else {

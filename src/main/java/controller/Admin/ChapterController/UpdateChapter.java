@@ -27,7 +27,7 @@ public class UpdateChapter extends HttpServlet {
             request.getRequestDispatcher("").forward(request, response);
         } else {
             request.setAttribute("error", "Please enter a post id");
-            request.getRequestDispatcher("").forward(request, response);
+            request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
         }
     }
 

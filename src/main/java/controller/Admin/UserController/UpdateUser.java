@@ -1,6 +1,7 @@
 package controller.Admin.UserController;
 
 import dal.UserDAO;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -18,7 +19,7 @@ public class UpdateUser extends HttpServlet {
         userDAO =new UserDAO();
     }
 
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         if(request.getParameter("id")!=""){
             String idStr=request.getParameter("id");
             try{
@@ -27,13 +28,16 @@ public class UpdateUser extends HttpServlet {
                 request.setAttribute("user", user);
                 request.getRequestDispatcher("/dashboard_user/update-user.jsp").forward(request,response);
             }catch (Exception e){
+                request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
                 e.printStackTrace();
             }
 
 
+        }else{
+            request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
         }
     }
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String id = request.getParameter("Id");
         String name = request.getParameter("Name");
         String username = request.getParameter("Username");
@@ -49,6 +53,7 @@ public class UpdateUser extends HttpServlet {
             userDAO.update(user);
             response.sendRedirect("/dashboard/users");
         } catch (Exception e) {
+            request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
             e.printStackTrace();
         }
 

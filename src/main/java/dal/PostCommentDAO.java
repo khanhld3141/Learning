@@ -106,7 +106,7 @@ public class PostCommentDAO extends DBContext {
     }
 
     public void update(PostComment PostComment) {
-        String sql = "update PostComments AuthorId=?,PostId =?,Content=? where Id=? ";
+        String sql = "update PostComments set AuthorId=?,PostId =?,Content=? where Id=? ";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setInt(1, PostComment.getAuthorId());

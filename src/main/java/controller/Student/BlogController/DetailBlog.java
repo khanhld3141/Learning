@@ -49,9 +49,12 @@ public class DetailBlog extends HttpServlet {
 
               request.getRequestDispatcher("/blog-details/index.jsp").forward(request, response);
           }catch(Exception e){
+              request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
               e.printStackTrace();
           }
 
+        }else{
+            request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
         }
     }
 

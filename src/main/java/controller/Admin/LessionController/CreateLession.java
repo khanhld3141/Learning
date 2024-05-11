@@ -25,7 +25,7 @@ public class CreateLession extends HttpServlet {
             request.getRequestDispatcher("").forward(request, response);
         } else {
             request.setAttribute("error", "Please enter chapter id");
-            request.getRequestDispatcher("").forward(request, response);
+            request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
         }
     }
 
@@ -47,7 +47,7 @@ public class CreateLession extends HttpServlet {
             response.sendRedirect("/dashboard/lessions?chapterid="+chapterId);
         }catch(Exception e){
             request.setAttribute("error", "Please enter chapter id");
-            request.getRequestDispatcher("").forward(request, response);
+            request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
         }
     }
 

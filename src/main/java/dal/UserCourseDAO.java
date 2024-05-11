@@ -34,6 +34,28 @@ public class UserCourseDAO extends DBContext{
         }
         return list;
     }
+    public List<UserCourse> getStudentCourse(int userid){
+        List <UserCourse> list = new ArrayList<>();
+        String sql = "select * from UserCourses where userid=?";
+
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1,userid);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                UserCourse UserCourse = new UserCourse(
+                        rs.getInt("Id"),
+                        rs.getInt("UserId"),
+                        rs.getInt("CourseId")
+                );
+                list.add(UserCourse);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
     public List<User> getCountStudent(int CourseId){
         String sql = "select Users.Name from UserCourses\n" +
                 "left join Users on UserCourses.UserId=Users.id\n" +

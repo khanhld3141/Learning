@@ -11,6 +11,7 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import model.Course;
 import model.User;
+import model.UserCourse;
 
 @WebServlet(name = "GetCourseStudentServlet", value = "/courses")
 public class GetCourseStudent extends HttpServlet {
@@ -48,6 +49,12 @@ public class GetCourseStudent extends HttpServlet {
                 List<User> users = userCourseDAO.getCountStudent(courses.get(i).getId());
                 courses.get(i).setStudents(users);
             }
+        }
+        HttpSession session=request.getSession();
+        User user =(User)session.getAttribute("user");
+        if(user != null){
+            List<UserCourse> userCourses=userCourseDAO.getStudentCourse(user.getId());
+            request.setAttribute("usercourse", userCourses);
         }
         request.setAttribute("courses", courses);
         request.getRequestDispatcher("/Courses/index.jsp").forward(request, response);

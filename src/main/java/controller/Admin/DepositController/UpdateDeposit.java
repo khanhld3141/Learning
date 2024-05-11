@@ -36,10 +36,13 @@ public class UpdateDeposit extends HttpServlet {
                 request.setAttribute("deposit", deposit);
                 request.getRequestDispatcher("Deposit/update-status.jsp").forward(request, response);
             } catch (Exception e) {
+                request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
                 e.printStackTrace();
             }
 
 
+        }else{
+            request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
         }
     }
 
@@ -65,6 +68,7 @@ public class UpdateDeposit extends HttpServlet {
            request.setAttribute("message", "Update category successfully");
            response.sendRedirect("/dashboard/deposits");
        }catch (Exception e){
+           request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
            e.printStackTrace();
        }
 

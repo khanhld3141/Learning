@@ -46,6 +46,14 @@ public class GetHome extends HttpServlet {
         request.setAttribute("banners", banners);
         List<Post> posts = postDAO.getAllPosts(1,10);
         request.setAttribute("posts", posts);
+
+        HttpSession session=request.getSession();
+        User user =(User)session.getAttribute("user");
+        if(user != null){
+            List<UserCourse> userCourses=userCourseDAO.getStudentCourse(user.getId());
+            request.setAttribute("usercourse", userCourses);
+        }
+
         request.getRequestDispatcher("/Home/index.jsp").forward(request, response);
     }
 
