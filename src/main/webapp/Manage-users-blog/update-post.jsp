@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="../assets/css/dashboard_courses/add-courses.css">
     <link rel="stylesheet" href="../assets/css/dashboard/dashboard.css">
     <link rel="stylesheet" href="../assets/css/Blog-user/post-user.scss">
+    <link rel="stylesheet" href="../assets/css/dashboard_post/manage-post.scss">
+
 
     <div class="main-content">
         <div class="content-admin">
@@ -44,6 +46,29 @@
                                 <label for="Content-post">Content post</label>
                                 <textarea name="content" id="Content-post" rows="50"
                                           placeholder="Enter content post"><%=post.getContent()%></textarea>
+                            </div>
+                            <div class="hashtag-list">
+                                <div class="hashtag-1">
+                                    <label for="hashtag-1">Hashtag 1</label>
+                                    <input type="text" placeholder="Enter hashtag 1" name="hashtag-1" id="hashtag-1">
+                                </div>
+                                <div class="hashtag-2">
+                                    <label for="hashtag-2">Hashtag 2</label>
+                                    <input type="text" placeholder="Enter hashtag 2" name="hashtag-2" id="hashtag-2">
+                                </div>
+                                <div class="hashtag-3">
+                                    <label for="hashtag-3">Hashtag 3</label>
+                                    <input type="text" placeholder="Enter hashtag 3" name="hashtag-3" id="hashtag-3">
+                                </div>
+                                <div class="hashtag-4">
+                                    <label for="hashtag-4">Hashtag 4</label>
+                                    <input type="text" placeholder="Enter hashtag 4" name="hashtag-4" id="hashtag-4">
+                                </div>
+                                <div class="hashtag-5">
+                                    <label for="hashtag-5">Hashtag 5</label>
+                                    <input type="text" placeholder="Enter hashtag 5" name="hashtag-5" id="hashtag-5">
+                                </div>
+
                             </div>
                             <div class="submit">
                                 <input type="submit" value="Confirm">
