@@ -43,7 +43,6 @@
                     <div class=" courses-details__infor">
                         <h3 class="title"><%=course.getName()%>
                         </h3>
-                        <span class="hot"><i class="fa-solid fa-bookmark"></i>Hot & new</span>
                         <p class="desc"><%=course.getIntroduce()%>
                         </p>
                         <div class="details">
@@ -172,8 +171,7 @@
                                     if (check) {
 
                         %>
-                        <span style="color: green"><a style="background: #1ed085;color: #FFFFFF"
-                                                      href="/learning?courseid=<%=course.getId()%>"
+                        <span style="color: green"><a style="background: #1ed085;color: #FFFFFF" href="/learning?courseid=<%=course.getId()%>"
                                                        class="btn buy-now__btn">LEARN NOW</a></span>
                         <%
                         } else {

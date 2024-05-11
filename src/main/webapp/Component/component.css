@@ -158,6 +158,7 @@ footer{
     border: 1px solid #e0e4e6;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.07);
     border-radius: 5px;
+    max-width: 360px;
 }
 .card-courses__thumb{
     width: 100%;
@@ -665,4 +666,10 @@ footer{
     padding: 10px;
     border: 1px solid #8f8f8f;
     margin-right: 10px;
+}
+.category__list .card__logo img{
+    width: 30px;
+    height: 30px;
+    border-radius: 3px;
+    object-fit: cover;
 }
