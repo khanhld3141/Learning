@@ -42,7 +42,7 @@
     <link rel="stylesheet" href="../assets/css/courses/courses_detail.css">
     <link rel="stylesheet" href="../assets/css/blog/blog.css">
     <link rel="stylesheet" href="../assets/css/blog/blog_details.css">
-    <link rel="stylesheet" href="../Component/component.scss">
+    <link rel="stylesheet" href="../Component/component.css">
     <link rel="stylesheet" href="../assets/css/pages/pricing.css">
     <link rel="stylesheet" href="../assets/css/Contact/Contact.css">
     <link rel="stylesheet" href="../assets/css/Login/Login.css">
