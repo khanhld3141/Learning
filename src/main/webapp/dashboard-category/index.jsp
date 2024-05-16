@@ -72,7 +72,7 @@
                     <td><%=category.getId()%></td>
                     <td><%=category.getName()%></td>
                     <td>
-                        <img src="/images/<%=category.getImage()%>"/>
+                        <img src="/images/<%=category.getImage()%>" alt="category-image" style="width: 100px; height: 40px; object-fit: cover; border-radius: 5px">
                     </td>
                     <td>
                         <!-- BUTTON TRIGGER UPDATE MODAL  -->
