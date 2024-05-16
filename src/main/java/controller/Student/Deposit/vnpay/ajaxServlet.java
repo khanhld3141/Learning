@@ -2,11 +2,16 @@ package controller.Student.Deposit.vnpay;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import dal.DepositDAO;
+import dal.UserDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import model.Deposit;
+import model.User;
 
 import java.io.IOException;
 import java.net.URLEncoder;
@@ -16,58 +21,72 @@ import java.util.*;
 
 
 /**
- *
  * @author CTT VNPAY
  */
-@WebServlet(name = "ajaxServlet",value = "/vnpayajax/*")
+@WebServlet(name = "ajaxServlet", value = "/vnpayajax/*")
 public class ajaxServlet extends HttpServlet {
-
+    private DepositDAO depositDAO;
+    private UserDAO userDAO;
+    public void init() {
+        depositDAO=new DepositDAO();
+        userDAO=new UserDAO();
+    }
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String amountS=request.getParameter("vnp_Amount");
+        long amount=Long.parseLong(amountS);
+        int money=(int) amount/25440/100;
+        HttpSession session=request.getSession();
+        User us=(User) session.getAttribute("user");
+        depositDAO.create(new Deposit(
+                us.getId(),
+                money,
+                2
+        ));
+        User user=userDAO.get(us.getId());
+        user.setBalance(user.getBalance()+money);
+        userDAO.deposit(user);
+       response.sendRedirect("/home");
+    }
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
         String vnp_Version = "2.1.0";
         String vnp_Command = "pay";
-        String orderType = "other";
-        long amount = Integer.parseInt(req.getParameter("amount"))*100;
-        String bankCode = req.getParameter("bankCode");
-
         String vnp_TxnRef = Config.getRandomNumber(8);
         String vnp_IpAddr = Config.getIpAddress(req);
-
         String vnp_TmnCode = Config.vnp_TmnCode;
 
-        Map<String, String> vnp_Params = new HashMap<>();
+        long amount = 0;
+        if(req.getParameter("amount") != null){
+            amount=Integer.parseInt(req.getParameter("amount"))*25440*100;
+        }
+        Map vnp_Params = new HashMap<>();
         vnp_Params.put("vnp_Version", vnp_Version);
         vnp_Params.put("vnp_Command", vnp_Command);
         vnp_Params.put("vnp_TmnCode", vnp_TmnCode);
         vnp_Params.put("vnp_Amount", String.valueOf(amount));
         vnp_Params.put("vnp_CurrCode", "VND");
-
-        if (bankCode != null && !bankCode.isEmpty()) {
-            vnp_Params.put("vnp_BankCode", bankCode);
-        }
         vnp_Params.put("vnp_TxnRef", vnp_TxnRef);
-        vnp_Params.put("vnp_OrderInfo", "Thanh toan don hang:" + vnp_TxnRef);
-        vnp_Params.put("vnp_OrderType", orderType);
+        vnp_Params.put("vnp_OrderInfo", "Nap tien vao tai khoan");
+        vnp_Params.put("vnp_OrderType", "250000");
 
-        String locate = req.getParameter("language");
-        if (locate != null && !locate.isEmpty()) {
-            vnp_Params.put("vnp_Locale", locate);
-        } else {
-            vnp_Params.put("vnp_Locale", "vn");
-        }
+
+        vnp_Params.put("vnp_Locale", "en");
+
         vnp_Params.put("vnp_ReturnUrl", Config.vnp_ReturnUrl);
         vnp_Params.put("vnp_IpAddr", vnp_IpAddr);
-
         Calendar cld = Calendar.getInstance(TimeZone.getTimeZone("Etc/GMT+7"));
+
         SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
         String vnp_CreateDate = formatter.format(cld.getTime());
-        vnp_Params.put("vnp_CreateDate", vnp_CreateDate);
 
+        vnp_Params.put("vnp_CreateDate", vnp_CreateDate);
         cld.add(Calendar.MINUTE, 15);
         String vnp_ExpireDate = formatter.format(cld.getTime());
+        //Add Params of 2.1.0 Version
         vnp_Params.put("vnp_ExpireDate", vnp_ExpireDate);
 
+        //Build data to hash and querystring
         List fieldNames = new ArrayList(vnp_Params.keySet());
         Collections.sort(fieldNames);
         StringBuilder hashData = new StringBuilder();
@@ -92,15 +111,9 @@ public class ajaxServlet extends HttpServlet {
             }
         }
         String queryUrl = query.toString();
-//        String vnp_SecureHash = Config.hmacSHA512(Config.secretKey, hashData.toString());
-//        queryUrl += "&vnp_SecureHash=" + vnp_SecureHash;
+        String vnp_SecureHash = Config.hmacSHA512(Config.secretKey, hashData.toString());
+        queryUrl += "&vnp_SecureHash=" + vnp_SecureHash;
         String paymentUrl = Config.vnp_PayUrl + "?" + queryUrl;
-        com.google.gson.JsonObject job = new JsonObject();
-        job.addProperty("code", "00");
-        job.addProperty("message", "success");
-        job.addProperty("data", paymentUrl);
-        Gson gson = new Gson();
-        resp.getWriter().write(gson.toJson(job));
+        resp.sendRedirect(paymentUrl);
     }
-
 }

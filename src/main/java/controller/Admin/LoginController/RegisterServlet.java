@@ -2,6 +2,7 @@ package controller.Admin.LoginController;
 
 import java.io.*;
 
+import controller.Ulti.SendMail;
 import dal.LoginDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
@@ -32,19 +33,14 @@ public class RegisterServlet extends HttpServlet {
             request.setAttribute("error", "Username already exists");
             request.getRequestDispatcher("/register").forward(request, response);
         }
-
-
-        User user = new User(0, name, username, null, "R3", email, password);
-        System.out.println(user.getUsername() + " " + user.getName() + " " + user.getEmail() + " " + user.getPassword());
-        if (loginDAO.register(user)) {
-            request.setAttribute("success", "Register successful");
-            request.getRequestDispatcher("/login").forward(request, response);
-            System.out.println("Successfully logged in"+user.getName());
-        } else {
-            request.setAttribute("error", "Error registering");
+        if(loginDAO.getByEmail(email) != null){
+            request.setAttribute("error", "Email already exists");
             request.getRequestDispatcher("/register").forward(request, response);
-            System.out.println("failed to register"+user.getName());
         }
+
+        SendMail.Send(email,name,username,password);
+
+        response.sendRedirect("/home");
     }
 
     public void destroy() {

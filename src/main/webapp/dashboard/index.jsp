@@ -4,8 +4,10 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.google.gson.Gson" %>
 <%@ page import="java.util.Comparator" %>
+<%@ page import="model.Revenue" %>
+<%@ page import="model.Char" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include file="../Component/sidebar__dashboard.jsp"%>
+<%@include file="../Component/sidebar__dashboard.jsp" %>
 
 <% if (session.getAttribute("user") != null) { %>
 <div class="header-dashboard-overview">
@@ -74,18 +76,28 @@
             <div class="card">
                 <figure><i class="fa-solid fa-user"></i></figure>
                 <div class="infor-card">
-                    <div class="total">2500</div>
+                    <%
+                        if (request.getAttribute("students") != null) {
+                            List<User> users = (List<User>) request.getAttribute("students");
+
+                    %>
+                    <div class="total"><%=users.size()%>
+                    </div>
                     <div class="title-card">Welcome</div>
+                    <%
+                        }
+                    %>
                 </div>
             </div>
             <div class="card">
                 <figure><i class="fa-regular fa-clock"></i></figure>
-               <%
-                if(request.getAttribute("categories") != null){
-                    List<Category> categories=(List<Category>)request.getAttribute("categories");
-               %>
+                <%
+                    if (request.getAttribute("categories") != null) {
+                        List<Category> categories = (List<Category>) request.getAttribute("categories");
+                %>
                 <div class="infor-card">
-                    <div class="total"><%=categories.size()%></div>
+                    <div class="total"><%=categories.size()%>
+                    </div>
                     <div class="title-card">Category</div>
                 </div>
                 <%
@@ -95,15 +107,30 @@
             <div class="card">
                 <figure><i class="fa-solid fa-cloud"></i></figure>
                 <div class="infor-card">
-                    <div class="total">100+</div>
+                    <%
+                        if(request.getAttribute("countCourses")!=null){
+                            int count =(int)request.getAttribute("countCourses");
+                    %>
+                    <div class="total"><%=count%>+</div>
                     <div class="title-card">Courses</div>
+                    <%
+                        }
+                    %>
                 </div>
             </div>
             <div class="card">
                 <figure><i class="fa-brands fa-blogger"></i></figure>
                 <div class="infor-card">
-                    <div class="total">200+</div>
+                    <%
+                        if(request.getAttribute("countPosts")!=null){
+                            int count =(int)request.getAttribute("countPosts");
+                    %>
+                    <div class="total"><%=count%>+</div>
                     <div class="title-card">Posts</div>
+                    <%
+                        }
+                    %>
+
                 </div>
             </div>
         </div>
@@ -124,30 +151,35 @@
                     </tr>
                     </thead>
                     <tbody>
+                    <%
+                        if (request.getAttribute("students") != null) {
+                            List<User> users = (List<User>) request.getAttribute("students");
+                            int count = 0;
+                            for (User user : users) {
+                                count++;
+                                if (count > 5) {
+                                    break;
+                                }
+
+                    %>
                     <tr>
-                        <td>01</td>
-                        <td>2</td>
-                        <td>Dang Khanh</td>
-                        <td>dangkhanh@gmail.com</td>
-                        <td>02942942423</td>
-                        <td>dangkhanh2004</td>
+                        <td><%=count%>
+                        </td>
+                        <td><%=user.getId()%>
+                        </td>
+                        <td><%=user.getName()%>
+                        </td>
+                        <td><%=user.getEmail()%>
+                        </td>
+                        <td><%=user.getPhone()%>
+                        </td>
+                        <td><%=user.getUsername()%>
+                        </td>
                     </tr>
-                    <tr>
-                        <td>02</td>
-                        <td>4</td>
-                        <td>Tran Nam</td>
-                        <td>dangkhanh@gmail.com</td>
-                        <td>02942942423</td>
-                        <td>dangkhanh2004</td>
-                    </tr>
-                    <tr>
-                        <td>03</td>
-                        <td>3</td>
-                        <td>Nguyen An</td>
-                        <td>dangkhanh@gmail.com</td>
-                        <td>02942942423</td>
-                        <td>dangkhanh2004</td>
-                    </tr>
+                    <%
+                            }
+                        }
+                    %>
                     </tbody>
                 </table>
             </div>
@@ -156,30 +188,44 @@
             <div class="chart-1-title block-title">
                 <h2>User chart</h2>
             </div>
+            <%
+                if (request.getAttribute("courseChar") != null || request.getAttribute("postChar") != null) {
+                    List<Char> courseChar = (List<Char>) request.getAttribute("courseChar");
+                    List<Char> postChar = (List<Char>) request.getAttribute("postChar");
+                    List<java.lang.String> month = new ArrayList<>();
+                    List<Integer> course=new ArrayList<>();
+                    List<Integer> post=new ArrayList<>();
+                    for(Char c:courseChar){
+                        month.add(c.getDate());
+                        course.add(c.getCount());
+                    }
+                    for(Char c:postChar){
+                        post.add(c.getCount());
+                    }
+            %>
             <div class="chart-1-block">
                 <canvas id="myChart-user" style="width:100%"></canvas>
-
                 <script>
-                    const xValues1 = ['January', 'February', 'March', 'April', 'May', 'Jun', 'July', 'August', 'September', 'October', 'November', 'December'];
+                    const xValues1 = <%=new Gson().toJson(month)%>;
 
                     new Chart("myChart-user", {
                         type: "line",
                         data: {
                             labels: xValues1,
                             datasets: [{
-                                label: 'Total access times',
-                                data: [860, 1140, 1060, 1060, 1070, 1110, 1330, 2210, 7830, 2478, 2412, 5262],
+                                label: 'Number courses',
+                                data: <%=new Gson().toJson(course)%>,
                                 borderColor: "red",
                                 fill: false
                             }, {
-                                label: 'Number of new user',
-                                data: [1600, 1700, 1700, 1900, 2000, 2700, 4000, 5000, 6000, 7000, 1252, 6431],
+                                label: 'Number posts',
+                                data:<%=new Gson().toJson(post)%>,
                                 borderColor: "green",
                                 fill: false
                             }]
                         },
                         options: {
-                            legend: { display: true },
+                            legend: {display: true},
                             title: {
                                 display: true,
                                 text: "Statistics chart of traffic and new subscribers"
@@ -188,14 +234,17 @@
                     });
                 </script>
             </div>
+            <%
+                }
+            %>
         </div>
         <div class="statistics-4">
             <div class="chart-1-title block-title">
                 <h2>Courses and category chart</h2>
             </div>
             <%
-                if(request.getAttribute("categories") != null){
-                    List<Category> categories =(List<Category>) request.getAttribute("categories");
+                if (request.getAttribute("categories") != null) {
+                    List<Category> categories = (List<Category>) request.getAttribute("categories");
                     categories.sort(Comparator.comparingInt(Category::getTotalCourse).reversed());
                     List<java.lang.String> courseNames = new ArrayList<>();
                     List<Integer> courseCounts = new ArrayList<>();
@@ -203,8 +252,8 @@
                     int totalOther = 0;
                     for (Category category : categories) {
                         if (count >= 4) {
-                            totalOther+=category.getTotalCourse();
-                        }else{
+                            totalOther += category.getTotalCourse();
+                        } else {
                             courseNames.add(category.getName());
                             courseCounts.add(category.getTotalCourse());
 
@@ -255,13 +304,24 @@
             <div class="chart-1-title block-title">
                 <h2>Revenue chart ($)</h2>
             </div>
+            <%
+                if (request.getAttribute("revenues") != null) {
+                    List<Revenue> revenues = (List<Revenue>) request.getAttribute("revenues");
+                    List<java.lang.String> month = new ArrayList<>();
+                    List<Integer> revenue = new ArrayList<>();
+                    for (Revenue r : revenues) {
+                        month.add(r.getDate());
+                        revenue.add(r.getRevenue());
+                    }
+
+
+            %>
             <div class="chart-1-block">
                 <canvas id="revenueChart" style="width:100%"></canvas>
 
                 <script>
-                    var xValues2 = ['January', 'February', 'March', 'April', 'May', 'Jun', 'July', 'August',
-                        'September', 'October', 'November', 'December'];
-                    var yValues2 = [535, 449, 434, 242, 152, 124, 120, 264, 1240, 523, 123, 452];
+                    var xValues2 = <%=new Gson().toJson(month)%>;
+                    var yValues2 = <%=new Gson().toJson(revenue)%>;
                     var barColors2 = [
                         "#E74C3C",
                         "#2ECC71",
@@ -287,7 +347,7 @@
                             }]
                         },
                         options: {
-                            legend: { display: false },
+                            legend: {display: false},
                             title: {
                                 display: true,
                                 text: "Revenue chart"
@@ -296,6 +356,9 @@
                     });
                 </script>
             </div>
+            <%
+                }
+            %>
         </div>
     </div>
 

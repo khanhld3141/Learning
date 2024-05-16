@@ -1,8 +1,6 @@
 package dal;
 
-import model.Category;
-import model.Course;
-import model.User;
+import model.*;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -158,6 +156,45 @@ public class CourseDAO extends DBContext {
         }
         return list;
     }
+    public List<Char> getCourseChar(){
+        List <Char> list = new ArrayList<>();
+        String sql = ";WITH Months AS (\n" +
+                "    SELECT DATEADD(MONTH, -11, DATEFROMPARTS(YEAR(GETDATE()), MONTH(GETDATE()), 1)) AS Month\n" +
+                "    UNION ALL\n" +
+                "    SELECT DATEADD(MONTH, 1, Month)\n" +
+                "    FROM Months\n" +
+                "    WHERE Month < DATEADD(MONTH, 0, DATEFROMPARTS(YEAR(GETDATE()), MONTH(GETDATE()), 1))\n" +
+                ")\n" +
+                "SELECT \n" +
+                "    FORMAT(Months.Month, 'yyyy-MM') AS month,\n" +
+                "    ISNULL(COUNT(c.id), 0) AS count\n" +
+                "FROM \n" +
+                "    Months\n" +
+                "LEFT JOIN \n" +
+                "    courses c ON FORMAT(c.createdAt, 'yyyy-MM') = FORMAT(Months.Month, 'yyyy-MM')\n" +
+                "GROUP BY \n" +
+                "    Months.Month\n" +
+                "ORDER BY \n" +
+                "    Months.Month;\n" +
+                "\n" +
+                "\n";
+
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Char r=new Char(
+                        rs.getString("month"),
+                        rs.getInt("count")
+                );
+                list.add(r);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
     public List<Course> getAllCourseOfUser(int userId) {
         List<Course> list = new ArrayList<>();
         String sql = "select Courses.* from courses inner join UserCourses on courses.id = UserCourses.CourseId\n" +
@@ -188,7 +225,22 @@ public class CourseDAO extends DBContext {
         }
         return list;
     }
+    public int getCount() {
+        String sql = "select count(*) as count from courses";
 
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                int count=rs.getInt("count");
+                return count;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
     public Course get(int id) {
         String sql = "select Courses.*,users.name as teacher,users.avatar as avatar from courses left join users on " +
                 "users.id = courses.TeacherId where Courses.id = ?";

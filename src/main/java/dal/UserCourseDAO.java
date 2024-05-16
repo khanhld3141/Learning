@@ -1,5 +1,6 @@
 package dal;
 
+import model.Revenue;
 import model.User;
 import model.UserCourse;
 
@@ -34,6 +35,7 @@ public class UserCourseDAO extends DBContext{
         }
         return list;
     }
+
     public List<UserCourse> getStudentCourse(int userid){
         List <UserCourse> list = new ArrayList<>();
         String sql = "select * from UserCourses where userid=?";
@@ -76,6 +78,45 @@ public class UserCourseDAO extends DBContext{
             e.printStackTrace();
         }
         return null;
+    }
+    public List<Revenue> getRevenue(){
+        List <Revenue> list = new ArrayList<>();
+        String sql = ";WITH Months AS (\n" +
+                "    SELECT DATEADD(MONTH, -11, DATEFROMPARTS(YEAR(GETDATE()), MONTH(GETDATE()), 1)) AS Month\n" +
+                "    UNION ALL\n" +
+                "    SELECT DATEADD(MONTH, 1, Month)\n" +
+                "    FROM Months\n" +
+                "    WHERE Month < DATEADD(MONTH, 0, DATEFROMPARTS(YEAR(GETDATE()), MONTH(GETDATE()), 1))\n" +
+                ")\n" +
+                "SELECT \n" +
+                "    FORMAT(Months.Month, 'yyyy-MM') AS month,\n" +
+                "    ISNULL(SUM(c.price), 0) AS revenue\n" +
+                "FROM \n" +
+                "    Months\n" +
+                "LEFT JOIN \n" +
+                "    UserCourses uc ON FORMAT(uc.createdAt, 'yyyy-MM') = FORMAT(Months.Month, 'yyyy-MM')\n" +
+                "LEFT JOIN \n" +
+                "    courses c ON uc.courseId = c.id\n" +
+                "GROUP BY \n" +
+                "    Months.Month\n" +
+                "ORDER BY \n" +
+                "    Months.Month;";
+
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+               Revenue r=new Revenue(
+                       rs.getString("month"),
+                       rs.getInt("revenue")
+               );
+                list.add(r);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
     }
     public UserCourse get(int id) {
         String sql = "select * from UserCourses where id = ?";

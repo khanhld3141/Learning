@@ -91,15 +91,26 @@
                         <%
                             if (signValue.equals(vnp_SecureHash)) {
                                 if ("00".equals(request.getParameter("vnp_TransactionStatus"))) {
-                                    out.print("Thành công");
+
+                                    %>
+                                <span>Thanh cong</span>
+
+                        <%
                                 } else {
-                                    out.print("Không thành công");
+                                    %>
+
+
+                                 <span>Khong thanh cong</span>
+                        <%
                                 }
 
                             } else {
-                                out.print("invalid signature");
+                                %>
+                               <span>Khong thanh cong</span>
+                        <%
                             }
-                        %></label>
+                        %>
+                    </label>
                 </div> 
             </div>
             <p>

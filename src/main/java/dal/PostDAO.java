@@ -1,5 +1,6 @@
 package dal;
 
+import model.Char;
 import model.Post;
 import model.User;
 
@@ -170,7 +171,61 @@ public class PostDAO extends DBContext {
         }
         return null;
     }
+    public List<Char> getPostChar(){
+        List <Char> list = new ArrayList<>();
+        String sql = ";WITH Months AS (\n" +
+                "    SELECT DATEADD(MONTH, -11, DATEFROMPARTS(YEAR(GETDATE()), MONTH(GETDATE()), 1)) AS Month\n" +
+                "    UNION ALL\n" +
+                "    SELECT DATEADD(MONTH, 1, Month)\n" +
+                "    FROM Months\n" +
+                "    WHERE Month < DATEADD(MONTH, 0, DATEFROMPARTS(YEAR(GETDATE()), MONTH(GETDATE()), 1))\n" +
+                ")\n" +
+                "SELECT \n" +
+                "    FORMAT(Months.Month, 'yyyy-MM') AS month,\n" +
+                "    ISNULL(COUNT(c.id), 0) AS count\n" +
+                "FROM \n" +
+                "    Months\n" +
+                "LEFT JOIN \n" +
+                "    posts c ON FORMAT(c.createdAt, 'yyyy-MM') = FORMAT(Months.Month, 'yyyy-MM')\n" +
+                "GROUP BY \n" +
+                "    Months.Month\n" +
+                "ORDER BY \n" +
+                "    Months.Month;\n" +
+                "\n" +
+                "\n";
 
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Char r=new Char(
+                        rs.getString("month"),
+                        rs.getInt("count")
+                );
+                list.add(r);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+    public int getCount() {
+        String sql = "select count(*) as count from posts";
+
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                int count=rs.getInt("count");
+                return count;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
     public int create(Post Post) {
         String sql = "insert into Posts (AuthorId,Title,Comment,Content,Image) values(?,?,?,?,?)";
         int postid=-1;

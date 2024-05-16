@@ -101,4 +101,36 @@ public class LoginDAO extends DBContext {
         }
         return null;
     }
+    public User getByEmail(String email) {
+        String sql = "select * from users where email = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, email);
+            ResultSet rs = st.executeQuery();
+
+            while (rs.next()) {
+                User user = new User(
+                        rs.getInt("Id"),
+                        rs.getInt("Balance"),
+                        rs.getString("Name"),
+                        rs.getString("Username"),
+                        rs.getString("Phone"),
+                        rs.getString("Role"),
+                        rs.getString("Email"),
+                        rs.getString("Password")
+                );
+                String password = "";
+                try {
+                    password = AESUtil.decrypt(user.getPassword());
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+                user.setPassword(password);
+                return user;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
