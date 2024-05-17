@@ -50,7 +50,7 @@
     <link rel="stylesheet" href="../assets/css/Profile/personal_information.css">
     <link rel="stylesheet" href="../assets/css/Profile/change-password.css">
     <link rel="stylesheet" href="../assets/css/Profile/courses-participated.css">
-    <link rel="stylesheet" href="../assets/css/payment/payment.scss">
+    <link rel="stylesheet" href="../assets/css/payment/payment.css">
     <link rel="stylesheet" href="../assets/css/Blog-user/post-user.scss">
 
 </head>

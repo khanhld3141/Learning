@@ -5,40 +5,8 @@
         <div class="payment-content">
             <div class="body">
                 <div class="body-middle">
-                    <div class="bank-qr">
-                        <h1>Make payment by QR code</h1>
-                        <div class="bank-qr-detail">
-                            <div class="qr-code">
-                                <img src="../img/payment-img/qr_code_samp.jpeg" alt="QR CODE">
-                            </div>
-                            <div class="instruction">
-                                <li>Step 1: Open the banking app and scan the QR code.</li>
-                                <li>Step 2: Make sure the transfer content is RECHARGE.</li>
-                                <li>Step 3: Make payment.</li>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bank-manual">
-                        <h1>Manual transfer</h1>
-                        <div class="bank-manual-detail">
-                            <li class="bank-manual-box">
-                                <div class="box-label">Account number</div>
-                                <div class="box-content">1111111111</div>
-                            </li>
-                            <li class="bank-manual-box">
-                                <div class="box-label">Account name</div>
-                                <div class="box-content">NGUYEN GIA BAO</div>
-                            </li>
-                            <li class="bank-manual-box">
-                                <div class="box-label">Account content</div>
-                                <div class="box-content"><span class="course-id">RECHARGE</span></div>
-                            </li>
-                            <li class="bank-manual-box">
-                                <div class="box-label">Branch</div>
-                                <div class="box-content">BIDV</div>
-                            </li>
-                        </div>
-                    </div>
+
+
                     <div class="attention">
                         <h1>Attention</h1>
                         <div class="attention-content">
@@ -55,15 +23,28 @@
                             </li>
                         </div>
                     </div>
-                    <div class="enter-money">
-                        <form action="/vnpayajax" method="post">
-                            <div class="form-payment-block">
-                                <input name="amount" class="money-input" type="number"
-                                       placeholder="Enter amount of money">
-                                <button type="submit" class="btn" style="max-width: 20%; margin-bottom: 0">Confirm payment</button>
+                    <div class="payment-detail">
+                        <h1 class="payment-detail-title">
+                            Payment guide
+                        </h1>
+                        <div class="enter-money">
+                            <div class="tutorial">
+                                <ul>
+                                    <li>Step 1: Enter amount of money</li>
+                                    <li>Step 2: Read the "Attention" section below</li>
+                                    <li>Step 3: Click on the "CONFIRM PAYMENT" button </li>
+                                </ul>
                             </div>
-                        </form>
+                            <form action="/vnpayajax" method="post" style="flex-basis: 50%">
+                                <div class="form-payment-block">
+                                    <input name="amount" class="money-input" type="number"
+                                           placeholder="Enter amount of money">
+                                    <button type="submit" class="btn" style="max-width: 40%; margin-bottom: 0; padding: 14px">Confirm payment</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
+
                 </div>
             </div>
 
