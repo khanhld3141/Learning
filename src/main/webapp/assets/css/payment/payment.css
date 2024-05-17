@@ -1,10 +1,10 @@
 /*begin common*/
 .payment{
     width: 100%;
-    height: 90rem;
     position: relative;
     color:#dae4f0;
     line-height: 4rem;
+    background-color:#272a31;
 }
 
 .payment h2{
@@ -36,17 +36,15 @@
 .payment h1{
     font-size: 2.4rem;
     font-weight: 700;
-    margin: 3.2rem 0 0;
+    margin: 2.2rem 0 0;
 }
 
 .payment .payment-content{
-    background-color:#272a31;
     display: flex;
     flex-direction: row;
-    overflow-y: auto;
-    width: 100%;
-    height: 100%;
-    justify-content: center;
+    width: 1170px;
+    max-width: calc(100% - 48px);
+    margin: 0 auto;
 }
 
 /*end common*/
@@ -86,7 +84,7 @@
     width: 70%;
     height: 100%;
     /*overflow: auto;*/
-    padding: 8px 40px;
+    padding: 8px 40px 8px 0;
 }
 /*end body*/
 
@@ -256,13 +254,36 @@
 
 .form-payment-block{
     display: flex;
-    justify-content: space-between;
-    padding: 15px 0 50px;
-    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
 }
 
 .payment .money-input{
-    padding: 0 10px;
-    border: 1px solid #ccc;
-    border-radius: .2rem;
+    background: #323c4a;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 1.4rem;
+    font-weight: 400;
+    height: 36px;
+    line-height: 24px;
+    outline: none;
+    padding: 0 16px;
+    width: 40%;
+    margin: 10px 0;
+}
+
+.payment .payment-detail-title{
+    display: block;
+}
+
+.payment .enter-money{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+}
+
+.payment .tutorial{
+    flex-basis: 50%;
 }
