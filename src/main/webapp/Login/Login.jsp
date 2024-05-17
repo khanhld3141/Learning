@@ -46,7 +46,9 @@
             <img src="../img/login-img/vector.png" alt>
          </div>
         </div>
-
+        <a
+                href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:8080/loginwithgoogle&response_type=code
+		   &client_id=412850504579-nqra0ggs5bqpvlgmu0u062ajd7ua5pfv.apps.googleusercontent.com&approval_prompt=force">Login with Google</a>
     </div>
     </div>
 <%--</section>--%>

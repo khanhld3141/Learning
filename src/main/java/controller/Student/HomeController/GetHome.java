@@ -30,6 +30,7 @@ public class GetHome extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        System.out.println(123);
         List<Category> categories = categoryDAO.getAllCategorys();
         request.setAttribute("categories", categories);
         List<Course> courses = courseDAO.getAllCoursesHome();

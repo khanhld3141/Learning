@@ -51,19 +51,19 @@ public class CreateCourse extends HttpServlet {
         String realPath = request.getServletContext().getRealPath("/images");
         String filename= FileUploadUtil.uploadFile(image,realPath);
 
-       try{
-           Course course=new Course(
-                   Integer.parseInt(tech[0]),
-                   Integer.parseInt(price),
-                   Integer.parseInt(cate[0]),
-                   name,
-                   introduce,
-                   filename,
-                   overview,
-                   result
-           );
-           courseDAO.create(course);
-           response.sendRedirect("/dashboard/courses");
+        try{
+            Course course=new Course(
+                    Integer.parseInt(tech[0]),
+                    Integer.parseInt(price),
+                    Integer.parseInt(cate[0]),
+                    name,
+                    introduce,
+                    filename,
+                    overview,
+                    result
+            );
+            courseDAO.create(course);
+            response.sendRedirect("/dashboard/courses");
        }catch (Exception e){
            request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
            e.printStackTrace();

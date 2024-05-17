@@ -22,6 +22,7 @@ public class LoginServlet extends HttpServlet {
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        System.out.println(234);
         String username = request.getParameter("Username");
         String password = request.getParameter("Password");
         String remember = request.getParameter("Remember");

@@ -14,7 +14,7 @@
         <url-pattern>/dashboard</url-pattern>
 
         <url-pattern>/dashboard/courses</url-pattern>
-        <url-pattern>/dashboard/create-course</url-pattern>
+<!--        <url-pattern>/dashboard/create-course</url-pattern>-->
         <url-pattern>/dashboard/update-course</url-pattern>
         <url-pattern>/dashboard/delete-course</url-pattern>
 
@@ -104,7 +104,7 @@
         <filter-name>FilterAdmin</filter-name>
 
 
-        <url-pattern>/dashboard/create-course</url-pattern>
+<!--        <url-pattern>/dashboard/create-course</url-pattern>-->
         <url-pattern>/dashboard/update-course</url-pattern>
         <url-pattern>/dashboard/delete-course</url-pattern>
 
