@@ -3,16 +3,13 @@
 <main>
     <link rel="stylesheet" href="../assets/css/forgot-password/confirm-new-password.css">
     <div class="main-content">
-        <form class="form">
+        <form class="form" action="/confirm-password" method="post">
             <p class="form-title">Confirm your new password</p>
             <div class="input-container">
-                <input type="email" placeholder="Enter old password">
+                <input name="password" type="password" placeholder="Enter new password">
             </div>
             <div class="input-container">
-                <input type="password" placeholder="Enter new password">
-            </div>
-            <div class="input-container">
-                <input type="password" placeholder="Enter new password again">
+                <input name="password" type="password" placeholder="Enter new password again">
             </div>
             <button type="submit" class="submit">Confirm</button>
             <p class="signup-link">

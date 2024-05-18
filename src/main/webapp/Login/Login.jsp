@@ -17,13 +17,13 @@
             </div>
             <form action="/login" method="post" class="form-login">
                 <div class="form-group">
-                    <label>Email or Username</label>
-                    <input name="Username" type="text" class="form-group__input" placeholder="example@gmail.com"
+                    <label>Email *</label>
+                    <input name="Email" type="text" class="form-group__input" placeholder="example@gmail.com"
                            required>
 
                 </div>
                <div class="form-group">
-                    <label>Password</label>
+                    <label>Password *</label>
                     <input name="Password" type="password" class="form-group__input" placeholder="Password" required>
 
                </div>
@@ -48,7 +48,7 @@
         </div>
         <a
                 href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:8080/loginwithgoogle&response_type=code
-		   &client_id=412850504579-nqra0ggs5bqpvlgmu0u062ajd7ua5pfv.apps.googleusercontent.com&approval_prompt=force">Login with Google</a>
+		   &client_id=412850504579-nqra0ggs5bqpvlgmu0u062ajd7ua5pfv.apps.googleusercontent.com&approval_prompt=force"><i class="fa-brands fa-google"></i></a>
     </div>
     </div>
 <%--</section>--%>

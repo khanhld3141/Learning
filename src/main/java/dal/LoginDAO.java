@@ -14,12 +14,12 @@ public class LoginDAO extends DBContext {
         super();
     }
 
-    public User login(String username) {
-        String sql = "select * from Users where Username=?";
+    public User login(String email) {
+        String sql = "select * from Users where Email=?";
 
         try {
             PreparedStatement st = connection.prepareStatement(sql);
-            st.setString(1, username);
+            st.setString(1, email);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 User user = new User(

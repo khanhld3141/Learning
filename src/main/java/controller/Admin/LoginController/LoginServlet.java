@@ -22,14 +22,13 @@ public class LoginServlet extends HttpServlet {
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        System.out.println(234);
-        String username = request.getParameter("Username");
+        String email = request.getParameter("Email");
         String password = request.getParameter("Password");
         String remember = request.getParameter("Remember");
 
         HttpSession session = request.getSession();
         LoginDAO loginDAO = new LoginDAO();
-        User user = loginDAO.login(username);
+        User user = loginDAO.login(email);
         if (user == null) {
             request.setAttribute("error", "username invalid");
             request.getRequestDispatcher("Login/Login.jsp").forward(request, response);
