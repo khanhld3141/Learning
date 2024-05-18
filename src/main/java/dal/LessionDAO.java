@@ -8,17 +8,18 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LessionDAO extends DBContext{
-    public LessionDAO(){
+public class LessionDAO extends DBContext {
+    public LessionDAO() {
         super();
     }
-    public List<Lession> getAllLessions(int chapterid){
-        List <Lession> list = new ArrayList<>();
+
+    public List<Lession> getAllLessions(int chapterid) {
+        List<Lession> list = new ArrayList<>();
         String sql = "select * from Lessions where chapterid=?";
 
         try {
             PreparedStatement st = connection.prepareStatement(sql);
-            st.setInt(1,chapterid);
+            st.setInt(1, chapterid);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 Lession Lession = new Lession(
@@ -36,13 +37,14 @@ public class LessionDAO extends DBContext{
         }
         return list;
     }
-    public List<Lession> getAllLessionsName(int chapterid){
-        List <Lession> list = new ArrayList<>();
+
+    public List<Lession> getAllLessionsName(int chapterid) {
+        List<Lession> list = new ArrayList<>();
         String sql = "select id,chapterid,name from Lessions where chapterid=?";
 
         try {
             PreparedStatement st = connection.prepareStatement(sql);
-            st.setInt(1,chapterid);
+            st.setInt(1, chapterid);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 Lession Lession = new Lession(
@@ -60,36 +62,40 @@ public class LessionDAO extends DBContext{
         }
         return list;
     }
-    public List<Lession> getAllLessionsPreview(int chapterid){
-        List <Lession> list = new ArrayList<>();
+
+    public List<Lession> getAllLessionsPreview(int chapterid) {
+        List<Lession> list = new ArrayList<>();
         String sql = "select * from Lessions where chapterid=?";
 
         try {
             PreparedStatement st = connection.prepareStatement(sql);
-            st.setInt(1,chapterid);
+            st.setInt(1, chapterid);
             ResultSet rs = st.executeQuery();
-            int count=0;
-            Lession lession=null;
+            int count = 0;
+
             while (rs.next()) {
-               if(count<3){
-                   lession = new Lession(
-                           rs.getInt("Id"),
-                           rs.getInt("ChapterId"),
-                           rs.getString("Name"),
-                           "",
-                           rs.getString("Link")
-                   );
-               }else{
-                   lession = new Lession(
-                           rs.getInt("Id"),
-                           rs.getInt("ChapterId"),
-                           rs.getString("Name"),
-                           "",
-                           ""
-                   );
-               }
-               count++;
-                list.add(lession);
+                if (count < 1) {
+                    Lession lession = new Lession(
+                            rs.getInt("Id"),
+                            rs.getInt("ChapterId"),
+                            rs.getString("Name"),
+                            "",
+                            rs.getString("Link")
+                    );
+                    list.add(lession);
+                } else {
+                    Lession lession = new Lession(
+                            rs.getInt("Id"),
+                            rs.getInt("ChapterId"),
+                            rs.getString("Name"),
+                            "",
+                            ""
+                    );
+                    list.add(lession);
+
+                }
+                count++;
+
             }
 
         } catch (SQLException e) {
@@ -97,13 +103,14 @@ public class LessionDAO extends DBContext{
         }
         return list;
     }
-    public List<Lession> searchByName(int chapterid,String name){
-        List <Lession> list = new ArrayList<>();
+
+    public List<Lession> searchByName(int chapterid, String name) {
+        List<Lession> list = new ArrayList<>();
         String sql = "select * from Lessions where chapterid=? and name like ?";
 
         try {
             PreparedStatement st = connection.prepareStatement(sql);
-            st.setInt(1,chapterid);
+            st.setInt(1, chapterid);
             st.setString(2, "%" + name + "%");
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
@@ -122,6 +129,7 @@ public class LessionDAO extends DBContext{
         }
         return list;
     }
+
     public Lession get(int id) {
         String sql = "select * from Lessions where id = ?";
         try {
@@ -144,6 +152,7 @@ public class LessionDAO extends DBContext{
         }
         return null;
     }
+
     public void create(Lession Lession) {
         String sql = "insert into Lessions (ChapterId,Name,Description,Link) values(?,?,?,?)";
         try {
