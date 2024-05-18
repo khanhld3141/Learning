@@ -21,10 +21,38 @@
          aria-labelledby="heading<%=chapter.getId()%>" data-bs-parent="#accordionCurriculum">
         <div class="accordion-body">
             <ul>
-               <%
-                    for(Lession lession:chapter.getLessions()){
-               %>
-                <li><a href="#"><i class="fa-solid fa-play"></i><%=lession.getName()%></a></li>
+                <%
+                    for (Lession lession : chapter.getLessions()) {
+                %>
+                <li><a data-bs-toggle="modal" data-bs-target="#modal__preview-lesson" style="cursor: pointer"><i
+                        class="fa-solid fa-play"></i><%=lession.getName()%>
+                </a></li>
+                <div class="modal fade" id="modal__preview-lesson" role="dialog">
+                    <div class="modal-dialog modal-lg">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header" style="display: flex; justify-content: space-between">
+                                <h4 class="modal-title" style="font-weight: 500;color: #454545;">Preview lesson</h4>
+                                <button type="button" class="close" data-dismiss="modal" style="
+                                     border-radius: 6px;
+                                     border: none;
+                                     background: #f42626;
+                                     color: white;
+                                     ">&times;
+                                </button>
+
+                            </div>
+                            <div class="modal-body">
+                                <p style="font-weight: 500;color: #454545; font-size: 19px; text-transform: uppercase"><%=lession.getName()%></p>
+                                <figure style="width: 100%; height: 100%">
+                                    <video style="width: 100%; height: 100%; margin-top: 20px" controls >
+                                        <source src="../video/demo-video.mp4">
+                                    </video>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <%
                     }
                 %>

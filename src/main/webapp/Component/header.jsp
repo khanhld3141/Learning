@@ -147,7 +147,7 @@
                     <li class="navbar__item has-child">
                         <div class="avatar">
                             <a href="#!"><img src="images/${sessionScope.user.avatar}" class="avatar-user" alt="Avatar"
-                                              title="Avatar"></a>
+                                              title="Avatar" style="object-fit: cover"></a>
                             <ul class="sub-menu-profile">
                                 <li>
                                     <a href="/my-profile">SEE ALL PROFILE</a>
