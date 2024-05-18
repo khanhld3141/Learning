@@ -40,6 +40,9 @@ public class DetailCourse extends HttpServlet {
                 for (int i = 0; i < chapters.size(); i++) {
                     List<Lession> lessions = lessionDAO.getAllLessionsPreview(chapters.get(i).getId());
                     chapters.get(i).setLessions(lessions);
+                    for(Lession l:lessions){
+                        System.out.println(l.getLink());
+                    }
                 }
 
                 course.setChapters(chapters);

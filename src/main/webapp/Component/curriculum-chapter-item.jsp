@@ -30,7 +30,7 @@
                         class="fa-solid fa-play"></i><%=lession.getName()%>
                 </a></li>
                 <%
-                    if (lession.getLink() != "") {
+                    if ( lession.getLink() != "") {
                 %>
                 <div class="modal fade" id="modal__preview-lesson_<%=lession.getId()%>" role="dialog">
                     <div class="modal-dialog modal-lg">
@@ -51,9 +51,23 @@
                                 <p style="font-weight: 500;color: #454545; font-size: 19px; text-transform: uppercase"><%=lession.getName()%>
                                 </p>
                                 <figure style="width: 100%; height: 100%">
-                                    <video style="width: 100%; height: 100%; margin-top: 20px" controls>
+                                    <video autoplay id="myVideo<%=lession.getId()%>" style="width: 100%; height: 100%; margin-top: 20px" controls>
                                         <source src="/images/<%=lession.getLink()%>">
                                     </video>
+                                    <script>
+                                        document.addEventListener('DOMContentLoaded', (event) => {
+                                            const video = document.getElementById('myVideo<%=lession.getId()%>');
+                                            const maxTime = 120;
+
+                                            video.addEventListener('timeupdate', () => {
+                                                if (video.currentTime >= maxTime) {
+                                                    video.pause();
+                                                    video.currentTime = 0;
+                                                    alert('Videos can only be viewed for a maximum of 2 minutes');
+                                                }
+                                            });
+                                        });
+                                    </script>
                                 </figure>
                             </div>
                         </div>
