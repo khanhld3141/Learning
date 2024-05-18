@@ -339,6 +339,10 @@ body{
     margin-top: 5rem;
 }
 
+.modal-comment .comment-body{
+    flex-grow: 1;
+}
+
 .modal-comment  .comment-head{
     margin-bottom: 4.6rem;
     display: flex;
@@ -470,7 +474,8 @@ body{
 }
 
 .modal-comment .comment-wrapper{
-    width: 90%;
+    width: fit-content;
+    max-width: 90%;
 }
 
 

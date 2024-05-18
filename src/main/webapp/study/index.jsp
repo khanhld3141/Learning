@@ -28,7 +28,7 @@
 
     <%--  css--%>
     <link rel="stylesheet" href="../assets/css/reset.css">
-    <link rel="stylesheet" href="../assets/css/study/study.scss">
+    <link rel="stylesheet" href="../assets/css/study/study.css">
 
 </head>
 <body>
