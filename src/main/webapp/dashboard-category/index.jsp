@@ -91,17 +91,19 @@
                                     </div>
                                     <div class="modal-body">
                                         <div class="name-category">
-                                            <input name="id" value="<%=category.getId()%>" hidden="hidden"/>
+                                            <input id="cateid" name="id" value="<%=category.getId()%>" hidden="hidden"/>
                                             <label for="name-category-update">Name Category</label>
-                                            <input VALUE="<%=category.getName()%>" type="text" name="name"
+                                            <input value="<%=category.getName()%>" type="text" name="name"
                                                    id="name-category-update"
                                                    placeholder="Enter name category">
                                             <div class="name-category">
-                                                <label for="image-category-update">Image Category</label>
-                                                <input type="file" name="image" id="image-category-update"
+                                                <label for="uploadImage">Image Category</label>
+                                                <input type="file" name="image" id="uploadImage"
                                                        placeholder="Enter name category">
                                             </div>
-                                            <img src="/images/<%=category.getImage()%>" style="width: 120px; height: 80px; border-radius: 10px; object-fit: cover; margin-top: 15px">
+                                            <img id="image" src="/images/<%=category.getImage()%>" style="width: 120px;
+                                            height:
+                                             80px; border-radius: 10px; object-fit: cover; margin-top: 15px">
                                         </div>
                                     </div>
                                     <div class="modal-footer">
@@ -165,6 +167,28 @@
         </div>
     </div>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('#uploadImage').change(function(){
+            var formData = new FormData();
+            formData.append('image', $('#uploadImage')[0].files[0]);
+            formData.append('id',$("#cateid").val())
+            $.ajax({
+                url: '/upload-category',
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+
+                success: function(response){
+
+                    document.querySelector("#image").src="/images/"+response;
+                }
+            });
+        });
+    });
+</script>
 <script>
     function previousPage() {
         var currentPage = <%= request.getParameter("page") != null ? Integer.parseInt(request.getParameter("page")) : 1 %>;

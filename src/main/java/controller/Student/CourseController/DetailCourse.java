@@ -38,9 +38,10 @@ public class DetailCourse extends HttpServlet {
                 List<Chapter> chapters = chapterDAO.getAllChapters(id);
 
                 for (int i = 0; i < chapters.size(); i++) {
-                    List<Lession> lessions = lessionDAO.getAllLessions(chapters.get(i).getId());
+                    List<Lession> lessions = lessionDAO.getAllLessionsPreview(chapters.get(i).getId());
                     chapters.get(i).setLessions(lessions);
                 }
+
                 course.setChapters(chapters);
                 request.setAttribute("course", course);
 

@@ -35,7 +35,8 @@ public class LessionDAO extends DBContext{
             e.printStackTrace();
         }
         return list;
-    } public List<Lession> getAllLessionsName(int chapterid){
+    }
+    public List<Lession> getAllLessionsName(int chapterid){
         List <Lession> list = new ArrayList<>();
         String sql = "select id,chapterid,name from Lessions where chapterid=?";
 
@@ -52,6 +53,43 @@ public class LessionDAO extends DBContext{
                         ""
                 );
                 list.add(Lession);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+    public List<Lession> getAllLessionsPreview(int chapterid){
+        List <Lession> list = new ArrayList<>();
+        String sql = "select * from Lessions where chapterid=?";
+
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1,chapterid);
+            ResultSet rs = st.executeQuery();
+            int count=0;
+            Lession lession=null;
+            while (rs.next()) {
+               if(count<3){
+                   lession = new Lession(
+                           rs.getInt("Id"),
+                           rs.getInt("ChapterId"),
+                           rs.getString("Name"),
+                           "",
+                           rs.getString("Link")
+                   );
+               }else{
+                   lession = new Lession(
+                           rs.getInt("Id"),
+                           rs.getInt("ChapterId"),
+                           rs.getString("Name"),
+                           "",
+                           ""
+                   );
+               }
+               count++;
+                list.add(lession);
             }
 
         } catch (SQLException e) {

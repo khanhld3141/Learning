@@ -154,6 +154,7 @@ public class CategoryDAO extends DBContext{
         }
     }
 
+
     public void delete(int id) {
         String sql = "delete from Categories where id = ?";
 

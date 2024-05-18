@@ -23,11 +23,16 @@
             <ul>
                 <%
                     for (Lession lession : chapter.getLessions()) {
+
                 %>
-                <li><a data-bs-toggle="modal" data-bs-target="#modal__preview-lesson" style="cursor: pointer"><i
+                <li><a data-bs-toggle="modal" data-bs-target="#modal__preview-lesson_<%=lession.getId()%>" style="cursor:
+                pointer"><i
                         class="fa-solid fa-play"></i><%=lession.getName()%>
                 </a></li>
-                <div class="modal fade" id="modal__preview-lesson" role="dialog">
+                <%
+                    if (lession.getLink() != "") {
+                %>
+                <div class="modal fade" id="modal__preview-lesson_<%=lession.getId()%>" role="dialog">
                     <div class="modal-dialog modal-lg">
                         <!-- Modal content-->
                         <div class="modal-content">
@@ -43,10 +48,11 @@
 
                             </div>
                             <div class="modal-body">
-                                <p style="font-weight: 500;color: #454545; font-size: 19px; text-transform: uppercase"><%=lession.getName()%></p>
+                                <p style="font-weight: 500;color: #454545; font-size: 19px; text-transform: uppercase"><%=lession.getName()%>
+                                </p>
                                 <figure style="width: 100%; height: 100%">
-                                    <video style="width: 100%; height: 100%; margin-top: 20px" controls >
-                                        <source src="../video/demo-video.mp4">
+                                    <video style="width: 100%; height: 100%; margin-top: 20px" controls>
+                                        <source src="/images/<%=lession.getLink()%>">
                                     </video>
                                 </figure>
                             </div>
@@ -54,6 +60,7 @@
                     </div>
                 </div>
                 <%
+                        }
                     }
                 %>
 

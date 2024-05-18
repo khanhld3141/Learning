@@ -65,62 +65,6 @@
                         <p class="btn courses-overview__btn">Overview</p>
                         <div class="courses-overview__infor">
                             <%=course.getOverview()%>
-                            <%--<!-- this courses include -->
-                            <div class="include">
-                                <h3 class="heading">This course includes</h3>
-                                <ul type="none">
-                                    <li><i class="fa-solid fa-hand-point-right"></i> 48.5 hours on-demand video</li>
-                                    <li><i class="fa-solid fa-hand-point-right"></i> 12 downloadable resources</li>
-                                    <li><i class="fa-solid fa-hand-point-right"></i> Access on mobile and TV</li>
-                                    <li><i class="fa-solid fa-hand-point-right"></i> 57 articles</li>
-                                    <li><i class="fa-solid fa-hand-point-right"></i> Full lifetime access</li>
-                                    <li><i class="fa-solid fa-hand-point-right"></i> Certificate of Completion</li>
-                                </ul>
-                            </div>
-                            <!-- description -->
-                            <div class="description">
-                                <h3 class="heading">Description</h3>
-                                <p class="desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt
-                                    esse architecto delectus at facere maxime totam dolorem eum eligendi ullam
-                                    laudantium officia temporibus repellat nostrum neque, debitis atque sint impedit
-                                    nemo ipsum! Adipisci dolores ducimus numquam ad cumque possimus? Ex.</p>
-                            </div>
-                            <!-- requirement -->
-                            <div class="requirement">
-                                <h3 class="heading">Requirements for this course</h3>
-                                <ul type="none">
-                                    <li><i class="fa-solid fa-hand-point-right"></i> Lorem, ipsum dolor sit amet
-                                        consectetur adipisicing elit.</li>
-                                    <li><i class="fa-solid fa-hand-point-right"></i> Lorem, ipsum dolor sit amet
-                                        consectetur adipisicing elit.</li>
-                                    <li><i class="fa-solid fa-hand-point-right"></i> Lorem, ipsum dolor sit amet
-                                        consectetur adipisicing elit.</li>
-                                    <li><i class="fa-solid fa-hand-point-right"></i> Lorem, ipsum dolor sit amet
-                                        consectetur adipisicing elit.</li>
-                                    <li><i class="fa-solid fa-hand-point-right"></i> Lorem, ipsum dolor sit amet
-                                        consectetur adipisicing elit.</li>
-                                    <li><i class="fa-solid fa-hand-point-right"></i> Lorem, ipsum dolor sit amet
-                                        consectetur adipisicing elit.</li>
-                                </ul>
-                            </div>
-                            <!-- courses-objective -->
-                            <div class="courses-objective">
-                                <h3 class="heading">You will learn form this course</h3>
-                                <ul type="none">
-                                    <li><i class="fa-solid fa-hand-point-right"></i> HTML is the standard markup
-                                        language for creating Web pages.</li>
-                                    <li><i class="fa-solid fa-hand-point-right"></i> HTML stands for Hyper Text
-                                        Markup Language</li>
-                                    <li><i class="fa-solid fa-hand-point-right"></i> HTML describes the structure of
-                                        a Web page</li>
-                                    <li><i class="fa-solid fa-hand-point-right"></i> HTML consists of a series of
-                                        elements</li>
-                                    <li><i class="fa-solid fa-hand-point-right"></i> HTML elements tell the browser
-                                        how to display the content</li>
-                                    <li><i class="fa-solid fa-hand-point-right"></i> HTML elements are represented
-                                        by tags</li>
-                                </ul>
-                            </div>--%>
                         </div>
                     </div>
                     <!-- Curriculum -->

@@ -55,8 +55,7 @@ public class UpdatePost extends HttpServlet {
         String id = request.getParameter("id");
         String author = request.getParameter("author");
         String authors[] = author.split("-");
-        String realPath = request.getServletContext().getRealPath("/images");
-        String filename = FileUploadUtil.uploadFile(image, realPath);
+
         Post post = postDAO.get(Integer.parseInt(id));
         hashtagDAO.deleteAllOfPost(post.getId());
         String[] hashtags = request.getParameterValues("hashtag[]");
@@ -69,7 +68,7 @@ public class UpdatePost extends HttpServlet {
             }
         }
         try {
-            postDAO.update(new Post(title, content, comment, filename, Integer.parseInt(id),
+            postDAO.update(new Post(title, content, comment, post.getImage(), Integer.parseInt(id),
                     Integer.parseInt(authors[0])));
             response.sendRedirect("/dashboard/posts");
         } catch (Exception e) {

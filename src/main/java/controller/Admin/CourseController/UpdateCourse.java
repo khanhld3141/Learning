@@ -64,20 +64,10 @@ public class UpdateCourse extends HttpServlet {
         String result = request.getParameter("Result");
         String price = request.getParameter("Price");
 
-        Part image = request.getPart("Image");
-        String filename="";
-        String realPath = request.getServletContext().getRealPath("/images");
-        if(image!=null){
-            filename = FileUploadUtil.uploadFile(image, realPath);
-        }
 
         Course course = courseDAO.get(Integer.parseInt(id));
 
         try {
-           if(filename!=""){
-               FileUploadUtil.deleteFile(realPath,course.getImage());
-               course.setImage(filename);
-           }
             course.setName(name);
             course.setPrice(Integer.parseInt(price));
             course.setIntroduce(introduce);

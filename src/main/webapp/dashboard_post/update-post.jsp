@@ -17,13 +17,13 @@
             <form action="/dashboard/update-post" method="post" enctype="multipart/form-data"
                   class="update-posts__form update-form">
                 <div class="update-form__content">
-                    <input value="<%=post.getId()%>" name="id" readonly hidden="hidden">
+                    <input id="postid" value="<%=post.getId()%>" name="id" readonly hidden="hidden">
                     <input value="<%=post.getAuthorId()%>-<%=post.getAuthor().getName()%>" name="author" readonly>
                     <div class="title-posts">
-                        <label for="Image-post">Image</label>
-                        <input type="file" name="image" id="Image-post" placeholder="Enter title post" required>
+                        <label for="uploadImage">Image</label>
+                        <input type="file" name="image" id="uploadImage" placeholder="Enter title post" required>
                     </div>
-                    <img src="/images/<%=post.getImage()%>"
+                    <img id="image" src="/images/<%=post.getImage()%>"
                          style="width: 50%; height: 265px; object-fit: cover; border-radius: 18px; margin: 16px 0 6px">
                     <div class="title-posts">
                         <label for="Title-post">Name</label>
@@ -87,6 +87,28 @@
         </div>
     </div>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('#uploadImage').change(function(){
+            var formData = new FormData();
+            formData.append('image', $('#uploadImage')[0].files[0]);
+            formData.append('id',$("#postid").val())
+            $.ajax({
+                url: '/upload-post',
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+
+                success: function(response){
+
+                    document.querySelector("#image").src="/images/"+response;
+                }
+            });
+        });
+    });
+</script>
 <script src="https://cdn.ckeditor.com/4.22.1/full/ckeditor.js"></script>
 <script>
     CKEDITOR.replace('Content');

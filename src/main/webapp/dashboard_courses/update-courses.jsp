@@ -35,7 +35,7 @@
                             }
                     %>
 
-                    <input name="Id" hidden="hidden" value="<%=course.getId()%>"/>
+                    <input id="courseid" name="Id" hidden="hidden" value="<%=course.getId()%>"/>
                     <div class="name-courses">
                         <label for="Name">Name</label>
                         <input value="<%=course.getName()%>" type="text" name="Name" id="Name" placeholder="Enter name courses"
@@ -100,8 +100,8 @@
                         </div>
                         <div class="image-courses">
                             <label for="Image">Image</label>
-                            <input type="file" name="Image" id="Image" placeholder="Choose image">
-                            <img style="height: 300px; width: 100%; object-fit: cover; border-radius: 20px;
+                            <input type="file" name="Image" id="uploadImage" placeholder="Choose image">
+                            <img id="image" style="height: 300px; width: 100%; object-fit: cover; border-radius: 20px;
                             margin-top: 12px"
                                  src="/images/<%=course.getImage()%>"/>
                         </div>
@@ -118,6 +118,28 @@
         </div>
     </div>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('#uploadImage').change(function(){
+            var formData = new FormData();
+            formData.append('image', $('#uploadImage')[0].files[0]);
+            formData.append('id',$("#courseid").val())
+            $.ajax({
+                url: '/upload-course',
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+
+                success: function(response){
+
+                    document.querySelector("#image").src="/images/"+response;
+                }
+            });
+        });
+    });
+</script>
 <script src="https://cdn.ckeditor.com/4.22.1/full/ckeditor.js"></script>
 <script>
     CKEDITOR.replace('Overview');
