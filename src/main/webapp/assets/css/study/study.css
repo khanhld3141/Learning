@@ -380,6 +380,7 @@ body{
 .modal-comment .avatar img{
     height: 3rem;
     width: 3rem;
+    border-radius: 50%;
 }
 
 .modal-comment .comment-box_detail{
