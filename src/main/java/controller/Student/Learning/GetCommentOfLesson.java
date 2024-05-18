@@ -29,7 +29,6 @@ public class GetCommentOfLesson extends HttpServlet {
         out.println("</body></html>");
     }
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        System.out.println(123);
         String id=request.getParameter("id");
         try{
             List<LessionComment> comments=lessionCommentDAO.getAllLessionCommentsById(Integer.parseInt(id));
@@ -39,7 +38,7 @@ public class GetCommentOfLesson extends HttpServlet {
                 System.out.println(comment.getContent());
             }
             Gson gson = new Gson();
-                String jsonComments = gson.toJson(comments);
+            String jsonComments = gson.toJson(comments);
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
             PrintWriter out = response.getWriter();

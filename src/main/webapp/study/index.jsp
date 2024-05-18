@@ -37,7 +37,7 @@
         if (request.getAttribute("course") != null) {
             Course c = (Course) request.getAttribute("course");
     %>
-    <main>
+    <main data-course="<%=c.getId()%>" id="main">
 
         <%--            begin head--%>
         <div class="head">
@@ -105,12 +105,13 @@
 
                                 <div class="accordion-body videos">
                                     <%
-                                        for (Lession l : chapter.getLessions()) {
+                                       for(int i=0;i<chapter.getLessions().size();i++){
                                     %>
-                                    <li class="video" id="<%=l.getLink()%>" data-lesson="<%=l.getId()%>">
+                                    <li class="video" id="<%=chapter.getLessions().get(i).getLink()%>"
+                                        data-lesson="<%=chapter.getLessions().get(i).getId()%>" data-origin="<%=i+1%>">
 
-                                        <div data-lesson="<%=l.getId()%>" class="col1">
-                                            <h class="title"><p class="id"><%=l.getId()%>.</p><%=l.getName()%>
+                                        <div data-lesson="<%=chapter.getLessions().get(i).getId()%>" class="col1">
+                                            <h class="title"><p class="id"><%=i+1%>.</p><%=chapter.getLessions().get(i).getName()%>
                                             </h>
                                             <div class="timeplay">
                                                 <img src="../img/study/play.svg" alt="">
@@ -122,7 +123,7 @@
                                         </div>
 
                                         <div class="text">
-                                            <%=l.getDescription()%>
+                                            <%=chapter.getLessions().get(i).getDescription()%>
                                         </div>
 
                                     </li>
@@ -210,13 +211,13 @@
     let main_video = document.querySelector('.main-video video source')
     let main_video_description_title = document.querySelector('.main-video-description .title h')
     let main_video_description_text = document.querySelector('.main-video-description .content')
-    main_video.src = "/images/4d9bc353-f5c6-4f11-abfe-aea1ff5b839a_demo-video.mp4";
+    main_video.src = "";
     let btnCommentModal = document.querySelector('#btnComment');
-
+    let main = document.querySelector('#main')
     let col = document.querySelector('.col1')
     videos.forEach(selected_video => {
         selected_video.onclick = () => {
-
+            console.log(selected_video.dataset.origin)
             for (all_videos of videos) {
                 all_videos.classList.remove('active');
                 all_videos.querySelector('.video .col1 img').src = "../img/study/play.svg"
@@ -225,14 +226,28 @@
 
             selected_video.classList.add('active');
             selected_video.querySelector('.video .col1 img').src = "../img/study/pause.svg"
-
+            let formData = new FormData();
+            formData.append('courseid', main.dataset.course);
+            formData.append('id', selected_video.dataset.lesson)
+            $.ajax({
+                url: '/get-lesson',
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: (data) => {
+                    main_video.src = ""
+                    main_video.src = "/images/" + data.Link;
+                    main_video_description_title.innerHTML = selected_video.dataset.origin+". "+ data.Name;
+                    main_video_description_text.innerHTML = data.Description;
+                    col.dataset.lesson = selected_video.dataset.lesson;
+                    main_video.parentElement.load();
+                }
+            })
             // selected_video.querySelector('img').src = 'images/pause.svg';
-            main_video_description_title.innerHTML = selected_video.querySelector('.video .col1 .title').innerHTML;
-            main_video_description_text.innerHTML = selected_video.querySelector('.video .text').innerHTML;
-            main_video.src = ""
-            main_video.src = "/images/" + selected_video.getAttribute('id')
-            col.dataset.lesson = selected_video.dataset.lesson;
-            main_video.parentElement.load();
+
+
+
 
         }
     });
@@ -248,25 +263,26 @@
     let btnClose = document.querySelector('.btn-commentClose');
     let modalCommentContainer = document.querySelector('.modal-container')
     let contentModal = document.querySelector('#comments')
-    let btnSubmitComment=document.querySelector('#btnSubmitComment')
-    let commentText=document.querySelector('#CommentTextArea')
-    btnSubmitComment.addEventListener('click',()=>{
+    let btnSubmitComment = document.querySelector('#btnSubmitComment')
+    let commentText = document.querySelector('#CommentTextArea')
+    btnSubmitComment.addEventListener('click', () => {
         let formData = new FormData();
         formData.append('lessonid', col.dataset.lesson);
-        formData.append('content',commentText.value)
+        formData.append('content', commentText.value)
         $.ajax({
             url: '/post-comment',
             type: 'POST',
             data: formData,
             processData: false,
             contentType: false,
-            success:()=>{
-                contentModal.innerHTML=''
+            success: () => {
+                contentModal.innerHTML = ''
                 showComment();
             }
         })
 
     })
+
     function showComment() {
         let formData = new FormData();
         formData.append('id', col.dataset.lesson);
@@ -286,16 +302,16 @@
                     html += `
                         <div class="comment">
                             <div class="avatar">
-                                <img src="/images/`+item.author.Avatar+`" alt="">
+                                <img src="/images/` + item.author.Avatar + `" alt="">
                             </div>
                             <div class="comment-body">
                                 <div class="comment-wrapper">
                                     <div class="comment-content">
                                         <div class="comment-content__head">
-                                            <a href="">`+item.author.Name+`</a>
+                                            <a href="">` + item.author.Name + `</a>
                                         </div>
                                         <div class="comment-content__body">
-                                           `+item.Content+`
+                                           ` + item.Content + `
                                         </div>
                                     </div>
                                 </div>
