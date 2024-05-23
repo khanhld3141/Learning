@@ -1,6 +1,12 @@
 <%@ page import="model.Chapter" %>
 <%@ page import="model.Lession" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<style>
+    .accordion-button:not(.collapsed) {
+        background-color: white;
+        color: black;
+    }
+</style>
 <%-- boc trong khoi <div class="accordion" id="accordionCurriculum"></div> de su dung bootstrap--%>
 <%
     if (request.getAttribute("course") != null) {
@@ -30,7 +36,7 @@
                         class="fa-solid fa-play"></i><%=lession.getName()%>
                 </a></li>
                 <%
-                    if ( lession.getLink() != "") {
+                    if (lession.getLink() != "") {
                 %>
                 <div class="modal fade" id="modal__preview-lesson_<%=lession.getId()%>" role="dialog">
                     <div class="modal-dialog modal-lg">
@@ -38,20 +44,22 @@
                         <div class="modal-content">
                             <div class="modal-header" style="display: flex; justify-content: space-between">
                                 <h4 class="modal-title" style="font-weight: 500;color: #454545;">Preview lesson</h4>
-                                <button type="button" class="close" data-dismiss="modal" style="
-                                     border-radius: 6px;
-                                     border: none;
-                                     background: #f42626;
-                                     color: white;
-                                     ">&times;
+                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close" style="
+                                            border-radius: 6px;
+                                            border: none;
+                                            background: #f42626;
+                                            color: white;
+                                        ">&times;
                                 </button>
 
                             </div>
+
                             <div class="modal-body">
                                 <p style="font-weight: 500;color: #454545; font-size: 19px; text-transform: uppercase"><%=lession.getName()%>
                                 </p>
                                 <figure style="width: 100%; height: 100%">
-                                    <video autoplay id="myVideo<%=lession.getId()%>" style="width: 100%; height: 100%; margin-top: 20px" controls>
+                                    <video id="myVideo<%=lession.getId()%>"
+                                           style="width: 100%; height: 100%; margin-top: 20px" controls>
                                         <source src="/images/<%=lession.getLink()%>">
                                     </video>
                                     <script>
@@ -70,14 +78,17 @@
                                     </script>
                                 </figure>
                             </div>
+
                         </div>
                     </div>
+
                 </div>
+
+
                 <%
                         }
                     }
                 %>
-
             </ul>
         </div>
     </div>
@@ -87,3 +98,19 @@
         }
     }
 %>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const modals = document.querySelectorAll('.modal');
+
+        modals.forEach(modal => {
+            modal.addEventListener('hide.bs.modal', function () {
+                const video = modal.querySelector('video');
+                if (video) {
+                    video.pause();
+                    video.currentTime = 0;
+                }
+            });
+        });
+    });
+</script>

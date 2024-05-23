@@ -4,6 +4,24 @@
 <%@include file="../Component/header.jsp" %>
 
 <main>
+    <style>
+        .nav-pills .nav-link.active{
+            text-align: center;
+            font-size: 16px;
+            background: linear-gradient(to right, #ef3e0f, #ffb800);
+            color: #fff;
+            border-radius: 0;
+            padding: 20px;
+        }
+        .nav-pills .nav-link{
+            text-align: center;
+            background-color: #ccc6c6;
+            font-size: 16px;
+            color: #000;
+            border-radius: 0;
+            padding: 20px;
+        }
+    </style>
     <link rel="stylesheet" href="../assets/css/dashboard-user/add-user.css">
     <link rel="stylesheet" href="../assets/css/dashboard-chapter/manage-chapter.css">
     <link rel="stylesheet" href="../assets/css/dashboard-user/update-user.css">
@@ -60,22 +78,50 @@
                                     </span>
                         </div>
                     </div>
-                    <!-- Overview Courses -->
-                    <div class="courses-details__overview">
-                        <p class="btn courses-overview__btn">Overview</p>
-                        <div class="courses-overview__infor">
-                            <%=course.getOverview()%>
+                    <ul class="nav nav-pills" role="tablist">
+                        <li class="nav-item" style="width: 50%">
+                            <a class="nav-link active" data-bs-toggle="pill" href="#overview">Overview</a>
+                        </li>
+                        <li class="nav-item" style="width: 50%">
+                            <a class="nav-link" data-bs-toggle="pill" href="#curriculum">Curriculum</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="overview" class="container tab-pane active" style="padding: 0"><br>
+                            <div class="courses-details__overview">
+<%--                                <p class="btn courses-overview__btn">Overview</p>--%>
+                                <div class="courses-overview__infor">
+                                    <%=course.getOverview()%>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <!-- Curriculum -->
-                    <div class="curriculum" style="margin-top: 20px">
-                        <h1 class="btn curriculum__btn" style="margin-bottom: 0;">Curriculum</h1>
-                        <div class="curriculum__content">
-                            <div class="accordion" id="accordionCurriculum">
-                                <%@include file="../Component/curriculum-chapter-item.jsp" %>
+                        <div id="curriculum" class="container tab-pane fade"><br>
+                            <div class="curriculum" style="margin-top: 20px">
+<%--                                <h1 class="btn curriculum__btn" style="margin-bottom: 0;">Curriculum</h1>--%>
+                                <div class="curriculum__content">
+                                    <div class="accordion" id="accordionCurriculum">
+                                        <%@include file="../Component/curriculum-chapter-item.jsp" %>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <!-- Overview Courses -->
+<%--                    <div class="courses-details__overview">--%>
+<%--                        <p class="btn courses-overview__btn">Overview</p>--%>
+<%--                        <div class="courses-overview__infor">--%>
+<%--                            <%=course.getOverview()%>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+                    <!-- Curriculum -->
+<%--                    <div class="curriculum" style="margin-top: 20px">--%>
+<%--                        <h1 class="btn curriculum__btn" style="margin-bottom: 0;">Curriculum</h1>--%>
+<%--                        <div class="curriculum__content">--%>
+<%--                            <div class="accordion" id="accordionCurriculum">--%>
+<%--                                <%@include file="../Component/curriculum-chapter-item.jsp" %>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
                     <!--  comment-->
                     <div class="comment">
                         <h3 class="title">Comments</h3>
