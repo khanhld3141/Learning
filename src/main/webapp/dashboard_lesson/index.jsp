@@ -4,6 +4,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="../Component/sidebar__dashboard.jsp" %>
 <div class="content-admin">
+    <%@include file="../Component/notify.jsp" %>
     <div class="manage-lessons">
         <div class="manage-lessons__block-title manage-block">
             <div class="manage-title-search">

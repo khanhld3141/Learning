@@ -2,6 +2,7 @@
 <%@ page import="model.Hashtag" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="../Component/sidebar__dashboard.jsp" %>
+<%@include file="../Component/notify.jsp" %>
 <div class="content-admin">
     <div class="manage-hashtag">
         <div class="manage-categories__block-title manage-block">

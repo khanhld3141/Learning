@@ -2,6 +2,7 @@
 <%@ page import="model.Voucher" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="../Component/sidebar__dashboard.jsp" %>
+<%@include file="../Component/notify.jsp" %>
 <div class="content-admin">
     <div class="manage-vouchers">
         <div class="manage-voucher__block-title manage-block">

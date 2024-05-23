@@ -13,6 +13,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <!-- RESET CSS -->
     <link rel="stylesheet" href="../assets/css/reset.css">
     <!-- google-font -->
@@ -31,7 +32,7 @@
     <script src="../owlcarousel/owl.carousel.min.js"></script>
     <!-- component CSS -->
 
-
+    <script src="../assets/js/notify/notify.js"></script>
     <script src="../assets/js/comment-reply/comment-reply.js"></script>
     <link rel="stylesheet" href="../assets/css/event/event_layout.css">
     <link rel="stylesheet" href="../assets/css/pages/Pages-Sign-Up.css">
@@ -52,6 +53,7 @@
     <link rel="stylesheet" href="../assets/css/Profile/courses-participated.css">
     <link rel="stylesheet" href="../assets/css/payment/payment.css">
     <link rel="stylesheet" href="../assets/css/Blog-user/post-user.scss">
+    <link rel="stylesheet" href="../assets/css/notify/notify.css">
 
 </head>
 

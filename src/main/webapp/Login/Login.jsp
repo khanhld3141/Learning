@@ -2,7 +2,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include  file="../Component/header.jsp"%>
 <main>
-
 <%--  <section class="banner-login">--%>
     <div class="main-content">
     <div class="container-login">

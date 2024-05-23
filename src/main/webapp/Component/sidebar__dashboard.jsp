@@ -14,7 +14,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
-    <%-- Jquery--%>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+<%-- Jquery--%>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <!-- google-font -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
@@ -26,7 +27,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="../Component/component__dashboard.scss">
     <link rel="stylesheet" href="../assets/css/dashboard/dashboard.css">
-    <link rel="stylesheet" href="../assets/css/dashboard-user/manage-user.scss">
+    <link rel="stylesheet" href="../assets/css/dashboard-user/manage-user.css">
     <link rel="stylesheet" href="../assets/css/dashboard-user/add-user.css">
     <link rel="stylesheet" href="../assets/css/dashboard-user/update-user.css">
     <link rel="stylesheet" href="../assets/css/dashboard-voucher/manage-voucher.css">
@@ -44,6 +45,8 @@
     <link rel="stylesheet" href="../assets/css/dashboard_hashtag/manage-hashtag.css">
     <link rel="stylesheet" href="../assets/css/dashboard_post/manage-post.scss">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <script src="../assets/js/notify/notify.js"></script>
+    <link rel="stylesheet" href="../assets/css/notify/notify.css">
 
 </head>
 

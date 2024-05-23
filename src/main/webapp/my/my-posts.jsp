@@ -2,11 +2,13 @@
 <%@ page import="model.Post" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="../Component/header.jsp" %>
+<%@include file="../Component/notify.jsp" %>
+
 <main>
     <link rel="stylesheet" href="../assets/css/dashboard-user/add-user.css">
     <link rel="stylesheet" href="../assets/css/dashboard-chapter/manage-chapter.css">
     <link rel="stylesheet" href="../assets/css/dashboard-user/update-user.css">
-    <link rel="stylesheet" href="../assets/css/dashboard-user/manage-user.scss">
+    <link rel="stylesheet" href="../assets/css/dashboard-user/manage-user.css">
 
     <div class="main-content">
         <div class="profile-block">

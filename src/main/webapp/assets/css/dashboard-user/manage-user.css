@@ -73,6 +73,7 @@ table.custom-table th {
 
 table.custom-table td {
     font-size: 12px;
+    vertical-align: middle;
 }
 
 table.custom-table tr:hover {

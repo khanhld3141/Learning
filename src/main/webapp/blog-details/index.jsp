@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../assets/css/dashboard-user/add-user.css">
     <link rel="stylesheet" href="../assets/css/dashboard-chapter/manage-chapter.css">
     <link rel="stylesheet" href="../assets/css/dashboard-user/update-user.css">
-    <link rel="stylesheet" href="../assets/css/dashboard-user/manage-user.scss">
+    <link rel="stylesheet" href="../assets/css/dashboard-user/manage-user.css">
     <!-- feature header -->
     <div class="feature-header">
         <div class="main-content">
