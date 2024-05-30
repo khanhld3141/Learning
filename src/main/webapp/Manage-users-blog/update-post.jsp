@@ -37,7 +37,8 @@
                             <div class="title-posts">
                                 <label for="Image-post">Image</label>
                                 <input type="file" id="Image-post" placeholder="Enter title post">
-                                <img style="width: 100%" src="/images/<%=post.getImage()%>">
+                                <span class = "error-message" id="imageError"></span>
+                                <img src="/images/<%=post.getImage()%>" id="image" style="width: 50%; height: 265px; object-fit: cover; border-radius: 18px; margin: 16px 0 6px;">
                             </div>
                             <div class="Comment-author-posts">
                                 <label for="Comment-author-post">Comment author</label>
@@ -47,7 +48,7 @@
                             <div class="content-post">
                                 <label for="Content-post">Content post</label>
                                 <textarea name="content" id="Content-post" rows="50"
-                                          placeholder="Enter content post"><%=post.getContent()%></textarea>
+                                          placeholder="Enter content post" required><%=post.getContent()%></textarea>
                             </div>
                             <div class="hashtag-list">
                                 <%
@@ -103,9 +104,17 @@
         <script>
             $(document).ready(function(){
                 $('#Image-post').change(function(){
+                    var file = this.files[0];
                     var formData = new FormData();
-                    formData.append('image', $('#Image-post')[0].files[0]);
-                    formData.append('postid', $('#postid').val())
+                    formData.append('image', file);
+                    formData.append('postid', $('#postid').val());
+
+                    // Kiểm tra định dạng ảnh
+                    if (!file.type.match('image.*')) {
+                        $('#image').hide();
+                        $('#imageError').text("Please select an image file.");
+                        return;
+                    }
                     $.ajax({
                         url: '/upload-image-blog',
                         type: 'POST',
@@ -114,12 +123,15 @@
                         contentType: false,
 
                         success: function(response){
-                           location.reload();
+                            $('#image').show();
+                            $('#imageError').text("");
+                            location.reload();
                         }
                     });
                 });
             });
         </script>
+
 
     </div>
 </main>

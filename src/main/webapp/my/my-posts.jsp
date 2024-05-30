@@ -2,7 +2,6 @@
 <%@ page import="model.Post" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="../Component/header.jsp" %>
-<%@include file="../Component/notify.jsp" %>
 
 <main>
     <link rel="stylesheet" href="../assets/css/dashboard-user/add-user.css">
@@ -48,12 +47,12 @@
                                     </td>
                                     <td>
                                         <a href="/update-my-post?id=<%=post.getId()%>" title="Edit this post"
-                                           style="margin-right: 3px ; color: #ffb800"><i class="fa-solid fa-marker"></i></a>
+                                           style="margin-right: 3px ; color: #ffb800; z-index: 10"><i class="fa-solid fa-marker"></i></a>
                                         <button type="button" data-bs-toggle="modal"
                                                 class="edit-blogs-user"
                                                 data-bs-target="#modal__delete_<%=post.getId()%>"
                                                 title="Delete this blog"
-                                                style="margin-right: 14px;color: #ffb800; border: none">
+                                                style="margin-right: 14px;color: #ffb800; border: none; z-index: 10">
                                             <i class="fa-solid fa-trash"></i>
                                         </button>
                                     </td>
@@ -87,14 +86,14 @@
                                     }
                                 %>
                                 </tbody>
-                                <script>
-                                    function redirectToAnchor(row) {
-                                        var anchor = row.querySelector('a');
-                                        if (anchor) {
-                                            window.location.href = anchor.href;
-                                        }
-                                    }
-                                </script>
+<%--                                <script>--%>
+<%--                                    function redirectToAnchor(row) {--%>
+<%--                                        var anchor = row.querySelector('a');--%>
+<%--                                        if (anchor) {--%>
+<%--                                            window.location.href = anchor.href;--%>
+<%--                                        }--%>
+<%--                                    }--%>
+<%--                                </script>--%>
                                 <script src="../assets/js/Sort_table/sort-table.js"></script>
                             </table>
                         </div>

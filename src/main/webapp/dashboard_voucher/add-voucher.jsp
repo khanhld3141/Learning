@@ -6,31 +6,35 @@
             <h1 class="manage-voucher__title title">Add New Voucher</h1>
         </div>
         <div class="add-voucher add-block">
-            <form action="/dashboard/create-voucher" method="post" class="add-voucher__form add-form">
+            <form action="/dashboard/create-voucher" method="post" class="add-voucher__form add-form" id="voucherForm">
                 <div class="add-form__content">
                     <div class="code">
                         <label for="Code">Code</label>
                         <input type="text" name="Code" id="Code" placeholder="Enter code" required>
+                        <span class="error-message" id="codeError"></span>
                     </div>
                     <div class="start-end-day">
                         <div class="start-day">
                             <label for="Start-day">Start day</label>
                             <input type="datetime-local" name="Startday" id="Start-day" placeholder="Enter start day" required>
+                            <span class="error-message" id="startDayError"></span>
                         </div>
                         <div class="end-day">
                             <label for="End-day">End day</label>
                             <input type="datetime-local" name="Endday" id="End-day" placeholder="Enter end day" required>
+                            <span class="error-message" id="endDayError"></span>
                         </div>
                     </div>
                     <div class="quantity-used-discount">
                         <div class="quantity">
                             <label for="Quantity">Quantity</label>
                             <input type="number" name="Quantity" id="Quantity" placeholder="Enter quantity voucher" required>
+                            <span class="error-message" id="quantityError"></span>
                         </div>
                         <div class="used">
                             <label for="Used">Discount</label>
-                            <input type="number" name="Discount" id="Used" placeholder="Enter discount voucher"
-                                   required>
+                            <input type="number" name="Discount" id="Used" placeholder="Enter discount voucher" required>
+                            <span class="error-message" id="discountError"></span>
                         </div>
                     </div>
                     <div class="submit">
@@ -39,6 +43,131 @@
                     </div>
                 </div>
             </form>
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    const form = document.getElementById('voucherForm');
+
+                    // Kiểm tra và hiển thị thông báo lỗi khi có thay đổi trong các trường input
+                    const inputs = form.querySelectorAll('input[type="text"], input[type="number"], input[type="datetime-local"]');
+                    inputs.forEach(input => {
+                        input.addEventListener('input', function() {
+                            validateInput(input);
+                        });
+                    });
+
+                    // Kiểm tra và hiển thị thông báo lỗi khi có thay đổi trong trường Start-day và End-day
+                    const startDayInput = document.getElementById('Start-day');
+                    const endDayInput = document.getElementById('End-day');
+                    startDayInput.addEventListener('input', function() {
+                        validateDate(startDayInput, endDayInput);
+                    });
+                    endDayInput.addEventListener('input', function() {
+                        validateDate(startDayInput, endDayInput);
+                    });
+
+                    // Kiểm tra và hiển thị thông báo lỗi khi có thay đổi trong trường Quantity và Used
+                    const quantityInput = document.getElementById('Quantity');
+                    quantityInput.addEventListener('input', function() {
+                        validateQuantity(quantityInput);
+                    });
+
+                    const discountInput = document.getElementById('Used');
+                    discountInput.addEventListener('input', function() {
+                        validateDiscount(discountInput);
+                    });
+
+                    form.addEventListener('submit', function(event) {
+                        // Kiểm tra tất cả các trường input khi submit
+                        let isValid = true;
+
+                        inputs.forEach(input => {
+                            if (!validateInput(input)) {
+                                isValid = false;
+                            }
+                        });
+
+                        if (!validateDate(startDayInput, endDayInput)) {
+                            isValid = false;
+                        }
+
+                        if (!validateQuantity(quantityInput)) {
+                            isValid = false;
+                        }
+
+                        if (!validateDiscount(discountInput)) {
+                            isValid = false;
+                        }
+
+                        if (!isValid) {
+                            event.preventDefault(); // Ngăn chặn form được gửi đi nếu có lỗi
+                        }
+                    });
+
+                    function validateInput(input) {
+                        const value = input.value;
+                        const errorElement = input.nextElementSibling;
+
+                        if (value === '') {
+                            errorElement.textContent = "Field cannot be empty.";
+                            return false;
+                        } else if (/\s/.test(value)) {
+                            errorElement.textContent = "Field cannot contain whitespace characters.";
+                            return false;
+                        } else {
+                            errorElement.textContent = "";
+                            return true;
+                        }
+                    }
+
+                    function validateDate(startInput, endInput) {
+                        const startDate = new Date(startInput.value);
+                        const endDate = new Date(endInput.value);
+                        const currentDate = new Date();
+                        const startErrorElement = startInput.nextElementSibling;
+                        const endErrorElement = endInput.nextElementSibling;
+
+                        if (startDate < currentDate) {
+                            startErrorElement.textContent = "Start day cannot be in the past.";
+                            return false;
+                        } else if (endDate <= startDate) {
+                            startErrorElement.textContent = "";
+                            endErrorElement.textContent = "End day must be later than start day.";
+                            return false;
+                        } else {
+                            startErrorElement.textContent = "";
+                            endErrorElement.textContent = "";
+                            return true;
+                        }
+                    }
+
+                    function validateQuantity(input) {
+                        const value = parseInt(input.value);
+                        const errorElement = input.nextElementSibling;
+
+                        if (isNaN(value) || value <= 0) {
+                            errorElement.textContent = "Quantity must be a positive number greater than 0.";
+                            return false;
+                        } else {
+                            errorElement.textContent = "";
+                            return true;
+                        }
+                    }
+
+                    function validateDiscount(input) {
+                        const value = parseInt(input.value);
+                        const errorElement = input.nextElementSibling;
+
+                        if (isNaN(value) || value <= 0) {
+                            errorElement.textContent = "Discount must be a positive number greater than 0.";
+                            return false;
+                        } else {
+                            errorElement.textContent = "";
+                            return true;
+                        }
+                    }
+                });
+
+            </script>
         </div>
     </div>
 </div>

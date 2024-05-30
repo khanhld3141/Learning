@@ -2,7 +2,7 @@
 <%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="../Component/sidebar__dashboard.jsp" %>
-<%@include file="../Component/notify.jsp" %>
+<%--<%@include file="../Component/notify.jsp" %>--%>
 
 <div class="content-admin">
     <div class="manage-categories">
@@ -27,17 +27,20 @@
                         <div class="modal-header">
                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                         </div>
-                        <form enctype="multipart/form-data" method="post"
+                        <form enctype="multipart/form-data" method="post" class="form-add-category"
                               action="/dashboard/create-category" >
                             <div class="modal-body">
                                 <div class="name-category">
                                     <label for="name-category-add">Name Category</label>
                                     <input type="text" name="Name" id="name-category-add"
-                                           placeholder="Enter name category">
+                                           placeholder="Enter name category" required>
+                                    <span class="error-message" id="nameError-add"></span>
                                 </div>
-                                <div class="name-category">
+                                <div class="image-category">
                                     <label for="image-category-add">Image Category</label>
-                                    <input type="file" name="Image" id="image-category-add">
+                                    <input type="file" name="Image" id="image-category-add" required>
+                                    <img src="" alt="" id="preview-image" hidden style="width: 150px; height: auto; object-fit: cover; border-radius: 8px; margin-top: 8px">
+                                    <span class="error-message" id="imageError-add"></span>
                                 </div>
                                 <div class="modal-footer">
                                     <button class="btn btn-primary" type="submit">Confirm</button>
@@ -45,6 +48,99 @@
                                 </div>
                             </div>
                         </form>
+                        <script>
+                            document.getElementById('name-category-add').addEventListener('input', function() {
+                                const name = this.value.trim();
+                                const nameError = document.getElementById('nameError-add');
+                                const regex = /^[A-Za-zÀ-Ỹà-ỹ\s]+$/;
+                                if (name.length < 5 || !regex.test(name)) {
+                                    nameError.textContent = "Name must contain at least 5 alphabetic characters and can't contain numbers";
+                                } else {
+                                    nameError.textContent = "";
+                                }
+                            });
+                        </script>
+                        <script>
+                            document.getElementById('image-category-add').addEventListener('change', function(event) {
+                                const imageInput = event.target;
+                                const imageFile = imageInput.files[0];
+                                const previewImage = document.getElementById('preview-image');
+                                const imageError = document.getElementById('imageError-add');
+                                const allowedExtensions = ['png', 'jpeg', 'jpg', 'gif', 'svg', 'bmp'];
+
+                                if (imageFile) {
+                                    const extension = imageFile.name.split('.').pop().toLowerCase();
+
+                                    if (allowedExtensions.includes(extension)) {
+                                        const reader = new FileReader();
+                                        reader.onload = function(e) {
+                                            previewImage.src = e.target.result;
+                                            previewImage.hidden = false;
+                                            imageError.textContent = ""; // Clear any previous error messages
+                                        }
+                                        reader.readAsDataURL(imageFile);
+                                    } else {
+                                        previewImage.hidden = true;
+                                        previewImage.src = "";
+                                        imageError.textContent = "Only PNG, JPEG, JPG, GIF, SVG, BMP files are allowed.";
+                                    }
+                                } else {
+                                    previewImage.hidden = true;
+                                    previewImage.src = "";
+                                    imageError.textContent = "Please select an image file.";
+                                }
+                            });
+                        </script>
+                        <script>
+                            document.querySelector('.form-add-category').addEventListener('submit', function(event) {
+                                let isValid = true;
+
+                                // Name validation
+                                const name = document.getElementById('name-category-add').value.trim();
+                                const nameError = document.getElementById('nameError-add');
+                                const nameRegex = /^[A-Za-zÀ-Ỹà-ỹ\s]+$/;
+
+                                if (name.length < 5 || !nameRegex.test(name)) {
+                                    nameError.textContent = "Name must contain at least 5 alphabetic characters and can't contain numbers.";
+                                    isValid = false;
+                                } else {
+                                    nameError.textContent = "";
+                                }
+
+                                // Image file validation
+                                const imageInput = document.getElementById('image-category-add');
+                                const imageError = document.getElementById('imageError-add');
+                                const imageFile = imageInput.files[0];
+                                const previewImage = document.getElementById('preview-image');
+                                const allowedExtensions = ['png', 'jpeg', 'jpg', 'gif', 'svg', 'bmp'];
+
+                                if (imageFile) {
+                                    const extension = imageFile.name.split('.').pop().toLowerCase();
+
+                                    if (!allowedExtensions.includes(extension)) {
+                                        imageError.textContent = "Only PNG, JPEG, JPG, GIF, SVG, BMP files are allowed.";
+                                        previewImage.hidden = true;
+                                        isValid = false;
+                                    } else {
+                                        imageError.textContent = "";
+                                        const reader = new FileReader();
+                                        reader.onload = function(e) {
+                                            previewImage.src = e.target.result;
+                                            previewImage.hidden = false;
+                                        }
+                                        reader.readAsDataURL(imageFile);
+                                    }
+                                } else {
+                                    imageError.textContent = "Please select an image file.";
+                                    previewImage.hidden = true;
+                                    isValid = false;
+                                }
+
+                                if (!isValid) {
+                                    event.preventDefault();
+                                }
+                            });
+                        </script>
                     </div>
                 </div>
             </div>
@@ -83,38 +179,125 @@
                                 title="Edit category">
                             <i class="fa-solid fa-pen"></i>
                         </button>
-                        <!--------------- MODAL UPDATE CHAPTER-------------- -->
-                        <div class="modal fade modal__update" id="modal__update-category_<%=category.getId()%>">
+                        <!--------------- MODAL UPDATE Category-------------- -->
+                        <div class="modal fade modal__update" id="modal__update-category_<%=category.getId()%>" class="form-update-category">
                             <div class="modal-dialog modal-dialog-centered">
-                                <form action="/dashboard/update-category" method="post" enctype="multipart/form-data" class="modal-content">
+                                <form action="/dashboard/update-category" method="post" enctype="multipart/form-data" class="modal-content form-update-category">
                                     <div class="modal-header">
-                                        <button type="button" class="btn-close"
-                                                data-bs-dismiss="modal"></button>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                     </div>
                                     <div class="modal-body">
                                         <div class="name-category">
                                             <input id="cateid" name="id" value="<%=category.getId()%>" hidden="hidden"/>
                                             <label for="name-category-update">Name Category</label>
-                                            <input value="<%=category.getName()%>" type="text" name="name"
-                                                   id="name-category-update"
-                                                   placeholder="Enter name category">
-                                            <div class="name-category">
+                                            <input value="<%=category.getName()%>" type="text" name="name" id="name-category-update" placeholder="Enter name category" required>
+                                            <span class="error-message" id="nameError-update"></span>
+                                            <div class="image-category">
                                                 <label for="uploadImage">Image Category</label>
-                                                <input type="file" name="image" id="uploadImage"
-                                                       placeholder="Enter name category">
+                                                <input type="file" name="image" id="uploadImage" placeholder="Enter name category">
+                                                <span class="error-message" id="imageError-update"></span>
+                                                <img id="image" src="/images/<%=category.getImage()%>" style="width: 120px; height: 80px; border-radius: 10px; object-fit: cover; margin-top: 15px">
                                             </div>
-                                            <img id="image" src="/images/<%=category.getImage()%>" style="width: 120px;
-                                            height:
-                                             80px; border-radius: 10px; object-fit: cover; margin-top: 15px">
                                         </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button class="btn btn-primary" type="submit">Confirm</button>
-                                        <button type="button" class="btn btn-danger"
-                                                data-bs-dismiss="modal">No
-                                        </button>
+                                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
                                     </div>
                                 </form>
+
+                                <script>
+                                    document.getElementById('name-category-update').addEventListener('input', function() {
+                                        const name = this.value.trim();
+                                        const nameError = document.getElementById('nameError-update');
+                                        const regex = /^[A-Za-zÀ-Ỹà-ỹ\s]+$/;
+                                        if (name.length < 5 || !regex.test(name)) {
+                                            nameError.textContent = "Name must contain at least 5 alphabetic characters and can't contain numbers";
+                                        } else {
+                                            nameError.textContent = "";
+                                        }
+                                    });
+
+                                    document.getElementById('uploadImage').addEventListener('change', function(event) {
+                                        const imageInput = event.target;
+                                        const imageFile = imageInput.files[0];
+                                        const previewImage = document.getElementById('image');
+                                        const imageError = document.getElementById('imageError-update');
+                                        const allowedExtensions = ['png', 'jpeg', 'jpg', 'gif', 'svg', 'bmp'];
+
+                                        if (imageFile) {
+                                            const extension = imageFile.name.split('.').pop().toLowerCase();
+
+                                            if (!allowedExtensions.includes(extension)) {
+                                                imageError.textContent = "Only PNG, JPEG, JPG, GIF, SVG, BMP files are allowed.";
+                                                previewImage.hidden = true;
+                                                previewImage.src = "";
+                                            } else {
+                                                imageError.textContent = "";
+                                                const reader = new FileReader();
+                                                reader.onload = function(e) {
+                                                    previewImage.src = e.target.result;
+                                                    previewImage.hidden = false;
+                                                }
+                                                reader.readAsDataURL(imageFile);
+                                            }
+                                        } else {
+                                            imageError.textContent = "Please select an image file.";
+                                            previewImage.hidden = true;
+                                            previewImage.src = "";
+                                        }
+                                    });
+                                </script>
+                                <script>
+                                    document.querySelector('.form-update-category').addEventListener('submit', function(event) {
+                                        let isValid = true;
+
+                                        // Name validation
+                                        const name = document.getElementById('name-category-update').value.trim();
+                                        const nameError = document.getElementById('nameError-update');
+                                        const nameRegex = /^[A-Za-zÀ-Ỹà-ỹ\s]+$/;
+
+                                        if (name.length < 5 || !nameRegex.test(name)) {
+                                            nameError.textContent = "Name must contain at least 5 alphabetic characters and can't contain numbers.";
+                                            isValid = false;
+                                        } else {
+                                            nameError.textContent = "";
+                                        }
+
+                                        // Image file validation
+                                        // const imageInput = document.getElementById('uploadImage');
+                                        // const imageError = document.getElementById('imageError-update');
+                                        // const imageFile = imageInput.files[0];
+                                        // const previewImage = document.getElementById('image');
+                                        // const allowedExtensions = ['png', 'jpeg', 'jpg', 'gif', 'svg', 'bmp'];
+                                        //
+                                        // if (imageFile) {
+                                        //     const extension = imageFile.name.split('.').pop().toLowerCase();
+                                        //
+                                        //     if (!allowedExtensions.includes(extension)) {
+                                        //         imageError.textContent = "Only PNG, JPEG, JPG, GIF, SVG, BMP files are allowed.";
+                                        //         previewImage.hidden = true;
+                                        //         isValid = false;
+                                        //     } else {
+                                        //         imageError.textContent = "";
+                                        //         const reader = new FileReader();
+                                        //         reader.onload = function(e) {
+                                        //             previewImage.src = e.target.result;
+                                        //             previewImage.hidden = false;
+                                        //         }
+                                        //         reader.readAsDataURL(imageFile);
+                                        //     }
+                                        // } else {
+                                        //     imageError.textContent = "Please select an image file.";
+                                        //     previewImage.hidden = true;
+                                        //     isValid = false;
+                                        // }
+
+                                        if (!isValid) {
+                                            event.preventDefault();
+                                        }
+                                    });
+                                </script>
                             </div>
                         </div>
 
@@ -171,23 +354,55 @@
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-    $(document).ready(function(){
-        $('#uploadImage').change(function(){
-            var formData = new FormData();
-            formData.append('image', $('#uploadImage')[0].files[0]);
-            formData.append('id',$("#cateid").val())
-            $.ajax({
-                url: '/upload-category',
-                type: 'POST',
-                data: formData,
-                processData: false,
-                contentType: false,
+    $(document).ready(function() {
+        $('#uploadImage').change(function() {
+            var imageInput = $('#uploadImage')[0];
+            var imageFile = imageInput.files[0];
+            var imageError = document.getElementById('imageError-update');
+            var previewImage = document.getElementById('image');
+            var allowedExtensions = ['png', 'jpeg', 'jpg', 'gif', 'svg', 'bmp'];
 
-                success: function(response){
+            if (imageFile) {
+                var extension = imageFile.name.split('.').pop().toLowerCase();
 
-                    document.querySelector("#image").src="/images/"+response;
+                if (!allowedExtensions.includes(extension)) {
+                    imageError.textContent = "Only PNG, JPEG, JPG, GIF, SVG, BMP files are allowed.";
+                    previewImage.hidden = true;
+                    previewImage.src = "";
+                } else {
+                    imageError.textContent = "";
+                    var formData = new FormData();
+                    formData.append('image', imageFile);
+                    formData.append('id', $("#cateid").val());
+
+                    $.ajax({
+                        url: '/upload-category',
+                        type: 'POST',
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        success: function(response) {
+                            previewImage.src = "/images/" + response;
+                            previewImage.hidden = false;
+                        }
+                    });
                 }
-            });
+            } else {
+                imageError.textContent = "Please select an image file.";
+                previewImage.hidden = true;
+                previewImage.src = "";
+            }
+        });
+
+        $('#name-category-update').on('input', function() {
+            const name = this.value.trim();
+            const nameError = document.getElementById('nameError-update');
+            const regex = /^[A-Za-zÀ-Ỹà-ỹ\s]+$/;
+            if (name.length < 5 || !regex.test(name)) {
+                nameError.textContent = "Name must contain at least 5 alphabetic characters and can't contain numbers";
+            } else {
+                nameError.textContent = "";
+            }
         });
     });
 </script>

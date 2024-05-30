@@ -22,6 +22,7 @@
                                         password</label>
                                     <input type="password" id="New-password" placeholder="Enter your new password"
                                            name="newpassword" required>
+                                    <span class="error-message" id="newPasswordError"></span>
                                 </div>
                                 <div class="new-password-again">
                                     <label for="New-password-again"><i class="fa-solid fa-key"></i>New password
@@ -29,31 +30,69 @@
                                     </label>
                                     <input type="password" id="New-password-again"
                                            placeholder="Enter your new password again" required>
+                                    <span class="error-message" id="againPasswordError"></span>
                                 </div>
                                 <div class="submit-change-password">
                                     <button type="submit"
                                             class="btn__profile btn__submit-change-password">Confirm</button>
                                 </div>
                             </form>
+
+<%--                            <script>--%>
+<%--                                document.addEventListener("DOMContentLoaded", function() {--%>
+<%--                                    var form = document.querySelector('#form_change_password');--%>
+<%--                                    form.addEventListener('submit', function(event) {--%>
+<%--                                        event.preventDefault();--%>
+<%--                                        validatePassword();--%>
+<%--                                    });--%>
+
+<%--                                    function validatePassword() {--%>
+<%--                                        var newPassword = document.getElementById('New-password').value;--%>
+<%--                                        var confirmPassword = document.getElementById('New-password-again').value;--%>
+
+<%--                                        if (newPassword !== confirmPassword) {--%>
+<%--                                            alert('New password and confirm password do not match!');--%>
+<%--                                        } else {--%>
+<%--                                            form.submit();--%>
+<%--                                        }--%>
+<%--                                    }--%>
+<%--                                });--%>
+<%--                            </script>--%>
                             <script>
-                                document.addEventListener("DOMContentLoaded", function() {
-                                    var form = document.querySelector('#form_change_password');
-                                    form.addEventListener('submit', function(event) {
-                                        event.preventDefault();
+                                $(document).ready(function () {
+                                    function validatePassword() {
+                                        var isValid = true;
+
+                                        var newPassword = $('#New-password').val().trim();
+                                        if (newPassword.length < 8 || newPassword.includes(' ')) {
+                                            $('#newPasswordError').text("New password must be at least 8 characters long and cannot contain spaces.");
+                                            isValid = false;
+                                        } else {
+                                            $('#newPasswordError').text("");
+                                        }
+
+                                        var againPassword = $('#New-password-again').val().trim();
+                                        if (againPassword !== newPassword) {
+                                            $('#againPasswordError').text("Passwords do not match.");
+                                            isValid = false;
+                                        } else {
+                                            $('#againPasswordError').text("");
+                                        }
+
+                                        return isValid;
+                                    }
+
+                                    $('#New-password, #New-password-again').on('input', function () {
                                         validatePassword();
                                     });
 
-                                    function validatePassword() {
-                                        var newPassword = document.getElementById('New-password').value;
-                                        var confirmPassword = document.getElementById('New-password-again').value;
-
-                                        if (newPassword !== confirmPassword) {
-                                            alert('New password and confirm password do not match!');
-                                        } else {
-                                            form.submit();
+                                    $('#form_change_password').submit(function (event) {
+                                        if (!validatePassword()) {
+                                            event.preventDefault();
                                         }
-                                    }
+                                    });
                                 });
+
                             </script>
                         </div>
 

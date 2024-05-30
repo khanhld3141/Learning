@@ -59,7 +59,6 @@
                     Don't have an account? 
                     <a href="/register" class="form-signup">Signup Now</a>
                 </p>
-
             </form>    
           </div>
           <div class="vector-img-login">

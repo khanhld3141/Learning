@@ -4,7 +4,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="../Component/sidebar__dashboard.jsp" %>
 <div class="content-admin">
-    <%@include file="../Component/notify.jsp" %>
+<%--    <%@include file="../Component/notify.jsp" %>--%>
     <div class="manage-lessons">
         <div class="manage-lessons__block-title manage-block">
             <div class="manage-title-search">
@@ -32,35 +32,126 @@
 
 
                         %>
-                        <form name="form-add" action="/dashboard/create-lession" method="post"
+                        <form name="form-add" action="/dashboard/create-lession" method="post" class="form-add-lesson"
                               enctype="multipart/form-data">
                             <div class="modal-body">
-                                <input name="chapterid" type="text" value="<%=chapter.getId()%>" readonly>
+                                <input name="chapterid" type="text" value="<%=chapter.getId()%>" readonly hidden>
                                 <div class="name-lesson">
                                     <label for="Name-Add">Name lesson</label>
                                     <input type="text" name="name" id="Name-Add" placeholder="Enter name lesson"
                                            required>
+                                    <span class="error-message" id="nameError-Add"></span>
+
                                 </div>
                                 <div class="description-lesson">
                                     <label for="Description-Add">Description lesson</label>
-                                    <textarea name="description" id="Description-Add" rows="10" required
-                                              placeholder="Enter description lesson"></textarea>
+                                    <textarea name="description" id="Description-Add" rows="10"
+                                              placeholder="Enter description lesson" required></textarea>
                                 </div>
-                                <div class="Video-lesson">
+                                <div class="Video-lesson-add">
                                     <label for="FileUpload-Add">Upload new video</label>
                                     <input type="file" name="video" id="FileUpload-Add"
                                            placeholder="Enter video lesson" required>
+                                    <span class="error-message" id="videoError-Add"></span>
+                                    <video controls width="100%" height="auto" hidden>
+                                        <source src="">
+                                    </video>
                                 </div>
                                 <div class="modal-footer">
-                                    <input type="submit" value="Confirm">
+                                    <button type="submit" value="Confirm" class="btn btn-primary">Confirm</button>
                                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
                                 </div>
                             </div>
 
                         </form>
+
                         <%
                             }
                         %>
+
+                        <script>
+                            document.querySelector('.form-add-lesson').addEventListener('submit', function(event) {
+                                let isValid = true;
+
+                                // Name Courses validation
+                                const name = document.getElementById('Name-Add').value.trim();
+                                const nameError = document.getElementById('nameError-Add');
+                                if (!/^(?=.*[A-Za-z])[A-Za-z0-9\s!@#$%^&*()_+{}\[\]:;<>,.?/~`\-='"|\\]+$/.test(name)) {
+                                    nameError.textContent = "Name must contain at least one letter.";
+                                    isValid = false;
+                                } else {
+                                    nameError.textContent = "";
+                                }
+
+                                // Image file validation
+                                const videoInput = document.getElementById('FileUpload-Add');
+                                const videoError = document.getElementById('videoError-Add');
+                                const videoFile = videoInput.files[0];
+
+                                if (videoFile) {
+                                    const extension = videoFile.name.split('.').pop().toLowerCase();
+                                    const allowedExtensions = ['mp4', 'avi', 'mov', 'mkv', 'wmv', 'flv', 'webm'];
+
+                                    if (!allowedExtensions.includes(extension)) {
+                                        videoError.textContent = "Only MP4, AVI, MOV, MKV, WMV, FLV, WEBM files are allowed.";
+                                        isValid = false;
+                                    } else {
+                                        videoError.textContent = "";
+                                    }
+                                } else {
+                                    videoError.textContent = "Please select a video file.";
+                                    isValid = false;
+                                }
+
+                                if (!isValid) {
+                                    event.preventDefault();
+                                }
+                            });
+                        </script>
+
+                        <script>
+                            document.getElementById('Name-Add').addEventListener('input', function() {
+                                let isValid = true;
+
+                                // Name Validation
+                                const name = this.value.trim(); // Lấy giá trị của input và loại bỏ khoảng trắng ở đầu và cuối
+                                const nameError = document.getElementById('nameError-Add');
+
+                                if (!/^(?=.*[A-Za-z])[A-Za-z0-9\s!@#$%^&*()_+{}\[\]:;<>,.?/~`\-='"|\\]+$/.test(name)) {
+                                    nameError.textContent = "Name must contain at least one letter.";
+                                    isValid = false;
+                                } else {
+                                    nameError.textContent = "";
+                                }
+                            });
+                        </script>
+
+                        <script>
+                            document.getElementById('FileUpload-Add').addEventListener('change', function() {
+                                const videoInput = this;
+                                const videoError = document.getElementById('videoError-Add');
+                                const videoElement = document.querySelector('.Video-lesson-add video');
+
+                                const videoFile = videoInput.files[0];
+                                if (!videoFile) {
+                                    videoError.textContent = "Please select a video file.";
+                                    videoElement.hidden = true;
+                                    return;
+                                }
+
+                                const extension = videoFile.name.split('.').pop().toLowerCase();
+                                const allowedExtensions = ['mp4', 'avi', 'mov', 'mkv', 'wmv', 'flv', 'webm'];
+
+                                if (!allowedExtensions.includes(extension)) {
+                                    videoError.textContent = "Only MP4, AVI, MOV, MKV, WMV, FLV, WEBM files are allowed.";
+                                    videoElement.hidden = true;
+                                } else {
+                                    videoError.textContent = "";
+                                    videoElement.src = URL.createObjectURL(videoFile);
+                                    videoElement.hidden = false;
+                                }
+                            });
+                        </script>
                     </div>
                 </div>
             </div>
@@ -120,24 +211,27 @@
 
 
                                 %>
-                                <form action="/dashboard/update-lession" method="post" enctype="multipart/form-data">
+                                <form action="/dashboard/update-lession" method="post" enctype="multipart/form-data" class="form-update-lesson">
                                     <div class="modal-body">
                                         <input type="text" value="<%=l.getId()%>" name="id" hidden="hidden">
-                                        <input type="text" value="<%=chapter.getId()%>" name="chapterid" readonly>
+                                        <input type="text" value="<%=chapter.getId()%>" name="chapterid" readonly hidden>
                                         <div class="name-lesson">
                                             <label for="Name-Update">Name lesson</label>
                                             <input value="<%=l.getName()%>" type="text" name="name" id="Name-Update"
                                                    placeholder="Enter name lesson" required>
+                                            <span class="error-message" id="nameError-Update"></span>
+
                                         </div>
                                         <div class="description-lesson">
                                             <label for="Description-Update">Description lesson</label>
                                             <textarea name="description" id="Description-Update" rows="10" required
                                                       placeholder="Enter description lesson"><%=l.getDescription()%></textarea>
                                         </div>
-                                        <div class="Video-lesson">
+                                        <div class="Video-lesson-update">
                                             <label for="FileUpload-Update">Upload new video</label>
                                             <input type="file" name="video" id="FileUpload-Update"
                                                    placeholder="Enter video lesson">
+                                            <span class="error-message" id="videoError-Update"></span>
                                             <video controls width="100%" height="auto">
                                                 <source src="/images/<%=l.getLink()%>">
                                             </video>
@@ -153,6 +247,87 @@
                                 <%
                                     }
                                 %>
+                                <script>
+                                    document.querySelector('.form-update-lesson').addEventListener('submit', function(event) {
+                                        let isValid = true;
+
+                                        // Name Courses validation
+                                        const name = document.getElementById('Name-Update').value.trim();
+                                        const nameError = document.getElementById('nameError-Update');
+                                        if (!/^(?=.*[A-Za-z])[A-Za-z0-9\s!@#$%^&*()_+{}\[\]:;<>,.?/~`\-='"|\\]+$/.test(name)) {
+                                            nameError.textContent = "Name must contain at least one letter.";
+                                            isValid = false;
+                                        } else {
+                                            nameError.textContent = "";
+                                        }
+
+                                        Video file validation
+                                        const videoInput = document.getElementById('FileUpload-Update');
+                                        const videoError = document.getElementById('videoError-Update');
+                                        const videoFile = videoInput.files[0];
+
+                                        if (videoFile) {
+                                            const extension = videoFile.name.split('.').pop().toLowerCase();
+                                            const allowedExtensions = ['mp4', 'avi', 'mov', 'mkv', 'wmv', 'flv', 'webm'];
+
+                                            if (!allowedExtensions.includes(extension)) {
+                                                videoError.textContent = "Only MP4, AVI, MOV, MKV, WMV, FLV, WEBM files are allowed.";
+                                                isValid = false;
+                                            } else {
+                                                videoError.textContent = "";
+                                            }
+                                        } else {
+                                            videoError.textContent = "Please select a video file.";
+                                            isValid = false;
+                                        }
+
+                                        if (!isValid) {
+                                            event.preventDefault();
+                                        }
+                                    });
+                                </script>
+                                <script>
+                                    document.getElementById('Name-Update').addEventListener('input', function() {
+                                        let isValid = true;
+
+                                        // Name Validation
+                                        const name = this.value.trim(); // Lấy giá trị của input và loại bỏ khoảng trắng ở đầu và cuối
+                                        const nameError = document.getElementById('nameError-Update');
+
+                                        if (!/^(?=.*[A-Za-z])[A-Za-z0-9\s!@#$%^&*()_+{}\[\]:;<>,.?/~`\-='"|\\]+$/.test(name)) {
+                                            nameError.textContent = "Name must contain at least one letter.";
+                                            isValid = false;
+                                        } else {
+                                            nameError.textContent = "";
+                                        }
+                                    });
+                                </script>
+                                <script>
+                                    document.getElementById('FileUpload-Update').addEventListener('change', function() {
+                                        const videoInput = this;
+                                        const videoError = document.getElementById('videoError-Update');
+                                        const videoElement = document.querySelector('.Video-lesson-update video');
+
+                                        const videoFile = videoInput.files[0];
+                                        if (!videoFile) {
+                                            videoError.textContent = "Please select a video file.";
+                                            videoElement.style.display = 'none';
+                                            return;
+                                        }
+
+                                        const extension = videoFile.name.split('.').pop().toLowerCase();
+                                        const allowedExtensions = ['mp4', 'avi', 'mov', 'mkv', 'wmv', 'flv', 'webm'];
+
+                                        if (!allowedExtensions.includes(extension)) {
+                                            videoError.textContent = "Only MP4, AVI, MOV, MKV, WMV, FLV, WEBM files are allowed.";
+                                            videoElement.style.display = 'none';
+                                        } else {
+                                            videoError.textContent = "";
+                                            videoElement.src = URL.createObjectURL(videoFile);
+                                            videoElement.style.display = 'block';
+                                        }
+                                    });
+                                </script>
                             </div>
                         </div>
                     </div>

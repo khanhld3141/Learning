@@ -4,7 +4,7 @@
 <%@ page import="model.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="../Component/sidebar__dashboard.jsp" %>
-<%@include file="../Component/notify.jsp" %>
+<%--<%@include file="../Component/notify.jsp" %>--%>
 <div class="content-admin">
     <div class="manage-deposit">
         <div class="manage-categories__block-title manage-block">
@@ -30,10 +30,10 @@
                             </div>
                             <div class="modal-body">
                                 <div class="name-user">
-                                    <label for="Name-user-add">Name's user</label>
-                                    <input list="_Name-user" name="user" id="Name-user-add"
-                                           placeholder="Choose a user" required>
-                                    <datalist id="_Name-user">
+                                    <label for="_Name-user">Name's user</label>
+<%--                                    <input list="_Name-user" name="user" id="Name-user-add"--%>
+<%--                                           placeholder="Choose a user" required>--%>
+                                    <select id="_Name-user">
                                         <%
                                             if (request.getAttribute("users") != null) {
                                                 List<User> users = (List<User>) request.getAttribute("users");
@@ -41,16 +41,16 @@
 
 
                                         %>
-                                        <option value="<%=user.getId()%>-<%=user.getName()%>">
+                                        <option value="<%=user.getId()%>"><%=user.getId()%>-<%=user.getName()%></option>
                                                 <%
                                                }
                                             }
                                                %>
-                                    </datalist>
+                                    </select>
                                 </div>
                                 <div class="money">
                                     <label for="Money-add">Money</label>
-                                    <input type="number" placeholder="Enter amount of money" name="amountofmoney"
+                                    <input type="number" placeholder="Enter amount of money" name="amountofmoney" required
                                            id="Money-add">
                                 </div>
                             </div>
@@ -120,8 +120,8 @@
                                         <div class="modal-body">
                                             <input name="id" value="<%=deposit.getId()%>" hidden="hidden">
                                             <div class="userId">
-                                                <label for="userid-update">User ID</label>
-                                                <input name="userid" value="<%=deposit.getUserId()%>" id="userid-update" readonly>
+<%--                                                <label for="userid-update">User Name</label>--%>
+                                                <input name="userid" value="<%=deposit.getUserId()%>" id="userid-update" readonly hidden>
                                             </div>
                                             <div class="money">
                                                 <label for="Money-update">Money</label>
@@ -131,11 +131,11 @@
                                             </div>
 
                                             <div class="status">
-                                                <label for="status-update">Status</label>
-                                                <input value="<%=statusValue%>" list="_Status-name-update" name="status"
-                                                       id="status-update"
-                                                       placeholder="Choose a status" required>
-                                                <datalist id="_Status-name-update">
+                                                <label for="_Status-name-update">Status</label>
+<%--                                                <input value="<%=statusValue%>" list="_Status-name-update" name="status"--%>
+<%--                                                       id="status-update"--%>
+<%--                                                       placeholder="Choose a status" required>--%>
+                                                <select id="_Status-name-update">
                                                     <%
                                                         if (request.getAttribute("statuss") != null) {
                                                             List<Status> statuses = (List<Status>)
@@ -143,12 +143,12 @@
                                                             for (Status status : statuses) {
 
                                                     %>
-                                                    <option value="<%=status.getId()%>-<%=status.getName()%>">
+                                                <option value="<%=status.getId()%>"><%=status.getName()%></option>
                                                             <%
                                                         }
                                                             }
                                                     %>
-                                                </datalist>
+                                                </select>
                                             </div>
 
                                         </div>

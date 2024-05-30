@@ -21,7 +21,8 @@
                     <input value="<%=post.getAuthorId()%>-<%=post.getAuthor().getName()%>" name="author" readonly>
                     <div class="title-posts">
                         <label for="uploadImage">Image</label>
-                        <input type="file" name="image" id="uploadImage" placeholder="Enter title post" required>
+                        <input type="file" name="image" id="uploadImage" placeholder="Enter title post">
+                        <span class = "error-message" id="imagePostError"></span>
                     </div>
                     <img id="image" src="/images/<%=post.getImage()%>"
                          style="width: 50%; height: 265px; object-fit: cover; border-radius: 18px; margin: 16px 0 6px">
@@ -39,7 +40,7 @@
                     <div class="content-post">
                         <label for="Content-post">Content post</label>
                         <textarea name="Content" id="Content-post" rows="50"
-                                  placeholder="Enter content post"><%=post.getContent()%></textarea>
+                                  placeholder="Enter content post" required><%=post.getContent()%></textarea>
                     </div>
                     <div class="hashtag-list">
                         <%
@@ -57,6 +58,7 @@
                             </label>
                             <input type="text" placeholder="Enter hashtag <%= i+1 %>" name="hashtag[]"
                                    id="hashtag-<%= i+1 %>" value="<%= hashtags.get(i).getTag() %>">
+
                         </div>
                         <%
                         } else {
@@ -84,16 +86,46 @@
             <%
                 }
             %>
+
+
         </div>
     </div>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
+    // $(document).ready(function(){
+    //     $('#uploadImage').change(function(){
+    //         var formData = new FormData();
+    //         formData.append('image', $('#uploadImage')[0].files[0]);
+    //         formData.append('id',$("#postid").val())
+    //         $.ajax({
+    //             url: '/upload-post',
+    //             type: 'POST',
+    //             data: formData,
+    //             processData: false,
+    //             contentType: false,
+    //
+    //             success: function(response){
+    //
+    //                 document.querySelector("#image").src="/images/"+response;
+    //             }
+    //         });
+    //     });
+    // });
     $(document).ready(function(){
         $('#uploadImage').change(function(){
+            var file = this.files[0];
             var formData = new FormData();
-            formData.append('image', $('#uploadImage')[0].files[0]);
-            formData.append('id',$("#postid").val())
+            formData.append('image', file);
+            formData.append('id', $("#postid").val());
+
+            if (!file.type.match('image.*')) {
+                $('#imagePostError').text("Please select an image file.");
+                $('#image').hide();
+                return;
+            }
+
+            $('#imagePostError').text("");
             $.ajax({
                 url: '/upload-post',
                 type: 'POST',
@@ -102,12 +134,13 @@
                 contentType: false,
 
                 success: function(response){
-
-                    document.querySelector("#image").src="/images/"+response;
+                    document.querySelector("#image").src = "/images/" + response;
                 }
             });
         });
     });
+
+
 </script>
 <script src="https://cdn.ckeditor.com/4.22.1/full/ckeditor.js"></script>
 <script>

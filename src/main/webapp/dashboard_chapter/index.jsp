@@ -3,7 +3,7 @@
 <%@ page import="model.Course" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="../Component/sidebar__dashboard.jsp" %>
-<%@include file="../Component/notify.jsp" %>
+<%--<%@include file="../Component/notify.jsp" %>--%>
 
 <div class="content-admin">
     <div class="manage-chapters">
@@ -32,14 +32,15 @@
                                 Course course = (Course)request.getAttribute("course");
 
                         %>
-                       <form action="/dashboard/create-chapter" method="post">
+                       <form action="/dashboard/create-chapter" method="post" class ="form-add-chapter">
                            <div class="modal-body">
                                <input name="courseid" type="text"
-                                      value="<%=course.getId() %>">
+                                      value="<%=course.getId() %>" hidden>
                                <div class="name-chapter">
                                    <label for="Name-Add">Name Chapter</label>
                                    <input type="text" name="name" id="Name-Add" placeholder="Enter name chapter"
                                           required>
+                                   <span class="error-message" id="nameError-add"></span>
                                </div>
                                <div class="ordinal-chapter">
                                    <label for="Ordinal-Add">Ordinal Chapter</label>
@@ -55,6 +56,23 @@
                         <%
                             }
                         %>
+                        <script>
+                            document.querySelector('.form-add-chapter').addEventListener('submit', function(event) {
+                                let isValid = true;
+                                const name = document.getElementById('Name-Add').value.trim();
+                                const nameError = document.getElementById('nameError-add');
+                                if (!/^(?=.*[A-Za-z])[A-Za-z0-9\s!@#$%^&*()_+{}\[\]:;<>,.?/~`\-='"|\\]+$/.test(name)) {
+                                    nameError.textContent = "Name must contain at least one letter.";
+                                    isValid = false;
+                                } else {
+                                    nameError.textContent = "";
+                                }
+
+                                if (!isValid) {
+                                    event.preventDefault();
+                                }
+                            });
+                        </script>
                     </div>
                 </div>
             </div>
@@ -113,16 +131,17 @@
                                         Course course = (Course)request.getAttribute("course");
 
                                 %>
-                                <form action="/dashboard/update-chapter" method="post">
+                                <form action="/dashboard/update-chapter" method="post" class="form-update-chapter">
                                     <div class="modal-body">
-                                        <input name="id" readonly type="text" value="<%=chapter.getId()%>">
+                                        <input name="id" readonly type="text" value="<%=chapter.getId()%>" hidden>
                                         <input name="courseid" type="text"
-                                               value="<%=course.getId() %>">
+                                               value="<%=course.getId() %>" hidden readonly>
                                         <div class="name-chapter">
                                             <label for="Name-Update">Name Chapter</label>
                                             <input value="<%=chapter.getName()%>" type="text" name="name" id="Name-Update"
                                                    placeholder="Enter name chapter"
                                                    required>
+                                            <span class="error-message" id="nameError-Update"></span>
                                         </div>
                                         <div class="ordinal-chapter">
                                             <label for="Ordinal-Update">Ordinal Chapter</label>
@@ -139,6 +158,23 @@
                                 <%
                                     }
                                 %>
+                                <script>
+                                    document.querySelector('.form-update-chapter').addEventListener('submit', function(event) {
+                                        let isValid = true;
+                                        const name = document.getElementById('Name-Update').value.trim();
+                                        const nameError = document.getElementById('nameError-Update');
+                                        if (!/^(?=.*[A-Za-z])[A-Za-z0-9\s!@#$%^&*()_+{}\[\]:;<>,.?/~`\-='"|\\]+$/.test(name)) {
+                                            nameError.textContent = "Name must contain at least one letter.";
+                                            isValid = false;
+                                        } else {
+                                            nameError.textContent = "";
+                                        }
+
+                                        if (!isValid) {
+                                            event.preventDefault();
+                                        }
+                                    });
+                                </script>
                             </div>
                         </div>
                     </div>

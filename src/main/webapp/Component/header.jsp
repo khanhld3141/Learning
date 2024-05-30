@@ -53,7 +53,7 @@
     <link rel="stylesheet" href="../assets/css/Profile/courses-participated.css">
     <link rel="stylesheet" href="../assets/css/payment/payment.css">
     <link rel="stylesheet" href="../assets/css/Blog-user/post-user.scss">
-    <link rel="stylesheet" href="../assets/css/notify/notify.css">
+    <link rel="stylesheet" href="../assets/css/notify/validate_error.css">
 
 </head>
 

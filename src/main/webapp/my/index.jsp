@@ -1,17 +1,17 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include file="../Component/header.jsp"%>
+<%@include file="../Component/header.jsp" %>
 <main>
     <div class="main-content">
         <div class="profile-block">
-            <%@include file="../Component/sidebar-profile.jsp"%>
+            <%@include file="../Component/sidebar-profile.jsp" %>
             <div class="profile-right">
                 <div class="profile-box">
                     <div class="personal-infor">
                         <h2 class="profile-right__title">Personal information</h2>
                         <div class="profile-right__content">
                             <%
-                                if(request.getAttribute("user")!=null){
-                                    User user=(User)request.getAttribute("user");
+                                if (request.getAttribute("user") != null) {
+                                    User user = (User) request.getAttribute("user");
                             %>
                             <div class="change-avt-box">
                                 <form class="change-avt__form">
@@ -30,23 +30,82 @@
                                         <label for="Name"><i class="fa-solid fa-user-tie"></i>Your Name</label>
                                         <input value="<%=user.getName()%>" type="text" id="Name"
                                                placeholder="Enter your name"
-                                               name="name">
+                                               name="name" required>
                                     </div>
+                                    <span class="error-message" id="nameError"></span>
                                     <div class="email">
                                         <label for="Email"><i class="fa-solid fa-envelope"></i>Your Email</label>
-                                        <input value="<%=user.getEmail()%>" type="email" id="Email" placeholder="Enter your email"
-                                                     name="email">
+                                        <input value="<%=user.getEmail()%>" type="email" id="Email"
+                                               placeholder="Enter your email"
+                                               name="email" required>
                                     </div>
+                                    <span class="error-message" id="emailError"></span>
                                     <div class="phone">
                                         <label for="Phone"><i class="fa-solid fa-phone"></i>Your Number
                                             Phone</label>
                                         <input value="<%=user.getPhone()%>" type="text" id="Phone"
                                                placeholder="Enter your number phone"
-                                               name="phone">
+                                               name="phone" required>
                                     </div>
+                                    <span class="error-message" id="phoneError"></span>
                                     <button type="submit"
-                                            class="btn__profile btn__submit-personal-infor">Update</button>
+                                            class="btn__profile btn__submit-personal-infor">Update
+                                    </button>
                                 </form>
+                                <script>
+                                    $(document).ready(function () {
+                                        // Hàm kiểm tra lỗi khi nhập vào trường input
+                                        function validateInput() {
+                                            var isValid = true;
+
+                                            // Kiểm tra tên
+                                            var nameInput = $('#Name').val().trim();
+                                            if (!/^[a-zA-ZÀ-Ỹà-ỹ\s]+$/.test(nameInput)) {
+                                                $('#nameError').text("Name must contain only letters and cannot be empty.");
+                                                isValid = false;
+                                            } else {
+                                                $('#nameError').text("");
+                                            }
+
+                                            var emailInput = $('#Email').val().trim();
+                                            if (!isValidEmail(emailInput)) {
+                                                $('#emailError').text("Please enter a valid email address.");
+                                                isValid = false;
+                                            } else {
+                                                $('#emailError').text("");
+                                            }
+
+                                            var phoneInput = $('#Phone').val().trim();
+                                            if (!/^(0\d{9})$/.test(phoneInput)) {
+                                                $('#phoneError').text("Phone number must start with 0 and contain exactly 10 digits.");
+                                                isValid = false;
+                                            } else {
+                                                $('#phoneError').text("");
+                                            }
+
+                                            return isValid;
+                                        }
+
+                                        // Sự kiện input để kiểm tra lỗi khi nhập vào trường input
+                                        $('#Name, #Email, #Phone').on('input', function () {
+                                            validateInput();
+                                        });
+
+                                        // Hàm kiểm tra định dạng email
+                                        function isValidEmail(email) {
+                                            var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                                            return emailPattern.test(email);
+                                        }
+
+                                        // Sự kiện submit để kiểm tra lại trước khi submit
+                                        $('.personal-infor__form').submit(function (event) {
+                                            if (!validateInput()) {
+                                                event.preventDefault();
+                                            }
+                                        });
+                                    });
+                                </script>
+
 
                             </div>
                             <%
@@ -61,8 +120,8 @@
 </main>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-    $(document).ready(function(){
-        $('#imageUpload').change(function(){
+    $(document).ready(function () {
+        $('#imageUpload').change(function () {
             var formData = new FormData();
             formData.append('image', $('#imageUpload')[0].files[0]);
             $.ajax({
@@ -72,7 +131,7 @@
                 processData: false,
                 contentType: false,
 
-                success: function(response){
+                success: function (response) {
                     location.reload();
                 }
             });
@@ -103,7 +162,8 @@
 
         }).showToast();
     }
-    window.addEventListener('pageshow', function(event) {
+
+    window.addEventListener('pageshow', function (event) {
         if (event.persisted) {
             window.location.reload();
         }
@@ -127,4 +187,4 @@
       }
     %>
 </script>
-<%@include file="../Component/footer.jsp"%>
+<%@include file="../Component/footer.jsp" %>

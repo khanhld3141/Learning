@@ -2,7 +2,7 @@
 <%@ page import="model.Hashtag" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="../Component/sidebar__dashboard.jsp" %>
-<%@include file="../Component/notify.jsp" %>
+<%--<%@include file="../Component/notify.jsp" %>--%>
 <div class="content-admin">
     <div class="manage-hashtag">
         <div class="manage-categories__block-title manage-block">
@@ -13,40 +13,40 @@
                     <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </form>
             </div>
-            <!-------Button trigger ADD NEW hashtag modal-------- -->
-            <button type="button" class="btn-dashboard btn__add-hashtag" data-bs-toggle="modal"
-                    data-bs-target="#modal__add-new-hashtag" style="border: none;">
-                <i class="fa-solid fa-plus"></i>Add new hashtag
-            </button>
-            <!--------------- MODAL ADD NEW hashtag-------------- -->
-            <div class="modal fade modal__add" id="modal__add-new-hashtag">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="Title-post">
-                                <label for="Title-post-add">Name's post</label>
-                                <input list="_Title-post-add" name="PostId" id="Title-post-add"
-                                       placeholder="Choose a title post" required>
-                                <datalist id="_Title-post-add">
-                                    <option value="Python Review - is it any good? (2023)">
-                                </datalist>
-                            </div>
-                            <div class="tag">
-                                <label for="Tag-add">Tag</label>
-                                <input type="text" placeholder="Enter tag" name="Tag" id="Tag-add">
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <a href="../dashboard_hashtag" class="btn btn-primary">Confirm</a>
-                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- --------------------------------------------------------------->
+<%--            <!-------Button trigger ADD NEW hashtag modal-------- -->--%>
+<%--            <button type="button" class="btn-dashboard btn__add-hashtag" data-bs-toggle="modal"--%>
+<%--                    data-bs-target="#modal__add-new-hashtag" style="border: none;">--%>
+<%--                <i class="fa-solid fa-plus"></i>Add new hashtag--%>
+<%--            </button>--%>
+<%--            <!--------------- MODAL ADD NEW hashtag-------------- -->--%>
+<%--            <div class="modal fade modal__add" id="modal__add-new-hashtag">--%>
+<%--                <div class="modal-dialog modal-dialog-centered">--%>
+<%--                    <div class="modal-content">--%>
+<%--                        <div class="modal-header">--%>
+<%--                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>--%>
+<%--                        </div>--%>
+<%--                        <div class="modal-body">--%>
+<%--                            <div class="Title-post">--%>
+<%--                                <label for="Title-post-add">Name's post</label>--%>
+<%--                                <input list="_Title-post-add" name="PostId" id="Title-post-add"--%>
+<%--                                       placeholder="Choose a title post" required>--%>
+<%--                                <datalist id="_Title-post-add">--%>
+<%--                                    <option value="Python Review - is it any good? (2023)">--%>
+<%--                                </datalist>--%>
+<%--                            </div>--%>
+<%--                            <div class="tag">--%>
+<%--                                <label for="Tag-add">Tag</label>--%>
+<%--                                <input type="text" placeholder="Enter tag" name="Tag" id="Tag-add">--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                        <div class="modal-footer">--%>
+<%--                            <a href="../dashboard_hashtag" class="btn btn-primary">Confirm</a>--%>
+<%--                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--            <!-- --------------------------------------------------------------->--%>
 
         </div>
         <div class="table">
@@ -69,47 +69,47 @@
                     </td>
                     <td><%=hashtag.getTag()%></td>
                     <td>
-                        <!-- BUTTON TRIGGER UPDATE MODAL  -->
-                        <button type="button" class="btn__modal" data-bs-toggle="modal"
-                                data-bs-target="#modal__update-hashtag" style="border: none;"
-                                title="Update hashtag">
-                            <i class="fa-solid fa-pen"></i>
-                        </button>
-                        <!--------------- MODAL UPDATE hashtag-------------- -->
-                        <div class="modal fade modal__update" id="modal__update-hashtag">
-                            <div class="modal-dialog modal-dialog-centered">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="btn-close"
-                                                data-bs-dismiss="modal"></button>
-                                    </div>
-                                    <form action="">
-                                        <div class="modal-body">
-                                            <%--                                        <div class="Title-post">--%>
-                                            <%--                                            <label for="Title-post-update">Name's post</label>--%>
-                                            <%--                                            <input list="_Title-post-update" name="PostId"--%>
-                                            <%--                                                   id="Title-post-update" placeholder="Choose a title post"--%>
-                                            <%--                                                   required>--%>
-                                            <%--                                            <datalist id="_Title-post-update">--%>
-                                            <%--                                                <option value="Python Review - is it any good? (2023)">--%>
-                                            <%--                                            </datalist>--%>
-                                            <%--                                        </div>--%>
-                                            <div class="tag">
-                                                <label for="Tag-update">Tag</label>
-                                                <input type="text" placeholder="Enter tag" name="Tag"
-                                                       id="Tag-update">
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="submit" class="btn btn-primary">Confirm</button>
-                                            <button type="button" class="btn btn-danger"
-                                                    data-bs-dismiss="modal">No
-                                            </button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+<%--                        <!-- BUTTON TRIGGER UPDATE MODAL  -->--%>
+<%--                        <button type="button" class="btn__modal" data-bs-toggle="modal"--%>
+<%--                                data-bs-target="#modal__update-hashtag" style="border: none;"--%>
+<%--                                title="Update hashtag">--%>
+<%--                            <i class="fa-solid fa-pen"></i>--%>
+<%--                        </button>--%>
+<%--                        <!--------------- MODAL UPDATE hashtag-------------- -->--%>
+<%--                        <div class="modal fade modal__update" id="modal__update-hashtag">--%>
+<%--                            <div class="modal-dialog modal-dialog-centered">--%>
+<%--                                <div class="modal-content">--%>
+<%--                                    <div class="modal-header">--%>
+<%--                                        <button type="button" class="btn-close"--%>
+<%--                                                data-bs-dismiss="modal"></button>--%>
+<%--                                    </div>--%>
+<%--                                    <form action="">--%>
+<%--                                        <div class="modal-body">--%>
+<%--                                            &lt;%&ndash;                                        <div class="Title-post">&ndash;%&gt;--%>
+<%--                                            &lt;%&ndash;                                            <label for="Title-post-update">Name's post</label>&ndash;%&gt;--%>
+<%--                                            &lt;%&ndash;                                            <input list="_Title-post-update" name="PostId"&ndash;%&gt;--%>
+<%--                                            &lt;%&ndash;                                                   id="Title-post-update" placeholder="Choose a title post"&ndash;%&gt;--%>
+<%--                                            &lt;%&ndash;                                                   required>&ndash;%&gt;--%>
+<%--                                            &lt;%&ndash;                                            <datalist id="_Title-post-update">&ndash;%&gt;--%>
+<%--                                            &lt;%&ndash;                                                <option value="Python Review - is it any good? (2023)">&ndash;%&gt;--%>
+<%--                                            &lt;%&ndash;                                            </datalist>&ndash;%&gt;--%>
+<%--                                            &lt;%&ndash;                                        </div>&ndash;%&gt;--%>
+<%--                                            <div class="tag">--%>
+<%--                                                <label for="Tag-update">Tag</label>--%>
+<%--                                                <input type="text" placeholder="Enter tag" name="Tag"--%>
+<%--                                                       id="Tag-update">--%>
+<%--                                            </div>--%>
+<%--                                        </div>--%>
+<%--                                        <div class="modal-footer">--%>
+<%--                                            <button type="submit" class="btn btn-primary">Confirm</button>--%>
+<%--                                            <button type="button" class="btn btn-danger"--%>
+<%--                                                    data-bs-dismiss="modal">No--%>
+<%--                                            </button>--%>
+<%--                                        </div>--%>
+<%--                                    </form>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
 
 
                         <!-- BUTTON TRIGGER DELETE MODAL  -->
