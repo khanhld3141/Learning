@@ -36,7 +36,7 @@ public class CreateLession extends HttpServlet {
         Part video = request.getPart("video");
         String realPath = request.getServletContext().getRealPath("/images");
         String filename = FileUploadUtil.uploadFile(video, realPath);
-
+        HttpSession session=request.getSession();
         try{
             lessionDAO.create(new Lession(
                     Integer.parseInt(chapterId),
@@ -44,11 +44,11 @@ public class CreateLession extends HttpServlet {
                     description,
                     filename
             ));
-            response.sendRedirect("/dashboard/lessions?chapterid="+chapterId);
+           session.setAttribute("success","Add new Lesson successfully");
         }catch(Exception e){
-            request.setAttribute("error", "Please enter chapter id");
-            request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
+            session.setAttribute("error","Error while creating Lesson");
         }
+        response.sendRedirect("/dashboard/lessions?chapterid="+chapterId);
     }
 
 

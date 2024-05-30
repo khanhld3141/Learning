@@ -34,11 +34,12 @@ public class UploadUserImage extends HttpServlet {
     }
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
         try {
             //delete
             String realPath = request.getServletContext().getRealPath("/images");
 
-            HttpSession session = request.getSession();
+
             User us = (User) session.getAttribute("user");
 
             User user = userDAO.get(us.getId());
@@ -55,9 +56,11 @@ public class UploadUserImage extends HttpServlet {
             }
             user.setAvatar(filename);
             userDAO.update(user);
+            session.setAttribute("success","Change avatar successfully");
             photo.write(realPath + "/" + filename);
         } catch (Exception e) {
-            e.printStackTrace();
+            session.setAttribute("error","Error while changing avatar");
+            response.sendRedirect("/my-profile");
         }
     }
     public void destroy() {

@@ -50,7 +50,7 @@ public class UpdateLession extends HttpServlet {
         String realPath = request.getServletContext().getRealPath("/images");
         String filename = FileUploadUtil.uploadFile(video, realPath);
         Lession lession = lessionDAO.get(Integer.parseInt(id));
-
+        HttpSession session=request.getSession();
         try {
             FileUploadUtil.deleteFile(realPath, lession.getLink());
             lessionDAO.update(new Lession(
@@ -60,11 +60,11 @@ public class UpdateLession extends HttpServlet {
                     description,
                     filename
             ));
-            response.sendRedirect("/dashboard/lessions?chapterid=" + chapterId);
+            session.setAttribute("success","Update Lesson successfully");
         } catch (Exception e) {
-            e.printStackTrace();
-            request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
+            session.setAttribute("error","Error while updating Lesson");
         }
+        response.sendRedirect("/dashboard/lessions?chapterid=" + chapterId);
     }
 
     public void destroy() {

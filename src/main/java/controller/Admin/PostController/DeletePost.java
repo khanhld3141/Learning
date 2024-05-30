@@ -19,15 +19,16 @@ public class DeletePost extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         if (request.getParameter(("id")) != null) {
             String idStr = request.getParameter(("id"));
+            HttpSession session = request.getSession();
             try {
                 int id = Integer.parseInt(idStr);
                 postDAO.delete(id);
-                response.sendRedirect("/dashboard/posts");
+              session.setAttribute("success","Delete Post successfully");
             } catch (Exception e) {
-                e.printStackTrace();
+                session.setAttribute("error","Error while deleting Post");
             }
+            response.sendRedirect("/dashboard/posts");
         } else {
-            request.setAttribute("message", "Missing parameter id");
             request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
         }
     }

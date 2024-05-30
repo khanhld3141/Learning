@@ -32,7 +32,7 @@ public class CreatePostComment extends HttpServlet {
         String postid=request.getParameter("postid");
         String content=request.getParameter("content");
         String idParent=request.getParameter("idparent");
-
+        HttpSession session=request.getSession();
         try{
             postCommentDAO.create(new PostComment(
                     Integer.parseInt(authorid),

@@ -25,7 +25,9 @@ public class UpdateMyPost extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         if(request.getParameter("id")!=null){
+            HttpSession session=request.getSession();
             try{
+
                 int id=Integer.parseInt(request.getParameter("id"));
                 Post post=postDAO.get(id);
                 List<Hashtag> hashtags = hashtagDAO.getAllHashTagOfPost(id);
@@ -33,8 +35,8 @@ public class UpdateMyPost extends HttpServlet {
                 request.setAttribute("post", post);
                 request.getRequestDispatcher("/Manage-users-blog/update-post.jsp").forward(request,response);
             }catch (Exception e){
-                request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
-                e.printStackTrace();
+                session.setAttribute("error","Error while updating post");
+                response.sendRedirect("/my-posts");
             }
         }else{
             request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
@@ -47,7 +49,7 @@ public class UpdateMyPost extends HttpServlet {
         String id = request.getParameter("id");
 
         Post post = postDAO.get(Integer.parseInt(id));
-
+        HttpSession session=request.getSession();
 
         try {
             hashtagDAO.deleteAllOfPost(post.getId());
@@ -64,11 +66,11 @@ public class UpdateMyPost extends HttpServlet {
             post.setTitle(title);
             post.setContent(content);
             postDAO.update(post);
-            response.sendRedirect("/my-posts");
+            session.setAttribute("success","Updated post successfully");
         } catch (Exception e) {
-            request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
-            e.printStackTrace();
+            session.setAttribute("error", "Error while updating post");
         }
+        response.sendRedirect("/my-posts");
     }
 
     public void destroy() {

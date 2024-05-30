@@ -27,6 +27,7 @@ public class GetCategory extends HttpServlet {
             try{
                 page=Integer.parseInt(request.getParameter("page"));
             }catch(Exception e){
+                request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
                 e.printStackTrace();
             }
         }

@@ -31,7 +31,7 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="../owlcarousel/owl.carousel.min.js"></script>
     <!-- component CSS -->
-
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <script src="../assets/js/notify/notify.js"></script>
     <script src="../assets/js/comment-reply/comment-reply.js"></script>
     <link rel="stylesheet" href="../assets/css/event/event_layout.css">

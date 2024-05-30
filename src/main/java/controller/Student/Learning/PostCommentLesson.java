@@ -17,7 +17,7 @@ public class PostCommentLesson extends HttpServlet {
 
     public void init() {
         message = "Hello World!";
-        lessionCommentDAO=new LessionCommentDAO();
+        lessionCommentDAO = new LessionCommentDAO();
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -29,25 +29,25 @@ public class PostCommentLesson extends HttpServlet {
         out.println("<h1>" + message + "</h1>");
         out.println("</body></html>");
     }
+
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-       String lessonid=request.getParameter("lessonid");
-       String content=request.getParameter("content");
-       HttpSession session=request.getSession();
-       try{
-           User user=(User) session.getAttribute("user");
+        String lessonid = request.getParameter("lessonid");
+        String content = request.getParameter("content");
+        HttpSession session = request.getSession();
+        try {
+            User user = (User) session.getAttribute("user");
 
-           lessionCommentDAO.create(new LessionComment(
-                   Integer.parseInt(lessonid),
-                   user.getId(),
-                   0,
-                   content
-           ));
+            lessionCommentDAO.create(new LessionComment(
+                    Integer.parseInt(lessonid),
+                    user.getId(),
+                    0,
+                    content
+            ));
+            session.setAttribute("success", "Post comment successfully");
 
-
-       }catch (Exception e){
-           request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
-           e.printStackTrace();
-       }
+        } catch (Exception e) {
+           session.setAttribute("error", "Error while posting comment");
+        }
     }
 
 

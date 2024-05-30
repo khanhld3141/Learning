@@ -25,6 +25,7 @@ public class UpdateComment extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         if(request.getParameter("id")!=null){
             String idStr=request.getParameter("id");
+            HttpSession session=request.getSession();
             try{
                 int id=Integer.parseInt(idStr);
                 CourseComment courseComment = courseCommentDAO.get(id);
@@ -32,10 +33,12 @@ public class UpdateComment extends HttpServlet {
                 request.setAttribute("coursecomments", courseComment);
                 request.getRequestDispatcher("Status/update-status.jsp").forward(request, response);
             }catch (Exception e){
-                e.printStackTrace();
+
             }
 
 
+        }else{
+            request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
         }
     }
 
@@ -45,16 +48,20 @@ public class UpdateComment extends HttpServlet {
         String content = request.getParameter("comment");
         HttpSession session=request.getSession();
         User user=(User)session.getAttribute("user");
-        courseCommentDAO.update(
-                new CourseComment(
-                        Integer.parseInt(id),
-                        Integer.parseInt(courseId),
-                        user.getId(),
-                        content
-                )
-        );
+        try{
+            courseCommentDAO.update(
+                    new CourseComment(
+                            Integer.parseInt(id),
+                            Integer.parseInt(courseId),
+                            user.getId(),
+                            content
+                    )
+            );
 
-        request.setAttribute("message", "Update category successfully");
+            session.setAttribute("success","Update comment successfully");
+        }catch(Exception e){
+            session.setAttribute("error","Error while updating comment");
+        }
         response.sendRedirect("/detail-course?id=" + courseId);
 
     }

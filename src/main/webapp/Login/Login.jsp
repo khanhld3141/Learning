@@ -19,12 +19,24 @@
                     <label>Email *</label>
                     <input name="Email" type="text" class="form-group__input" placeholder="example@gmail.com"
                            required>
-
+                    <%
+                        if(request.getAttribute("email") != null){
+                    %>
+                    <p style="color: red">Email is invalid</p>
+                    <%
+                        }
+                    %>
                 </div>
                <div class="form-group">
                     <label>Password *</label>
                     <input name="Password" type="password" class="form-group__input" placeholder="Password" required>
-
+                   <%
+                       if(request.getAttribute("password") != null){
+                   %>
+                   <p style="color: red">Password is incorrect</p>
+                   <%
+                       }
+                   %>
                </div>
                 <div class="form-check">
                     <input name="Remember" type="checkbox" class="form-check__input">

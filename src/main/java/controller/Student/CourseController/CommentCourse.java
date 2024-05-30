@@ -40,11 +40,11 @@ public class CommentCourse extends HttpServlet {
                     user.getId(),
                     comment
             ));
-            response.sendRedirect("/detail-course?id="+courseid);
+           session.setAttribute("success","Comment successfully");
         }catch (Exception e){
-            request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
-            e.printStackTrace();
+            session.setAttribute("error","Comment failed");
         }
+        response.sendRedirect("/detail-course?id="+courseid);
     }
 
 

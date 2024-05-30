@@ -7,6 +7,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import model.Category;
 
 import java.io.IOException;
@@ -25,6 +26,8 @@ public class DeleteCategory extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         if (request.getParameter(("id")) != null) {
             String idStr = request.getParameter(("id"));
+            HttpSession session=request.getSession();
+
 
             try {
                 int id = Integer.parseInt(idStr);
@@ -32,13 +35,13 @@ public class DeleteCategory extends HttpServlet {
                 String realPath = request.getServletContext().getRealPath("/images");
                 FileUploadUtil.deleteFile(realPath, category.getImage());
                 CategoryDAO.delete(id);
-                response.sendRedirect("/dashboard/categories");
+                session.setAttribute("success","Delete Category successfully");
             } catch (Exception e) {
-                e.printStackTrace();
+                session.setAttribute("error","Error while deleting Category");
             }
+            response.sendRedirect("/dashboard/categories");
         } else {
-            request.setAttribute("message", "Missing parameter id");
-            request.getRequestDispatcher("/dashboard/categories").forward(request, response);
+            request.getRequestDispatcher("/404notfound/index.jsp").forward(request,response);
         }
     }
 

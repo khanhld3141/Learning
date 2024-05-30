@@ -46,6 +46,7 @@
     <link rel="stylesheet" href="../assets/css/dashboard_post/manage-post.scss">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
     <script src="../assets/js/notify/notify.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="stylesheet" href="../assets/css/notify/notify.css">
 
 </head>

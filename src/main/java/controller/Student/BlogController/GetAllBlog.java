@@ -28,7 +28,7 @@ public class GetAllBlog extends HttpServlet {
             try{
                 page = Integer.parseInt(request.getParameter("page"));
             }catch (Exception e){
-                e.printStackTrace();
+                request.getRequestDispatcher("/404notfound/index.jsp").forward(request,response);
             }
         }
         List<Category> categories=categoryDAO.getWithNumberOfCourses();

@@ -25,10 +25,16 @@ public class DeleteCourse extends HttpServlet {
             try {
                 int id = Integer.parseInt(idStr);
                 Course course = courseDAO.get(id);
-                String realPath = request.getServletContext().getRealPath("/images");
-                FileUploadUtil.deleteFile(realPath,course.getImage());
-                courseDAO.delete(id);
-                response.sendRedirect("/dashboard/courses");
+                if(course==null){
+                    request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
+                }else {
+                    String realPath = request.getServletContext().getRealPath("/images");
+                    FileUploadUtil.deleteFile(realPath, course.getImage());
+                    courseDAO.delete(id);
+                    HttpSession session=request.getSession();
+                    session.setAttribute("success","Delete Course successfully");
+                    response.sendRedirect("/dashboard/courses");
+                }
             } catch (Exception e) {
                 request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
                 e.printStackTrace();

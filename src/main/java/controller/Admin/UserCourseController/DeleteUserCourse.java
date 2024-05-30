@@ -19,16 +19,16 @@ public class DeleteUserCourse extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
        if(request.getParameter("id") != null){
            String id = request.getParameter("id");
+           HttpSession session=request.getSession();
            try{
                userCourseDAO.delete(Integer.parseInt(id));
-               response.sendRedirect("");
+               session.setAttribute("success","Delete user in course successfully");
            }catch(Exception e){
-               request.setAttribute("error","");
-               request.getRequestDispatcher("").forward(request, response);
+               session.setAttribute("error","Error while deleting user in course");
            }
+           response.sendRedirect("/dashboard/courses");
        }else{
-           request.setAttribute("error","");
-           request.getRequestDispatcher("").forward(request, response);
+           request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
        }
     }
 

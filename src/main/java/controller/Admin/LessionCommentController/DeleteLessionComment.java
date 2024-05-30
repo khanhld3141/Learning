@@ -7,6 +7,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -24,17 +25,18 @@ public class DeleteLessionComment extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         if (request.getParameter(("id")) != null) {
             String idStr = request.getParameter(("id"));
-
+            HttpSession session=request.getSession();
             try {
                 int id = Integer.parseInt(idStr);
                 lessionCommentDAO.delete(id);
-                response.sendRedirect("/comments-lession");
+               session.setAttribute("success","Delete comment successfully");
             } catch (Exception e) {
-                e.printStackTrace();
+                session.setAttribute("error","Error while deleting comment");
             }
+            response.sendRedirect("/comments-lession");
         } else {
-            request.setAttribute("message", "Missing parameter id");
-            request.getRequestDispatcher("/comments-lession").forward(request, response);
+
+            request.getRequestDispatcher("/404notfound/index.jsp").forward(request,response);
         }
     }
 

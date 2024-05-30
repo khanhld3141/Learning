@@ -18,14 +18,16 @@ public class DeleteMyPost extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         if(request.getParameter("id")!=null){
+            HttpSession session=request.getSession();
            try{
                int id=Integer.parseInt(request.getParameter("id"));
                postDAO.delete(id);
-               response.sendRedirect("/my-posts");
+               session.setAttribute("success","Delete post successfully");
+
            }catch (Exception e){
-               request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
-               e.printStackTrace();
+               session.setAttribute("error","Error while deleting post");
            }
+            response.sendRedirect("/my-posts");
         }else{
             request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
         }

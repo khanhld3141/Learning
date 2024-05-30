@@ -58,11 +58,11 @@ public class CreatePost extends HttpServlet {
                    }
                 }
             }
-            response.sendRedirect("/dashboard/posts");
+            session.setAttribute("success","Add new Post successfully");
         }catch (Exception e){
-            request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
-            e.printStackTrace();
+            session.setAttribute("error","Error while add new Post");
         }
+        response.sendRedirect("/dashboard/posts");
 
     }
     public void destroy() {

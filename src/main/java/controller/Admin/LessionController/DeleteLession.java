@@ -23,18 +23,19 @@ public class DeleteLession extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         if (request.getParameter(("id")) != null && request.getParameter(("chapterid")) != null) {
             String idStr = request.getParameter(("id"));
+            HttpSession session = request.getSession();
+            String chapterid=request.getParameter(("chapterid"));
             try {
-                String chapterid=request.getParameter(("chapterid"));
                 int id = Integer.parseInt(idStr);
                 Lession lession = lessionDAO.get(id);
                 String realPath = request.getServletContext().getRealPath("/images");
                 FileUploadUtil.deleteFile(realPath,lession.getLink());
                 lessionDAO.delete(id);
-                response.sendRedirect("/dashboard/lessions?chapterid=" + chapterid);
+                session.setAttribute("success","Delete Lesson successfully");
             } catch (Exception e) {
-                request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
-                e.printStackTrace();
+               session.setAttribute("error","Error while deleting Lesson");
             }
+            response.sendRedirect("/dashboard/lessions?chapterid=" + chapterid);
         }else{
             request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
         }

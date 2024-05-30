@@ -7,6 +7,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import model.Category;
 import model.Status;
 import model.Voucher;
@@ -26,6 +27,7 @@ public class UpdateVoucher extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         if(request.getParameter("id")!=null){
             String idStr=request.getParameter("id");
+            HttpSession session=request.getSession();
             try{
                 int id=Integer.parseInt(idStr);
                 Voucher voucher= voucherDAO.get(id);
@@ -33,8 +35,8 @@ public class UpdateVoucher extends HttpServlet {
                 request.setAttribute("voucher", voucher);
                 request.getRequestDispatcher("/dashboard_voucher/update-voucher.jsp").forward(request, response);
             }catch (Exception e){
-                request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
-                e.printStackTrace();
+                session.setAttribute("error","Error while updating voucher");
+                response.sendRedirect("/dashboard/vouchers");
             }
 
 
@@ -44,6 +46,7 @@ public class UpdateVoucher extends HttpServlet {
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        HttpSession session=request.getSession();
         try {
 
             String id = request.getParameter("Id");
@@ -65,11 +68,12 @@ public class UpdateVoucher extends HttpServlet {
                     Integer.parseInt(used),
                     Integer.parseInt(discount)
             ));
-            request.setAttribute("message", "Update category successfully");
-            response.sendRedirect("/dashboard/vouchers");
+           session.setAttribute("success","Updated Voucher successfully");
+
         }catch (Exception e){
-            request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
+            session.setAttribute("error","Error while updating voucher");
         }
+        response.sendRedirect("/dashboard/vouchers");
 
     }
 

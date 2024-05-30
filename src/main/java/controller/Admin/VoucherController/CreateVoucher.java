@@ -7,6 +7,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import model.Status;
 import model.Voucher;
 
@@ -27,6 +28,7 @@ public class CreateVoucher extends HttpServlet {
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        HttpSession session=request.getSession();
         try {
 
             String code = request.getParameter("Code");
@@ -46,11 +48,11 @@ public class CreateVoucher extends HttpServlet {
                     Integer.parseInt(discount)
             ));
 
-            request.setAttribute("message", "Add new Voucher successfully");
-            response.sendRedirect("/dashboard/vouchers");
+            session.setAttribute("success","Add new voucher successfully");
         } catch (Exception e) {
-            request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
+            session.setAttribute("error","Error while adding Voucher");
         }
+        response.sendRedirect("/dashboard/vouchers");
 
     }
 

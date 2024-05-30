@@ -24,7 +24,11 @@ public class index extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         int currentPage = 1;
         if (request.getParameter("page") != null) {
-            currentPage = Integer.parseInt(request.getParameter("page"));
+            try{
+                currentPage = Integer.parseInt(request.getParameter("page"));
+            }catch (Exception e){
+                request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
+            }
         }
         String query = "";
         if(request.getParameter("query") != null){

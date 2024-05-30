@@ -30,14 +30,15 @@ public class ChangePassword extends HttpServlet {
            User us = (User)session.getAttribute("user");
            User user = userDAO.get(us.getId());
            boolean check= AESUtil.encrypt(oldPassword).equals(user.getPassword());
+
            if(!check){
-               request.setAttribute("message", "Password incorrect");
-               request.getRequestDispatcher("/my/change-password.jsp").forward(request, response);
+               session.setAttribute("error","Password is incorrect");
            }else{
                userDAO.changePassword(newPassword,user.getId());
-               response.sendRedirect("/change-password");
-           }
+               session.setAttribute("success","Change password successfully");
 
+           }
+           response.sendRedirect("/change-password");
 
        }catch (Exception e){
            request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);

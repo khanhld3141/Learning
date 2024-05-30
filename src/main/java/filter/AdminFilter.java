@@ -36,11 +36,16 @@ public class AdminFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
         HttpSession session = req.getSession();
-        User user=(User) session.getAttribute("user");
-        if (user.getRole().compareTo("R1")!=0) {
-            res.sendRedirect("/home");
-        } else {
-            chain.doFilter(request, response);
+
+        if(session.getAttribute("user")!=null) {
+            User user=(User) session.getAttribute("user");
+            if (user.getRole().compareTo("R1")!=0) {
+                res.sendRedirect("/home");
+            } else {
+                chain.doFilter(request, response);
+            }
+        }else{
+            res.sendRedirect("/login");
         }
 
     }

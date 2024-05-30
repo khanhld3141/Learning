@@ -29,6 +29,8 @@ public class GetCommentCourse extends HttpServlet {
             List<CourseComment> lists = courseCommentDAO.getAllCourseComments(Integer.parseInt(id));
             request.setAttribute("coursecomments", lists);
             request.getRequestDispatcher("Status/index.jsp").forward(request, response);
+        }else{
+            request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
         }
     }
 

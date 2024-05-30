@@ -38,6 +38,7 @@ public class CreateMyPost extends HttpServlet {
         HttpSession session = request.getSession();
         User user =(User) session.getAttribute("user");
         String[] hashtags = request.getParameterValues("hashtag[]");
+
         try{
            int postid= postDAO.create(new Post(title,content,comment,filename,user.getId()));
             if (hashtags != null && postid!=-1) {
@@ -50,10 +51,11 @@ public class CreateMyPost extends HttpServlet {
                     }
                 }
             }
-            response.sendRedirect("/my-posts");
+            session.setAttribute("success","Add new post successfully");
         }catch (Exception e){
-            e.printStackTrace();
+           session.setAttribute("error","Error while add new post");
         }
+        response.sendRedirect("/my-posts");
     }
 
     public void destroy() {

@@ -7,6 +7,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import model.CourseComment;
 import model.Status;
 
@@ -36,6 +37,8 @@ public class UpdateCourseComment extends HttpServlet {
             }
 
 
+        }else{
+            request.getRequestDispatcher("/4040notfound/index.jsp").forward(request, response);
         }
     }
 
@@ -44,17 +47,23 @@ public class UpdateCourseComment extends HttpServlet {
         String courseId = request.getParameter("courseid");
         String authorId=request.getParameter("authorid");
         String content = request.getParameter("content");
+        HttpSession session=request.getSession();
+        try{
 
-        courseCommentDAO.update(
-                new CourseComment(
-                        Integer.parseInt(id),
-                        Integer.parseInt(courseId),
-                        Integer.parseInt(authorId),
-                        content
-                )
-        );
+            courseCommentDAO.update(
+                    new CourseComment(
+                            Integer.parseInt(id),
+                            Integer.parseInt(courseId),
+                            Integer.parseInt(authorId),
+                            content
+                    )
+            );
 
-        request.setAttribute("message", "Update category successfully");
+            session.setAttribute("success","Update Comment of Course successfully");
+
+        }catch (Exception e){
+            session.setAttribute("error", "Error while updating Comment of Course");
+        }
         response.sendRedirect("/comments-course");
 
     }

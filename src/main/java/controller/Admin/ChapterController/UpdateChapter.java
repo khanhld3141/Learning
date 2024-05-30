@@ -36,17 +36,25 @@ public class UpdateChapter extends HttpServlet {
         String courseId=request.getParameter("courseid");
         String name=request.getParameter("name");
         String ordinal=request.getParameter("ordinal");
+        HttpSession session=request.getSession();
+
         try{
-            chapterDAO.update(new Chapter(
-                    Integer.parseInt(id),
-                    Integer.parseInt(courseId),
-                    name,
-                    Integer.parseInt(ordinal)
-            ));
-            response.sendRedirect("/dashboard/chapter?courseid="+courseId);
+            Chapter chapter=chapterDAO.get(Integer.parseInt(id));
+            if(chapter==null){
+                request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
+            }else {
+                chapterDAO.update(new Chapter(
+                        Integer.parseInt(id),
+                        Integer.parseInt(courseId),
+                        name,
+                        Integer.parseInt(ordinal)
+                ));
+                session.setAttribute("success","Update Chapter successfully");
+                response.sendRedirect("/dashboard/chapter?courseid=" + courseId);
+            }
         } catch (Exception e) {
-            request.setAttribute("error", "Please enter a post id");
-            request.getRequestDispatcher("/dashboard/chapter?courseid="+courseId).forward(request, response);
+            response.sendRedirect("/dashboard/chapter?courseid=" + courseId);
+            session.setAttribute("error","Error while updating Chapter");
         }
     }
 

@@ -41,6 +41,7 @@ public class MyProfile extends HttpServlet {
         user.setEmail(email);
 
         userDAO.update(user);
+        session.setAttribute("success","Update profile successfully");
         response.sendRedirect("/my-profile");
     }
 

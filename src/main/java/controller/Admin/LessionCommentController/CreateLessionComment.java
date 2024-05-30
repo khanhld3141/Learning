@@ -7,6 +7,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import model.CourseComment;
 import model.LessionComment;
 
@@ -32,14 +33,19 @@ public class CreateLessionComment extends HttpServlet {
         String parentId=request.getParameter("parentid");
         String content = request.getParameter("content");
 
-        lessionCommentDAO.create(new LessionComment(
-                Integer.parseInt(lessionId),
-                Integer.parseInt(authorId),
-                Integer.parseInt(parentId),
-                content
-        ));
+        HttpSession session=request.getSession();
+        try{
+            lessionCommentDAO.create(new LessionComment(
+                    Integer.parseInt(lessionId),
+                    Integer.parseInt(authorId),
+                    Integer.parseInt(parentId),
+                    content
+            ));
 
-        request.setAttribute("message", "Add new status successfully");
+            session.setAttribute("success","Comment on Lesson successfully");
+        }catch(Exception e){
+            session.setAttribute("error","Comment on Lesson failed");
+        }
         response.sendRedirect("/comments-course");
 
     }

@@ -27,6 +27,7 @@ public class UpdateComment extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         if(request.getParameter("id")!=null){
             String idStr=request.getParameter("id");
+            HttpSession session=request.getSession();
             try{
                 int id=Integer.parseInt(idStr);
                 PostComment postComment = postCommentDAO.get(id);
@@ -38,6 +39,8 @@ public class UpdateComment extends HttpServlet {
             }
 
 
+        }else{
+            request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
         }
     }
 
@@ -47,19 +50,23 @@ public class UpdateComment extends HttpServlet {
         String content = request.getParameter("comment");
         HttpSession session=request.getSession();
         User user=(User)session.getAttribute("user");
-        postCommentDAO.update(
-                new PostComment(
-                        Integer.parseInt(id),
-                        user.getId(),
-                        Integer.parseInt(postid),
-                       0,
-                        content
-                )
-        );
+       try{
+           postCommentDAO.update(
+                   new PostComment(
+                           Integer.parseInt(id),
+                           user.getId(),
+                           Integer.parseInt(postid),
+                           0,
+                           content
+                   )
+           );
 
-        request.setAttribute("message", "Update category successfully");
+           session.setAttribute("success","Update comment successfully");
+
+       }catch (Exception e){
+           session.setAttribute("error","Error while updating comment");
+       }
         response.sendRedirect("/detail-blog?id=" + postid);
-
     }
 
     public void destroy() {

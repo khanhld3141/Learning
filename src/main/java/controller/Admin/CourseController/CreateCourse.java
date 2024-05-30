@@ -39,9 +39,7 @@ public class CreateCourse extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String name = request.getParameter("Name");
         String teacher=request.getParameter("TeacherId");
-        String tech[]=teacher.split("-");
         String category = request.getParameter("CateId");
-        String cate[]=category.split("-");
         String introduce=request.getParameter("Introduce");
         String overview=request.getParameter("Overview");
         String result=request.getParameter("Result");
@@ -50,12 +48,12 @@ public class CreateCourse extends HttpServlet {
         Part image=request.getPart("Image");
         String realPath = request.getServletContext().getRealPath("/images");
         String filename= FileUploadUtil.uploadFile(image,realPath);
-
+        HttpSession session=request.getSession();
         try{
             Course course=new Course(
-                    Integer.parseInt(tech[0]),
+                    Integer.parseInt(teacher),
                     Integer.parseInt(price),
-                    Integer.parseInt(cate[0]),
+                    Integer.parseInt(category),
                     name,
                     introduce,
                     filename,
@@ -63,11 +61,12 @@ public class CreateCourse extends HttpServlet {
                     result
             );
             courseDAO.create(course);
-            response.sendRedirect("/dashboard/courses");
+            session.setAttribute("success","Add new Course successfully");
+
        }catch (Exception e){
-           request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
-           e.printStackTrace();
+           session.setAttribute("error","Error while creating new Course");
        }
+        response.sendRedirect("/dashboard/courses");
     }
     public void destroy() {
     }

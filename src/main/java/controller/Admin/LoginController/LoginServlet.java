@@ -30,7 +30,7 @@ public class LoginServlet extends HttpServlet {
         LoginDAO loginDAO = new LoginDAO();
         User user = loginDAO.login(email);
         if (user == null) {
-            request.setAttribute("error", "username invalid");
+            request.setAttribute("email","Email not valid");
             request.getRequestDispatcher("Login/Login.jsp").forward(request, response);
         } else {
             String pass = "";
@@ -40,8 +40,8 @@ public class LoginServlet extends HttpServlet {
                 throw new RuntimeException(e);
             }
             if (!pass.equals(password)) {
-                request.setAttribute("error", "password incorrect");
-                request.getRequestDispatcher("Login/index.jsp").forward(request, response);
+                request.setAttribute("password", "password incorrect");
+                request.getRequestDispatcher("Login/Login.jsp").forward(request, response);
             } else {
                 session.setAttribute("user", user);
                 response.sendRedirect("/home");

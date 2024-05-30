@@ -6,6 +6,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import model.User;
 
 import java.io.IOException;
@@ -33,19 +34,21 @@ public class CreateUser extends HttpServlet {
         String password = request.getParameter("Password");
         String balanceStr = request.getParameter("Balance");
         User userExisted = userDao.getByUserName(username);
+        HttpSession  session=request.getSession();
         if (userExisted != null) {
-            response.sendRedirect("/dashboard/users?error=Username&already&exist");
-        } else {
+            session.setAttribute("error","User already exists");
 
+        } else {
             try {
                 User user = new User(Integer.parseInt(balanceStr), name, username, phone, role, email, password);
                 userDao.create(user);
-                response.sendRedirect("/dashboard/users");
+                session.setAttribute("success","Add new User successfully");
             } catch (Exception e) {
-                request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
-                e.printStackTrace();
+               session.setAttribute("error","Error while add new User");
             }
+
         }
+        response.sendRedirect("/dashboard/users");
 
 
     }

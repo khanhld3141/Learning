@@ -17,10 +17,13 @@ public class DeleteChapter extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+
         if(request.getParameter("id")!=null && request.getParameter("courseid")!=null){
             String id=request.getParameter("id");
             String courseId=request.getParameter("courseid");
+            HttpSession session=request.getSession();
             chapterDAO.delete(Integer.parseInt(id));
+            session.setAttribute("success","Delete Chapter successfully");
             response.sendRedirect("/dashboard/chapter?courseid="+courseId);
         }else{
             request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);

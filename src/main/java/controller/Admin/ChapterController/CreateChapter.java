@@ -18,30 +18,26 @@ public class CreateChapter extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        if(request.getParameter("postid")!=null){
-            String id=request.getParameter("id");
-            request.setAttribute("postid",id);
-            request.getRequestDispatcher("").forward(request,response);
-        }else{
-            request.setAttribute("error","Please enter a post id");
-            request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
-        }
+
     }
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String courseId=request.getParameter("courseid");
         String name=request.getParameter("name");
         String ordinal=request.getParameter("ordinal");
+        HttpSession session=request.getSession();
         try{
             chapterDAO.create(new Chapter(
                     Integer.parseInt(courseId),
                     name,
                     Integer.parseInt(ordinal)
             ));
+            session.setAttribute("success","Add new Chapter successfully");
             response.sendRedirect("/dashboard/chapter?courseid="+courseId);
         }catch (Exception e){
-            request.setAttribute("error","Please enter a post id");
-            request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
+            session.setAttribute("error","Error while creating new Chapter");
+            response.sendRedirect("/dashboard/chapter?courseid="+courseId);
         }
+
     }
     public void destroy() {
     }

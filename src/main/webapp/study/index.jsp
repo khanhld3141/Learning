@@ -25,7 +25,7 @@
     <%--font awesome--%>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <%--  css--%>
     <link rel="stylesheet" href="../assets/css/reset.css">
     <link rel="stylesheet" href="../assets/css/study/study.css">
@@ -41,7 +41,7 @@
 
         <%--            begin head--%>
         <div class="head">
-            <div class="head-back"><a href="../Home"><i class="fa-solid fa-arrow-left"></i></a></div>
+            <div class="head-back"><a href="/home"><i class="fa-solid fa-arrow-left"></i></a></div>
             <a href="" class="head-logo"><img src="../img/study/6783729.png" alt=""></a>
             <div class="head-title">HTML CSS for beginners</div>
             <div class="progress-bar">
@@ -424,7 +424,54 @@
 
 
 </script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+<script type="text/javascript">
+    function showToast(message, type) {
+        let backgroundColor, className;
+        if (type === "1") {
+            backgroundColor = "linear-gradient(to right, #00b09b, #96c93d)";
+            className = "success"
+        } else if (type === "0") {
+            backgroundColor = "linear-gradient(to right, #ff5f6d, #ffc371)";
+            className = "error"
+        }
 
+        Toastify({
+            text: message,
+            duration: 3000,
+            close: true,
+            gravity: "bottom",
+            position: "right",
+            backgroundColor: backgroundColor,
+            stopOnFocus: true,
+            className: className,
+
+        }).showToast();
+    }
+    window.addEventListener('pageshow', function(event) {
+        if (event.persisted) {
+            window.location.reload();
+        }
+    });
+    <%
+        if (session.getAttribute("success")!=null) {
+    %>
+    showToast("<%= session.getAttribute("success") %>", "1");
+    <%
+    session.setAttribute("success",null);
+      }
+    %>
+
+    <%
+
+      if (session.getAttribute("error")!=null) {
+  %>
+    showToast("<%= session.getAttribute("error") %>", "0");
+    <%
+    session.setAttribute("error",null);
+      }
+    %>
+</script>
 
 </body>
 </html>

@@ -43,6 +43,7 @@ public class UpdateCourse extends HttpServlet {
                 request.setAttribute("course", course);
                 request.getRequestDispatcher("/dashboard_courses/update-courses.jsp").forward(request, response);
             } catch (Exception e) {
+                request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
                 e.printStackTrace();
             }
 
@@ -55,9 +56,7 @@ public class UpdateCourse extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String name = request.getParameter("Name");
         String teacher=request.getParameter("TeacherId");
-        String tech[]=teacher.split("-");
         String category = request.getParameter("CateId");
-        String cate[]=category.split("-");
         String id = request.getParameter("Id");
         String introduce = request.getParameter("Introduce");
         String overview = request.getParameter("Overview");
@@ -66,21 +65,24 @@ public class UpdateCourse extends HttpServlet {
 
 
         Course course = courseDAO.get(Integer.parseInt(id));
-
+        HttpSession session=request.getSession();
         try {
             course.setName(name);
             course.setPrice(Integer.parseInt(price));
             course.setIntroduce(introduce);
             course.setOverview(overview);
             course.setResult(result);
-            course.setTeacherId(Integer.parseInt(tech[0]));
-            course.setCateId(Integer.parseInt(cate[0]));
+            course.setTeacherId(Integer.parseInt(teacher));
+            course.setCateId(Integer.parseInt(category));
+
             courseDAO.update(course);
-            response.sendRedirect("/dashboard/courses");
+            session.setAttribute("success","Update Course successfully");
+
         } catch (Exception e) {
-            request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
+            session.setAttribute("error","Error while updating Course");
             e.printStackTrace();
         }
+        response.sendRedirect("/dashboard/courses");
     }
 
     public void destroy() {

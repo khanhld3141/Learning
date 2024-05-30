@@ -26,6 +26,7 @@ public class GetChapter extends HttpServlet {
         if(request.getParameter("courseid")!=null){
             String courseid = request.getParameter("courseid");
             try {
+
                 int courseId=Integer.parseInt(courseid);
                 List<Chapter> chapters=chapterDAO.getAllChapters(courseId);
                 Course course = courseDAO.get(courseId);
@@ -33,8 +34,7 @@ public class GetChapter extends HttpServlet {
                 request.setAttribute("chapters", chapters);
                 request.getRequestDispatcher("/dashboard_chapter/index.jsp").forward(request,response);
             }catch (Exception e) {
-                request.setAttribute("error", "Please enter a course ID");
-                request.getRequestDispatcher("/dashboard/courses").forward(request, response);
+                request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
             }
         }else{
             request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);

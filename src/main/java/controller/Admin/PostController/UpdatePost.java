@@ -12,6 +12,7 @@ import jakarta.servlet.annotation.*;
 import model.Hashtag;
 import model.Post;
 import model.Status;
+import model.User;
 
 @MultipartConfig
 @WebServlet(name = "UpdatePostServlet", value = "/dashboard/update-post")
@@ -51,11 +52,9 @@ public class UpdatePost extends HttpServlet {
         String content = request.getParameter("Content");
         String comment = request.getParameter("comment");
         String title = request.getParameter("title");
-        Part image = request.getPart("image");
         String id = request.getParameter("id");
-        String author = request.getParameter("author");
-        String authors[] = author.split("-");
-
+        HttpSession session=request.getSession();
+        User user = (User) session.getAttribute("user");
         Post post = postDAO.get(Integer.parseInt(id));
         hashtagDAO.deleteAllOfPost(post.getId());
         String[] hashtags = request.getParameterValues("hashtag[]");
@@ -69,12 +68,13 @@ public class UpdatePost extends HttpServlet {
         }
         try {
             postDAO.update(new Post(title, content, comment, post.getImage(), Integer.parseInt(id),
-                    Integer.parseInt(authors[0])));
-            response.sendRedirect("/dashboard/posts");
+                    user.getId()));
+
+            session.setAttribute("success","Update Post successfully");
         } catch (Exception e) {
-            request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
-            e.printStackTrace();
+            session.setAttribute("error", "Error while updating Post");
         }
+        response.sendRedirect("/dashboard/posts");
     }
 
     public void destroy() {

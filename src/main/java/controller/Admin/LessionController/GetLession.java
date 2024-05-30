@@ -41,9 +41,10 @@ public class GetLession extends HttpServlet {
                 request.setAttribute("chapter", chapter);
                 request.getRequestDispatcher("/dashboard_lesson/index.jsp").forward(request,response);
             }catch (Exception e) {
-                request.setAttribute("error", "Please enter a course ID");
-                request.getRequestDispatcher("/dashboard/courses").forward(request, response);
+                response.sendRedirect("/dashboard/courses");
             }
+        }else{
+            request.getRequestDispatcher("/404notfound/index.jsp").forward(request,response);
         }
     }
 

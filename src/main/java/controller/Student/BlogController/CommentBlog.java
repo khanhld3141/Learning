@@ -40,10 +40,11 @@ public class CommentBlog extends HttpServlet {
                     0,
                     comment
             ));
-            response.sendRedirect("/detail-blog?id="+postid);
+            session.setAttribute("success","Comment successfully");
         }catch (Exception e){
-            e.printStackTrace();
+           session.setAttribute("error","Error while comment in post");
         }
+        response.sendRedirect("/detail-blog?id="+postid);
     }
     public void destroy() {
     }

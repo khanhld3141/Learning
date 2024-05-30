@@ -6,6 +6,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import model.User;
 
 import java.io.IOException;
@@ -22,14 +23,16 @@ public class UpdateUser extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         if(request.getParameter("id")!=""){
             String idStr=request.getParameter("id");
+            HttpSession session=request.getSession();
             try{
                 int id=Integer.parseInt(idStr);
                 User user= userDAO.get(id);
                 request.setAttribute("user", user);
+
                 request.getRequestDispatcher("/dashboard_user/update-user.jsp").forward(request,response);
             }catch (Exception e){
-                request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
-                e.printStackTrace();
+                session.setAttribute("error","Error while updating user");
+                response.sendRedirect("/dashboard/users");
             }
 
 
@@ -46,16 +49,16 @@ public class UpdateUser extends HttpServlet {
         String email = request.getParameter("Email");
         String password = request.getParameter("Password");
         String balance = request.getParameter("Balance");
-
+        HttpSession session=request.getSession();
         try {
             User user = new User(Integer.parseInt(id),Integer.parseInt(balance), name, username, phone, role, email,
                     password);
             userDAO.update(user);
-            response.sendRedirect("/dashboard/users");
+            session.setAttribute("success","Update user successfully");
         } catch (Exception e) {
-            request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
-            e.printStackTrace();
+           session.setAttribute("error","Error while updating user");
         }
+        response.sendRedirect("/dashboard/users");
 
     }
 

@@ -4,6 +4,7 @@ import java.io.*;
 import java.util.List;
 
 import dal.*;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import model.*;
@@ -30,8 +31,9 @@ public class BuyCourse extends HttpServlet {
         userDAO = new UserDAO();
     }
 
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         if (request.getParameter("courseid") != null) {
+            HttpSession session=request.getSession();
             try {
                 int id = Integer.parseInt(request.getParameter("courseid"));
                 Course course = courseDAO.get(id);
@@ -51,17 +53,20 @@ public class BuyCourse extends HttpServlet {
 
                 request.getRequestDispatcher("/BuyCourse/index.jsp").forward(request, response);
             } catch (Exception e) {
-                e.printStackTrace();
+                session.setAttribute("error","Error while buying Course");
+                response.sendRedirect("/home");
             }
 
 
+        }else{
+            request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
         }
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String courseid = request.getParameter("courseid");
         String voucher = request.getParameter("voucher");
-        System.out.println(courseid);
+        HttpSession session=request.getSession();
         try {
             Voucher v = voucherDAO.findCode(voucher);
             Course course = courseDAO.get(Integer.parseInt(courseid));
@@ -71,12 +76,13 @@ public class BuyCourse extends HttpServlet {
                 v.setUsed(v.getUsed() + 1);
                 voucherDAO.update(v);
             }
-            HttpSession session = request.getSession();
+
             User us = (User) session.getAttribute("user");
 
 
             User user = userDAO.get(us.getId());
             if (user.getBalance() < price) {
+                session.setAttribute("error","You have not enough money");
                 response.sendRedirect("/payment");
             } else {
                 if (price > 0) {
@@ -87,12 +93,15 @@ public class BuyCourse extends HttpServlet {
                         us.getId(),
                         Integer.parseInt(courseid)
                 ));
+               session.setAttribute("success","Buy course successfully");
                 response.sendRedirect("/learning?courseid=" + courseid);
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            session.setAttribute("error","Error while buying the course");
+            response.sendRedirect("/learning?courseid=" + courseid);
         }
+
     }
 
     public void destroy() {

@@ -7,6 +7,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -24,18 +25,17 @@ public class DeleteVoucher extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         if (request.getParameter(("id")) != null) {
             String idStr = request.getParameter(("id"));
-
+            HttpSession session=request.getSession();
             try {
                 int id = Integer.parseInt(idStr);
                 voucherDAO.delete(id);
-                response.sendRedirect("/dashboard/vouchers");
+                session.setAttribute("success","Delete voucher successfully");
             } catch (Exception e) {
-                request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
-                e.printStackTrace();
+                session.setAttribute("error","Error while deleting voucher");
             }
+            response.sendRedirect("/dashboard/vouchers");
         } else {
-            request.setAttribute("message", "Missing parameter id");
-            request.getRequestDispatcher("/dashboard/vouchers").forward(request, response);
+            request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
         }
     }
 
