@@ -117,7 +117,7 @@
                         </div>
                         <div class="password">
                             <label for="Password">Password</label>
-                            <input value="<%=user.getPassword()%>" type="password" name="Password" id="Password"
+                            <input value="<%=user.getPassword()%>" type="text" name="Password" id="Password"
                                    placeholder="Enter password">
                             <span class="error-message" id="passwordError"></span>
                         </div>

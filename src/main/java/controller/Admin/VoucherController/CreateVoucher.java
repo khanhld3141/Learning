@@ -39,16 +39,23 @@ public class CreateVoucher extends HttpServlet {
             String endDay = request.getParameter("Endday");
             String ends[] = endDay.split("T");
 
-            VoucherDAO.create(new Voucher(
-                    code,
-                    starts[0] + " " + starts[1],
-                    ends[0] + " " + ends[1],
-                    Integer.parseInt(quantity),
-                    0,
-                    Integer.parseInt(discount)
-            ));
+            Voucher voucher=VoucherDAO.findCode(code);
+            if(voucher!=null){
+                session.setAttribute("error","Voucher code already exists");
+            }else{
+                VoucherDAO.create(new Voucher(
+                        code,
+                        starts[0] + " " + starts[1],
+                        ends[0] + " " + ends[1],
+                        Integer.parseInt(quantity),
+                        0,
+                        Integer.parseInt(discount)
+                ));
 
-            session.setAttribute("success","Add new voucher successfully");
+                session.setAttribute("success","Add new voucher successfully");
+            }
+
+
         } catch (Exception e) {
             session.setAttribute("error","Error while adding Voucher");
         }

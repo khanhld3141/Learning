@@ -55,6 +55,7 @@ public class UploadUserImage extends HttpServlet {
                 Files.createDirectory(Path.of(realPath));
             }
             user.setAvatar(filename);
+            session.setAttribute("user", user);
             userDAO.update(user);
             session.setAttribute("success","Change avatar successfully");
             photo.write(realPath + "/" + filename);

@@ -68,38 +68,68 @@ public class BuyCourse extends HttpServlet {
         String voucher = request.getParameter("voucher");
         HttpSession session=request.getSession();
         try {
-            Voucher v = voucherDAO.findCode(voucher);
             Course course = courseDAO.get(Integer.parseInt(courseid));
             int price = course.getPrice();
-            if (v != null) {
-                price -= v.getDiscount();
-                v.setUsed(v.getUsed() + 1);
-                voucherDAO.update(v);
-            }
-
-            User us = (User) session.getAttribute("user");
+            if(voucher.equals("")){
+                User us = (User) session.getAttribute("user");
 
 
-            User user = userDAO.get(us.getId());
-            if (user.getBalance() < price) {
-                session.setAttribute("error","You have not enough money");
-                response.sendRedirect("/payment");
-            } else {
-                if (price > 0) {
-                    user.setBalance(user.getBalance() - price);
-                    userDAO.deposit(user);
+                User user = userDAO.get(us.getId());
+                if (user.getBalance() < price) {
+                    session.setAttribute("error","You have not enough money");
+                    response.sendRedirect("/payment");
+                } else {
+                    if (price > 0) {
+                        user.setBalance(user.getBalance() - price);
+                        userDAO.deposit(user);
+                    }
+                    userCourseDAO.create(new UserCourse(
+                            us.getId(),
+                            Integer.parseInt(courseid)
+                    ));
+                    session.setAttribute("success","Buy course successfully");
+                    response.sendRedirect("/learning?courseid=" + courseid);
                 }
-                userCourseDAO.create(new UserCourse(
-                        us.getId(),
-                        Integer.parseInt(courseid)
-                ));
-               session.setAttribute("success","Buy course successfully");
-                response.sendRedirect("/learning?courseid=" + courseid);
+            }else{
+                Voucher v = voucherDAO.findCodeToApply(voucher);
+
+                if (v != null) {
+                    if(v.getQuantity()>v.getUsed()){
+                        price -= v.getDiscount();
+                        v.setUsed(v.getUsed() + 1);
+                        voucherDAO.update(v);
+                        User us = (User) session.getAttribute("user");
+
+
+                        User user = userDAO.get(us.getId());
+                        if (user.getBalance() < price) {
+                            session.setAttribute("error","You have not enough money");
+                            response.sendRedirect("/payment");
+                        } else {
+                            if (price > 0) {
+                                user.setBalance(user.getBalance() - price);
+                                userDAO.deposit(user);
+                            }
+                            userCourseDAO.create(new UserCourse(
+                                    us.getId(),
+                                    Integer.parseInt(courseid)
+                            ));
+                            session.setAttribute("success","Buy course successfully");
+                            response.sendRedirect("/learning?courseid=" + courseid);
+                        }
+                    }else{
+                        session.setAttribute("error","Voucher cannot use");
+                        response.sendRedirect("/buy?courseid=" + courseid);
+                    }
+                }else{
+                    session.setAttribute("error","Voucher not exists");
+                    response.sendRedirect("/buy?courseid=" + courseid);
+                }
             }
 
         } catch (Exception e) {
             session.setAttribute("error","Error while buying the course");
-            response.sendRedirect("/learning?courseid=" + courseid);
+            response.sendRedirect("/buy?courseid=" + courseid);
         }
 
     }

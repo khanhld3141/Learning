@@ -33,7 +33,7 @@ public class CreateUser extends HttpServlet {
         String email = request.getParameter("Email");
         String password = request.getParameter("Password");
         String balanceStr = request.getParameter("Balance");
-        User userExisted = userDao.getByUserName(username);
+        User userExisted = userDao.getByEmail(email);
         HttpSession  session=request.getSession();
         if (userExisted != null) {
             session.setAttribute("error","User already exists");
