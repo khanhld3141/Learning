@@ -48,11 +48,11 @@
                     <span>LOGIN</span>
                 </button>
                 <div class="otherlogin">
-                    <p style="display: inline;">or login with</p>
                     <a class="loginwithgoogle"
                        href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:8080/loginwithgoogle&response_type=code
 		            &client_id=412850504579-nqra0ggs5bqpvlgmu0u062ajd7ua5pfv.apps.googleusercontent.com&approval_prompt=force">
-                        <i class="fa-brands fa-google"></i> Google
+                        <img src="../img/login-img/icons8-google.svg" alt="">
+                        <p>Login with Google</p>
                     </a>
                 </div>
                 <p class="form-notice">
