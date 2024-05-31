@@ -170,6 +170,27 @@
 .loginwithgoogle{
     padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 18px;
+    border-radius: 24px;
     margin-left: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.loginwithgoogle:hover{
+    background-color: #ccc;
+    cursor: pointer;
+}
+
+.loginwithgoogle p{
+    flex-grow: 1;
+    text-align: center;
+    margin-right: 30px;
+    color: #000;
+    font-weight: 500;
+}
+
+.loginwithgoogle img{
+    width: 20px;
+    height: 20px;
 }
