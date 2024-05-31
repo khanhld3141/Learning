@@ -41,7 +41,7 @@ public class ajaxServlet extends HttpServlet {
         depositDAO.create(new Deposit(
                 us.getId(),
                 money,
-                2
+                "Successfully"
         ));
         User user=userDAO.get(us.getId());
         user.setBalance(user.getBalance()+money);

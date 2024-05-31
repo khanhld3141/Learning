@@ -232,6 +232,13 @@ public class UserDAO extends DBContext {
                         rs.getString("Password")
                 );
                 user.setAvatar(rs.getString("Avatar"));
+                String password = "";
+                try {
+                    password = AESUtil.decrypt(user.getPassword());
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+                user.setPassword(password);
                 return user;
             }
         } catch (SQLException e) {
@@ -335,19 +342,18 @@ public class UserDAO extends DBContext {
         }
     }
     public void update(User user) {
-        String sql = "update users set Name=?,UserName=?,Email=?,Password=?,Phone=?,Role=?,Balance=?,Avatar=? where " +
+        String sql = "update users set Name=?,UserName=?,Email=?,Phone=?,Role=?,Balance=?,Avatar=? where " +
                 "Id=? ";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setString(1, user.getName());
             st.setString(2, user.getUsername());
             st.setString(3, user.getEmail());
-            st.setString(4, user.getPassword());
-            st.setString(5, user.getPhone());
-            st.setString(6, user.getRole());
-            st.setInt(7, user.getBalance());
-            st.setString(8,user.getAvatar());
-            st.setInt(9, user.getId());
+            st.setString(4, user.getPhone());
+            st.setString(5, user.getRole());
+            st.setInt(6, user.getBalance());
+            st.setString(7,user.getAvatar());
+            st.setInt(8, user.getId());
             // Execute the update
             st.executeUpdate();
         } catch (SQLException e) {

@@ -29,7 +29,7 @@ public class ChangePassword extends HttpServlet {
            HttpSession session = request.getSession();
            User us = (User)session.getAttribute("user");
            User user = userDAO.get(us.getId());
-           boolean check= AESUtil.encrypt(oldPassword).equals(user.getPassword());
+           boolean check= oldPassword.equals(user.getPassword());
 
            if(!check){
                session.setAttribute("error","Password is incorrect");

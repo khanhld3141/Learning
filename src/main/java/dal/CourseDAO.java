@@ -117,6 +117,48 @@ public class CourseDAO extends DBContext {
         }
         return list;
     }
+    public List<Course> searchByNameOfTeacher(int teacherid,int page, int recordsPerPage,String query) {
+        List<Course> list = new ArrayList<>();
+        String sql = "select courses.*,Categories.Name as CateName,Categories.Image as CateImage,Users.Name as Teacher from courses \n" +
+                "                left join Categories on Categories.id=Courses.CateId\n" +
+                "\t\t\t\tleft join Users on Courses.TeacherId=users.id where Courses.TeacherId=? and courses" +
+                ".name like ? ORDER BY Id OFFSET" +
+                " ?" +
+                " " +
+                "ROWS FETCH NEXT ? ROWS ONLY";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            int offset = (page - 1) * recordsPerPage;
+            st.setInt(1,teacherid);
+            st.setString(2,"%"+query+"%");
+            st.setInt(3, offset);
+            st.setInt(4, recordsPerPage);
+            ResultSet rs = st.executeQuery();
+            Course course = null;
+            while (rs.next()) {
+
+                course = new Course(
+                        rs.getInt("Id"),
+                        rs.getInt("TeacherId"),
+                        rs.getInt("price"),
+                        rs.getInt("CateId"),
+                        rs.getString("Name"),
+                        rs.getString("Introduce"),
+                        rs.getString("Image"),
+                        rs.getString("Overview"),
+                        rs.getString("Result")
+                );
+
+                course.setCategory(new Category(rs.getString("CateName"),rs.getString("CateImage")));
+                course.setTeacher(new User(rs.getInt("TeacherId"),rs.getString("Teacher"),"","","","",""));
+                list.add(course);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
     public List<Course> getCourseByCate(int page, int recordsPerPage,int cate) {
         List<Course> list = new ArrayList<>();
         String sql = "select courses.*,Categories.Name as CateName,Categories.Image as CateImage,Users.Name as Teacher from courses \n" +

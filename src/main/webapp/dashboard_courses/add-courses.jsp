@@ -21,12 +21,12 @@
                         <div class="teacher-courses">
                             <label for="_TeacherId">Teacher</label>
                             <%--                            <input list="_TeacherId" name="TeacherId" id="TeacherId" placeholder="Choose a teacher" required>--%>
-                            <select id="_TeacherId">
+                            <select name="TeacherId" id="_TeacherId">
                                 <%
                                     if (request.getAttribute("teachers") != null) {
                                         List<User> teachers = (List<User>) request.getAttribute("teachers");
                                         for (User user : teachers) { %>
-                                <option value="<%=user.getId() + "-" +user.getName()%>"><%=user.getName()%></option>
+                                <option value="<%=user.getId()%>"><%=user.getName()%></option>
                                 <%
                                         }
                                     }
@@ -36,7 +36,7 @@
                         <div class="cate-courses">
                             <label for="_CateId">Category</label>
 <%--                            <input list="_CateId" name="CateId" id="CateId" placeholder="Choose a category" required>--%>
-                            <select id="_CateId">
+                            <select id="_CateId" name="CateId">
                                 <%
                                     if (request.getAttribute("categories") != null) {
                                         List<Category> categories = (List<Category>) request.getAttribute("categories");

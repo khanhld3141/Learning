@@ -64,6 +64,7 @@ public class CreateCourse extends HttpServlet {
             session.setAttribute("success","Add new Course successfully");
 
        }catch (Exception e){
+            e.printStackTrace();
            session.setAttribute("error","Error while creating new Course");
        }
         response.sendRedirect("/dashboard/courses");

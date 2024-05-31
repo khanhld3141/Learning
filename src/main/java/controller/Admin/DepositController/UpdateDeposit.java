@@ -8,6 +8,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import model.Deposit;
 import model.Status;
 import model.User;
@@ -47,31 +48,25 @@ public class UpdateDeposit extends HttpServlet {
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        HttpSession session=request.getSession();
        try{
+
            String id = request.getParameter("id");
            String userId = request.getParameter("userid");
            String amountOfMoney = request.getParameter("amountofmoney");
            String status = request.getParameter("status");
-           String statuss[] = status.split("-");
 
            depositDAO.update(new Deposit(
                    Integer.parseInt(id),
                    Integer.parseInt(userId),
                    Integer.parseInt(amountOfMoney),
-                   Integer.parseInt(statuss[0])
+                   status
            ));
-          if(statuss[0].equals("2")){
-              User user=userDAO.get(Integer.parseInt(userId));
-              user.setBalance(user.getBalance()+Integer.parseInt(amountOfMoney));
-              userDAO.deposit(user);
-          }
-           request.setAttribute("message", "Update category successfully");
-           response.sendRedirect("/dashboard/deposits");
+           session.setAttribute("success","Update deposit successfully");
        }catch (Exception e){
-           request.getRequestDispatcher("/404notfound/index.jsp").forward(request, response);
-           e.printStackTrace();
+           session.setAttribute("error","Error while updating deposit");
        }
-
+        response.sendRedirect("/dashboard/deposits");
     }
 
     public void destroy() {

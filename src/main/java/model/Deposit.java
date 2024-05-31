@@ -2,25 +2,26 @@ package model;
 
 public class Deposit {
 
-    private int Id,UserId,AmountOfMoney,StatusId;
+    private int Id,UserId,AmountOfMoney;
+    private String Status;
     private User user;
-    private Status status;
+
     public Deposit() {
         user = new User();
     }
 
-    public Deposit(int userId, int amountOfMoney, int status) {
+    public Deposit(int userId, int amountOfMoney, String status) {
         UserId = userId;
         AmountOfMoney = amountOfMoney;
-        this.StatusId = status;
+        this.Status = status;
         user = new User();
     }
 
-    public Deposit(int id, int userId, int amountOfMoney, int status) {
+    public Deposit(int id, int userId, int amountOfMoney, String status) {
         Id = id;
         UserId = userId;
         AmountOfMoney = amountOfMoney;
-        this.StatusId = status;
+        this.Status = status;
         user = new User();
     }
 
@@ -48,12 +49,12 @@ public class Deposit {
         AmountOfMoney = amountOfMoney;
     }
 
-    public int getStatusId() {
-        return StatusId;
+    public String getStatus() {
+        return Status;
     }
 
-    public void setStatusId(int statusId) {
-        StatusId = statusId;
+    public void setStatus(String status) {
+        Status = status;
     }
 
     public User getUser() {
@@ -64,11 +65,4 @@ public class Deposit {
         this.user = user;
     }
 
-    public Status getStatus() {
-        return status;
-    }
-
-    public void setStatus(Status status) {
-        this.status = status;
-    }
 }

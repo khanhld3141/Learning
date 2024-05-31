@@ -42,10 +42,8 @@ public class GetDeposit extends HttpServlet {
             query=request.getParameter("query");
         }
         List<Deposit> lists = depositDAO.searchByName(page,10,query);
-        List<Status> statuses=statusDAO.getAllStatuss();
         List<User> users=userDAO.getAllUser();
         request.setAttribute("users",users);
-        request.setAttribute("statuss",statuses);
         request.setAttribute("deposits", lists);
         request.getRequestDispatcher("/dashboard_deposit/index.jsp").forward(request, response);
     }

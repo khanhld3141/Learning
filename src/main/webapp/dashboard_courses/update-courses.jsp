@@ -17,19 +17,19 @@
                     if (request.getAttribute("course") != null) {
 
                         Course course = (Course) request.getAttribute("course");
-                        String tech = "";
+                        int tech=0;
                         List<User> teachers = (List<User>) request.getAttribute("teachers");
                         for (User user : teachers) {
                             if (user.getId() == course.getTeacherId()) {
-                                tech = user.getId() + "-" + user.getName();
+                                tech = user.getId();
                                 break;
                             }
                         }
                         List<Category> categories = (List<Category>) request.getAttribute("categories");
-                        String cate = "";
+                        int cate=0;
                         for (Category category : categories) {
                             if (category.getId() == course.getCateId()) {
-                                cate = category.getId() + "-" + category.getName();
+                                cate = category.getId();
                                 break;
                             }
                         }
@@ -46,13 +46,14 @@
                 <div class="teacher-cate-courses">
                     <div class="teacher-courses">
                         <label for="_TeacherId">Teacher</label>
-                        <%--                                <input list="_TeacherId" name="TeacherId" id="TeacherId" placeholder="Choose a teacher" required value="<%=tech%>">--%>
-                        <select id="_TeacherId">
+
+                        <select name="TeacherId" id="_TeacherId">
                             <%
                                 if (request.getAttribute("teachers") != null) {
                                     for (User user : teachers) {
                             %>
-                            <option value="<%=user.getId()%>"><%=user.getName()%>
+                            <option selected="<%=user.getId()==tech ? true:false
+                            %>" value="<%=user.getId()%>"><%=user.getName()%>
                             </option>
                             <%
                                     }
@@ -62,8 +63,8 @@
                     </div>
                     <div class="cate-courses">
                         <label for="_CateId">Category</label>
-                        <%--                            <input list="_CateId" name="CateId" id="CateId" placeholder="Choose a category" required value="<%=cate%>">--%>
-                        <select id="_CateId">
+
+                        <select name="CateId" id="_CateId">
                             <%
                                 if (request.getAttribute("categories") != null) {
 
@@ -71,7 +72,8 @@
 
 
                             %>
-                            <option value="<%=category.getId()%>"><%=category.getName()%>
+                            <option  selected="<%=category.getId()==cate ? true:false
+                            %>" value="<%=category.getId()%>"><%=category.getName()%>
                             </option>
                             <%
                                     }

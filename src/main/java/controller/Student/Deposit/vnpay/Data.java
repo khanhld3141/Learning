@@ -31,7 +31,7 @@ private DepositDAO depositDAO;
           depositDAO.create(new Deposit(
                   user.getId(),
                   Integer.parseInt(amount),
-                  1
+                  "Successfully"
           ));
 
           request.setAttribute("message","Add new deposit successfully");

@@ -17,8 +17,7 @@ public class DepositDAO extends DBContext {
 
     public List<Deposit> getAllDeposits(int page,int recordsPerPage) {
         List<Deposit> list = new ArrayList<>();
-        String sql = "select Users.*,AmountOfMoney,StatusId,Statuss.Name as NameStatus,Deposits.Id as IdD from Deposits \n" +
-                "left join Statuss on Deposits.StatusId=Statuss.Id\n" +
+        String sql = "select Users.*,AmountOfMoney,Status,Deposits.Id as IdD from Deposits \n" +
                 "left join Users on Deposits.UserId=Users.Id   ORDER BY Id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
 
         try {
@@ -33,12 +32,9 @@ public class DepositDAO extends DBContext {
                         rs.getInt("IdD"),
                         rs.getInt("Id"),
                         rs.getInt("AmountOfMoney"),
-                        rs.getInt("StatusId")
+                        rs.getString("Status")
                 );
-                deposit.setStatus(new Status(
-                        rs.getInt("StatusId"),
-                        rs.getString("NameStatus")
-                ));
+
                 deposit.setUser(new User(
                         rs.getInt("Id"),
                         rs.getInt("Balance"),
@@ -59,7 +55,7 @@ public class DepositDAO extends DBContext {
     }
     public List<Deposit> getAllMyDeposits(int userid) {
         List<Deposit> list = new ArrayList<>();
-        String sql = "select Deposits.*,Statuss.Name as Status from Deposits inner join Statuss on Statuss.Id=Deposits.StatusId\n" +
+        String sql = "select Deposits.* from Deposits " +
                 "where userid=?";
 
         try {
@@ -72,12 +68,8 @@ public class DepositDAO extends DBContext {
                         rs.getInt("Id"),
                         rs.getInt("Userid"),
                         rs.getInt("AmountOfMoney"),
-                        rs.getInt("StatusId")
-                );
-                deposit.setStatus(new Status(
-                        rs.getInt("StatusId"),
                         rs.getString("Status")
-                ));
+                );
                 list.add(deposit);
             }
 
@@ -88,9 +80,8 @@ public class DepositDAO extends DBContext {
     }
     public List<Deposit> searchByName(int page,int recordsPerPage,String name) {
         List<Deposit> list = new ArrayList<>();
-        String sql = "select Users.*,AmountOfMoney,StatusId,Statuss.Name as NameStatus,Deposits.Id as IdD from Deposits \n" +
-                "left join Statuss on Deposits.StatusId=Statuss.Id\n" +
-                "left join Users on Deposits.UserId=Users.Id where Statuss.Name like ?  ORDER BY Id OFFSET ? ROWS " +
+        String sql = "select Users.*,AmountOfMoney,Status,Deposits.Id as IdD from Deposits \n" +
+                "left join Users on Deposits.UserId=Users.Id where Status like ?  ORDER BY Id OFFSET ? ROWS " +
                 "FETCH NEXT ? ROWS ONLY";
 
         try {
@@ -106,12 +97,9 @@ public class DepositDAO extends DBContext {
                         rs.getInt("IdD"),
                         rs.getInt("Id"),
                         rs.getInt("AmountOfMoney"),
-                        rs.getInt("StatusId")
+                        rs.getString("Status")
                 );
-                deposit.setStatus(new Status(
-                        rs.getInt("StatusId"),
-                        rs.getString("NameStatus")
-                ));
+
                 deposit.setUser(new User(
                         rs.getInt("Id"),
                         rs.getInt("Balance"),
@@ -133,8 +121,8 @@ public class DepositDAO extends DBContext {
 
     public Deposit get(int id) {
         List<Deposit> list = new ArrayList<>();
-        String sql = "select Users.*,AmountOfMoney,StatusId,Statuss.Name as NameStatus,Deposits.Id as IdD from Deposits \n" +
-                "left join Statuss on Deposits.StatusId=Statuss.Id\n" +
+        String sql = "select Users.*,AmountOfMoney,Status,Deposits.Id as IdD from " +
+                "Deposits \n" +
                 "left join Users on Deposits.UserId=Users.Id WHERE  Deposits.Id=?";
 
         try {
@@ -147,12 +135,9 @@ public class DepositDAO extends DBContext {
                         rs.getInt("IdD"),
                         rs.getInt("Id"),
                         rs.getInt("AmountOfMoney"),
-                        rs.getInt("StatusId")
+                        rs.getString("Status")
                 );
-                deposit.setStatus(new Status(
-                        rs.getInt("StatusId"),
-                        rs.getString("NameStatus")
-                ));
+
                 deposit.setUser(new User(
                         rs.getInt("Id"),
                         rs.getInt("Balance"),
@@ -173,12 +158,12 @@ public class DepositDAO extends DBContext {
     }
 
     public void create(Deposit Deposit) {
-        String sql = "insert into Deposits (UserId,AmountOfMoney,StatusId) values(?,?,?)";
+        String sql = "insert into Deposits (UserId,AmountOfMoney,Status) values(?,?,?)";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setInt(1, Deposit.getUserId());
             st.setInt(2, Deposit.getAmountOfMoney());
-            st.setInt(3, Deposit.getStatusId());
+            st.setString(3, Deposit.getStatus());
             // Execute the update
             st.executeUpdate();
         } catch (SQLException e) {
@@ -187,12 +172,12 @@ public class DepositDAO extends DBContext {
     }
 
     public void update(Deposit Deposit) {
-        String sql = "update Deposits set UserId=?,AmountOfMoney =?,StatusId=?  where Id=? ";
+        String sql = "update Deposits set UserId=?,AmountOfMoney =?,Status=?  where Id=? ";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setInt(1, Deposit.getUserId());
             st.setInt(2, Deposit.getAmountOfMoney());
-            st.setInt(3, Deposit.getStatusId());
+            st.setString(3, Deposit.getStatus());
             st.setInt(4, Deposit.getId());
             // Execute the update
             st.executeUpdate();

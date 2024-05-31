@@ -31,9 +31,9 @@
                             <div class="modal-body">
                                 <div class="name-user">
                                     <label for="_Name-user">Name's user</label>
-<%--                                    <input list="_Name-user" name="user" id="Name-user-add"--%>
-<%--                                           placeholder="Choose a user" required>--%>
-                                    <select id="_Name-user">
+                                    <%--                                    <input list="_Name-user" name="user" id="Name-user-add"--%>
+                                    <%--                                           placeholder="Choose a user" required>--%>
+                                    <select name="userid" id="_Name-user">
                                         <%
                                             if (request.getAttribute("users") != null) {
                                                 List<User> users = (List<User>) request.getAttribute("users");
@@ -41,16 +41,18 @@
 
 
                                         %>
-                                        <option value="<%=user.getId()%>"><%=user.getId()%>-<%=user.getName()%></option>
-                                                <%
-                                               }
+                                        <option value="<%=user.getId()%>"><%=user.getName()%>
+                                        </option>
+                                        <%
+                                                }
                                             }
-                                               %>
+                                        %>
                                     </select>
                                 </div>
                                 <div class="money">
                                     <label for="Money-add">Money</label>
-                                    <input type="number" placeholder="Enter amount of money" name="amountofmoney" required
+                                    <input type="number" placeholder="Enter amount of money" name="amountofmoney"
+                                           required
                                            id="Money-add">
                                 </div>
                             </div>
@@ -80,17 +82,10 @@
                 <%
                     if (request.getAttribute("deposits") != null) {
                         List<Deposit> deposits = (List<Deposit>) request.getAttribute("deposits");
-                        List<Status> statuss=(List<Status>) request.getAttribute("statuss");
-                        String  statusValue="";
-
 
 
                         for (Deposit deposit : deposits) {
-                            for(Status status : statuss) {
-                                if(status.getId()==deposit.getStatusId()){
-                                    statusValue=status.getId()+"-"+status.getName();
-                                }
-                            }
+
 
                 %>
                 <tr>
@@ -99,7 +94,7 @@
                     <td><%=deposit.getUser().getName()%>
                     </td>
                     <td><%=deposit.getAmountOfMoney()%>$</td>
-                    <td><%=deposit.getStatus().getName()%>
+                    <td><%=deposit.getStatus()%>
                     </td>
                     <td>
                         <!-- BUTTON TRIGGER UPDATE MODAL  -->
@@ -120,8 +115,9 @@
                                         <div class="modal-body">
                                             <input name="id" value="<%=deposit.getId()%>" hidden="hidden">
                                             <div class="userId">
-<%--                                                <label for="userid-update">User Name</label>--%>
-                                                <input name="userid" value="<%=deposit.getUserId()%>" id="userid-update" readonly hidden>
+                                                <%--                                                <label for="userid-update">User Name</label>--%>
+                                                <input name="userid" value="<%=deposit.getUserId()%>" id="userid-update"
+                                                       readonly hidden>
                                             </div>
                                             <div class="money">
                                                 <label for="Money-update">Money</label>
@@ -132,22 +128,16 @@
 
                                             <div class="status">
                                                 <label for="_Status-name-update">Status</label>
-<%--                                                <input value="<%=statusValue%>" list="_Status-name-update" name="status"--%>
-<%--                                                       id="status-update"--%>
-<%--                                                       placeholder="Choose a status" required>--%>
-                                                <select id="_Status-name-update">
-                                                    <%
-                                                        if (request.getAttribute("statuss") != null) {
-                                                            List<Status> statuses = (List<Status>)
-                                                                    request.getAttribute("statuss");
-                                                            for (Status status : statuses) {
+                                                <%--                                                <input value="<%=statusValue%>" list="_Status-name-update" name="status"--%>
+                                                <%--                                                       id="status-update"--%>
+                                                <%--                                                       placeholder="Choose a status" required>--%>
+                                                <select name="status" id="_Status-name-update">
 
-                                                    %>
-                                                <option value="<%=status.getId()%>"><%=status.getName()%></option>
-                                                            <%
-                                                        }
-                                                            }
-                                                    %>
+                                                    <option value="Successfully">Successfully
+                                                    </option>
+                                                    <option value="Cancel">Cancel
+                                                    </option>
+
                                                 </select>
                                             </div>
 
@@ -228,7 +218,8 @@
         var nextPage = currentPage + 1;
         window.location.href = "/dashboard/deposits?page=" + nextPage;
     }
-    window.onload = function() {
+
+    window.onload = function () {
         var currentPage = <%= request.getParameter("page") != null ? Integer.parseInt(request.getParameter("page")) : 1 %>;
         var previousButton = document.getElementById("prev");
         if (currentPage == 1) {
@@ -237,6 +228,50 @@
             previousButton.disabled = false;
         }
     };
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+<script type="text/javascript">
+    function showToast(message, type) {
+        let backgroundColor, className;
+        if (type === "1") {
+            backgroundColor = "linear-gradient(to right, #00b09b, #96c93d)";
+            className = "success"
+        } else if (type === "0") {
+            backgroundColor = "linear-gradient(to right, #ff5f6d, #ffc371)";
+            className = "error"
+        }
+
+        Toastify({
+            text: message,
+            duration: 3000,
+            close: true,
+            gravity: "bottom",
+            position: "right",
+            backgroundColor: backgroundColor,
+            stopOnFocus: true,
+            className: className,
+
+        }).showToast();
+    }
+
+    <%
+        if (session.getAttribute("success")!=null) {
+    %>
+    showToast("<%= session.getAttribute("success") %>", "1");
+    <%
+    session.setAttribute("success",null);
+      }
+    %>
+
+    <%
+
+      if (session.getAttribute("error")!=null) {
+  %>
+    showToast("<%= session.getAttribute("error") %>", "0");
+    <%
+    session.setAttribute("error",null);
+      }
+    %>
 </script>
 </body>
 </html>

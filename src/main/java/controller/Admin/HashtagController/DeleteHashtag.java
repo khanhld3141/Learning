@@ -17,13 +17,18 @@ public class DeleteHashtag extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        HttpSession session=request.getSession();
         if(request.getParameter("id")!=null){
             String id=request.getParameter("id");
-            hashtagDAO.delete(Integer.parseInt(id));
-            response.sendRedirect("");
+           try{
+               hashtagDAO.delete(Integer.parseInt(id));
+               session.setAttribute("success","Delete hashtag successfully");
+           }catch (Exception e){
+               session.setAttribute("error","Error while deleting hashtag");
+           }
+           response.sendRedirect("/dashboard/hashtags");
         }else{
-            request.setAttribute("error","Please enter a post id");
-            request.getRequestDispatcher("").forward(request,response);
+           request.getRequestDispatcher("/404notfound/index.jsp").forward(request,response);
         }
     }
 

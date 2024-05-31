@@ -114,12 +114,12 @@
 
                         <!-- BUTTON TRIGGER DELETE MODAL  -->
                         <button type="button" class="btn__modal" data-bs-toggle="modal"
-                                data-bs-target="#modal__delete-category" title="Delete hashtag">
+                                data-bs-target="#modal__delete-category_<%=hashtag.getId()%>" title="Delete hashtag">
                             <i class="fa-solid fa-trash"></i>
                         </button>
                     </td>
                     <!--------------- MODAL DELETE---------------------------- -->
-                    <div class="modal fade modal__delete" id="modal__delete-category">
+                    <div class="modal fade modal__delete" id="modal__delete-category_<%=hashtag.getId()%>">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -133,7 +133,9 @@
                                         cannot be recovered.</p>
                                 </div>
                                 <div class="modal-footer">
-                                    <a href="../dashboard_hashtag" class="btn btn-primary">Yes</a>
+                                    <a href="/dashboard/delete-hashtag?id=<%=hashtag.getId() %>"
+                                       class="btn btn-primary">Yes
+                                    </a>
                                     <button type="button" class="btn btn-danger"
                                             data-bs-dismiss="modal">No
                                     </button>
@@ -161,5 +163,49 @@
         </div>
     </div>
 </div>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+<script type="text/javascript">
+    function showToast(message, type) {
+        let backgroundColor, className;
+        if (type === "1") {
+            backgroundColor = "linear-gradient(to right, #00b09b, #96c93d)";
+            className = "success"
+        } else if (type === "0") {
+            backgroundColor = "linear-gradient(to right, #ff5f6d, #ffc371)";
+            className = "error"
+        }
+
+        Toastify({
+            text: message,
+            duration: 3000,
+            close: true,
+            gravity: "bottom",
+            position: "right",
+            backgroundColor: backgroundColor,
+            stopOnFocus: true,
+            className: className,
+
+        }).showToast();
+    }
+
+    <%
+        if (session.getAttribute("success")!=null) {
+    %>
+    showToast("<%= session.getAttribute("success") %>", "1");
+    <%
+    session.setAttribute("success",null);
+      }
+    %>
+
+    <%
+
+      if (session.getAttribute("error")!=null) {
+  %>
+    showToast("<%= session.getAttribute("error") %>", "0");
+    <%
+    session.setAttribute("error",null);
+      }
+    %>
+</script>
 </body>
 </html>
