@@ -46,6 +46,7 @@ public class ajaxServlet extends HttpServlet {
         User user=userDAO.get(us.getId());
         user.setBalance(user.getBalance()+money);
         userDAO.deposit(user);
+        session.setAttribute("user",user);
        response.sendRedirect("/home");
     }
     @Override
