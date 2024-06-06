@@ -32,6 +32,24 @@
 
 </head>
 <body>
+<div style="transform: translateY(40%)" class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">WARNING</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure to delete this comment?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" style="background: linear-gradient(to right, #ef3e0f, #ffb800);">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="study">
     <%
         if (request.getAttribute("course") != null) {
@@ -314,6 +332,19 @@
                                            ` + item.Content + `
                                         </div>
                                     </div>
+                                </div>
+                                <div class="comment-modify">
+                                        <button class="edit" style="border-style: none; background-color: #fff; color:#fd7e14; font-size: 15px; font-weight: 500; cursor: pointer">Edit</button>
+                                        <!-- Button trigger modal -->
+                                        <!-- Button trigger modal -->
+                                        <button style="border-style: none; background-color: #fff; color:#fd7e14; font-size: 15px; font-weight: 500; cursor: pointer" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                          Delete
+                                        </button>
+
+                                        <!-- Modal -->
+
+
+
                                 </div>
                             </div>
                         </div>
