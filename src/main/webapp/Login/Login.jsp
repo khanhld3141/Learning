@@ -58,6 +58,7 @@
                 <p class="form-notice">
                     Don't have an account? 
                     <a href="/register" class="form-signup">Signup Now</a>
+                    <span style="margin-top: 10px; display: block;">Or <a href="" style="color: #ef3e0f;">forgot password?</a></span>
                 </p>
             </form>    
           </div>
