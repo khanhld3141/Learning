@@ -1,22 +1,25 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Hashtag {
 
-    private int Id,PostId;
+    private int Id;
     private String Tag;
-    private Post post;
+    private List<Post> posts;
     public Hashtag() {
     }
 
-    public Hashtag(int postId, String tag) {
-        PostId = postId;
+    public Hashtag( String tag) {
         Tag = tag;
+        posts=new ArrayList<>();
     }
 
-    public Hashtag(int id, int postId, String tag) {
+    public Hashtag(int id, String tag) {
         Id = id;
-        PostId = postId;
         Tag = tag;
+        posts=new ArrayList<>();
     }
 
     public int getId() {
@@ -27,13 +30,6 @@ public class Hashtag {
         Id = id;
     }
 
-    public int getPostId() {
-        return PostId;
-    }
-
-    public void setPostId(int postId) {
-        PostId = postId;
-    }
 
     public String getTag() {
         return Tag;
@@ -43,12 +39,12 @@ public class Hashtag {
         Tag = tag;
     }
 
-    public Post getPost() {
-        return post;
+    public List<Post> getPosts() {
+        return posts;
     }
 
-    public void setPost(Post post) {
-        this.post = post;
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
     }
 }
 

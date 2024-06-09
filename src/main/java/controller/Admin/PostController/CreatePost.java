@@ -6,12 +6,14 @@ import java.util.List;
 import controller.Ulti.FileUploadUtil;
 import dal.HashtagDAO;
 import dal.PostDAO;
+import dal.PostHashtagDAO;
 import dal.UserDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import model.Hashtag;
 import model.Post;
+import model.PostHashtag;
 import model.User;
 
 @MultipartConfig
@@ -21,11 +23,13 @@ public class CreatePost extends HttpServlet {
     private PostDAO postDAO;
     private UserDAO userDAO;
     private HashtagDAO hashtagDAO;
+    private PostHashtagDAO postHashtagDAO;
     public void init() {
         message = "Hello World!";
         postDAO=new PostDAO();
         userDAO=new UserDAO();
         hashtagDAO=new HashtagDAO();
+        postHashtagDAO=new PostHashtagDAO();
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -47,15 +51,24 @@ public class CreatePost extends HttpServlet {
 
 
         try{
-            int postid=postDAO.create(new Post(title,content,comment,filename,user.getId()));
-            if (hashtags != null && postid!=-1) {
+            int postid = postDAO.create(new Post(title, content, comment, filename, user.getId()));
+            if (hashtags != null && postid != -1) {
                 for (String hashtag : hashtags) {
-                   if(!hashtag.isEmpty()){
-                       hashtagDAO.create(new Hashtag(
-                               postid,
-                               hashtag
-                       ));
-                   }
+                    if (!hashtag.isEmpty()) {
+                        Hashtag hashtag1 = hashtagDAO.getByHashtag(hashtag.toLowerCase());
+                        if (hashtag1 != null) {
+                            postHashtagDAO.create(new PostHashtag(
+                                    postid,
+                                    hashtag1.getId()
+                            ));
+                        } else {
+                            int hashtagid= hashtagDAO.create(new Hashtag(postid,hashtag));
+                            postHashtagDAO.create(new PostHashtag(
+                                    postid,
+                                    hashtagid
+                            ));
+                        }
+                    }
                 }
             }
             session.setAttribute("success","Add new Post successfully");

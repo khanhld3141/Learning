@@ -32,6 +32,23 @@
 
 </head>
 <body>
+<div style="transform: translateY(40%)" class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">WARNING</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure to delete this comment?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" style="background: linear-gradient(to right, #ef3e0f, #ffb800);">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="study">
     <%
         if (request.getAttribute("course") != null) {
@@ -43,7 +60,7 @@
         <div class="head">
             <div class="head-back"><a href="/home"><i class="fa-solid fa-arrow-left"></i></a></div>
             <a href="" class="head-logo"><img src="../img/study/6783729.png" alt=""></a>
-            <div class="head-title">HTML CSS for beginners</div>
+            <div class="head-title"><%=c.getName()%></div>
             <div class="progress-bar">
                 <%--            <div class="percent">10%</div>--%>
 
@@ -56,8 +73,8 @@
         <%--  begin video content--%>
         <div class="video-content">
             <div class="main-video">
-                <video autoplay controls width="100%" height="auto">
-                    <source src="">
+                <video controlslist="nodownload" autoplay controls width="100%" height="auto">
+                    <source src="/video?id=11&courseid=1" type="video/mp4">
                 </video>
                 <%--                <iframe src="" frameborder="0" allowfullscreen></iframe>--%>
             </div>
@@ -108,7 +125,8 @@
                                        for(int i=0;i<chapter.getLessions().size();i++){
                                     %>
                                     <li class="video" id="<%=chapter.getLessions().get(i).getLink()%>"
-                                        data-lesson="<%=chapter.getLessions().get(i).getId()%>" data-origin="<%=i+1%>">
+                                        data-lesson="<%=chapter.getLessions().get(i).getId()%>" data-name="<%=chapter.getLessions().get(i).getName()%>" data-description="<%=chapter.getLessions().get(i).getDescription()%>"
+                                        data-origin="<%=i+1%>">
 
                                         <div data-lesson="<%=chapter.getLessions().get(i).getId()%>" class="col1">
                                             <h class="title"><p class="id"><%=i+1%>.</p><%=chapter.getLessions().get(i).getName()%>
@@ -209,6 +227,7 @@
     // xu li dong/mo chapter va  video
     let videos = document.querySelectorAll('.video');
     let main_video = document.querySelector('.main-video video source')
+    let main_video_Video=document.querySelector(".main-video video")
     let main_video_description_title = document.querySelector('.main-video-description .title h')
     let main_video_description_text = document.querySelector('.main-video-description .content')
     main_video.src = "";
@@ -223,28 +242,34 @@
                 all_videos.querySelector('.video .col1 img').src = "../img/study/play.svg"
 
             }
+            main_video_description_title.innerHTML = selected_video.dataset.origin+". "+selected_video.dataset.name;
+            main_video_description_text.innerHTML =selected_video.dataset.description;
+            main_video.src="/video?courseid="+main.dataset.course+"&id="+selected_video.dataset.lesson;
+            main_video_Video.load();
+            main_video_Video.play()
+
 
             selected_video.classList.add('active');
             selected_video.querySelector('.video .col1 img').src = "../img/study/pause.svg"
-            let formData = new FormData();
-            formData.append('courseid', main.dataset.course);
-            formData.append('id', selected_video.dataset.lesson)
-            $.ajax({
-                url: '/get-lesson',
-                type: 'POST',
-                data: formData,
-                processData: false,
-                contentType: false,
-                success: (data) => {
-                    main_video.src = ""
-                    main_video.src = "/images/" + data.Link;
-                    main_video_description_title.innerHTML = selected_video.dataset.origin+". "+ data.Name;
-                    main_video_description_text.innerHTML = data.Description;
-                    col.dataset.lesson = selected_video.dataset.lesson;
-                    main_video.parentElement.load();
-                }
-            })
-            // selected_video.querySelector('img').src = 'images/pause.svg';
+            // let formData = new FormData();
+            // formData.append('courseid', main.dataset.course);
+            // formData.append('id', selected_video.dataset.lesson)
+            // $.ajax({
+            //     url: '/get-lesson',
+            //     type: 'POST',
+            //     data: formData,
+            //     processData: false,
+            //     contentType: false,
+            //     success: (data) => {
+            //         main_video.src = ""
+            //         main_video.src = "/images/" + data.Link;
+            //         main_video_description_title.innerHTML = selected_video.dataset.origin+". "+ data.Name;
+            //         main_video_description_text.innerHTML = data.Description;
+            //         col.dataset.lesson = selected_video.dataset.lesson;
+            //         main_video.parentElement.load();
+            //     }
+            // })
+             selected_video.querySelector('img').src = 'images/pause.svg';
 
 
 
@@ -286,7 +311,6 @@
     function showComment() {
         let formData = new FormData();
         formData.append('id', col.dataset.lesson);
-        console.log(col.dataset.lesson)
         $.ajax({
             url: '/get-comment',
             type: 'POST',
@@ -294,7 +318,6 @@
             processData: false,
             contentType: false,
             success: (data) => {
-                console.log(data);
                 let numberofComments = document.querySelector('#numberComment')
                 numberofComments.innerHTML = '<h4>' + data.length + ' comments </h4>';
                 let html = '';
@@ -314,6 +337,14 @@
                                            ` + item.Content + `
                                         </div>
                                     </div>
+                                </div>
+                                <div class="comment-modify">
+                                        <button class="edit" style="border-style: none; background-color: #fff; color:#fd7e14; font-size: 15px; font-weight: 500; cursor: pointer">Edit</button>
+                                        <!-- Button trigger modal -->
+                                        <!-- Button trigger modal -->
+                                        <button style="border-style: none; background-color: #fff; color:#fd7e14; font-size: 15px; font-weight: 500; cursor: pointer" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                          Delete
+                                        </button>
                                 </div>
                             </div>
                         </div>

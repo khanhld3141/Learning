@@ -605,4 +605,17 @@ body{
         transform: translateY(0);
     }
 }
-    
+
+.comment .comment-modify button{
+    border-style: none;
+    background-color: #fff;
+    color: #fd7e14;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.comment .comment-body{
+    display: flex;
+    flex-direction: column;
+}

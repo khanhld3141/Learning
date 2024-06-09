@@ -50,17 +50,15 @@ public class PostDAO extends DBContext {
 
         List<Post> list = new ArrayList<>();
         String sql = "select posts.*,users.name as UserName from posts inner join users on users.id=posts.AuthorId\n" +
-                "\t\tinner join Hashtags on Hashtags.PostId=Posts.id\n" +
-                "                where title like ? or Tag like ?" +
+                "\t   where Posts.Title like ?" +
                 "  ORDER BY Id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
 
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             int offset = (page - 1) * recordsPerPage;
             st.setString(1,"%" + query + "%");
-            st.setString(2,"%" + query + "%");
-            st.setInt(3, offset);
-            st.setInt(4, recordsPerPage);
+            st.setInt(2, offset);
+            st.setInt(3, recordsPerPage);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 Post Post = new Post(
@@ -85,9 +83,11 @@ public class PostDAO extends DBContext {
     public List<Post> searchByHashTag(int page, int recordsPerPage,String query) {
 
         List<Post> list = new ArrayList<>();
-        String sql = "select posts.*,users.name as UserName from posts inner join users on users.id=posts.AuthorId\n" +
-                "       inner join Hashtags on Hashtags.PostId=Posts.id\n" +
-                "\t   where Hashtags.Tag like ?" +
+        String sql = "select posts.*,users.name as UserName from posts \n" +
+                "\t\t\t\tinner join users on users.id=posts.AuthorId\n" +
+                "                inner join post_hashtag on post_hashtag.postid=posts.id \n" +
+                "\t\t\t\tinner join Hashtags on Hashtags.id=Post_Hashtag.HashtagId\n" +
+                "\t\t\t\twhere tag like ?" +
                 "  ORDER BY Id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
 
         try {

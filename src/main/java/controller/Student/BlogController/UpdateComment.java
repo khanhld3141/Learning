@@ -1,6 +1,5 @@
 package controller.Student.BlogController;
 
-import dal.CourseCommentDAO;
 import dal.PostCommentDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -8,7 +7,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import model.CourseComment;
 import model.PostComment;
 import model.User;
 

@@ -69,7 +69,7 @@
                             }
                         %>
 
-                        <script>
+                       <%-- <script>
                             document.querySelector('.form-add-lesson').addEventListener('submit', function(event) {
                                 let isValid = true;
 
@@ -151,7 +151,7 @@
                                     videoElement.hidden = false;
                                 }
                             });
-                        </script>
+                        </script>--%>
                     </div>
                 </div>
             </div>
@@ -247,7 +247,7 @@
                                 <%
                                     }
                                 %>
-                                <script>
+                               <%-- <script>
                                     document.querySelector('.form-update-lesson').addEventListener('submit', function(event) {
                                         let isValid = true;
 
@@ -261,7 +261,7 @@
                                             nameError.textContent = "";
                                         }
 
-                                        Video file validation
+                                        //Video file validation
                                         const videoInput = document.getElementById('FileUpload-Update');
                                         const videoError = document.getElementById('videoError-Update');
                                         const videoFile = videoInput.files[0];
@@ -327,7 +327,7 @@
                                             videoElement.style.display = 'block';
                                         }
                                     });
-                                </script>
+                                </script>--%>
                             </div>
                         </div>
                     </div>
