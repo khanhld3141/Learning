@@ -606,6 +606,7 @@ body{
     }
 }
 
+.comment .comment-modify button a,
 .comment .comment-modify button{
     border-style: none;
     background-color: #fff;
@@ -613,9 +614,11 @@ body{
     font-size: 15px;
     font-weight: 500;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .comment .comment-body{
     display: flex;
     flex-direction: column;
 }
+    

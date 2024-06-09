@@ -29,6 +29,7 @@
     <%--  css--%>
     <link rel="stylesheet" href="../assets/css/reset.css">
     <link rel="stylesheet" href="../assets/css/study/study.css">
+    <link rel="stylesheet" href="../assets/css/dashboard-user/manage-user.css">
 
 </head>
 <body>
@@ -49,6 +50,7 @@
         </div>
     </div>
 </div>
+
 <div class="study">
     <%
         if (request.getAttribute("course") != null) {
@@ -176,6 +178,31 @@
     %>
 </div>
 
+<!--------------- MODAL DELETE-------------- -->
+<div class="modal fade modal__delete" id="modal__delete_1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body border-0">
+                <span><i class="fa-solid fa-triangle-exclamation"></i></span>
+                <p>Are you sure you want to delete?</p>
+                <p>Deleted data
+                    cannot be recovered.</p>
+            </div>
+            <div class="modal-footer">
+                <a href="" class="btn btn-primary">Yes</a>
+                <button type="button" class="btn btn-danger"
+                        data-bs-dismiss="modal">No
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ------------------------------------->
 
 <div class="modal-comment">
     <div class="modal-container">
@@ -339,11 +366,11 @@
                                     </div>
                                 </div>
                                 <div class="comment-modify">
-                                        <button class="edit" style="border-style: none; background-color: #fff; color:#fd7e14; font-size: 15px; font-weight: 500; cursor: pointer">Edit</button>
+                                        <button class="edit"><a href="#">Edit</a></button>
                                         <!-- Button trigger modal -->
-                                        <!-- Button trigger modal -->
-                                        <button style="border-style: none; background-color: #fff; color:#fd7e14; font-size: 15px; font-weight: 500; cursor: pointer" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                                          Delete
+
+                                        <button type="button" class="btn__modal" data-bs-toggle="modal" data-bs-target="#modal__delete_1" title="Delete post">
+                                         Delete
                                         </button>
                                 </div>
                             </div>

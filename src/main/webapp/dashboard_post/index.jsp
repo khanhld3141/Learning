@@ -50,14 +50,14 @@
                     </td>
                     <!--------------- MODAL DELETE-------------- -->
                     <div class="modal fade modal__delete" id="modal__delete_<%=post.getId()%>">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                                </div>
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                                </div>
 
-                                <div class="modal-body border-0">
-                                    <span><i class="fa-solid fa-triangle-exclamation"></i></span>
+                                                <div class="modal-body border-0">
+                                                <span><i class="fa-solid fa-triangle-exclamation"></i></span>
                                     <p>Are you sure you want to delete?</p>
                                     <p>Deleted data
                                         cannot be recovered.</p>
