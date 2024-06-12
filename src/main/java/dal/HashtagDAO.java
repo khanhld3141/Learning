@@ -16,7 +16,7 @@ public class HashtagDAO extends DBContext{
     }
     public List<Hashtag> getAllHashtags(){
         List <Hashtag> list = new ArrayList<>();
-        String sql = "select Posts.*,Tag,Hashtags.Id as TagId from Hashtags\n";
+        String sql = "select * from Hashtags";
 
         try {
             PreparedStatement st = connection.prepareStatement(sql);

@@ -1,4 +1,4 @@
-package controller.Admin.LoginController;
+package controller.Student.LoginController;
 
 import java.io.*;
 
@@ -28,7 +28,7 @@ public class RegisterServlet extends HttpServlet {
         String username = request.getParameter("Username");
         String email = request.getParameter("Email");
         String password = request.getParameter("Password");
-
+        HttpSession session=request.getSession();
         if(loginDAO.getByUserName(username) != null){
             request.setAttribute("error", "Username already exists");
             request.getRequestDispatcher("/register").forward(request, response);
@@ -37,7 +37,7 @@ public class RegisterServlet extends HttpServlet {
             request.setAttribute("error", "Email already exists");
             request.getRequestDispatcher("/register").forward(request, response);
         }
-
+        session.setAttribute("success","Please check your email and confirm");
         SendMail.Send(email,name,username,password);
 
         response.sendRedirect("/home");

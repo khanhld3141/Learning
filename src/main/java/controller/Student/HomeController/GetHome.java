@@ -14,7 +14,6 @@ public class GetHome extends HttpServlet {
     private String message;
     private CategoryDAO categoryDAO;
     private CourseDAO courseDAO;
-    private BannerDAO bannerDAO;
     private PostDAO postDAO;
     private UserCourseDAO userCourseDAO;
     private UserDAO userDAO;
@@ -23,14 +22,12 @@ public class GetHome extends HttpServlet {
         message = "Hello World!";
         categoryDAO = new CategoryDAO();
         courseDAO = new CourseDAO();
-        bannerDAO = new BannerDAO();
         postDAO = new PostDAO();
         userCourseDAO = new UserCourseDAO();
         userDAO=new UserDAO();
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        System.out.println(123);
         List<Category> categories = categoryDAO.getAllCategorys();
         request.setAttribute("categories", categories);
         List<Course> courses = courseDAO.getAllCoursesHome();
@@ -43,8 +40,7 @@ public class GetHome extends HttpServlet {
         request.setAttribute("teachers", teachers);
         request.setAttribute("countStudent", count);
         request.setAttribute("courses", courses);
-        List<Banner> banners = bannerDAO.getAllBanners();
-        request.setAttribute("banners", banners);
+
         List<Post> posts = postDAO.getAllPosts(1,10);
         request.setAttribute("posts", posts);
 

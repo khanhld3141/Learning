@@ -42,11 +42,6 @@
                                           required>
                                    <span class="error-message" id="nameError-add"></span>
                                </div>
-                               <div class="ordinal-chapter">
-                                   <label for="Ordinal-Add">Ordinal Chapter</label>
-                                   <input type="number" name="ordinal" id="Ordinal-Add"
-                                          placeholder="Enter ordinal chapter" required>
-                               </div>
                            </div>
                            <div class="modal-footer">
                                <button type="submit" class="btn btn-primary">Confirm</button>
@@ -85,7 +80,6 @@
                 <tr>
                     <th onclick="sortTable(0)">ID Chapters</th>
                     <th onclick="sortTable(1)">Name Chapters</th>
-                    <th onclick="sortTable(2)">Ordinal</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
@@ -102,7 +96,6 @@
                     </td>
                     <td><%=chapter.getName()%>
                     </td>
-                    <td><%=chapter.getOrdinal()%>
                     </td>
                     <td>
                         <!-- BUTTON TRIGGER UPDATE MODAL  -->
@@ -142,12 +135,6 @@
                                                    placeholder="Enter name chapter"
                                                    required>
                                             <span class="error-message" id="nameError-Update"></span>
-                                        </div>
-                                        <div class="ordinal-chapter">
-                                            <label for="Ordinal-Update">Ordinal Chapter</label>
-                                            <input value="<%=chapter.getOrdinal()%>" type="number" name="ordinal"
-                                                   id="Ordinal-Update"
-                                                   placeholder="Enter ordinal chapter" required>
                                         </div>
                                     </div>
                                     <div class="modal-footer">

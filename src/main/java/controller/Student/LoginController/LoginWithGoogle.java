@@ -1,4 +1,4 @@
-package controller.Admin.LoginController;
+package controller.Student.LoginController;
 
 import java.io.*;
 

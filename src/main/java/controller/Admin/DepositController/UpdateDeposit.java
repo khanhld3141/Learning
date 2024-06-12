@@ -1,7 +1,6 @@
 package controller.Admin.DepositController;
 
 import dal.DepositDAO;
-import dal.StatusDAO;
 import dal.UserDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -10,8 +9,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import model.Deposit;
-import model.Status;
-import model.User;
 
 import java.io.IOException;
 

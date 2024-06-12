@@ -1,6 +1,5 @@
 package controller.Admin.VoucherController;
 
-import dal.StatusDAO;
 import dal.VoucherDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;

@@ -106,21 +106,21 @@
 
                     <div class="accordion" id="accordionPlaylist-Videos">
                         <%
-                            c.getChapters().sort((co1, co2) -> co1.getOrdinal() - co2.getOrdinal());
-                            for (Chapter chapter : c.getChapters()) {
-
+                            c.getChapters().sort((co1, co2) -> co1.getId() - co2.getId());
+                            for (int  j=0;j<c.getChapters().size();j++) {
+                                Chapter chapter=c.getChapters().get(j);
                         %>
                         <div class="accordion-item chapter">
-                            <h2 class="accordion-header" id="heading<%=chapter.getOrdinal()%>">
+                            <h2 class="accordion-header" id="heading<%=chapter.getId()%>">
                                 <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapse<%=chapter.getOrdinal()%>" aria-expanded="true"
-                                        aria-controls="collapse<%=chapter.getOrdinal()%>">
-                                    <p class="id"><%=chapter.getOrdinal()%>.</p>
+                                        data-bs-target="#collapse<%=chapter.getId()%>" aria-expanded="true"
+                                        aria-controls="collapse<%=chapter.getId()%>">
+                                    <p class="id"><%=j%>.</p>
                                     <%=chapter.getName()%>
                                 </button>
                             </h2>
-                            <div id="collapse<%=chapter.getOrdinal()%>" class="accordion-collapse collapse"
-                                 aria-labelledby="heading<%=chapter.getOrdinal()%>" data-bs-parent="#accordionExample">
+                            <div id="collapse<%=chapter.getId()%>" class="accordion-collapse collapse"
+                                 aria-labelledby="heading<%=chapter.getId()%>" data-bs-parent="#accordionExample">
 
                                 <div class="accordion-body videos">
                                     <%

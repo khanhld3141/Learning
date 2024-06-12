@@ -1,7 +1,6 @@
 package dal;
 
 import model.Deposit;
-import model.Status;
 import model.User;
 
 import java.sql.PreparedStatement;

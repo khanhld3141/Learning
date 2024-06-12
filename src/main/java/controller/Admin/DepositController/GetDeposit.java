@@ -1,7 +1,6 @@
 package controller.Admin.DepositController;
 
 import dal.DepositDAO;
-import dal.StatusDAO;
 import dal.UserDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -9,7 +8,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.Deposit;
-import model.Status;
 import model.User;
 
 import java.io.IOException;
@@ -19,12 +17,10 @@ import java.util.List;
 public class GetDeposit extends HttpServlet {
     private String message;
     private DepositDAO depositDAO;
-    private StatusDAO statusDAO;
     private UserDAO userDAO;
     public void init() {
         message = "Hello World!";
         depositDAO = new DepositDAO();
-        statusDAO=new StatusDAO();
         userDAO=new UserDAO();
     }
 

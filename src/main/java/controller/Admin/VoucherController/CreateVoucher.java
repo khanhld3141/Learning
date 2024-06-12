@@ -1,6 +1,5 @@
 package controller.Admin.VoucherController;
 
-import dal.StatusDAO;
 import dal.VoucherDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -8,7 +7,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import model.Status;
 import model.Voucher;
 
 import java.io.IOException;

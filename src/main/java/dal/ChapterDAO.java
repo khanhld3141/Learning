@@ -24,8 +24,7 @@ public class ChapterDAO extends DBContext{
                 Chapter Chapter = new Chapter(
                         rs.getInt("Id"),
                         rs.getInt("CourseId"),
-                        rs.getString("Name"),
-                        rs.getInt("Ordinal")
+                        rs.getString("Name")
                 );
                 list.add(Chapter);
             }
@@ -47,8 +46,7 @@ public class ChapterDAO extends DBContext{
                 Chapter Chapter = new Chapter(
                         rs.getInt("Id"),
                         rs.getInt("CourseId"),
-                        rs.getString("Name"),
-                        rs.getInt("Ordinal")
+                        rs.getString("Name")
                 );
                 list.add(Chapter);
             }
@@ -68,8 +66,7 @@ public class ChapterDAO extends DBContext{
                 Chapter Chapter = new Chapter(
                         rs.getInt("Id"),
                         rs.getInt("CourseId"),
-                        rs.getString("Name"),
-                        rs.getInt("Ordinal")
+                        rs.getString("Name")
                 );
                 return Chapter;
             }
@@ -79,12 +76,11 @@ public class ChapterDAO extends DBContext{
         return null;
     }
     public void create(Chapter Chapter) {
-        String sql = "insert into Chapters (CourseId,Name,Ordinal) values(?,?,?)";
+        String sql = "insert into Chapters (CourseId,Name) values(?,?)";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setInt(1, Chapter.getCourseId());
             st.setString(2, Chapter.getName());
-            st.setInt(3, Chapter.getOrdinal());
             // Execute the update
             st.executeUpdate();
         } catch (SQLException e) {
@@ -93,13 +89,12 @@ public class ChapterDAO extends DBContext{
     }
 
     public void update(Chapter Chapter) {
-        String sql = "update Chapters set Name=?,CourseId =?,Ordinal=?  where Id=? ";
+        String sql = "update Chapters set Name=?,CourseId =?  where Id=? ";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setString(1, Chapter.getName());
             st.setInt(2, Chapter.getCourseId());
-            st.setInt(3, Chapter.getOrdinal());
-            st.setInt(4, Chapter.getId());
+            st.setInt(3, Chapter.getId());
             // Execute the update
             st.executeUpdate();
         } catch (SQLException e) {

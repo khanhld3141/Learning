@@ -35,7 +35,6 @@ public class UpdateChapter extends HttpServlet {
         String id = request.getParameter("id");
         String courseId=request.getParameter("courseid");
         String name=request.getParameter("name");
-        String ordinal=request.getParameter("ordinal");
         HttpSession session=request.getSession();
 
         try{
@@ -46,8 +45,7 @@ public class UpdateChapter extends HttpServlet {
                 chapterDAO.update(new Chapter(
                         Integer.parseInt(id),
                         Integer.parseInt(courseId),
-                        name,
-                        Integer.parseInt(ordinal)
+                        name
                 ));
                 session.setAttribute("success","Update Chapter successfully");
                 response.sendRedirect("/dashboard/chapter?courseid=" + courseId);

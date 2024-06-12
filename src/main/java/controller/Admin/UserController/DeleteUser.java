@@ -14,6 +14,7 @@ import java.io.IOException;
 public class DeleteUser extends HttpServlet {
     private String message;
     private UserDAO userDAO;
+
     public void init() {
         message = "Hello World!";
         userDAO = new UserDAO();

@@ -52,7 +52,7 @@ public class CourseDAO extends DBContext {
 
     public List<Course> getAllCoursesHome() {
         List<Course> list = new ArrayList<>();
-        String sql = "select * from Courses\n";
+        String sql = "select * from Courses";
 
         try {
             PreparedStatement st = connection.prepareStatement(sql);

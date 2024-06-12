@@ -1,13 +1,12 @@
 package controller.Admin.CategoryController;
 
 import controller.Ulti.FileUploadUtil;
-import dal.BannerDAO;
 import dal.CategoryDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
-import model.Banner;
+
 import model.Category;
 
 import java.io.IOException;

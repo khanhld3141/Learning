@@ -5,25 +5,23 @@ import java.util.List;
 
 public class Chapter {
 
-    private int Id,CourseId,Ordinal;
+    private int Id,CourseId;
     private String Name;
 
     private  List<Lession> lessions;
     public Chapter() {
     }
 
-    public Chapter(int courseId, String name, int ordinal) {
+    public Chapter(int courseId, String name) {
         CourseId = courseId;
         Name = name;
-        Ordinal = ordinal;
         lessions=new ArrayList<>();
     }
 
-    public Chapter(int id, int courseId, String name, int ordinal) {
+    public Chapter(int id, int courseId, String name) {
         Id = id;
         CourseId = courseId;
         Name = name;
-        Ordinal = ordinal;
         lessions=new ArrayList<>();
     }
 
@@ -49,14 +47,6 @@ public class Chapter {
 
     public void setName(String name) {
         Name = name;
-    }
-
-    public int getOrdinal() {
-        return Ordinal;
-    }
-
-    public void setOrdinal(int ordinal) {
-        Ordinal = ordinal;
     }
 
     public List<Lession> getLessions() {

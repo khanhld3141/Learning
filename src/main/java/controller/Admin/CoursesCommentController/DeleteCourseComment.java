@@ -1,7 +1,6 @@
 package controller.Admin.CoursesCommentController;
 
 import dal.CourseCommentDAO;
-import dal.StatusDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;

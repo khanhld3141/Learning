@@ -23,13 +23,11 @@ public class CreateChapter extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String courseId=request.getParameter("courseid");
         String name=request.getParameter("name");
-        String ordinal=request.getParameter("ordinal");
         HttpSession session=request.getSession();
         try{
             chapterDAO.create(new Chapter(
                     Integer.parseInt(courseId),
-                    name,
-                    Integer.parseInt(ordinal)
+                    name
             ));
             session.setAttribute("success","Add new Chapter successfully");
             response.sendRedirect("/dashboard/chapter?courseid="+courseId);
