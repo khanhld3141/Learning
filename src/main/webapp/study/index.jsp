@@ -46,7 +46,7 @@
         if (request.getAttribute("course") != null) {
             Course c = (Course) request.getAttribute("course");
     %>
-    <main data-course="<%=c.getId()%>" id="main">
+    <main data-user="${sessionScope.user.id}" data-course="<%=c.getId()%>" id="main">
 
         <%--            begin head--%>
         <div class="head">
@@ -350,7 +350,6 @@
                 numberofComments.innerHTML = '<h4>' + data.length + ' comments </h4>';
                 let html = '';
                 data.map(item => {
-
                     html += `
                         <div class="comment">
                             <div class="avatar">
@@ -367,7 +366,12 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="comment-modify">
+
+
+
+                     `;
+                    if(main.dataset.user===String(item.AuthorId)){
+                        html+=`<div class="comment-modify">
                                         <div class="edit-delete-comment-block display-none">
                                             <button type="button" data-bs-toggle="modal"
                                                     class="button-edit-delete-comment"
@@ -436,9 +440,13 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>`;
+                    }else{
+                        html+=`
+                             </div>
                         </div>
-
-            `;
+                        `;
+                    }
 
                 })
                 contentModal.innerHTML = html;
