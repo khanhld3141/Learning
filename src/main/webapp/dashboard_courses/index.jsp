@@ -54,38 +54,66 @@
                         </button>
                         <a href="/dashboard/chapter?courseid=<%=c.getId()%>"
                            title="Manage chapters"><i class="fa-solid fa-eye"></i></a>
+<%--                        <button type="button" class="btn__modal" data-bs-toggle="modal"--%>
+<%--                                data-bs-target="#modal__add-student-into-courses_<%=c.getId()%>"--%>
+<%--                                title="Add student into this course">--%>
+<%--                            <i class="fa-solid fa-user-plus" style="color: green; font-size: 16px"></i>--%>
+<%--                        </button>--%>
                         <button type="button" class="btn__modal" data-bs-toggle="modal"
-                                data-bs-target="#modal__add-student-into-courses_<%=c.getId()%>"
-                                title="Add student into this course">
+                                data-bs-target="#modal__remove-student-into-courses_<%=c.getId()%>"
+                                title="Remove student into this course">
                             <i class="fa-solid fa-user-plus" style="color: green; font-size: 16px"></i>
                         </button>
                         <%-- MODAL ADD STUDENT INTO COURSES --%>
                         <div class="modal fade modal__add" id="modal__add-student-into-courses_<%=c.getId()%>">
                             <div class="modal-dialog modal-dialog-centered">
+
                                 <form action="/create-user-course" method="post" style="width: 100%">
+
                                     <div class="modal-content">
+
                                         <div class="modal-header">
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                         </div>
                                         <div class="modal-body">
+                                            <h3>ADD STUDENT INTO COURSE</h3>
                                             <span>Course Name: <%=c.getName()%></span>
                                             <input name="courseid" value="<%=c.getId()%>" hidden="hidden">
                                             <div class="student-name">
-                                                <label for="student-name">Username</label>
-                                                <input list="_student-name" name="userid" id="student-name"
-                                                       placeholder="Enter username" required>
-                                                <datalist id="_student-name">
-                                                    <%
-                                                        if (request.getAttribute("students") != null) {
-                                                            List<User> students = (List<User>) request.getAttribute("students");
-                                                            for (User student : students) {
-                                                    %>
-                                                    <option value="<%=student.getId()%>-<%=student.getUsername()%>">
-                                                            <%
-                                                    }
-                                                            }
-                                                    %>
-                                                </datalist>
+                                                <label for="student-name">Email</label>
+                                                <input name="email" id="student-name"
+                                                       placeholder="Enter username" type="email" required>
+                                            </div>
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-primary">Confirm</button>
+                                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <%-- MODAL REMOVE STUDENT OF COURSES --%>
+                        <div class="modal fade modal__add" id="modal__remove-student-into-courses_<%=c.getId()%>">
+                            <div class="modal-dialog modal-dialog-centered">
+
+                                <form action="/delete-user-course" method="post" style="width: 100%">
+
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                        </div>
+
+                                        <div class="modal-body">
+                                            <h3>REMOVE STUDENT </h3>
+                                            <span>Course Name: <%=c.getName()%></span>
+                                            <input name="courseid" value="<%=c.getId()%>" hidden="hidden">
+                                            <div class="student-name">
+                                                <label for="student-name-remove">Email</label>
+                                                <input name="email" id="student-name-remove"
+                                                       placeholder="Enter username" type="email" required>
                                             </div>
 
                                         </div>

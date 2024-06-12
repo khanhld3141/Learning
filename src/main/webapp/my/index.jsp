@@ -35,7 +35,7 @@
                                     <span class="error-message" id="nameError"></span>
                                     <div class="email">
                                         <label for="Email"><i class="fa-solid fa-envelope"></i>Your Email</label>
-                                        <input value="<%=user.getEmail()%>" type="email" id="Email"
+                                        <input readonly value="<%=user.getEmail()%>" type="email" id="Email"
                                                placeholder="Enter your email"
                                                name="email" required>
                                     </div>

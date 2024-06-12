@@ -2,6 +2,7 @@ package controller.Student.LoginController;
 
 import java.io.*;
 
+import dal.UserDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -9,9 +10,10 @@ import jakarta.servlet.annotation.*;
 @WebServlet(name = "ForgotpasswordServlet", value = "/forgot-password")
 public class Forgotpassword extends HttpServlet {
     private String message;
-
+    private UserDAO userDAO;
     public void init() {
         message = "Hello World!";
+        userDAO=new UserDAO();
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -19,11 +21,17 @@ public class Forgotpassword extends HttpServlet {
     }
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String email = request.getParameter("email");
-        int code=SendCode.Send(email);
         HttpSession session=request.getSession();
-        session.setAttribute("code",code);
-        session.setAttribute("email",email);
-        response.sendRedirect("/confirm-code");
+        if(userDAO.getByEmail(email)!=null){
+            int code=SendCode.Send(email);
+
+            session.setAttribute("code",code);
+            session.setAttribute("email",email);
+            response.sendRedirect("/confirm-code");
+        }else{
+            session.setAttribute("error","Email is invalid");
+            response.sendRedirect("/forgot-password");
+        }
 
     }
 

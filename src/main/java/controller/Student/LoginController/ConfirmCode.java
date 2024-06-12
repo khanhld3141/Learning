@@ -20,6 +20,7 @@ public class ConfirmCode extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String code[]=request.getParameterValues("code[]");
         String code1="";
+
         for(String i:code){
             code1+=i;
         }
@@ -29,7 +30,8 @@ public class ConfirmCode extends HttpServlet {
         if(code1.equals(Integer.toString(codeS))){
             response.sendRedirect("/confirm-password");
         }else{
-            request.getRequestDispatcher("/Forgot-password/enter-code.jsp").forward(request, response);
+            session.setAttribute("error","Code is incorrect");
+            response.sendRedirect("/confirm-code");
         }
     }
 

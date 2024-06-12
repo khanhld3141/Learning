@@ -28,6 +28,7 @@ public class ConfirmPassword extends HttpServlet {
         String email=(String) session.getAttribute("email");
         User user=userDAO.getByEmail(email);
         userDAO.changePassword(password,user.getId());
+        session.setAttribute("success","Change password successfully");
         response.sendRedirect("/login");
     }
 
