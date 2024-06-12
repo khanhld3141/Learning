@@ -17,7 +17,7 @@
                     <label class="title">Forgot password</label>
                     <span class="subtitle">Please enter your email address so we can send you an email to reset your password.</span>
                 </div>
-                <input placeholder="Enter your e-mail" title="Enter your e-mail" name="email" type="email" class="input_field">
+                <input placeholder="Enter your e-mail" title="Enter your e-mail" name="email" type="email" class="input_field" required>
                 <button class="submit">Send code</button>
             </form>
         </div>

@@ -21,7 +21,10 @@
                                     <label for="New-password"><i class="fa-solid fa-key"></i>Your new
                                         password</label>
                                     <input type="password" id="New-password" placeholder="Enter your new password"
-                                           name="newpassword" required>
+                                               name="newpassword" required>
+                                </div>
+                                <div style="margin-top: 0; margin-left: 35%;">
+                                    <p></p>
                                     <span class="error-message" id="newPasswordError"></span>
                                 </div>
                                 <div class="new-password-again">
@@ -29,7 +32,10 @@
                                         again
                                     </label>
                                     <input type="password" id="New-password-again"
-                                           placeholder="Enter your new password again" required>
+                                               placeholder="Enter your new password again" required>
+                                </div>
+                                <div style="margin-top: 0; margin-left: 35%;">
+                                    <p></p>
                                     <span class="error-message" id="againPasswordError"></span>
                                 </div>
                                 <div class="submit-change-password">
@@ -38,26 +44,6 @@
                                 </div>
                             </form>
 
-<%--                            <script>--%>
-<%--                                document.addEventListener("DOMContentLoaded", function() {--%>
-<%--                                    var form = document.querySelector('#form_change_password');--%>
-<%--                                    form.addEventListener('submit', function(event) {--%>
-<%--                                        event.preventDefault();--%>
-<%--                                        validatePassword();--%>
-<%--                                    });--%>
-
-<%--                                    function validatePassword() {--%>
-<%--                                        var newPassword = document.getElementById('New-password').value;--%>
-<%--                                        var confirmPassword = document.getElementById('New-password-again').value;--%>
-
-<%--                                        if (newPassword !== confirmPassword) {--%>
-<%--                                            alert('New password and confirm password do not match!');--%>
-<%--                                        } else {--%>
-<%--                                            form.submit();--%>
-<%--                                        }--%>
-<%--                                    }--%>
-<%--                                });--%>
-<%--                            </script>--%>
                             <script>
                                 $(document).ready(function () {
                                     function validatePassword() {
