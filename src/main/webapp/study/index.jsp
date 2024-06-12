@@ -32,6 +32,12 @@
     <link rel="stylesheet" href="../assets/css/dashboard-user/manage-user.css">
     <link rel="stylesheet" href="../assets/css/dashboard-chapter/manage-chapter.css">
     <link rel="stylesheet" href="../assets/css/dashboard-user/update-user.css">
+
+    <style>
+        .modal-backdrop.show {
+            z-index: 0 !important;
+        }
+    </style>
 </head>
 <body>
 
