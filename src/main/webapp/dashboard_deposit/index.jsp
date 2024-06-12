@@ -16,54 +16,54 @@
                 </form>
             </div>
             <!-------Button trigger ADD NEW DEPOSIT modal-------- -->
-            <button type="button" class="btn-dashboard btn__add-deposit" data-bs-toggle="modal"
-                    data-bs-target="#modal__add-new-deposit" style="border: none;">
-                <i class="fa-solid fa-plus"></i>Add new deposit
-            </button>
+<%--            <button type="button" class="btn-dashboard btn__add-deposit" data-bs-toggle="modal"--%>
+<%--                    data-bs-target="#modal__add-new-deposit" style="border: none;">--%>
+<%--                <i class="fa-solid fa-plus"></i>Add new deposit--%>
+<%--            </button>--%>
             <!--------------- MODAL ADD NEW DEPOSIT-------------- -->
-            <div class="modal fade modal__add" id="modal__add-new-deposit">
-                <div class="modal-dialog modal-dialog-centered">
-                    <form action="/dashboard/create-deposit" method="post" style="width: 100%">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="name-user">
-                                    <label for="_Name-user">Name's user</label>
-                                    <%--                                    <input list="_Name-user" name="user" id="Name-user-add"--%>
-                                    <%--                                           placeholder="Choose a user" required>--%>
-                                    <select name="userid" id="_Name-user">
-                                        <%
-                                            if (request.getAttribute("users") != null) {
-                                                List<User> users = (List<User>) request.getAttribute("users");
-                                                for (User user : users) {
+<%--            <div class="modal fade modal__add" id="modal__add-new-deposit">--%>
+<%--                <div class="modal-dialog modal-dialog-centered">--%>
+<%--                    <form action="/dashboard/create-deposit" method="post" style="width: 100%">--%>
+<%--                        <div class="modal-content">--%>
+<%--                            <div class="modal-header">--%>
+<%--                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>--%>
+<%--                            </div>--%>
+<%--                            <div class="modal-body">--%>
+<%--                                <div class="name-user">--%>
+<%--                                    <label for="_Name-user">Name's user</label>--%>
+<%--                                    &lt;%&ndash;                                    <input list="_Name-user" name="user" id="Name-user-add"&ndash;%&gt;--%>
+<%--                                    &lt;%&ndash;                                           placeholder="Choose a user" required>&ndash;%&gt;--%>
+<%--                                    <select name="userid" id="_Name-user">--%>
+<%--                                        <%--%>
+<%--                                            if (request.getAttribute("users") != null) {--%>
+<%--                                                List<User> users = (List<User>) request.getAttribute("users");--%>
+<%--                                                for (User user : users) {--%>
 
 
-                                        %>
-                                        <option value="<%=user.getId()%>"><%=user.getName()%>
-                                        </option>
-                                        <%
-                                                }
-                                            }
-                                        %>
-                                    </select>
-                                </div>
-                                <div class="money">
-                                    <label for="Money-add">Money</label>
-                                    <input type="number" placeholder="Enter amount of money" name="amountofmoney"
-                                           required
-                                           id="Money-add">
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button class="btn btn-primary" type="submit">Confirm</button>
-                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+<%--                                        %>--%>
+<%--                                        <option value="<%=user.getId()%>"><%=user.getName()%>--%>
+<%--                                        </option>--%>
+<%--                                        <%--%>
+<%--                                                }--%>
+<%--                                            }--%>
+<%--                                        %>--%>
+<%--                                    </select>--%>
+<%--                                </div>--%>
+<%--                                <div class="money">--%>
+<%--                                    <label for="Money-add">Money</label>--%>
+<%--                                    <input type="number" placeholder="Enter amount of money" name="amountofmoney"--%>
+<%--                                           required--%>
+<%--                                           id="Money-add">--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                            <div class="modal-footer">--%>
+<%--                                <button class="btn btn-primary" type="submit">Confirm</button>--%>
+<%--                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                    </form>--%>
+<%--                </div>--%>
+<%--            </div>--%>
             <!-- --------------------------------------------------------------->
 
         </div>
@@ -98,60 +98,60 @@
                     </td>
                     <td>
                         <!-- BUTTON TRIGGER UPDATE MODAL  -->
-                        <button type="button" class="btn__modal" data-bs-toggle="modal"
-                                data-bs-target="#modal__update-deposit_<%=deposit.getId()%>" style="border: none;"
-                                title="Update deposit">
-                            <i class="fa-solid fa-pen"></i>
-                        </button>
-                        <!--------------- MODAL UPDATE DEPOSIT-------------- -->
-                        <div class="modal fade modal__update" id="modal__update-deposit_<%=deposit.getId()%>">
-                            <div class="modal-dialog modal-dialog-centered">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="btn-close"
-                                                data-bs-dismiss="modal"></button>
-                                    </div>
-                                    <form action="/dashboard/update-deposit" method="post">
-                                        <div class="modal-body">
-                                            <input name="id" value="<%=deposit.getId()%>" hidden="hidden">
-                                            <div class="userId">
-                                                <%--                                                <label for="userid-update">User Name</label>--%>
-                                                <input name="userid" value="<%=deposit.getUserId()%>" id="userid-update"
-                                                       readonly hidden>
-                                            </div>
-                                            <div class="money">
-                                                <label for="Money-update">Money</label>
-                                                <input value="<%=deposit.getAmountOfMoney()%>" type="number"
-                                                       placeholder="Enter amount of money"
-                                                       name="amountofmoney" id="Money-update">
-                                            </div>
+<%--                        <button type="button" class="btn__modal" data-bs-toggle="modal"--%>
+<%--                                data-bs-target="#modal__update-deposit_<%=deposit.getId()%>" style="border: none;"--%>
+<%--                                title="Update deposit">--%>
+<%--                            <i class="fa-solid fa-pen"></i>--%>
+<%--                        </button>--%>
+<%--                        <!--------------- MODAL UPDATE DEPOSIT-------------- -->--%>
+<%--                        <div class="modal fade modal__update" id="modal__update-deposit_<%=deposit.getId()%>">--%>
+<%--                            <div class="modal-dialog modal-dialog-centered">--%>
+<%--                                <div class="modal-content">--%>
+<%--                                    <div class="modal-header">--%>
+<%--                                        <button type="button" class="btn-close"--%>
+<%--                                                data-bs-dismiss="modal"></button>--%>
+<%--                                    </div>--%>
+<%--                                    <form action="/dashboard/update-deposit" method="post">--%>
+<%--                                        <div class="modal-body">--%>
+<%--                                            <input name="id" value="<%=deposit.getId()%>" hidden="hidden">--%>
+<%--                                            <div class="userId">--%>
+<%--                                                &lt;%&ndash;                                                <label for="userid-update">User Name</label>&ndash;%&gt;--%>
+<%--                                                <input name="userid" value="<%=deposit.getUserId()%>" id="userid-update"--%>
+<%--                                                       readonly hidden>--%>
+<%--                                            </div>--%>
+<%--                                            <div class="money">--%>
+<%--                                                <label for="Money-update">Money</label>--%>
+<%--                                                <input value="<%=deposit.getAmountOfMoney()%>" type="number"--%>
+<%--                                                       placeholder="Enter amount of money"--%>
+<%--                                                       name="amountofmoney" id="Money-update">--%>
+<%--                                            </div>--%>
 
-                                            <div class="status">
-                                                <label for="_Status-name-update">Status</label>
-                                                <%--                                                <input value="<%=statusValue%>" list="_Status-name-update" name="status"--%>
-                                                <%--                                                       id="status-update"--%>
-                                                <%--                                                       placeholder="Choose a status" required>--%>
-                                                <select name="status" id="_Status-name-update">
+<%--                                            <div class="status">--%>
+<%--                                                <label for="_Status-name-update">Status</label>--%>
+<%--                                                &lt;%&ndash;                                                <input value="<%=statusValue%>" list="_Status-name-update" name="status"&ndash;%&gt;--%>
+<%--                                                &lt;%&ndash;                                                       id="status-update"&ndash;%&gt;--%>
+<%--                                                &lt;%&ndash;                                                       placeholder="Choose a status" required>&ndash;%&gt;--%>
+<%--                                                <select name="status" id="_Status-name-update">--%>
 
-                                                    <option value="Successfully">Successfully
-                                                    </option>
-                                                    <option value="Cancel">Cancel
-                                                    </option>
+<%--                                                    <option value="Successfully">Successfully--%>
+<%--                                                    </option>--%>
+<%--                                                    <option value="Cancel">Cancel--%>
+<%--                                                    </option>--%>
 
-                                                </select>
-                                            </div>
+<%--                                                </select>--%>
+<%--                                            </div>--%>
 
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button class="btn btn-primary" type="submit">Confirm</button>
-                                            <button type="button" class="btn btn-danger"
-                                                    data-bs-dismiss="modal">No
-                                            </button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+<%--                                        </div>--%>
+<%--                                        <div class="modal-footer">--%>
+<%--                                            <button class="btn btn-primary" type="submit">Confirm</button>--%>
+<%--                                            <button type="button" class="btn btn-danger"--%>
+<%--                                                    data-bs-dismiss="modal">No--%>
+<%--                                            </button>--%>
+<%--                                        </div>--%>
+<%--                                    </form>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
 
 
                         <!-- BUTTON TRIGGER DELETE MODAL  -->
