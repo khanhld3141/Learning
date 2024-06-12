@@ -69,12 +69,8 @@
     </div>
     <nav class="side-bar__nav">
         <ul>
-            <li>
-                <a href="/dashboard" class="nav__link"><i class="fa-solid fa-table-cells" style="color: #ff9800"></i>Dashboard</a>
-            </li>
-            <li>
-                <a href="/dashboard/users" class="nav__link"><i class="fa-solid fa-user" style="color: #ff5722"></i>Users</a>
-            </li>
+
+
             <li>
                 <a href="/dashboard/courses" class="nav__link"><i class="fa-solid fa-file" style="color: #03a9f4"></i>Courses</a>
             </li>
@@ -83,6 +79,12 @@
                     User user = (User) session.getAttribute("user");
                     if (user.getRole().equals("R1")) {
             %>
+            <li>
+                <a href="/dashboard" class="nav__link"><i class="fa-solid fa-table-cells" style="color: #ff9800"></i>Dashboard</a>
+            </li>
+            <li>
+                <a href="/dashboard/users" class="nav__link"><i class="fa-solid fa-user" style="color: #ff5722"></i>Users</a>
+            </li>
             <li>
                 <a href="/dashboard/categories" class="nav__link"><i class="fa-solid fa-palette"
                                                                      style="color: #9c27b0"></i>Category</a>

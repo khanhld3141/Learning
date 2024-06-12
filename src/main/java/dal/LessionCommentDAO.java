@@ -24,7 +24,7 @@ public class LessionCommentDAO extends DBContext{
                 LessionComment LessionComment = new LessionComment(
                         rs.getInt("Id"),
                         rs.getInt("LessionId"),
-                        rs.getInt("Author"),
+                        rs.getInt("Authorid"),
                         rs.getInt("ParentId"),
                         rs.getString("Content")
                 );
@@ -75,7 +75,7 @@ public class LessionCommentDAO extends DBContext{
                 LessionComment LessionComment = new LessionComment(
                         rs.getInt("Id"),
                         rs.getInt("LessionId"),
-                        rs.getInt("Author"),
+                        rs.getInt("Authorid"),
                         rs.getInt("ParentId"),
                         rs.getString("Content")
                 );

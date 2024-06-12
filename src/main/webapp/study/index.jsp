@@ -46,7 +46,8 @@
         <div class="head">
             <div class="head-back"><a href="/home"><i class="fa-solid fa-arrow-left"></i></a></div>
             <a href="" class="head-logo"><img src="../img/study/6783729.png" alt=""></a>
-            <div class="head-title"><%=c.getName()%></div>
+            <div class="head-title"><%=c.getName()%>
+            </div>
             <div class="progress-bar">
                 <%--            <div class="percent">10%</div>--%>
 
@@ -91,8 +92,8 @@
                     <div class="accordion" id="accordionPlaylist-Videos">
                         <%
                             c.getChapters().sort((co1, co2) -> co1.getId() - co2.getId());
-                            for (int  j=0;j<c.getChapters().size();j++) {
-                                Chapter chapter=c.getChapters().get(j);
+                            for (int j = 0; j < c.getChapters().size(); j++) {
+                                Chapter chapter = c.getChapters().get(j);
                         %>
                         <div class="accordion-item chapter">
                             <h2 class="accordion-header" id="heading<%=chapter.getId()%>">
@@ -108,14 +109,17 @@
 
                                 <div class="accordion-body videos">
                                     <%
-                                       for(int i=0;i<chapter.getLessions().size();i++){
+                                        for (int i = 0; i < chapter.getLessions().size(); i++) {
                                     %>
                                     <li class="video" id="<%=chapter.getLessions().get(i).getLink()%>"
-                                        data-lesson="<%=chapter.getLessions().get(i).getId()%>" data-name="<%=chapter.getLessions().get(i).getName()%>" data-description="<%=chapter.getLessions().get(i).getDescription()%>"
+                                        data-lesson="<%=chapter.getLessions().get(i).getId()%>"
+                                        data-name="<%=chapter.getLessions().get(i).getName()%>"
+                                        data-description="<%=chapter.getLessions().get(i).getDescription()%>"
                                         data-origin="<%=i+1%>">
 
                                         <div data-lesson="<%=chapter.getLessions().get(i).getId()%>" class="col1">
-                                            <h class="title"><p class="id"><%=i+1%>.</p><%=chapter.getLessions().get(i).getName()%>
+                                            <h class="title"><p class="id"><%=i + 1%>
+                                                .</p><%=chapter.getLessions().get(i).getName()%>
                                             </h>
                                             <div class="timeplay">
                                                 <img src="../img/study/play.svg" alt="">
@@ -214,7 +218,7 @@
     // xu li dong/mo chapter va  video
     let videos = document.querySelectorAll('.video');
     let main_video = document.querySelector('.main-video video source')
-    let main_video_Video=document.querySelector(".main-video video")
+    let main_video_Video = document.querySelector(".main-video video")
     let main_video_description_title = document.querySelector('.main-video-description .title h')
     let main_video_description_text = document.querySelector('.main-video-description .content')
     main_video.src = "";
@@ -229,13 +233,13 @@
                 all_videos.querySelector('.video .col1 img').src = "../img/study/play.svg"
 
             }
-            main_video_description_title.innerHTML = selected_video.dataset.origin+". "+selected_video.dataset.name;
-            main_video_description_text.innerHTML =selected_video.dataset.description;
-            main_video.src="/video?courseid="+main.dataset.course+"&id="+selected_video.dataset.lesson;
+            main_video_description_title.innerHTML = selected_video.dataset.origin + ". " + selected_video.dataset.name;
+            main_video_description_text.innerHTML = selected_video.dataset.description;
+            main_video.src = "/video?courseid=" + main.dataset.course + "&id=" + selected_video.dataset.lesson;
             main_video_Video.load();
             main_video_Video.play()
 
-
+            col.dataset.lesson = selected_video.dataset.lesson;
             selected_video.classList.add('active');
             selected_video.querySelector('.video .col1 img').src = "../img/study/pause.svg"
             // let formData = new FormData();
@@ -256,9 +260,7 @@
             //         main_video.parentElement.load();
             //     }
             // })
-             selected_video.querySelector('img').src = 'images/pause.svg';
-
-
+            selected_video.querySelector('img').src = 'images/pause.svg';
 
 
         }
@@ -295,9 +297,44 @@
 
     })
 
+    function updateComment(id) {
+        let content = document.getElementById("Content-comment")
+        console.log(content.value)
+        let formData = new FormData();
+        formData.append('id', id);
+        formData.append('content', content.value)
+        $.ajax({
+            url: '/update-comment-of-lesson',
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: () => {
+                showComment();
+            }
+        })
+    }
+
+    function deleteComment(id) {
+        let formData = new FormData();
+        formData.append('courseid', main.dataset.course);
+        formData.append('id', id)
+        $.ajax({
+            url: '/delete-comment-of-lesson',
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: () => {
+                showComment();
+            }
+        })
+    }
+
     function showComment() {
         let formData = new FormData();
         formData.append('id', col.dataset.lesson);
+
         $.ajax({
             url: '/get-comment',
             type: 'POST',
@@ -309,7 +346,7 @@
                 numberofComments.innerHTML = '<h4>' + data.length + ' comments </h4>';
                 let html = '';
                 data.map(item => {
-                    console.log(item)
+
                     html += `
                         <div class="comment">
                             <div class="avatar">
@@ -342,7 +379,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="modal fade modal__update" id="#modal__update-commment_`+item.Id+`">
+                        <div class="modal fade modal__update" id="modal__update-commment_`+item.Id+`">
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -350,18 +387,18 @@
                                                 data-bs-dismiss="modal"></button>
                                     </div>
                                     <form action="/update-comment-of-course" method="post">
-                                        <input name="courseid" value="`+main.dataset.course+`" hidden="hidden">
-                                        <input name="id" value="`+item.Id+`" hidden="hidden"   >
+                                        <input name="id" value="1" hidden="hidden">
                                         <div class="modal-body">
                                             <div class="Content-comment">
                                                 <label for="Content-comment">Content comment</label>
                                                 <textarea name="comment" id="Content-comment"
-                                                          placeholder="Enter content comment" required style="background-color: #f6f6f6; border: 1px solid #dadada;border-radius: 5px;margin-bottom: 25px;padding: 20px;width: 100%;min-height: 130px;">`+ item.Content +`</textarea>
+                                                          placeholder="Enter content comment" required style="background-color: #f6f6f6;
+                                                          border: 1px solid #dadada;border-radius: 5px;margin-bottom: 25px;padding: 20px;width: 100%;min-height: 130px;">`+item.Content+`</textarea>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="submit" class="btn__edit-delete-comment-yes btnConfirm"
-                                                    style="border: none">Confirm
+                                            <button onclick="updateComment(`+item.Id+`)" type="button" class="btn__edit-delete-comment-yes btnConfirm"
+                                                    style="border: none" data-bs-dismiss="modal">Confirm
                                             </button>
                                             <button type="button"
                                                     class="btn-danger btn-danger btn__edit-delete-comment-no btnNo"
@@ -387,7 +424,8 @@
                                             cannot be recovered.</p>
                                     </div>
                                     <div class="modal-footer">
-                                        <a href="/delete-comment-of-course?courseid=`+main.dataset.course+`&id=`+item.Id+`" class="btn btn-primary">Yes</a>
+                                        <button data-bs-dismiss="modal" type="button" onclick="deleteComment(`+item.Id+`)" class="btn btn-primary">Yes
+                                        </button>
                                         <button type="button" class="btn btn-danger"
                                                 data-bs-dismiss="modal">No
                                         </button>
@@ -395,6 +433,7 @@
                                 </div>
                             </div>
                         </div>
+
             `;
 
                 })
@@ -526,7 +565,8 @@
 
         }).showToast();
     }
-    window.addEventListener('pageshow', function(event) {
+
+    window.addEventListener('pageshow', function (event) {
         if (event.persisted) {
             window.location.reload();
         }

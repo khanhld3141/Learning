@@ -87,6 +87,8 @@ public class BuyCourse extends HttpServlet {
                             us.getId(),
                             Integer.parseInt(courseid)
                     ));
+                    User user1=userDAO.get(user.getId());
+                    session.setAttribute("user",user1);
                     session.setAttribute("success","Buy course successfully");
                     response.sendRedirect("/learning?courseid=" + courseid);
                 }
@@ -114,6 +116,8 @@ public class BuyCourse extends HttpServlet {
                                     us.getId(),
                                     Integer.parseInt(courseid)
                             ));
+                            User user1=userDAO.get(user.getId());
+                            session.setAttribute("user",user1);
                             session.setAttribute("success","Buy course successfully");
                             response.sendRedirect("/learning?courseid=" + courseid);
                         }

@@ -9,7 +9,7 @@ import model.LessionComment;
 import model.User;
 
 @MultipartConfig
-@WebServlet(name = "UpdateCommentOfLessonServlet", value = "/UpdateCommentOfLesson-servlet")
+@WebServlet(name = "UpdateCommentOfLessonServlet", value = "/update-comment-of-lesson")
 public class UpdateCommentOfLesson extends HttpServlet {
     private String message;
     private LessionCommentDAO lessionCommentDAO;
@@ -28,7 +28,6 @@ public class UpdateCommentOfLesson extends HttpServlet {
         out.println("</body></html>");
     }
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String lessonid = request.getParameter("lessonid");
         String content = request.getParameter("content");
         String id=request.getParameter("id");
         HttpSession session = request.getSession();
@@ -37,12 +36,11 @@ public class UpdateCommentOfLesson extends HttpServlet {
             if(lessionComment!=null){
                lessionComment.setContent(content);
                lessionCommentDAO.update(lessionComment);
-                session.setAttribute("success", "Post comment successfully");
             }
 
 
         } catch (Exception e) {
-            session.setAttribute("error", "Error while posting comment");
+
         }
     }
 
