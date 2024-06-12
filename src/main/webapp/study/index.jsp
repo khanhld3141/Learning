@@ -30,26 +30,69 @@
     <link rel="stylesheet" href="../assets/css/reset.css">
     <link rel="stylesheet" href="../assets/css/study/study.css">
     <link rel="stylesheet" href="../assets/css/dashboard-user/manage-user.css">
-
+    <link rel="stylesheet" href="../assets/css/dashboard-chapter/manage-chapter.css">
+    <link rel="stylesheet" href="../assets/css/dashboard-user/update-user.css">
 </head>
 <body>
-<div style="transform: translateY(40%)" class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
+<!-- MODAL DELETE COMMENT -->
+<div class="modal fade modal__delete" id="modal__delete_1">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">WARNING</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close"
+                        data-bs-dismiss="modal"></button>
             </div>
-            <div class="modal-body">
-                Are you sure to delete this comment?
+
+            <div class="modal-body border-0">
+                <span><i class="fa-solid fa-triangle-exclamation"></i></span>
+                <p>Are you sure you want to delete?</p>
+                <p>Deleted data
+                    cannot be recovered.</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" style="background: linear-gradient(to right, #ef3e0f, #ffb800);">Delete</button>
+                <a href=""
+                   class="btn-primary btn__edit-delete-comment-yes btnDeleteComment">Yes</a>
+                <button type="button" class="btn-danger btn__edit-delete-comment-no btnCancelDelete"
+                        data-bs-dismiss="modal">No
+                </button>
             </div>
         </div>
     </div>
 </div>
+<!--------------------------------------->
+
+<!-- MODAL UPDATE COMMENT -->
+<div class="modal fade modal__update" id="modal__update-commment_1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close"
+                        data-bs-dismiss="modal"></button>
+            </div>
+            <form action="/update-comment-of-course" method="post">
+                <input name="courseid" value="" hidden="hidden">
+                <input name="id" value="" hidden="hidden"   >
+                <div class="modal-body">
+                    <div class="Content-comment">
+                        <label for="Content-comment">Content comment</label>
+                        <textarea name="comment" id="Content-comment"
+                                  placeholder="Enter content comment" required style="background-color: #f6f6f6; border: 1px solid #dadada;border-radius: 5px;margin-bottom: 25px;padding: 20px;width: 100%;min-height: 130px;">comment content</textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn__edit-delete-comment-yes btnConfirm"
+                            style="border: none">Confirm
+                    </button>
+                    <button type="button"
+                            class="btn-danger btn-danger btn__edit-delete-comment-no btnNo"
+                            data-bs-dismiss="modal">No
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--------------------------------------->
 
 <div class="study">
     <%
@@ -366,12 +409,18 @@
                                     </div>
                                 </div>
                                 <div class="comment-modify">
-                                        <button class="edit"><a href="#">Edit</a></button>
-                                        <!-- Button trigger modal -->
-
-                                        <button type="button" class="btn__modal" data-bs-toggle="modal" data-bs-target="#modal__delete_1" title="Delete post">
-                                         Delete
-                                        </button>
+                                        <div class="edit-delete-comment-block display-none">
+                                            <button type="button" data-bs-toggle="modal"
+                                                    class="button-edit-delete-comment"
+                                                    data-bs-target="#modal__update-commment_1" title="Delete comment">
+                                                Edit
+                                            </button>
+                                            <button type="button" data-bs-toggle="modal"
+                                                    class="button-edit-delete-comment" data-bs-target="#modal__delete_1"
+                                                    title="Delete comment">
+                                                Delete
+                                            </button>
+                                        </div>
                                 </div>
                             </div>
                         </div>
