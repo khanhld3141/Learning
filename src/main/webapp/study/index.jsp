@@ -233,7 +233,6 @@
     let col = document.querySelector('.col1')
     videos.forEach(selected_video => {
         selected_video.onclick = () => {
-            console.log(selected_video.dataset.origin)
             for (all_videos of videos) {
                 all_videos.classList.remove('active');
                 all_videos.querySelector('.video .col1 img').src = "../img/study/play.svg"
@@ -304,8 +303,7 @@
     })
 
     function updateComment(id) {
-        let content = document.getElementById("Content-comment")
-        console.log(content.value)
+        let content = document.getElementById("Content-comment_"+id)
         let formData = new FormData();
         formData.append('id', id);
         formData.append('content', content.value)
@@ -397,7 +395,7 @@
                                         <div class="modal-body">
                                             <div class="Content-comment">
                                                 <label for="Content-comment">Content comment</label>
-                                                <textarea name="comment" id="Content-comment"
+                                                <textarea name="comment" id="Content-comment_`+item.Id+`"
                                                           placeholder="Enter content comment" required style="background-color: #f6f6f6;
                                                           border: 1px solid #dadada;border-radius: 5px;margin-bottom: 25px;padding: 20px;width: 100%;min-height: 130px;">`+item.Content+`</textarea>
                                             </div>

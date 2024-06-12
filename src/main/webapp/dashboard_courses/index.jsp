@@ -54,11 +54,11 @@
                         </button>
                         <a href="/dashboard/chapter?courseid=<%=c.getId()%>"
                            title="Manage chapters"><i class="fa-solid fa-eye"></i></a>
-<%--                        <button type="button" class="btn__modal" data-bs-toggle="modal"--%>
-<%--                                data-bs-target="#modal__add-student-into-courses_<%=c.getId()%>"--%>
-<%--                                title="Add student into this course">--%>
-<%--                            <i class="fa-solid fa-user-plus" style="color: green; font-size: 16px"></i>--%>
-<%--                        </button>--%>
+                        <button type="button" class="btn__modal" data-bs-toggle="modal"
+                                data-bs-target="#modal__add-student-into-courses_<%=c.getId()%>"
+                                title="Add student into this course">
+                            <i class="fa-solid fa-user-plus" style="color: green; font-size: 16px"></i>
+                        </button>
                         <button type="button" class="btn__modal" data-bs-toggle="modal"
                                 data-bs-target="#modal__remove-student-into-courses_<%=c.getId()%>"
                                 title="Remove student into this course">
