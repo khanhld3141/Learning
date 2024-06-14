@@ -52,7 +52,8 @@
                             document.getElementById('name-category-add').addEventListener('input', function() {
                                 const name = this.value.trim();
                                 const nameError = document.getElementById('nameError-add');
-                                const regex = /^[A-Za-zÀ-Ỹà-ỹ\s]+$/;
+                                // const regex = /^[A-Za-zÀ-Ỹà-ỹ\s]+$/;
+                                const regex = /^[A-Za-zÀ-ỹ\s]+$/u;
                                 if (name.length < 5 || !regex.test(name)) {
                                     nameError.textContent = "Name must contain at least 5 alphabetic characters and can't contain numbers";
                                 } else {
@@ -210,7 +211,8 @@
                                     document.getElementById('name-category-update').addEventListener('input', function() {
                                         const name = this.value.trim();
                                         const nameError = document.getElementById('nameError-update');
-                                        const regex = /^[A-Za-zÀ-Ỹà-ỹ\s]+$/;
+                                        // const regex = /^[A-Za-zÀ-Ỹà-ỹ\s]+$/;
+                                        const regex = /^[A-Za-zÀ-ỹ\s]+$/u;
                                         if (name.length < 5 || !regex.test(name)) {
                                             nameError.textContent = "Name must contain at least 5 alphabetic characters and can't contain numbers";
                                         } else {

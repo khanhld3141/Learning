@@ -44,7 +44,7 @@
                     <td><%=c.getPrice()%>$</td>
                     <td><%=c.getTeacher().getName()%>
                     </td>
-                    <td>
+                    <td style="text-overflow: initial">
                         <a href="/dashboard/update-course?id=<%=c.getId()%>" title="Edit course"><i
                                 class="fa-solid fa-pen"></i></a>
                         <!-- Button trigger modal -->
@@ -62,7 +62,7 @@
                         <button type="button" class="btn__modal" data-bs-toggle="modal"
                                 data-bs-target="#modal__remove-student-into-courses_<%=c.getId()%>"
                                 title="Remove student into this course">
-                            <i class="fa-solid fa-user-plus" style="color: green; font-size: 16px"></i>
+                            <i class="fa-solid fa-user-minus" style="color: red; font-size: 16px; margin-left: -3px"></i>
                         </button>
                         <%-- MODAL ADD STUDENT INTO COURSES --%>
                         <div class="modal fade modal__add" id="modal__add-student-into-courses_<%=c.getId()%>">
@@ -82,7 +82,7 @@
                                             <div class="student-name">
                                                 <label for="student-name">Email</label>
                                                 <input name="email" id="student-name"
-                                                       placeholder="Enter username" type="email" required>
+                                                       placeholder="Enter email" type="email" required>
                                             </div>
 
                                         </div>
@@ -113,7 +113,7 @@
                                             <div class="student-name">
                                                 <label for="student-name-remove">Email</label>
                                                 <input name="email" id="student-name-remove"
-                                                       placeholder="Enter username" type="email" required>
+                                                       placeholder="Enter email" type="email" required>
                                             </div>
 
                                         </div>

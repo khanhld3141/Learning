@@ -108,8 +108,6 @@ public class StreamVideo extends HttpServlet {
                 }
             }
         } catch (IOException e) {
-//            System.err.println("Error streaming file: " + e.getMessage());
-//            e.printStackTrace();
             if (!response.isCommitted()) {
                 response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error streaming file");
             }

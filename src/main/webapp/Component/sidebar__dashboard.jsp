@@ -114,6 +114,9 @@
                                                        style="color: #e91e63"></i>Log out</a>
             </li>
             <% } %>
+            <li>
+                <a href="/home" class="nav__link"><i class="fa-solid fa-house" style="color: #ee6115"></i>Home</a>
+            </li>
         </ul>
     </nav>
     <script>

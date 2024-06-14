@@ -126,7 +126,7 @@
                     function validateBalance() {
                         const balance = document.getElementById('Balance').value;
                         const balanceError = document.getElementById('balanceError');
-                        if (!/^\d+(\.\d+)?$/.test(balance) || parseFloat(balance) <= 0) {
+                        if (!/^\d+(\.\d+)?$/.test(balance) || parseFloat(balance) < 0) {
                             balanceError.textContent = "Balance must be a positive number.";
                             return false;
                         } else {
